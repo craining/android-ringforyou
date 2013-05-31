@@ -1,0 +1,90 @@
+<resources>
+
+    <string name="app_name">XXX</string>
+    <string name="back">返回</string>
+    <string name="clear_all">清空</string>
+    <string name="main_title">XXX</string>
+    <string name="add_fromcontacts">從通訊錄添加</string>
+    <string name="add_byhand">手動添加</string>
+    <string name="how_deleteitem">長按連絡人即可刪除</string>
+    <string name="how_additem">長按連絡人進行添加</string>
+    <string name="none_contact">沒有可添加的連絡人</string>
+    <string name="import_items">還原備份</string>
+    <string name="export_items">創建備份</string>
+    <string name="name">姓名</string>
+    <string name="add">添加</string>
+    <string name="phonenumber">電話號碼</string>
+    <string name="add_help">可以添加親人、愛人、朋友、上司、重要客戶等電話~，不會錯過哦~</string>
+    <string name="copyright">©2012&#8211;2014 ZGY. 版權所有\r\n\r\nv1.0</string>
+    <string name="set_str">設置</string>
+    <string name="help_verb">振動回饋</string>
+    <string name="help_verb_info">操作時振動回饋</string>
+    <string name="clam_per">失效時段</string>
+    <string name="clam_info">在失效時段內不會自動調大音量</string>
+    <string name="feedback">回饋</string>
+    <string name="feedback_info">向作者提出您的意見或建議</string>
+    <string name="help">關於</string>
+    <string name="help_info">本軟體的自我介紹</string>
+
+    <!-- 2012-12-2 -->
+
+    <string name="str_tip">提示</string>
+    <string name="str_ok">確定</string>
+    <string name="str_cancel">取消</string>
+    <string name="add_null">請輸入電話號碼！</string>
+    <string name="add_error">請輸入正確的電話號碼！</string>
+    <string name="add_success">添加成功！</string>
+    <string name="add_cannot_more">您不能再添加重要連絡人了！</string>
+    <string name="add_repeat">您已經添加此連絡人!</string>
+    <string name="name_null">未加姓名</string>
+    <string name="add_fail">添加失敗！</string>
+    <string name="left_top">剩餘計數   【 </string>
+    <string name="left_bottom">】</string>
+    <string name="export_success">備份成功！</string>
+    <string name="export_fail">備份失敗！\r\n請確保存儲卡存在</string>
+    <string name="import_sueccess">還原備份成功！</string>
+    <string name="import_fail">還原備份失敗！請確保存儲卡存在</string>
+    <string name="sure_delete">您確定要清空全部重要連絡人嗎？</string>
+    <string name="clear_success">已清空！</string>
+    <string name="feedback_submit">提交</string>
+    <string name="feedback_hint_1">電子郵箱</string>
+    <string name="feedback_contentnull">回饋內容不能為空！</string>
+    <string name="feedback_contentfail">回饋失敗！\r\n請保持網路暢通</string>
+    <string name="feedback_nonetwork">當前沒有網路連接，無法回饋！</string>
+    <string name="feedback_subminting">感謝您的回饋！</string>
+    <string name="nonet_tip">當前沒有網路連接，請進行網路設置。</string>
+    <string name="str_set">設置</string>
+    <string name="addslient_start">開始時刻：</string>
+    <string name="addslient_end">結束時刻：</string>
+    <string name="addslient_fail_contained">添加失敗！\r\n已包含在另一個安靜時段中</string>
+    <string name="addslient_contain">此安靜時段包含另一個安靜時段，另一個安靜時段將被刪除！</string>
+    <string name="addslient_fail_repeat">添加失敗！\r\n與另一個安靜時段重複</string>
+    <string name="addslient_fail_conflict">添加失敗！\r\n與另一個安靜時段衝突</string>
+    <string name="addslient_fail_same">添加失敗！\r\n起始時刻不能相同</string>
+    <string name="search_hint">名字或號碼</string>
+
+    <!-- 2.0 -->
+
+    <string name="del_success">刪除成功！</string>
+    <string name="tools_str">小功能</string>
+    <string name="tools_info">一些或許對您有用的小功能！</string>
+    <string name="watermark_title">螢幕浮水印</string>
+    <string name="watermark_info">為你的手機螢幕加個專屬浮水印吧！</string>
+    <string name="watermark_select_tip">獲取圖片</string>
+    <string name="watermark_select_str">請選擇獲取圖片的方式：</string>
+    <string name="watermark_camera">拍照</string>
+    <string name="watermark_album">相冊</string>
+    <string name="watermark_set">設置</string>
+    <string name="watermark_set_success">浮水印設置成功！</string>
+    <string name="watermark_orientation_portrait">豎屏比例</string>
+    <string name="watermark_orientation_landscape">橫屏比例</string>
+    <string name="watermark_cut">剪裁</string>
+    <string name="watermark_change">更換</string>
+    <string name="watermark_change_tip">點擊螢幕可以查看不同背景下浮水印的顯示效果。</string>
+    <string name="watermark_del">去除</string>
+    <string name="watermark_del_success">浮水印去除成功！</string>
+    <string name="watermark_text">透明度：</string>
+    <string name="watermark_show_fail">浮水印顯示失敗！</string>
+    <string name="watermark_ori_tip">您可能需要重新剪裁圖片才能顯示正常的比例！</string>
+
+</resources>

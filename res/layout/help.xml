@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_help"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/light_blue_bg"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="30dip"
+        android:layout_marginTop="30dip"
+        android:clickable="false"
+        android:gravity="center"
+        android:text="@string/main_title"
+        android:textColor="@color/textblue"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="30dip"
+        android:layout_marginTop="20dip"
+        android:clickable="false"
+        android:gravity="left"
+        android:text="@string/help_title_important"
+        android:textColor="@color/yellow_border"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="30dip"
+        android:clickable="false"
+        android:gravity="left"
+        android:text="@string/help_title_important_info"
+        android:textColor="@color/textblue"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="30dip"
+        android:layout_marginTop="20dip"
+        android:clickable="false"
+        android:gravity="left"
+        android:text="@string/help_title_callsms"
+        android:textColor="@color/yellow_border"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="30dip"
+        android:clickable="false"
+        android:gravity="left"
+        android:text="@string/help_title_callsms_info"
+        android:textColor="@color/textblue"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="30dip"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="30dip"
+        android:layout_marginTop="30dip"
+        android:clickable="false"
+        android:gravity="center_horizontal"
+        android:text="@string/copyright"
+        android:textColor="@color/yellow_border"
+        android:textSize="12sp" />
+
+</LinearLayout>

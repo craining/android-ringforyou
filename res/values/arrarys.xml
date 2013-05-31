@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="bg_markwater">
+
+        <!-- <item>#98989C</item> 灰色 -->
+        <item>#FFFFFF</item>
+        <!-- 白色 -->
+        <item>#000000</item>
+        <!-- 黑色 -->
+        <item>#0000FF</item>
+        <!-- 蓝色 -->
+        <item>#00FF00</item>
+        <!-- 绿色 -->
+        <item>#FF0000</item>
+        <!-- 红色 -->
+        <item>#FFFF00</item>
+        <!-- 黄色 -->
+        <item>#FF00FF</item>
+        <!-- Magenta -->
+        <item>#00FFFF</item>
+        <!-- Cyan1 亮青 -->
+    </string-array>
+    <string-array name="color_markwater_text">
+
+        <!-- <item>#98989C</item> 灰色 -->
+        <item>#000000</item>
+        <!-- 黑色 -->
+        <item>#FFFFFF</item>
+        <!-- 白色 -->
+        <item>#FFFF00</item>
+        <!-- 黄色 -->
+        <item>#FF0000</item>
+        <!-- 红色 -->
+        <item>#00FF00</item>
+        <!-- 绿色 -->
+        <item>#0000FF</item>
+        <!-- 蓝色 -->
+        <item>#00FFFF</item>
+        <!-- Cyan1 亮青 -->
+        <item>#FF00FF</item>
+        <!-- Magenta -->
+    </string-array>
+    <string-array name="busymodes_title">
+        <item>@string/busymode_title_1</item>
+        <item>@string/busymode_title_2</item>
+        <item>@string/busymode_title_3</item>
+        <item>@string/busymode_title_4</item>
+        <item>@string/busymode_title_5</item>
+        <item>@string/busymode_title_6</item>
+        <item>@string/busymode_title_7</item>
+        <item>@string/busymode_title_8</item>
+        <item>@string/busymode_title_9</item>
+        <item>@string/busymode_title_10</item>
+        <item>@string/busymode_title_11</item>
+        <item>@string/busymode_title_12</item>
+    </string-array>
+    <string-array name="busymodes_info">
+        <item>@string/busymode_info_1</item>
+        <item>@string/busymode_info_2</item>
+        <item>@string/busymode_info_3</item>
+        <item>@string/busymode_info_4</item>
+        <item>@string/busymode_info_5</item>
+        <item>@string/busymode_info_6</item>
+        <item>@string/busymode_info_7</item>
+        <item>@string/busymode_info_8</item>
+        <item>@string/busymode_info_9</item>
+        <item>@string/busymode_info_10</item>
+        <item>@string/busymode_info_11</item>
+        <item>@string/busymode_info_12</item>
+    </string-array>
+
+</resources>

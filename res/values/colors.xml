@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="yellow_border">#FFA500</color>
+    <color name="blue">#0000FF</color>
+    <color name="textblue">#00A0FF</color>
+    <color name="toast_red">#E6020E</color>
+    <color name="toast_blue">#2060DE</color>
+    <color name="green">#00FF00</color>
+    <!-- 淡蓝色背景 -->
+    <color name="light_blue_bg">#CDECFC</color>
+    <color name="login_edit_focused">#FFA500</color>
+    <color name="login_edit_unfocused">#00BFFF</color>
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 颜色渐变效果 -->
+    <gradient
+        android:angle="0"
+        android:endColor="@color/light_blue_bg"
+        android:startColor="@color/light_blue_bg" />
+        <corners
+        android:radius="0dip" />
+</shape>

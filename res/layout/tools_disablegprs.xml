@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dlg_bg"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/text_showstate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dip"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/green"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="25dip"
+        android:text="适用于未开通网络套餐的用户，禁用移动网络可防止产生高额的数据流量费用！"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="25dip"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_open"
+            android:layout_width="fill_parent"
+            android:layout_height="39dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="1"
+            android:background="@drawable/dlg_btn_blue_bg"
+            android:text="禁用"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="fill_parent"
+            android:layout_height="39dip"
+             android:layout_marginRight="10dip"
+            android:layout_weight="1"
+            android:background="@drawable/dlg_btn_blue_bg"
+            android:text="取消禁用"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="fill_parent"
+            android:layout_height="39dip"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="1"
+            android:background="@drawable/dlg_btn_bg"
+            android:text="返回"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

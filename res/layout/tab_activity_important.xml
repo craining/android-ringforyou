@@ -1,0 +1,200 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_tab_important_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_light"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/layout_important_title"
+        android:layout_width="fill_parent"
+        android:layout_height="45dip"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_bar_top"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_important_clslist"
+            android:layout_width="45dip"
+            android:layout_height="30dip"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dip"
+            android:background="@drawable/bg_btn_red"
+            android:text="@string/clear_all"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_important_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:singleLine="true"
+            android:text="@string/tab_important"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/img_important_help"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:layout_toRightOf="@id/text_important_title"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:paddingBottom="15dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="5dip"
+            android:src="@drawable/bg_btn_help"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/img_important_set"
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dip"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/bg_btn_set" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_important_middle"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/layout_important_title"
+        android:layout_marginBottom="80dip"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/layout_important_add"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dip"
+            android:layout_marginRight="30dip"
+            android:layout_marginTop="10dip"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_important_addfrom"
+                android:layout_width="fill_parent"
+                android:layout_height="30dip"
+                android:layout_weight="2"
+                android:background="@drawable/bg_btn_blue"
+                android:text="@string/add_fromcontacts"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3" />
+
+            <Button
+                android:id="@+id/btn_important_addby"
+                android:layout_width="fill_parent"
+                android:layout_height="30dip"
+                android:layout_weight="2"
+                android:background="@drawable/bg_btn_blue"
+                android:text="@string/add_byhand"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_important_top_deletetip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dip"
+            android:layout_marginRight="30dip"
+            android:layout_marginTop="10dip"
+            android:text="@string/how_deleteitem"
+            android:textColor="@color/textblue"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/layout_important_null"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:layout_marginTop="50dip"
+            android:background="@drawable/bg_bolder"
+            android:orientation="vertical"
+            android:padding="20dip"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/text_important_null_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/none_addnull_important_title"
+                android:textColor="@color/yellow_border"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/text_important_null_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dip"
+                android:text="@string/none_addnull_important_text"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/list_important"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dip"
+            android:layout_marginRight="30dip"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/bg_bolder"
+            android:cacheColorHint="#00000000"
+            android:dividerHeight="1dip"
+            android:listSelector="#00000000" />
+    </LinearLayout>
+    <!--
+  <LinearLayout
+        android:id="@+id/layout_main_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dip"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="30dip"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_backup_create"
+            android:layout_width="fill_parent"
+            android:layout_height="30dip"
+            android:layout_weight="2"
+            android:background="@drawable/bg_btn_blue"
+            android:text="@string/export_items"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3" />
+
+        <Button
+            android:id="@+id/btn_backup_reback"
+            android:layout_width="fill_parent"
+            android:layout_height="30dip"
+            android:layout_weight="2"
+            android:background="@drawable/bg_btn_blue"
+            android:text="@string/import_items"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+    </LinearLayout>
+    -->
+
+</RelativeLayout>

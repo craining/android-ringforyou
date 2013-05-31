@@ -1,0 +1,153 @@
+android.annotation.SuppressLint
+android.annotation.TargetApi
+com.zgy.ringforu.AddByContactsActivity:
+    private static final java.lang.String TAG
+    private static final int MSG_REFRESH_LISTVEW
+com.zgy.ringforu.AddByInputActivity:
+    private static final java.lang.String TAG
+com.zgy.ringforu.AddSlientPerActivity:
+    private static final java.lang.String TAG
+com.zgy.ringforu.BuildConfig
+com.zgy.ringforu.FeedBackActivity:
+    private static final java.lang.String TAG
+com.zgy.ringforu.R
+com.zgy.ringforu.R$anim
+com.zgy.ringforu.R$array
+com.zgy.ringforu.R$attr
+com.zgy.ringforu.R$color
+com.zgy.ringforu.R$dimen
+com.zgy.ringforu.R$drawable
+com.zgy.ringforu.R$id
+com.zgy.ringforu.R$layout
+com.zgy.ringforu.R$string
+com.zgy.ringforu.R$style
+com.zgy.ringforu.RToolsActivity:
+    private static final java.lang.String TAG
+    private static final int REQUEST_WATERMARK
+com.zgy.ringforu.SetActivity:
+    private static final java.lang.String TAG
+com.zgy.ringforu.TabCallActivity:
+    private static final java.lang.String TAG
+com.zgy.ringforu.TabImportantActivity:
+    private static final java.lang.String TAG
+com.zgy.ringforu.TabSmsActivity:
+    private static final java.lang.String TAG
+com.zgy.ringforu.adapter.AccountAutoCompleteAdapter:
+    private static final java.lang.String TAG
+com.zgy.ringforu.bean.ContactInfo:
+    10:10:public boolean getMatch()
+    14:15:public void setMatch(boolean)
+    18:18:public java.lang.String getName()
+    22:23:public void setName(java.lang.String)
+    30:31:public void setNum(java.lang.String)
+com.zgy.ringforu.receiver.CallReceiver:
+    private static final java.lang.String TAG
+com.zgy.ringforu.receiver.MsgReceiver:
+    private static final java.lang.String TAG
+com.zgy.ringforu.tools.disablegprs.DisableGprsService:
+    private static final int MSG_CHECK_NOW
+    private static final int TIME_DELY
+    private static final java.lang.String TAG
+com.zgy.ringforu.tools.disablegprs.DisableGprsUtil:
+    private static final java.lang.String SERVICE_NAME_DISABLESCREEN
+    private static final java.lang.String TAG
+    16:16:public DisableGprsUtil()
+com.zgy.ringforu.tools.signalreconnect.SignalReconnectService:
+    private static final java.lang.String TAG
+com.zgy.ringforu.tools.signalreconnect.SignalReconnectUtil:
+    private static final java.lang.String SERVICE_NAME_SIGNAL_RECONNECT
+    private static final java.lang.String TAG
+    16:16:public SignalReconnectUtil()
+com.zgy.ringforu.tools.smslightscreen.SmsLightScreenUtil:
+    11:11:public SmsLightScreenUtil()
+com.zgy.ringforu.tools.watermark.WaterMarkActivity:
+    private static final java.lang.String TAG
+    private java.lang.String picPath
+    private static final int REQUEST_CUTPIC
+    private static final int REQUEST_PIC_WATERMARK
+    338:343:protected java.lang.String getImageAbsolutePath(android.net.Uri)
+com.zgy.ringforu.tools.watermark.WaterMarkService:
+    private static final java.lang.String TAG
+com.zgy.ringforu.tools.watermark.WaterMarkUtil:
+    public static final java.lang.String FILE_WATERMARK_ALPHA
+    private static final java.lang.String SERVICE_NAME_WATERMARK
+    private static final java.lang.String TAG
+    17:17:public WaterMarkUtil()
+com.zgy.ringforu.util.ContactsUtil:
+    13:13:public ContactsUtil()
+com.zgy.ringforu.util.FileUtil:
+    private static final java.lang.String TAG
+    14:14:public FileUtil()
+    79:96:public static boolean copyFilesTo(java.io.File,java.io.File)
+com.zgy.ringforu.util.MainUtil:
+    private static final java.lang.String TAG
+    public static final int DLG_BTN_ALPHA
+    public static final int TYPE_IMPORTANT
+    public static final int TYPE_CALL
+    public static final int TYPE_SMS
+    public static final java.lang.String FILE_INNER
+    public static final java.lang.String FILE_SDCARD
+    public static final java.lang.String FILE_IMPORTANT_NUM_LOG
+    public static final java.lang.String FILE_IMPORTANT_NAME_LOG
+    public static final java.lang.String FILE_CALL_NUM_LOG
+    public static final java.lang.String FILE_CALL_NAME_LOG
+    public static final java.lang.String FILE_SMS_NUM_LOG
+    public static final java.lang.String FILE_SMS_NAME_LOG
+    public static final int MAX_NUMS
+    public static final java.lang.String FILE_SLIENT_PER
+    public static final java.lang.String FILE_PATH_SLIENT_PER
+    public static final java.lang.String FEEDBACK_EMAIL_TO
+    public static final java.lang.String FEEDBACK_TITLE
+    public static final java.lang.String FEEDBACK_VERSION
+    public static final java.lang.String FILE_PATH_CALL_HIDE_TAG
+    public static final java.lang.String FILE_PATH_SMS_HIDE_TAG
+    35:35:public MainUtil()
+com.zgy.ringforu.util.PhoneUtil:
+    private static final java.lang.String TAG
+    public static final java.lang.String FILE_PATH_VERB_TAG
+    public static final int ANSWER_RINGING_CALL
+    public static final int SILENCE_RINGING_CALL
+    public static final int HANG_UP_CALL
+    22:22:public PhoneUtil()
+com.zgy.ringforu.util.SendEmailUtil:
+    public static final java.lang.String host
+com.zgy.ringforu.util.StringUtil:
+    3:3:public StringUtil()
+com.zgy.ringforu.util.TimeUtil:
+    7:7:public TimeUtil()
+    76:92:public static java.lang.String returnDateOrTime(int)
+com.zgy.ringforu.view.ArrayWheelAdapter
+com.zgy.ringforu.view.MyDialog:
+    23:24:public MyDialog(android.content.Context)
+com.zgy.ringforu.view.MyDialog$Builder:
+    42:44:public com.zgy.ringforu.view.MyDialog$Builder setMessage(java.lang.CharSequence)
+    63:65:public com.zgy.ringforu.view.MyDialog$Builder setTitle(java.lang.String)
+    70:72:public com.zgy.ringforu.view.MyDialog$Builder setContentView(android.view.View)
+    85:88:public com.zgy.ringforu.view.MyDialog$Builder setPositiveButton(java.lang.String,android.content.DialogInterface$OnClickListener)
+    101:104:public com.zgy.ringforu.view.MyDialog$Builder setNegativeButton(java.lang.String,android.content.DialogInterface$OnClickListener)
+com.zgy.ringforu.view.MyToast:
+    16:17:public MyToast(android.content.Context)
+    20:46:public static android.widget.Toast makeText(android.content.Context,java.lang.CharSequence,int,boolean)
+com.zgy.ringforu.view.MyToast$1
+com.zgy.ringforu.view.NumericWheelAdapter:
+    public static final int DEFAULT_MAX_VALUE
+    private static final int DEFAULT_MIN_VALUE
+com.zgy.ringforu.view.WheelView:
+    private static final int SCROLLING_DURATION
+    private static final int MIN_DELTA_FOR_SCROLLING
+    private static final int VALUE_TEXT_COLOR
+    private static final int ITEMS_TEXT_COLOR
+    private static final int ADDITIONAL_ITEM_HEIGHT
+    private static final int TEXT_SIZE
+    private static final int ITEM_OFFSET
+    private static final int ADDITIONAL_ITEMS_SPACE
+    private static final int LABEL_OFFSET
+    private static final int PADDING
+    private static final int DEF_VISIBLE_ITEMS
+    196:198:public void setInterpolator(android.view.animation.Interpolator)
+    206:206:public int getVisibleItems()
+    226:226:public java.lang.String getLabel()
+    236:241:public void setLabel(java.lang.String)
+    256:257:public void removeChangingListener(com.zgy.ringforu.view.OnWheelChangedListener)
+    283:284:public void removeScrollingListener(com.zgy.ringforu.view.OnWheelScrollListener)
+    363:363:public boolean isCyclic()
