@@ -2,6 +2,8 @@ package com.zgy.ringforu.tools.watermark;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.app.Activity;
 import android.app.Service;
@@ -13,13 +15,14 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,15 +33,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.ReceiveNumbersFromOthersActivity;
-import com.zgy.ringforu.R.array;
-import com.zgy.ringforu.R.id;
-import com.zgy.ringforu.R.layout;
-import com.zgy.ringforu.R.string;
 import com.zgy.ringforu.util.FileUtil;
-import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
-import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
 
@@ -65,7 +61,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	private SeekBar seekbarAlpha;
 
 	private static final int REQUEST_CUTPIC = 101;
-	private static final int REQUEST_PIC_WATERMARK = 102;
+	private static final int REQUEST_PICKPIC = 102;
 
 	// private File FILE_MARK = WaterMarkUtil.FILEPATH_WATERMARK;
 	// private File FILE_MARK_TEMP = new File(WaterMarkUtil.FILEPATH_WATERMARK_TEMP);
@@ -75,6 +71,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	private String[] arrayBbColors;
 	private String[] arrayTextColors;
 	private int currentBgColor = 0;
+
+	private Uri tempPickPicUri = null;
 
 	// private float screenWidth;
 	// private float screenHeight;
@@ -244,7 +242,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 				clearWaterMark();
 				Intent intent = new Intent(Intent.ACTION_PICK, null);
 				intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-				startActivityForResult(intent, REQUEST_PIC_WATERMARK);
+				startActivityForResult(intent, REQUEST_PICKPIC);
 			}
 		}).setNegativeButton(R.string.watermark_camera, new DialogInterface.OnClickListener() {
 
@@ -255,7 +253,11 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 				}
 				clearWaterMark();
 				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				startActivityForResult(intent, REQUEST_PIC_WATERMARK);
+
+				tempPickPicUri = getOutputImageFileUri();
+				intent.putExtra(MediaStore.EXTRA_OUTPUT, tempPickPicUri);
+
+				startActivityForResult(intent, REQUEST_PICKPIC);
 			}
 		}).create().show();
 	}
@@ -326,10 +328,26 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			}
 			refreshViews();
 			break;
-		case REQUEST_PIC_WATERMARK:
+		case REQUEST_PICKPIC:
 			if (data != null) {
 				Uri picPath = data.getData();
-				startPhotoZoom(picPath);
+				Log.e(TAG, "PIC uri=" + picPath);
+
+				if (picPath != null) {
+					startPhotoZoom(picPath);
+				} else {
+
+					Log.e(TAG, "ERROR!!!" + "   null ");
+
+					// Bundle extras = data.getExtras();
+					// if (extras != null) {
+					// // 这里是有些拍照后的图片是直接存放到Bundle中的所以我们可以从这里面获取 Bitmap图片
+					// Bitmap image = extras.getParcelable("data");
+					// if (image != null) {
+					// }
+					// }
+				}
+
 			} else {
 				if (!WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
 					pickPic();
@@ -349,13 +367,41 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	 * @param uri
 	 * @return
 	 */
-	protected String getImageAbsolutePath(Uri uri) {
+	private String getImageAbsolutePath(Uri uri) {
 		String[] proj = { MediaStore.Images.Media.DATA };
 		Cursor cursor = managedQuery(uri, proj, null, null, null);
 		int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 		cursor.moveToFirst();
 
 		return cursor.getString(column_index);
+	}
+
+	// 如何将一个路径转换为一个uri
+	private Uri getOutputImageFileUri() {
+		Uri uri = Uri.fromFile(getOutputImageFile());
+		// 留意一下这个文件路径是按照怎样的规则转换为一个uri的
+		Log.v(TAG, "根据路径转换的uri为：" + uri.toString());
+		return uri;
+	}
+
+	// 创建文件路径
+	private File getOutputImageFile() {
+		File mediaFile = null;
+		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+			File mediaDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "myCamara");
+			Log.v(TAG, "存储路径目录：" + mediaDir.getAbsolutePath());
+			if (!mediaDir.exists()) {
+				if (!mediaDir.mkdirs())
+					Log.v(TAG, "存储路径目录创建失败");
+				return null;
+			}
+			// 利用时间戳作为文件名
+			String timeStamp = (new SimpleDateFormat("yyyyMMdd_HHmmss")).format(new Date());
+			mediaFile = new File(mediaDir.getAbsoluteFile() + File.separator + "IMG_" + timeStamp + ".jpg");
+			Log.v(TAG, "文件存储路径为：" + mediaFile.getAbsolutePath());
+		}
+
+		return mediaFile;
 	}
 
 	/**
