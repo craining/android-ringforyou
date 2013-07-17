@@ -19,10 +19,12 @@ public class MainActivityGroup extends ActivityGroup {
 	private LinearLayout bodyView;
 	private LinearLayout tabImportant;
 	private LinearLayout tabCall;
-	private LinearLayout tabSms;;
+	private LinearLayout tabSms;
+	private LinearLayout tabMore;
 	private ImageView imgImportant;
 	private ImageView imgCall;
 	private ImageView imgSms;
+	private ImageView imgMore;
 
 	private int flag = 0; // 通过标记跳转不同的页面，显示不同的菜单项
 
@@ -69,19 +71,27 @@ public class MainActivityGroup extends ActivityGroup {
 				showView(flag);
 			}
 		});
+		tabMore.setOnClickListener(new OnClickListener() {
 
-//		new Thread(new Runnable() {
-//
-//			@Override
-//			public void run() {
-//				try {
-//					ReceiveEmailUtil.getAllEmails();
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//
-//			}
-//		}).start();
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				flag = 3;
+				showView(flag);
+			}
+		});
+
+		// new Thread(new Runnable() {
+		//
+		// @Override
+		// public void run() {
+		// try {
+		// ReceiveEmailUtil.getAllEmails();
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		//
+		// }
+		// }).start();
 
 	}
 
@@ -93,9 +103,11 @@ public class MainActivityGroup extends ActivityGroup {
 		tabImportant = (LinearLayout) findViewById(R.id.tab_important);
 		tabCall = (LinearLayout) findViewById(R.id.tab_call);
 		tabSms = (LinearLayout) findViewById(R.id.tab_sms);
+		tabMore = (LinearLayout) findViewById(R.id.tab_more);
 		imgImportant = (ImageView) findViewById(R.id.img_tab_important);
 		imgCall = (ImageView) findViewById(R.id.img_tab_call);
 		imgSms = (ImageView) findViewById(R.id.img_tab_sms);
+		imgMore = (ImageView) findViewById(R.id.img_tab_more);
 	}
 
 	// 在主界面中显示其他界面
@@ -110,7 +122,9 @@ public class MainActivityGroup extends ActivityGroup {
 		case MainUtil.TYPE_SMS:
 			showSms();
 			break;
-
+		case MainUtil.TYPE_MORE:
+			showMore();
+			break;
 		default:
 			break;
 		}
@@ -123,9 +137,11 @@ public class MainActivityGroup extends ActivityGroup {
 		// tabImportant.getBackground().setAlpha(255);
 		tabCall.setBackgroundResource(R.drawable.bg_translation);
 		tabSms.setBackgroundResource(R.drawable.bg_translation);
+		tabMore.setBackgroundResource(R.drawable.bg_translation);
 		imgImportant.setImageResource(R.drawable.ic_tab_important_pressed);
 		imgCall.setImageResource(R.drawable.ic_tab_call_normal);
 		imgSms.setImageResource(R.drawable.ic_tab_sms_normal);
+		imgMore.setImageResource(R.drawable.ic_tab_more_normal);
 	}
 
 	public void showCall() {
@@ -134,20 +150,36 @@ public class MainActivityGroup extends ActivityGroup {
 		tabImportant.setBackgroundResource(R.drawable.bg_translation);
 		tabCall.setBackgroundResource(R.drawable.tab_selected);
 		tabSms.setBackgroundResource(R.drawable.bg_translation);
+		tabMore.setBackgroundResource(R.drawable.bg_translation);
 		imgImportant.setImageResource(R.drawable.ic_tab_important_normal);
 		imgCall.setImageResource(R.drawable.ic_tab_call_pressed);
 		imgSms.setImageResource(R.drawable.ic_tab_sms_normal);
+		imgMore.setImageResource(R.drawable.ic_tab_more_normal);
 	}
 
 	public void showSms() {
 		bodyView.removeAllViews();
 		bodyView.addView(getLocalActivityManager().startActivity("sms", new Intent(MainActivityGroup.this, TabSmsActivity.class)).getDecorView());
 		tabImportant.setBackgroundResource(R.drawable.bg_translation);
+		tabMore.setBackgroundResource(R.drawable.bg_translation);
 		tabCall.setBackgroundResource(R.drawable.bg_translation);
 		tabSms.setBackgroundResource(R.drawable.tab_selected);
 		imgImportant.setImageResource(R.drawable.ic_tab_important_normal);
 		imgCall.setImageResource(R.drawable.ic_tab_call_normal);
+		imgMore.setImageResource(R.drawable.ic_tab_more_normal);
 		imgSms.setImageResource(R.drawable.ic_tab_sms_pressed);
 	}
 
+	public void showMore() {
+		bodyView.removeAllViews();
+		bodyView.addView(getLocalActivityManager().startActivity("more", new Intent(MainActivityGroup.this, TabMoreActivity.class)).getDecorView());
+		tabImportant.setBackgroundResource(R.drawable.bg_translation);
+		tabCall.setBackgroundResource(R.drawable.bg_translation);
+		tabSms.setBackgroundResource(R.drawable.bg_translation);
+		tabMore.setBackgroundResource(R.drawable.tab_selected);
+		imgImportant.setImageResource(R.drawable.ic_tab_important_normal);
+		imgCall.setImageResource(R.drawable.ic_tab_call_normal);
+		imgSms.setImageResource(R.drawable.ic_tab_sms_normal);
+		imgMore.setImageResource(R.drawable.ic_tab_more_pressed);
+	}
 }

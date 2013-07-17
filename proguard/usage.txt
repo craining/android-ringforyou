@@ -35,14 +35,33 @@ com.zgy.ringforu.TabSmsActivity:
 com.zgy.ringforu.adapter.AccountAutoCompleteAdapter:
     private static final java.lang.String TAG
 com.zgy.ringforu.bean.ContactInfo:
-    10:10:public boolean getMatch()
-    14:15:public void setMatch(boolean)
-    18:18:public java.lang.String getName()
-    22:23:public void setName(java.lang.String)
-    30:31:public void setNum(java.lang.String)
+    13:13:public java.lang.String getStoreKey()
+    17:18:public void setStoreKey(java.lang.String)
+    21:21:public boolean getMatch()
+    25:26:public void setMatch(boolean)
+    29:29:public java.lang.String getName()
+    33:34:public void setName(java.lang.String)
+    37:37:public java.lang.String getNum()
+    41:42:public void setNum(java.lang.String)
+com.zgy.ringforu.bean.MyEmail
+com.zgy.ringforu.bean.MyEmailFromServer
 com.zgy.ringforu.receiver.CallReceiver:
     private static final java.lang.String TAG
 com.zgy.ringforu.receiver.MsgReceiver:
+    private static final java.lang.String TAG
+com.zgy.ringforu.tools.busymode.BusyModeActivity:
+    private static final java.lang.String TAG
+com.zgy.ringforu.tools.busymode.BusyModeUtil:
+    public static final java.lang.String FILENAME_BUSYMODE_MESSAGE
+    private static final int NOTIFICATION_ID_BUSYMODE_ON
+    private static final int PENDINGINTENT_ID_BUSYMODE
+    public static final java.lang.String BUSYMODE_ACTION_CALL
+    public static final java.lang.String BUSYMODE_ACTION_CLEAR
+    public static final java.lang.String INTENT_ACTION_KEY_CALL
+    public static final java.lang.String INTENT_ACTION_KEY_CLEAR
+    18:18:public BusyModeUtil()
+    139:148:public static java.lang.String getMessageTitleFromContent(android.content.Context,java.lang.String[],java.lang.String[],java.lang.String)
+com.zgy.ringforu.tools.busymode.NotificationBusyModeRefusedReceiver:
     private static final java.lang.String TAG
 com.zgy.ringforu.tools.disablegprs.DisableGprsService:
     private static final int MSG_CHECK_NOW
@@ -51,7 +70,9 @@ com.zgy.ringforu.tools.disablegprs.DisableGprsService:
 com.zgy.ringforu.tools.disablegprs.DisableGprsUtil:
     private static final java.lang.String SERVICE_NAME_DISABLESCREEN
     private static final java.lang.String TAG
-    16:16:public DisableGprsUtil()
+    private static final int NOTIFICATION_ID_DISABLEGPRS_ON
+    private static final int PENDINGINTENT_ID_DISABLEGPRS
+    17:17:public DisableGprsUtil()
 com.zgy.ringforu.tools.signalreconnect.SignalReconnectService:
     private static final java.lang.String TAG
 com.zgy.ringforu.tools.signalreconnect.SignalReconnectUtil:
@@ -59,20 +80,23 @@ com.zgy.ringforu.tools.signalreconnect.SignalReconnectUtil:
     private static final java.lang.String TAG
     16:16:public SignalReconnectUtil()
 com.zgy.ringforu.tools.smslightscreen.SmsLightScreenUtil:
+    private static final java.lang.String TAG
     11:11:public SmsLightScreenUtil()
 com.zgy.ringforu.tools.watermark.WaterMarkActivity:
     private static final java.lang.String TAG
     private java.lang.String picPath
     private static final int REQUEST_CUTPIC
     private static final int REQUEST_PIC_WATERMARK
-    338:343:protected java.lang.String getImageAbsolutePath(android.net.Uri)
+    353:358:protected java.lang.String getImageAbsolutePath(android.net.Uri)
 com.zgy.ringforu.tools.watermark.WaterMarkService:
     private static final java.lang.String TAG
 com.zgy.ringforu.tools.watermark.WaterMarkUtil:
     public static final java.lang.String FILE_WATERMARK_ALPHA
     private static final java.lang.String SERVICE_NAME_WATERMARK
     private static final java.lang.String TAG
-    17:17:public WaterMarkUtil()
+    private static final int PENDINGINTENT_ID_WATERMARK_ON
+    private static final int NOTIFICATION_ID_DISABLEGPRS_ON
+    23:23:public WaterMarkUtil()
 com.zgy.ringforu.util.ContactsUtil:
     13:13:public ContactsUtil()
 com.zgy.ringforu.util.FileUtil:
@@ -101,14 +125,15 @@ com.zgy.ringforu.util.MainUtil:
     public static final java.lang.String FEEDBACK_VERSION
     public static final java.lang.String FILE_PATH_CALL_HIDE_TAG
     public static final java.lang.String FILE_PATH_SMS_HIDE_TAG
-    35:35:public MainUtil()
+    36:36:public MainUtil()
 com.zgy.ringforu.util.PhoneUtil:
     private static final java.lang.String TAG
     public static final java.lang.String FILE_PATH_VERB_TAG
     public static final int ANSWER_RINGING_CALL
     public static final int SILENCE_RINGING_CALL
     public static final int HANG_UP_CALL
-    22:22:public PhoneUtil()
+    24:24:public PhoneUtil()
+com.zgy.ringforu.util.ReceiveEmailUtil
 com.zgy.ringforu.util.SendEmailUtil:
     public static final java.lang.String host
 com.zgy.ringforu.util.StringUtil:
@@ -151,3 +176,24 @@ com.zgy.ringforu.view.WheelView:
     256:257:public void removeChangingListener(com.zgy.ringforu.view.OnWheelChangedListener)
     283:284:public void removeScrollingListener(com.zgy.ringforu.view.OnWheelScrollListener)
     363:363:public boolean isCyclic()
+com.zgy.ringforu.view.WordsFlowView:
+    private static final java.lang.String TAG
+    public static final int IDX_X
+    public static final int IDX_Y
+    public static final int IDX_TXT_LENGTH
+    public static final int IDX_DIS_Y
+    public static final int ANIMATION_IN
+    public static final int ANIMATION_OUT
+    public static final int OUTSIDE_TO_LOCATION
+    public static final int LOCATION_TO_OUTSIDE
+    public static final int CENTER_TO_LOCATION
+    public static final int LOCATION_TO_CENTER
+    public static final long ANIM_DURATION
+    public static final int MAX
+    public static final int TEXT_SIZE_MAX
+    public static final int TEXT_SIZE_MIN
+    114:114:public long getDuration()
+    137:143:public void feedKeywordsRadom(java.lang.String[])
+    407:407:public java.util.Vector getKeywords()
+    411:412:public void rubKeywords()
+    416:417:public void rubAllViews()

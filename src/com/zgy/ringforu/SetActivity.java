@@ -31,11 +31,7 @@ public class SetActivity extends Activity implements OnClickListener {
 	private static final String TAG = "SetActivity";
 
 	private Button btnBack;
-	private ImageView imgV;
-	private RelativeLayout layoutFeedback;
-	private RelativeLayout layoutHelp;
-	private RelativeLayout layoutTools;
-	private RelativeLayout layout_set_clear;
+	
 
 	// Important
 	private LinearLayout layoutImportant;
@@ -80,11 +76,7 @@ public class SetActivity extends Activity implements OnClickListener {
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		btnBack = (Button) findViewById(R.id.btn_set_return);
-		layoutFeedback = (RelativeLayout) findViewById(R.id.layout_set_feedback);
-		layoutHelp = (RelativeLayout) findViewById(R.id.layout_set_help);
-		layoutTools = (RelativeLayout) findViewById(R.id.layout_set_tools);
-		layout_set_clear = (RelativeLayout) findViewById(R.id.layout_set_clear);
-		imgV = (ImageView) findViewById(R.id.img_set_checkv);
+		
 
 		// Important
 		layoutImportant = (LinearLayout) findViewById(R.id.layout_set_important);
@@ -112,10 +104,7 @@ public class SetActivity extends Activity implements OnClickListener {
 		textSmsHideStyleInfo = (TextView) findViewById(R.id.text_set_hidestyle_smsinfo);
 
 		btnBack.setOnClickListener(this);
-		layoutFeedback.setOnClickListener(this);
-		layoutHelp.setOnClickListener(this);
-		layoutTools.setOnClickListener(this);
-		layout_set_clear.setOnClickListener(this);
+		 
 		imgImportantAddClam.setOnClickListener(this);
 		imgImportantDeleteClam1.setOnClickListener(this);
 		imgIMportantDeleteClam2.setOnClickListener(this);
@@ -126,31 +115,6 @@ public class SetActivity extends Activity implements OnClickListener {
 
 		layoutCallHideStyle.setOnClickListener(this);
 		layoutSmsHideStyle.setOnClickListener(this);
-
-		// 震动的开关需单独处理
-		imgV.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// 震动的开启关闭
-				File tag = new File(PhoneUtil.FILE_PATH_VERB_TAG);
-				if (!PhoneUtil.bIsVerbOn) {
-					vb.vibrate(new long[] { 0, 20 }, -1);
-					if (tag.exists()) {
-						tag.delete();
-					}
-				} else {
-					if (!tag.exists()) {
-						tag.mkdir();
-					}
-				}
-
-				PhoneUtil.bIsVerbOn = !PhoneUtil.bIsVerbOn;
-				refreshView();
-
-			}
-		});
-
 	}
 
 	/**
@@ -164,12 +128,6 @@ public class SetActivity extends Activity implements OnClickListener {
 	 */
 	private void refreshView() {
 		Log.v(TAG, "refresh set views");
-		// 刷新震动开关的显示
-		if (PhoneUtil.bIsVerbOn) {
-			imgV.setImageResource(R.drawable.ic_on);
-		} else {
-			imgV.setImageResource(R.drawable.ic_off);
-		}
 
 		// 刷新安静时段的显示
 		if (!(new File(MainUtil.FILE_PATH_SLIENT_PER)).exists()) {
@@ -241,16 +199,6 @@ public class SetActivity extends Activity implements OnClickListener {
 		case R.id.btn_set_return:
 			finish();
 			break;
-		case R.id.layout_set_feedback:
-			if (PhoneUtil.isConnectInternet(SetActivity.this)) {
-				startActivity(new Intent(SetActivity.this, FeedBackActivity.class));
-			} else {
-				PhoneUtil.setNetConnection(SetActivity.this, vb);
-			}
-			break;
-		case R.id.layout_set_help:
-			startActivity(new Intent(SetActivity.this, HelpActivity.class));
-			break;
 		case R.id.img_del_calm_1_important:
 			// 删除第一个安静时段
 			String strSlientP = FileUtil.load(MainUtil.FILE_SLIENT_PER, SetActivity.this, true);
@@ -274,14 +222,6 @@ public class SetActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.img_add_calm_important:
 			startActivity(new Intent(SetActivity.this, AddSlientPerActivity.class));
-			break;
-		case R.id.layout_set_tools:
-			startActivity(new Intent(SetActivity.this, RToolsActivity.class));
-			break;
-
-		case R.id.layout_set_clear:
-			// 清空缓存
-			clearData();
 			break;
 		case R.id.layout_set_backup_important:
 			doBackup();
@@ -517,37 +457,6 @@ public class SetActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	/**
-	 * 清空缓存
-	 */
-	private void clearData() {
-		if (PhoneUtil.existSDcard()) {
-			// 清空重要联系人
-			MyDialog.Builder builder = new MyDialog.Builder(SetActivity.this);
-			builder.setTitle(R.string.str_tip).setMessage(R.string.clear_alert).setPositiveButton(R.string.str_cancel, new DialogInterface.OnClickListener() {
-
-				public void onClick(DialogInterface dialog, int whichButton) {
-					dialog.dismiss();
-					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(new long[] { 0, 20 }, -1);
-					}
-				}
-			}).setNegativeButton(R.string.str_ok, new DialogInterface.OnClickListener() {
-
-				public void onClick(DialogInterface dialog, int whichButton) {
-					dialog.dismiss();
-					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(new long[] { 0, 20 }, -1);
-					}
-					// 删除文件
-					MainUtil.clearData();
-					MyToast.makeText(SetActivity.this, R.string.clear_data_over, Toast.LENGTH_LONG, false).show();
-				}
-			}).create().show();
-		} else {
-			MyToast.makeText(SetActivity.this, R.string.set_backup_nosdcard, Toast.LENGTH_SHORT, true).show();
-		}
-	}
 	/***************************
 	 * if (new File(Globle.FILE_SDCARD_NAME).exists() && new File(Globle.FILE_SDCARD_NUM).exists()) {
 	 * btnImport.setEnabled(true); } else { btnImport.setEnabled(false); }

@@ -53,6 +53,10 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.zgy.ringforu.TabMoreActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".AddByContactsActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -76,7 +80,7 @@
                 <action android:name="android.intent.action.PICK_ACTIVITY" />
                 <action android:name="android.intent.action.SET_WALLPAPER" />
                 <action android:name="android.intent.action.DIAL"/>
-                <action android:name="android.intent.action.SENDTO"/>
+                <action android:name="android.intent.action.SENDTO"/>
                 -->
                 <action android:name="android.intent.action.SEND" />
                 <!-- 分享到 -->
@@ -121,7 +125,7 @@
                 <action android:name="android.intent.action.PICK_ACTIVITY" />
                 <action android:name="android.intent.action.SET_WALLPAPER" />
                 <action android:name="android.intent.action.DIAL"/>
-                <action android:name="android.intent.action.SENDTO"/>
+                <action android:name="android.intent.action.SENDTO"/>
                 -->
                 <action android:name="android.intent.action.SEND" />
                 <!-- 分享到 -->

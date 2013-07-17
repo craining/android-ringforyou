@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/dlg_bg"
+    android:paddingBottom="20dip"
     android:orientation="vertical" >
 
     <TextView
@@ -27,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dip"
             android:layout_marginRight="30dip"
-            android:layout_marginTop="30dip"
+            android:layout_marginTop="20dip"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="15sp" />

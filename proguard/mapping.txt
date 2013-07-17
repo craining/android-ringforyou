@@ -1627,22 +1627,23 @@ com.sun.mail.util.UUEncoderStream -> com.sun.mail.util.UUEncoderStream:
     void writeSuffix() -> writeSuffix
     void encode() -> encode
 com.zgy.ringforu.AddByContactsActivity -> com.zgy.ringforu.AddByContactsActivity:
-    android.widget.RelativeLayout layoutTitle -> a
-    android.widget.ListView listviewContacts -> b
-    java.util.ArrayList listContacts -> c
-    java.util.ArrayList listItem -> d
-    android.widget.SimpleAdapter listItemAdapter -> e
-    android.widget.TextView textShowLeft -> f
-    android.widget.TextView textShowNull -> g
-    com.zgy.ringforu.view.TextEditor editSearch -> h
-    android.widget.ImageView imgClearEdit -> i
-    android.widget.ImageView imgLoading -> j
-    android.widget.LinearLayout layoutTip -> k
-    android.widget.Button btnBack -> l
-    android.os.Vibrator vb -> m
-    android.os.Handler myHandler -> n
-    android.graphics.drawable.AnimationDrawable animationDrawable -> o
-    int tag -> p
+    android.content.AsyncQueryHandler asyncQuery -> a
+    android.widget.RelativeLayout layoutTitle -> b
+    android.widget.ListView listviewContacts -> c
+    java.util.ArrayList listContacts -> d
+    java.util.ArrayList listItem -> e
+    android.widget.SimpleAdapter listItemAdapter -> f
+    android.widget.TextView textShowLeft -> g
+    android.widget.TextView textShowNull -> h
+    com.zgy.ringforu.view.TextEditor editSearch -> i
+    android.widget.ImageView imgClearEdit -> j
+    android.widget.ImageView imgLoading -> k
+    android.widget.LinearLayout layoutTip -> l
+    android.widget.Button btnBack -> m
+    android.os.Vibrator vb -> n
+    android.os.Handler myHandler -> o
+    android.graphics.drawable.AnimationDrawable animationDrawable -> p
+    int tag -> q
     void onCreate(android.os.Bundle) -> onCreate
     void freshListView() -> a
     void refreshViews() -> b
@@ -1650,18 +1651,18 @@ com.zgy.ringforu.AddByContactsActivity -> com.zgy.ringforu.AddByContactsActivity
     void onClick(android.view.View) -> onClick
     void onResume() -> onResume
     boolean matchIgnorCase(java.lang.String,java.lang.String) -> a
-    void access$0(com.zgy.ringforu.AddByContactsActivity) -> a
-    android.graphics.drawable.AnimationDrawable access$1(com.zgy.ringforu.AddByContactsActivity) -> b
-    com.zgy.ringforu.view.TextEditor access$2(com.zgy.ringforu.AddByContactsActivity) -> c
-    java.util.ArrayList access$3(com.zgy.ringforu.AddByContactsActivity) -> d
-    int access$4(com.zgy.ringforu.AddByContactsActivity) -> e
-    android.widget.SimpleAdapter access$5(com.zgy.ringforu.AddByContactsActivity) -> f
-    android.os.Vibrator access$6(com.zgy.ringforu.AddByContactsActivity) -> g
-    void access$7(com.zgy.ringforu.AddByContactsActivity) -> h
-    android.widget.ImageView access$8(com.zgy.ringforu.AddByContactsActivity) -> i
-    void access$9(com.zgy.ringforu.AddByContactsActivity,java.lang.String) -> a
-    android.os.Handler access$10(com.zgy.ringforu.AddByContactsActivity) -> j
-    void access$11(com.zgy.ringforu.AddByContactsActivity,java.util.ArrayList) -> a
+    void access$0(com.zgy.ringforu.AddByContactsActivity,java.util.ArrayList) -> a
+    java.util.ArrayList access$1(com.zgy.ringforu.AddByContactsActivity) -> a
+    void access$2(com.zgy.ringforu.AddByContactsActivity) -> b
+    android.graphics.drawable.AnimationDrawable access$3(com.zgy.ringforu.AddByContactsActivity) -> c
+    com.zgy.ringforu.view.TextEditor access$4(com.zgy.ringforu.AddByContactsActivity) -> d
+    java.util.ArrayList access$5(com.zgy.ringforu.AddByContactsActivity) -> e
+    int access$6(com.zgy.ringforu.AddByContactsActivity) -> f
+    android.widget.SimpleAdapter access$7(com.zgy.ringforu.AddByContactsActivity) -> g
+    android.os.Vibrator access$8(com.zgy.ringforu.AddByContactsActivity) -> h
+    void access$9(com.zgy.ringforu.AddByContactsActivity) -> i
+    android.widget.ImageView access$10(com.zgy.ringforu.AddByContactsActivity) -> j
+    void access$11(com.zgy.ringforu.AddByContactsActivity,java.lang.String) -> a
 com.zgy.ringforu.AddByContactsActivity$1 -> com.zgy.ringforu.a:
     com.zgy.ringforu.AddByContactsActivity this$0 -> a
     void run() -> run
@@ -1674,9 +1675,9 @@ com.zgy.ringforu.AddByContactsActivity$3 -> com.zgy.ringforu.c:
 com.zgy.ringforu.AddByContactsActivity$4 -> com.zgy.ringforu.d:
     com.zgy.ringforu.AddByContactsActivity this$0 -> a
     void onTextChanged$649febc7(java.lang.String) -> a
-com.zgy.ringforu.AddByContactsActivity$5 -> com.zgy.ringforu.e:
+com.zgy.ringforu.AddByContactsActivity$MyAsyncQueryHandler -> com.zgy.ringforu.e:
     com.zgy.ringforu.AddByContactsActivity this$0 -> a
-    void run() -> run
+    void onQueryComplete(int,java.lang.Object,android.database.Cursor) -> onQueryComplete
 com.zgy.ringforu.AddByContactsActivity$MyHandler -> com.zgy.ringforu.f:
     com.zgy.ringforu.AddByContactsActivity this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
@@ -1763,7 +1764,10 @@ com.zgy.ringforu.RToolsActivity -> com.zgy.ringforu.RToolsActivity:
     android.widget.ImageView imgSmsLightScreenSwitch -> c
     android.widget.ImageView imgDisableGprsSwitch -> d
     android.widget.ImageView imgSignalReconnectSwitch -> e
-    android.os.Vibrator vb -> f
+    android.widget.ImageView imgBusyModeSwitch -> f
+    android.widget.TextView textBusyModeTitle -> g
+    java.lang.String mStrBusyModeTitle -> h
+    android.os.Vibrator vb -> i
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
     void onClick(android.view.View) -> onClick
@@ -1845,7 +1849,7 @@ com.zgy.ringforu.TabCallActivity -> com.zgy.ringforu.TabCallActivity:
     android.widget.Button btnAddByInput -> c
     java.lang.String allNumbersSelected -> d
     java.lang.String allNameSelected -> e
-    android.widget.TextView textShowNull -> f
+    android.widget.LinearLayout layoutShowNull -> f
     android.widget.TextView textShowdelTip -> g
     android.widget.ListView listMain -> h
     android.widget.SimpleAdapter listItemAdapter -> i
@@ -1877,7 +1881,7 @@ com.zgy.ringforu.TabImportantActivity -> com.zgy.ringforu.TabImportantActivity:
     android.widget.Button btnAddByInput -> c
     java.lang.String allNumbersSelected -> d
     java.lang.String allNameSelected -> e
-    android.widget.TextView textShowNull -> f
+    android.widget.LinearLayout layoutShowNull -> f
     android.widget.TextView textShowdelTip -> g
     android.widget.ListView listMain -> h
     android.widget.SimpleAdapter listItemAdapter -> i
@@ -1910,7 +1914,7 @@ com.zgy.ringforu.TabSmsActivity -> com.zgy.ringforu.TabSmsActivity:
     android.widget.Button btnAddByInput -> c
     java.lang.String allNumbersSelected -> d
     java.lang.String allNameSelected -> e
-    android.widget.TextView textShowNull -> f
+    android.widget.LinearLayout layoutShowNull -> f
     android.widget.TextView textShowdelTip -> g
     android.widget.ListView listMain -> h
     android.widget.SimpleAdapter listItemAdapter -> i
@@ -1970,6 +1974,9 @@ com.zgy.ringforu.bean.ContactInfo -> com.zgy.ringforu.b.a:
     boolean match -> a
     java.lang.String name -> b
     java.lang.String num -> c
+    java.lang.String storeKey -> d
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
 com.zgy.ringforu.receiver.CallReceiver -> com.zgy.ringforu.receiver.CallReceiver:
     android.telephony.TelephonyManager tm -> a
     com.zgy.ringforu.receiver.CallReceiver$MyListenner ml -> b
@@ -1989,6 +1996,32 @@ com.zgy.ringforu.receiver.CallReceiver$MyListenner$1 -> com.zgy.ringforu.receive
 com.zgy.ringforu.receiver.MainReciever -> com.zgy.ringforu.receiver.MainReciever:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.zgy.ringforu.receiver.MsgReceiver -> com.zgy.ringforu.receiver.MsgReceiver:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.zgy.ringforu.tools.busymode.BusyModeActivity -> com.zgy.ringforu.tools.busymode.BusyModeActivity:
+    android.widget.Button btnBack -> c
+    android.widget.Button btnOk -> d
+    android.widget.EditText editMsgContent -> e
+    com.zgy.ringforu.view.WordsFlowView wordsFlow -> f
+    android.os.Vibrator vb -> g
+    java.lang.String[] busyModesTitle -> a
+    java.lang.String[] busyModeInfo -> b
+    boolean boolFromNotification -> h
+    void onCreate(android.os.Bundle) -> onCreate
+    void onClick(android.view.View) -> onClick
+    void onDestroy() -> onDestroy
+com.zgy.ringforu.tools.busymode.BusyModeUtil -> com.zgy.ringforu.tools.busymode.a:
+    java.io.File FILE_BUSYMODE_SWITCH -> a
+    java.io.File FILE_BUSYMODE_MESSAGE -> b
+    int NOTIFICATION_ID_BUSYMODE_REFUSED -> c
+    boolean isBusyModeOn() -> a
+    java.lang.String getBusyModeMsgContent(android.content.Context) -> a
+    void setBusyModeOn(android.content.Context,boolean,java.lang.String,boolean) -> a
+    java.lang.String getMessageContentFromTitle(java.lang.String[],java.lang.String[],java.lang.String) -> a
+    java.lang.String getMessageTitleFromContent(android.content.Context) -> b
+    java.lang.String getMessageTitleFromContent(android.content.Context,java.lang.String) -> b
+    void checkBusyModeState(android.content.Context) -> c
+    void showRefusedNumberNotification(android.content.Context,java.lang.String) -> a
+com.zgy.ringforu.tools.busymode.NotificationBusyModeRefusedReceiver -> com.zgy.ringforu.tools.busymode.NotificationBusyModeRefusedReceiver:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.zgy.ringforu.tools.disablegprs.DisableGprsActivity -> com.zgy.ringforu.tools.disablegprs.DisableGprsActivity:
     android.widget.Button btnOpen -> a
@@ -2026,6 +2059,7 @@ com.zgy.ringforu.tools.disablegprs.DisableGprsUtil -> com.zgy.ringforu.tools.dis
     boolean isMobileNetworkEnabled(android.content.Context) -> b
     boolean gprsEnabled$6da472ad(android.content.Context) -> c
     boolean gprsIsOpenMethod(java.lang.String,android.net.ConnectivityManager) -> a
+    void showNotify(boolean,android.content.Context) -> a
 com.zgy.ringforu.tools.signalreconnect.SignalReconnectService -> com.zgy.ringforu.tools.signalreconnect.SignalReconnectService:
     android.telephony.TelephonyManager mTelephonyMgr -> a
     com.zgy.ringforu.tools.signalreconnect.SignalReconnectService$SignalStrengthListener myListenter -> b
@@ -2059,6 +2093,9 @@ com.zgy.ringforu.tools.smslightscreen.SmsLightScreenUtil -> com.zgy.ringforu.too
     boolean isSmsLightScreenOn() -> a
     void checkSmsLightScreenOn(android.content.Context) -> a
     boolean ctrlSmsLightScreenSwitch(boolean) -> a
+com.zgy.ringforu.tools.smslightscreen.SmsLightScreenUtil$1 -> com.zgy.ringforu.tools.a.b:
+    android.os.PowerManager$WakeLock val$wakeLock -> a
+    void run() -> run
 com.zgy.ringforu.tools.watermark.MainApplication -> com.zgy.ringforu.tools.watermark.MainApplication:
     android.view.WindowManager$LayoutParams wmParams -> a
     android.view.WindowManager$LayoutParams getMywmParams() -> a
@@ -2115,11 +2152,14 @@ com.zgy.ringforu.tools.watermark.WaterMarkUtil -> com.zgy.ringforu.tools.waterma
     boolean isWaterMarkOn() -> a
     void checkWaterMarkState(android.content.Context) -> a
     void ctrlWaterMarkBackService(android.content.Context,boolean) -> a
-com.zgy.ringforu.util.FileUtil -> com.zgy.ringforu.c.a:
+    void showNotify(boolean,android.content.Context) -> a
+com.zgy.ringforu.util.ContactsUtil -> com.zgy.ringforu.c.a:
+    java.lang.String getNameFromPhone(android.content.Context,java.lang.String) -> a
+com.zgy.ringforu.util.FileUtil -> com.zgy.ringforu.c.b:
     boolean save(java.lang.String,java.lang.String,android.content.Context) -> a
     java.lang.String load(java.lang.String,android.content.Context,boolean) -> a
     boolean copyFileTo(java.io.File,java.io.File) -> a
-com.zgy.ringforu.util.MainUtil -> com.zgy.ringforu.c.b:
+com.zgy.ringforu.util.MainUtil -> com.zgy.ringforu.c.c:
     java.io.File FILE_IMPORTANT_PATH_NUM -> a
     java.io.File FILE_IMPORTANT_PATH_NAME -> b
     java.io.File FILE_SDCARD_IMPORTANT_NUM -> c
@@ -2132,7 +2172,6 @@ com.zgy.ringforu.util.MainUtil -> com.zgy.ringforu.c.b:
     java.io.File FILE_SMS_PATH_NAME -> j
     java.io.File FILE_SDCARD_SMS_NUM -> k
     java.io.File FILE_SDCARD_SMS_NAME -> l
-    java.lang.String getRidofSpeciall(java.lang.String) -> a
     int insert(java.lang.String,java.lang.String,android.content.Context,int) -> a
     int getLeft(android.content.Context,int) -> a
     int insertSlientP(android.content.Context,java.lang.String) -> a
@@ -2141,7 +2180,7 @@ com.zgy.ringforu.util.MainUtil -> com.zgy.ringforu.c.b:
     boolean isServiceStarted(android.content.Context,java.lang.String) -> b
     void checkAllService(android.content.Context) -> b
     void mainInitData(android.content.Context) -> c
-com.zgy.ringforu.util.PhoneUtil -> com.zgy.ringforu.c.c:
+com.zgy.ringforu.util.PhoneUtil -> com.zgy.ringforu.c.d:
     boolean bIsVerbOn -> a
     void doActionAboutCall(android.content.Context,int) -> a
     void turnUpMost(android.content.Context) -> a
@@ -2153,23 +2192,26 @@ com.zgy.ringforu.util.PhoneUtil -> com.zgy.ringforu.c.c:
     void hideKeyboard(android.content.Context,android.widget.EditText) -> a
     boolean existSDcard() -> a
     void setAirplaneModeOff(android.content.Context,boolean) -> a
-com.zgy.ringforu.util.PhoneUtil$1 -> com.zgy.ringforu.c.d:
+    void sendMessage$62dc3a79(java.lang.String,java.lang.String) -> a
+com.zgy.ringforu.util.PhoneUtil$1 -> com.zgy.ringforu.c.e:
     android.content.Context val$context -> a
     void run() -> run
-com.zgy.ringforu.util.PhoneUtil$2 -> com.zgy.ringforu.c.e:
+com.zgy.ringforu.util.PhoneUtil$2 -> com.zgy.ringforu.c.f:
     android.os.Vibrator val$vb -> a
     android.content.Context val$con -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-com.zgy.ringforu.util.PhoneUtil$3 -> com.zgy.ringforu.c.f:
+com.zgy.ringforu.util.PhoneUtil$3 -> com.zgy.ringforu.c.g:
     android.os.Vibrator val$vb -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.zgy.ringforu.util.SendEmailUtil -> com.zgy.ringforu.c.g:
+com.zgy.ringforu.util.SendEmailUtil -> com.zgy.ringforu.c.h:
     java.lang.String userName -> a
     java.lang.String password -> b
     javax.mail.Session session -> c
     javax.mail.PasswordAuthentication getPasswordAuthentication() -> getPasswordAuthentication
     void sendMail(java.lang.String,java.lang.String,java.lang.String) -> a
-com.zgy.ringforu.util.TimeUtil -> com.zgy.ringforu.c.h:
+com.zgy.ringforu.util.StringUtil -> com.zgy.ringforu.c.i:
+    java.lang.String getRidofSpeciall(java.lang.String) -> a
+com.zgy.ringforu.util.TimeUtil -> com.zgy.ringforu.c.j:
     boolean isTestTimeInFreeTime(java.lang.String,java.lang.String,java.lang.String) -> a
     java.lang.String getTimeformatString(int) -> a
 com.zgy.ringforu.view.MyDialog -> com.zgy.ringforu.view.a:
@@ -2304,6 +2346,40 @@ com.zgy.ringforu.view.WheelView$1 -> com.zgy.ringforu.view.m:
 com.zgy.ringforu.view.WheelView$2 -> com.zgy.ringforu.view.n:
     com.zgy.ringforu.view.WheelView this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
+com.zgy.ringforu.view.WordsFlowView -> com.zgy.ringforu.view.WordsFlowView:
+    android.view.View$OnClickListener itemClickListener -> a
+    android.view.animation.Interpolator interpolator -> b
+    android.view.animation.AlphaAnimation animAlpha2Opaque -> c
+    android.view.animation.AlphaAnimation animAlpha2Transparent -> d
+    android.view.animation.ScaleAnimation animScaleLarge2Normal -> e
+    android.view.animation.ScaleAnimation animScaleNormal2Large -> f
+    android.view.animation.ScaleAnimation animScaleZero2Normal -> g
+    android.view.animation.ScaleAnimation animScaleNormal2Zero -> h
+    java.util.Vector vecKeywords -> i
+    int width -> j
+    int height -> k
+    boolean enableShow -> l
+    java.util.Random random -> m
+    int txtAnimInType -> n
+    int txtAnimOutType -> o
+    long lastStartAnimationTime -> p
+    long animDuration -> q
+    void init() -> c
+    void setDuration$1349ef() -> a
+    void feedKeywordsAll(java.lang.String[]) -> a
+    boolean go2Show$134632() -> b
+    boolean show() -> d
+    void attach2Screen(java.util.LinkedList,int,int,int) -> a
+    android.view.animation.AnimationSet getAnimationSet(int[],int,int,int) -> a
+    void sortXYList(java.util.LinkedList,int) -> a
+    void onGlobalLayout() -> onGlobalLayout
+    void setOnItemClickListener(android.view.View$OnClickListener) -> a
+com.zgy.ringforu.view.WordsFlowView$1 -> com.zgy.ringforu.view.o:
+    com.zgy.ringforu.view.WordsFlowView this$0 -> a
+    android.widget.TextView val$txt -> b
+    void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
+    void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
+    void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
 javax.activation.ActivationDataFlavor -> javax.activation.ActivationDataFlavor:
     java.lang.String mimeType -> mimeType
     javax.activation.MimeType mimeObject -> mimeObject
