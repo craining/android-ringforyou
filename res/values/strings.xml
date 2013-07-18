@@ -204,5 +204,7 @@
     <string name="busymode_refused_tel">"  电话："</string>
     <string name="busymode_refused_unknown">未知来电</string>
     <string name="busymode_refused_title">来电已拒绝</string>
+    
+    <string name="watermark_cannot_pick">无法拍照，请检查存储卡是否可用！</string>
 
 </resources>
