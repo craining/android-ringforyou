@@ -194,4 +194,13 @@
     <string name="str_docall">拨打</string>
     <string name="str_doclear">清除</string>
 
+    <!-- 2013-07-17 -->
+
+    <string name="tab_more">更多</string>
+    
+    <string name="gprs_msg">适用于未开通网络套餐的用户，禁用移动网络可防止产生高额的数据流量费用！</string>
+    <string name="gprs_disable">禁用</string>
+    <string name="gprs_undisable">取消禁用</string>
+    <string name="gprs_cancel">返回</string>
+
 </resources>

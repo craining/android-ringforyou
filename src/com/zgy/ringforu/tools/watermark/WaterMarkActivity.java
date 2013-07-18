@@ -50,6 +50,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	private Button btnCancel;
 	private Button btnCut;
 	private Button btnDel;
+	private Button btnTitleDel;
 	private Button btnChange;
 	private Button btnOrientation;
 	private TextView textSeekbar;
@@ -61,7 +62,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	private SeekBar seekbarAlpha;
 
 	private static final int REQUEST_CUTPIC = 101;
-	private static final int REQUEST_PICKPIC = 102;
+	private static final int REQUEST_PICKPIC_CAMERA = 102;
+	private static final int REQUEST_PICKPIC_GALLERY = 103;
 
 	// private File FILE_MARK = WaterMarkUtil.FILEPATH_WATERMARK;
 	// private File FILE_MARK_TEMP = new File(WaterMarkUtil.FILEPATH_WATERMARK_TEMP);
@@ -72,10 +74,10 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	private String[] arrayTextColors;
 	private int currentBgColor = 0;
 
-	private Uri tempPickPicUri = null;
+	private Uri tempTakePicUri = null;
+	private File tempTakePicFile = null;
 
-	// private float screenWidth;
-	// private float screenHeight;
+	private boolean fromNotifBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +99,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		btnOk = (Button) findViewById(R.id.btn_watermark_ok);
 		btnChange = (Button) findViewById(R.id.btn_watermark_change);
 		btnDel = (Button) findViewById(R.id.btn_watermark_delete);
+		btnTitleDel = (Button) findViewById(R.id.btn_watermark_title_delete);
 		btnCancel = (Button) findViewById(R.id.btn_watermark_cancel);
 		btnCut = (Button) findViewById(R.id.btn_watermark_cut);
 		btnOrientation = (Button) findViewById(R.id.btn_watermark_orientation);
@@ -114,6 +117,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		btnCut.setOnClickListener(this);
 		btnChange.setOnClickListener(this);
 		btnDel.setOnClickListener(this);
+		btnTitleDel.setOnClickListener(this);
 		btnOrientation.setOnClickListener(this);
 		layoutChangeBg.setOnClickListener(this);
 
@@ -126,6 +130,15 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			if (stream != null && type != null) {
 				startPhotoZoom(stream);
 				return;
+			}
+		} else {
+			Bundle b = intent.getExtras();
+			if (b != null && b.containsKey("fromnotifybar") && b.getBoolean("fromnotifybar")) {
+				// 从通知栏跳转过来的
+				fromNotifBar = true;
+				btnTitleDel.setVisibility(View.VISIBLE);
+				btnDel.setVisibility(View.GONE);
+				btnCancel.setVisibility(View.GONE);
 			}
 		}
 		refreshViews();
@@ -159,7 +172,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			if (FileUtil.save(WaterMarkUtil.FILE_WATERMARK_ALPHA, seekbarAlpha.getProgress() + "", WaterMarkActivity.this)) {
 				MyToast.makeText(WaterMarkActivity.this, R.string.watermark_set_success, Toast.LENGTH_SHORT, false).show();
 			}
-
+			WaterMarkUtil.setSwitchOnOff(true);
 			finish();
 			break;
 
@@ -172,15 +185,24 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			if (WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
 				WaterMarkUtil.FILE_WATERMARK_IMG.delete();
 			}
-
-			if (WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.exists()) {
-				WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.delete();
-			}
-
+			WaterMarkUtil.setSwitchOnOff(false);
 			MyToast.makeText(WaterMarkActivity.this, R.string.watermark_del_success, Toast.LENGTH_SHORT, false).show();
 			finish();
 			break;
+		case R.id.btn_watermark_title_delete:
+			if (WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.exists()) {
+				WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.delete();
+			}
 
+			if (WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
+				WaterMarkUtil.FILE_WATERMARK_IMG.delete();
+			}
+
+			WaterMarkUtil.setSwitchOnOff(false);
+			MyToast.makeText(WaterMarkActivity.this, R.string.watermark_del_success, Toast.LENGTH_SHORT, false).show();
+			finish();
+
+			break;
 		case R.id.btn_watermark_change:
 			pickPic();
 			break;
@@ -242,7 +264,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 				clearWaterMark();
 				Intent intent = new Intent(Intent.ACTION_PICK, null);
 				intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-				startActivityForResult(intent, REQUEST_PICKPIC);
+				startActivityForResult(intent, REQUEST_PICKPIC_GALLERY);
 			}
 		}).setNegativeButton(R.string.watermark_camera, new DialogInterface.OnClickListener() {
 
@@ -254,10 +276,12 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 				clearWaterMark();
 				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-				tempPickPicUri = getOutputImageFileUri();
-				intent.putExtra(MediaStore.EXTRA_OUTPUT, tempPickPicUri);
+				tempTakePicUri = Uri.fromFile(getOutputImageFile());
+				// 留意一下这个文件路径是按照怎样的规则转换为一个uri的
+				Log.v(TAG, "根据路径转换的uri为：" + tempTakePicUri.toString());
+				intent.putExtra(MediaStore.EXTRA_OUTPUT, tempTakePicUri);
 
-				startActivityForResult(intent, REQUEST_PICKPIC);
+				startActivityForResult(intent, REQUEST_PICKPIC_CAMERA);
 			}
 		}).create().show();
 	}
@@ -268,27 +292,12 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	 * @param uri
 	 */
 	public void startPhotoZoom(Uri cutFileUri) {
-		/*
-		 * 至于下面这个Intent的ACTION是怎么知道的，大家可以看下自己路径下的如下网页
-		 * yourself_sdk_path/docs/reference/android/content/Intent.html 直接在里面Ctrl+F搜：CROP
-		 * ，之前小马没仔细看过，其实安卓系统早已经有自带图片裁剪功能, 是直接调本地库的，小马不懂C C++ 这个不做详细了解去了，有轮子就用轮子，不再研究轮子是怎么 制做的了...吼吼
-		 */
-
-		Uri uriTemp = Uri.fromFile(WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE);
-		if (WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.exists()) {
-			WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.delete();
+		Uri uriTemp = Uri.fromFile(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CUT);
+		if (WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CUT.exists()) {
+			WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CUT.delete();
 		}
-
+		Log.e(TAG, "after cut uriTemp =" + uriTemp.toString());
 		Intent intent = new Intent("com.android.camera.action.CROP");
-
-		// Bitmap bitmap = intt.getParcelableExtra("data");
-		// if(bitmap != null){
-		// intent.setType("image/*");
-		// intent.putExtra("data", bitmap);
-		// }else{
-		// intent.setDataAndType(intt.getData(), "image/*");
-		// }
-
 		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.setDataAndType(cutFileUri, "image/*");
 		// 下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
@@ -311,49 +320,49 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
 		case REQUEST_CUTPIC:
-			if (data != null) {
+			if (WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CUT.exists()) {
+
 				try {
 					if (WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
 						WaterMarkUtil.FILE_WATERMARK_IMG.delete();
 					}
-					FileUtil.copyFileTo(WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE, WaterMarkUtil.FILE_WATERMARK_IMG);
-					// if (FileUtil.copyFileTo(WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE,
-					// WaterMarkUtil.FILE_WATERMARK_IMG)) {
-					// imgShow.setImageDrawable(new BitmapDrawable(Globle.FILEPATH_WATERMARK));
-					// refreshViews();
-					// }
+					FileUtil.copyFileTo(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CUT, WaterMarkUtil.FILE_WATERMARK_IMG);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+			} else {
+				Toast.makeText(WaterMarkActivity.this, "剪裁图片失败！", Toast.LENGTH_SHORT).show();
 			}
 			refreshViews();
 			break;
-		case REQUEST_PICKPIC:
+		case REQUEST_PICKPIC_CAMERA:
+
+			if (tempTakePicFile != null && tempTakePicFile.exists()) {
+				startPhotoZoom(tempTakePicUri);
+				// Bundle extras = data.getExtras();
+				// if (extras != null) {
+				// // 这里是有些拍照后的图片是直接存放到Bundle中的所以我们可以从这里面获取 Bitmap图片
+				// Bitmap image = extras.getParcelable("data");
+			} else {
+				Toast.makeText(WaterMarkActivity.this, "获取图片失败！", Toast.LENGTH_SHORT).show();
+				refreshViews();
+			}
+			break;
+
+		case REQUEST_PICKPIC_GALLERY:
 			if (data != null) {
 				Uri picPath = data.getData();
 				Log.e(TAG, "PIC uri=" + picPath);
-
 				if (picPath != null) {
 					startPhotoZoom(picPath);
 				} else {
-
 					Log.e(TAG, "ERROR!!!" + "   null ");
-
-					// Bundle extras = data.getExtras();
-					// if (extras != null) {
-					// // 这里是有些拍照后的图片是直接存放到Bundle中的所以我们可以从这里面获取 Bitmap图片
-					// Bitmap image = extras.getParcelable("data");
-					// if (image != null) {
-					// }
-					// }
 				}
 
 			} else {
-				if (!WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
-					pickPic();
-				}
+				Toast.makeText(WaterMarkActivity.this, "获取图片失败！", Toast.LENGTH_SHORT).show();
+				refreshViews();
 			}
-
 			break;
 		default:
 			break;
@@ -376,17 +385,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		return cursor.getString(column_index);
 	}
 
-	// 如何将一个路径转换为一个uri
-	private Uri getOutputImageFileUri() {
-		Uri uri = Uri.fromFile(getOutputImageFile());
-		// 留意一下这个文件路径是按照怎样的规则转换为一个uri的
-		Log.v(TAG, "根据路径转换的uri为：" + uri.toString());
-		return uri;
-	}
-
 	// 创建文件路径
 	private File getOutputImageFile() {
-		File mediaFile = null;
 		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
 			File mediaDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "myCamara");
 			Log.v(TAG, "存储路径目录：" + mediaDir.getAbsolutePath());
@@ -397,11 +397,11 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			}
 			// 利用时间戳作为文件名
 			String timeStamp = (new SimpleDateFormat("yyyyMMdd_HHmmss")).format(new Date());
-			mediaFile = new File(mediaDir.getAbsoluteFile() + File.separator + "IMG_" + timeStamp + ".jpg");
-			Log.v(TAG, "文件存储路径为：" + mediaFile.getAbsolutePath());
+			tempTakePicFile = new File(mediaDir.getAbsoluteFile() + File.separator + "IMG_" + timeStamp + ".jpg");
+			Log.v(TAG, "文件存储路径为：" + tempTakePicFile.getAbsolutePath());
 		}
 
-		return mediaFile;
+		return tempTakePicFile;
 	}
 
 	/**
@@ -416,19 +416,27 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	 * 刷新当前界面
 	 */
 	private void refreshViews() {
-
+		// 显示水印到view
 		if (WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
 			WaterMarkUtil.ctrlWaterMarkBackService(WaterMarkActivity.this, false);
 			imgShow.setImageDrawable(new BitmapDrawable(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath()));
 			btnOk.setVisibility(View.VISIBLE);
 			btnCut.setVisibility(View.VISIBLE);
-			btnDel.setVisibility(View.VISIBLE);
+
 			// btnCancel.setVisibility(View.VISIBLE);
 			seekbarAlpha.setVisibility(View.VISIBLE);
 			textSeekbar.setVisibility(View.VISIBLE);
 			btnChange.setText(R.string.watermark_change);
 			// textChangeTip.setVisibility(View.VISIBLE);
 			layoutChangeBg.setVisibility(View.VISIBLE);
+			if (fromNotifBar) {
+				btnTitleDel.setVisibility(View.VISIBLE);
+				btnDel.setVisibility(View.GONE);
+				btnCancel.setVisibility(View.GONE);
+			} else {
+				btnDel.setVisibility(View.VISIBLE);
+			}
+
 		} else {
 			btnOk.setVisibility(View.GONE);
 			btnCut.setVisibility(View.GONE);
@@ -441,6 +449,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			layoutChangeBg.setVisibility(View.GONE);
 			pickPic();
 		}
+		// 控制透明度
 		if (WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.exists()) {
 			int alpahSaved = Integer.parseInt(FileUtil.load(WaterMarkUtil.FILE_WATERMARK_ALPHA, WaterMarkActivity.this, false));
 			seekbarAlpha.setProgress(alpahSaved);
@@ -457,9 +466,9 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		// WaterMarkService.show = true;
 		// WaterMarkUtil.ctrlWaterMarkBackService(WaterMarkActivity.this, true);
 		WaterMarkUtil.checkWaterMarkState(WaterMarkActivity.this);
-		if (WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.exists()) {
-			WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.delete();
-		}
+		// if (WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.exists()) {
+		// WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.delete();
+		// }
 		super.onDestroy();
 	}
 

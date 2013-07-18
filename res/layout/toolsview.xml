@@ -80,15 +80,15 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dip"
+             <ImageView
+                android:id="@+id/image_watermark_switch"
+                android:layout_width="50dip"
+                android:layout_height="20dip"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="18dip"
-                android:clickable="false"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_list_arrow" />
+                android:layout_marginRight="10dip"
+                android:clickable="true"
+                android:contentDescription="@string/app_name" />
         </RelativeLayout>
 
         <View

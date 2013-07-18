@@ -20,6 +20,7 @@ import com.zgy.ringforu.tools.disablegprs.DisableGprsUtil;
 import com.zgy.ringforu.tools.signalreconnect.SignalReconnectUtil;
 import com.zgy.ringforu.tools.smslightscreen.SmsLightScreenUtil;
 import com.zgy.ringforu.tools.watermark.WaterMarkActivity;
+import com.zgy.ringforu.tools.watermark.WaterMarkUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.view.MyToast;
 
@@ -28,6 +29,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 	private static final String TAG = "RToolsActivity";
 	private Button btnBack;
 	private RelativeLayout layoutWatermark;
+	private ImageView imgWatermarkSwitch;
 	// private RelativeLayout layoutDisableGprs;
 	// private RelativeLayout layoutSmsLightScreen;
 
@@ -56,6 +58,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 
 		btnBack = (Button) findViewById(R.id.btn_tools_return);
 		layoutWatermark = (RelativeLayout) findViewById(R.id.layout_tool_watermark);
+		imgWatermarkSwitch = (ImageView) findViewById(R.id.image_watermark_switch);
 		// layoutDisableGprs = (RelativeLayout) findViewById(R.id.layout_tool_disablegprs);
 		// layoutSmsLightScreen = (RelativeLayout) findViewById(R.id.layout_tool_smslightscreen);
 		imgSmsLightScreenSwitch = (ImageView) findViewById(R.id.image_smslightscreen_switch);
@@ -66,6 +69,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 
 		btnBack.setOnClickListener(this);
 		// layoutDisableGprs.setOnClickListener(this);
+		imgWatermarkSwitch.setOnClickListener(this);
 		layoutWatermark.setOnClickListener(this);
 		imgSmsLightScreenSwitch.setOnClickListener(this);
 		imgDisableGprsSwitch.setOnClickListener(this);
@@ -91,31 +95,24 @@ public class RToolsActivity extends Activity implements OnClickListener {
 			finish();
 			break;
 		case R.id.layout_tool_watermark:
-			// if(!new File(Globle.FILEPATH_WATERMARK).exists()) {
-			// // 选择图库和或相机
-			// // 清空重要联系人
-			// MyDialog.Builder builder = new MyDialog.Builder(RToolsActivity.this);
-			// builder.setTitle(R.string.watermark_select_tip).setMessage(R.string.watermark_select_str).setPositiveButton(R.string.watermark_album,
-			// new DialogInterface.OnClickListener() {
-			//
-			// public void onClick(DialogInterface dialog, int whichButton) {
-			// dialog.dismiss();
-			// Intent intent = new Intent(Intent.ACTION_PICK, null);
-			// intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-			// startActivityForResult(intent, REQUEST_WATERMARK);
-			// }
-			// }).setNegativeButton(R.string.watermark_camera, new DialogInterface.OnClickListener() {
-			//
-			// public void onClick(DialogInterface dialog, int whichButton) {
-			// dialog.dismiss();
-			// Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-			// startActivityForResult(intent, REQUEST_WATERMARK);
-			// }
-			// }).create().show();
-			// } else {
 			startActivity(new Intent(RToolsActivity.this, WaterMarkActivity.class));
-			// }
-
+			break;
+		case R.id.image_watermark_switch:
+			if (WaterMarkUtil.isWaterMarkShowing(RToolsActivity.this)) {
+				// 关闭水印
+				WaterMarkUtil.setSwitchOnOff(false);
+				WaterMarkUtil.checkWaterMarkState(RToolsActivity.this);
+				refreshSwitch();
+			} else {
+				// 开启
+				WaterMarkUtil.setSwitchOnOff(true);
+				if (WaterMarkUtil.isWaterMarkSeted()) {
+					WaterMarkUtil.checkWaterMarkState(RToolsActivity.this);
+					refreshSwitch();
+				} else {
+					startActivity(new Intent(RToolsActivity.this, WaterMarkActivity.class));
+				}
+			}
 			break;
 		case R.id.image_disablegprs_switch:
 			startActivity(new Intent(RToolsActivity.this, DisableGprsActivity.class));
@@ -147,7 +144,6 @@ public class RToolsActivity extends Activity implements OnClickListener {
 				BusyModeUtil.setBusyModeOn(RToolsActivity.this, false, null, false);
 			} else {
 				Intent i = new Intent(RToolsActivity.this, BusyModeActivity.class);
-				i.putExtra("fromnotification", "false");
 				startActivity(i);
 			}
 			refreshSwitch();
@@ -173,6 +169,14 @@ public class RToolsActivity extends Activity implements OnClickListener {
 	 * 刷新显示是否开关
 	 */
 	private void refreshSwitch() {
+
+		// 水印开关
+		if (WaterMarkUtil.isWaterMarkShowing(RToolsActivity.this)) {
+			imgWatermarkSwitch.setImageResource(R.drawable.ic_on);
+		} else {
+			imgWatermarkSwitch.setImageResource(R.drawable.ic_off);
+		}
+		WaterMarkUtil.checkWaterMarkState(RToolsActivity.this);
 		// 如果点亮屏幕为开，则设置图标显示为开
 		if (SmsLightScreenUtil.isSmsLightScreenOn()) {
 			imgSmsLightScreenSwitch.setImageResource(R.drawable.ic_on);

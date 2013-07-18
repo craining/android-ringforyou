@@ -51,16 +51,12 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 		// 显示“关闭”和“开启”
 		// 否则显示“返回”和“开启”
 		Bundle b = getIntent().getExtras();
-		if (b == null) {
-			// if (b != null && b.containsKey("fromnotification")) {
-			// if (b.getString("fromnotification").equals("true")) {
+		if (b != null && b.containsKey("fromnotifybar") && b.getBoolean("fromnotifybar")) {
 			// 是从通知栏跳转过来的
 			btnBack.setBackgroundResource(R.drawable.bg_btn_red);
 			btnBack.setText(R.string.str_close);
 			btnBack.setGravity(Gravity.CENTER);
 			boolFromNotification = true;
-			// }
-			// }
 		}
 
 		wordsFlow.setDuration(500l);

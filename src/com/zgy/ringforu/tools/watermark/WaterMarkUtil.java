@@ -2,6 +2,7 @@ package com.zgy.ringforu.tools.watermark;
 
 import java.io.File;
 
+import android.R.bool;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -22,10 +23,12 @@ import com.zgy.ringforu.util.MainUtil;
  */
 public class WaterMarkUtil {
 
-	public static final File FILE_WATERMARK_IMG = new File("/data/data/com.zgy.ringforu/files/watermark");
-	public static final File FILE_WATERMARK_TEMP_IMAGE = new File("/mnt/sdcard/.ringforu/watermarktemp");
+	public static final File FILE_WATERMARK_IMG = new File("/data/data/com.zgy.ringforu/files/watermark.jpg");
+	public static final File FILE_WATERMARK_IMG_TEMP_CUT = new File("/mnt/sdcard/.ringforu/watermarktemp_cut");
+	public static final File FILE_WATERMARK_IMG_TEMP_CAMERA = new File("/mnt/sdcard/.ringforu/watermarktemp_camera");
 	public static final String FILE_WATERMARK_ALPHA = "alpah.cfg";
 	public static final File FILEPATH_WATERMARK_ALPHA = new File("/data/data/com.zgy.ringforu/files/alpah.cfg");
+	public static final File FILE_WATERMARK_SWITCH = new File("/data/data/com.zgy.ringforu/watermark");
 
 	private static final String SERVICE_NAME_WATERMARK = "com.zgy.ringforu.tools.watermark.WaterMarkService";
 
@@ -35,16 +38,48 @@ public class WaterMarkUtil {
 	private static final int NOTIFICATION_ID_DISABLEGPRS_ON = 102;
 
 	// TODO getstate , check ,
+
+	public static boolean isWaterMarkShowing(Context context) {
+		if (isWaterMarkSeted() && MainUtil.isServiceStarted(context, SERVICE_NAME_WATERMARK)) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 	/**
 	 * check state
 	 * 
 	 * @return
 	 */
-	public static boolean isWaterMarkOn() {
-		if (FILE_WATERMARK_IMG.exists() && FILEPATH_WATERMARK_ALPHA.exists()) {
+	public static boolean isWaterMarkSeted() {
+		if (FILE_WATERMARK_IMG.exists() && FILEPATH_WATERMARK_ALPHA.exists() && FILE_WATERMARK_SWITCH.exists()) {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	/**
+	 * 水印开关
+	 * 
+	 * @Description:
+	 * @param on
+	 * @see:
+	 * @since:
+	 * @author: zhuanggy
+	 * @date:2013-7-18
+	 */
+	public static void setSwitchOnOff(boolean on) {
+		if (on) {
+			if (!FILE_WATERMARK_SWITCH.exists()) {
+				FILE_WATERMARK_SWITCH.mkdir();
+			}
+		} else {
+			if (FILE_WATERMARK_SWITCH.exists()) {
+				FILE_WATERMARK_SWITCH.delete();
+			}
 		}
 	}
 
@@ -54,7 +89,7 @@ public class WaterMarkUtil {
 	 * @param context
 	 */
 	public static void checkWaterMarkState(Context context) {
-		if (isWaterMarkOn()) {
+		if (isWaterMarkSeted()) {
 			WaterMarkService.show = true;
 			ctrlWaterMarkBackService(context, true);
 			showNotify(true, context);
@@ -116,6 +151,7 @@ public class WaterMarkUtil {
 			CharSequence contentTitle = "屏幕水印已开启";// 根据短信内容获得标题
 
 			Intent notificationIntent = new Intent(context, WaterMarkActivity.class);
+			notificationIntent.putExtra("fromnotifybar", true);
 			// 点击该通知后要跳转的Activity
 			PendingIntent contentItent = PendingIntent.getActivity(context, PENDINGINTENT_ID_WATERMARK_ON, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);

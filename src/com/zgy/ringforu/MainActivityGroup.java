@@ -9,10 +9,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.zgy.ringforu.tools.disablegprs.DisableGprsService;
-import com.zgy.ringforu.tools.disablegprs.DisableGprsUtil;
 import com.zgy.ringforu.util.MainUtil;
-import com.zgy.ringforu.util.ReceiveEmailUtil;
 
 public class MainActivityGroup extends ActivityGroup {
 

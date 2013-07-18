@@ -87,8 +87,5 @@
     <string name="watermark_show_fail">水印显示失败！</string>
     <string name="watermark_ori_tip">您可能需要重新剪裁图片才能显示正常的比例！</string>
 
-    <!-- 2013-07-17 -->
-
-    <string name="tab_more">更多</string>
 
 </resources>

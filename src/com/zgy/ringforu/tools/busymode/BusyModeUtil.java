@@ -232,6 +232,7 @@ public class BusyModeUtil {
 			}
 
 			Intent notificationIntent = new Intent(context, BusyModeActivity.class);
+			notificationIntent.putExtra("fromnotifybar", true);
 			// 点击该通知后要跳转的Activity
 			PendingIntent contentItent = PendingIntent.getActivity(context, PENDINGINTENT_ID_BUSYMODE, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);

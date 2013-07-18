@@ -36,7 +36,7 @@ public class WaterMarkService extends Service {
 		Log.e(TAG, "WaterMarkService is start!");
 		if (show) {
 
-			if (WaterMarkUtil.isWaterMarkOn()) {
+			if (WaterMarkUtil.isWaterMarkSeted()) {
 				if (wm == null && view == null) {
 					try {
 						createView();
@@ -79,11 +79,11 @@ public class WaterMarkService extends Service {
 		// w.getDecorView().getWindowVisibleDisplayFrame(frame);
 		// Log.v(TAG, "getWindowVisibleDisplayFrame " + frame.top);
 		// 以屏幕左上角为原点，设置x、y初始值
-		// wmParams.x = 0;
-		// wmParams.y = 0;
+//		wmParams.x = 0;
+//		wmParams.y = 0;
 		// 设置悬浮窗口长宽数据
-		// wmParams.width = WindowManager.LayoutParams.FILL_PARENT;
-		// wmParams.height = WindowManager.LayoutParams.FILL_PARENT;
+//		wmParams.width = WindowManager.LayoutParams.FILL_PARENT;
+//		wmParams.height = WindowManager.LayoutParams.FILL_PARENT;
 		wmParams.format = PixelFormat.RGBA_8888;// 透明
 		ImageView imgShow = (ImageView) view.findViewById(R.id.watermark_image);
 
@@ -120,7 +120,7 @@ public class WaterMarkService extends Service {
 	public void onDestroy() {
 		super.onDestroy();
 		Log.e(TAG, "WaterMarkService is destroyed!");
-		
+
 		if (wm != null && view != null) {
 			if (view.isShown())
 				wm.removeView(view);
