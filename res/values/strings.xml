@@ -161,7 +161,7 @@
     <string name="str_busymode_notification_msg">拒绝来电，并发送短信告知：</string>
     <string name="str_busymode_notification_nomsg">只拒绝来电，不发送短信告知。</string>
     <string name="str_busymode_notification_refused_notify">自动拒接</string>
-    <string name="str_busymode_notification_refused_title">来电已拒绝，点击即可拨打</string>
+    <string name="str_busymode_notification_refused_title">自动拒接，点击呼叫</string>
     <string name="busymode_title_0">自定义</string>
     <string name="busymode_title_1">忙碌</string>
     <string name="busymode_title_2">驾车</string>
@@ -197,10 +197,12 @@
     <!-- 2013-07-17 -->
 
     <string name="tab_more">更多</string>
-    
     <string name="gprs_msg">适用于未开通网络套餐的用户，禁用移动网络可防止产生高额的数据流量费用！</string>
     <string name="gprs_disable">禁用</string>
     <string name="gprs_undisable">取消禁用</string>
     <string name="gprs_cancel">返回</string>
+    <string name="busymode_refused_tel">"  电话："</string>
+    <string name="busymode_refused_unknown">未知来电</string>
+    <string name="busymode_refused_title">来电已拒绝</string>
 
 </resources>

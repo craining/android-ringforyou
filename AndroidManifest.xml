@@ -201,7 +201,7 @@
             android:exported="true" >
             <intent-filter>
                 <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_CALL" />
-                <action android:name="com.zgy.ringforu.ACTION_NITIFICATION_CLEAR" />
+                <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_CLEAR" />
             </intent-filter>
         </receiver>
     </application>

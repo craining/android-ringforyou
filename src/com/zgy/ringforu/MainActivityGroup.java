@@ -1,8 +1,10 @@
 package com.zgy.ringforu;
 
 import android.app.ActivityGroup;
+import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -10,8 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.zgy.ringforu.util.MainUtil;
+import com.zgy.ringforu.util.PhoneUtil;
 
-public class MainActivityGroup extends ActivityGroup {
+public class MainActivityGroup extends ActivityGroup implements OnClickListener {
 
 	private LinearLayout bodyView;
 	private LinearLayout tabImportant;
@@ -22,10 +25,8 @@ public class MainActivityGroup extends ActivityGroup {
 	private ImageView imgCall;
 	private ImageView imgSms;
 	private ImageView imgMore;
-
+	private Vibrator vb = null;
 	private int flag = 0; // 通过标记跳转不同的页面，显示不同的菜单项
-
-	// private String parameter = Constant.BUTTON_HOME;// 初始化加载
 
 	/** Called when the activity is first created. */
 	@Override
@@ -35,47 +36,19 @@ public class MainActivityGroup extends ActivityGroup {
 		setContentView(R.layout.main_group);
 
 		MainUtil.mainInitData(MainActivityGroup.this);// 初始化数据
-
 		initMainView();
+		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 		// 主界面开始接收参数
 		Bundle bundle = getIntent().getExtras();
 		if (null != bundle) {
 			flag = bundle.getInt("flag");
 		}
-		// 默认显示
 		showView(flag);
-		tabImportant.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				flag = 0;
-				showView(flag);
-			}
-		});
-		tabCall.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				flag = 1;
-				showView(flag);
-			}
-		});
-		tabSms.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				flag = 2;
-				showView(flag);
-			}
-		});
-		tabMore.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				flag = 3;
-				showView(flag);
-			}
-		});
+		tabImportant.setOnClickListener(this);
+		tabCall.setOnClickListener(this);
+		tabSms.setOnClickListener(this);
+		tabMore.setOnClickListener(this);
 
 		// new Thread(new Runnable() {
 		//
@@ -178,5 +151,33 @@ public class MainActivityGroup extends ActivityGroup {
 		imgCall.setImageResource(R.drawable.ic_tab_call_normal);
 		imgSms.setImageResource(R.drawable.ic_tab_sms_normal);
 		imgMore.setImageResource(R.drawable.ic_tab_more_pressed);
+	}
+
+	@Override
+	public void onClick(View v) {
+		if (PhoneUtil.bIsVerbOn) {
+			vb.vibrate(new long[] { 0, 20 }, -1);
+		}
+
+		switch (v.getId()) {
+		case R.id.tab_important:
+			flag = 0;
+			showView(flag);
+			break;
+		case R.id.tab_call:
+			flag = 1;
+			showView(flag);
+			break;
+		case R.id.tab_sms:
+			flag = 2;
+			showView(flag);
+			break;
+		case R.id.tab_more:
+			flag = 3;
+			showView(flag);
+			break;
+		default:
+			break;
+		}
 	}
 }

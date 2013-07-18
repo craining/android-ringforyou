@@ -169,7 +169,7 @@ public class PhoneUtil {
 		TelephonyManager tm = (TelephonyManager) con.getSystemService(Context.TELEPHONY_SERVICE);
 		StringBuilder sb = new StringBuilder();
 
-		int version = 3;
+		int version = -1;
 		String manufacturer = "null";
 		String model = "null";
 		String device = "null";
@@ -326,7 +326,41 @@ public class PhoneUtil {
 			smsManager.sendTextMessage(tonumber, null, text, null, null);
 			Log.e(TAG, "send msg, to:" + tonumber + "  content: " + content);
 		}
-		
-		
 	}
+
+	/**
+	 * 是否是3.0以上版本
+	 * 
+	 * @Description:
+	 * @return
+	 * @see:
+	 * @since:
+	 * @author: zhuanggy
+	 * @date:2013-7-18
+	 */
+	public static boolean isUpAPI10(Context con) {
+		int version = -1;
+		try {
+			Class<android.os.Build.VERSION> build_version_class = android.os.Build.VERSION.class;
+			// 取得 android 版本
+			java.lang.reflect.Field field;
+			field = build_version_class.getField("SDK_INT");
+			version = (Integer) field.get(new android.os.Build.VERSION());
+			Log.v(TAG, "isUpAPI10 ? api = " + version);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		if (version > 10) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

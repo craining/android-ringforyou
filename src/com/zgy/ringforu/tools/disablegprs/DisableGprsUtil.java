@@ -174,7 +174,7 @@ public class DisableGprsUtil {
 			// 创建一个NotificationManager的引用
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			// 定义Notification的各种属性
-			Notification notification = new Notification(R.drawable.ic_delete_n, "Gprs数据连接已禁用！", System.currentTimeMillis());
+			Notification notification = new Notification(R.drawable.ic_notification_disablegprs_on, "Gprs数据连接已禁用！", System.currentTimeMillis());
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 			notification.flags |= Notification.FLAG_NO_CLEAR;

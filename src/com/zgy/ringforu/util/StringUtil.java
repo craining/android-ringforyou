@@ -23,6 +23,7 @@ public class StringUtil {
 
 	/**
 	 * 电话号码中除去多余的字符
+	 * 
 	 * @Description:
 	 * @param number
 	 * @return
@@ -40,5 +41,23 @@ public class StringUtil {
 		}
 
 		return result;
+	}
+
+	/**
+	 * 是否为空
+	 * @Description:
+	 * @param str
+	 * @return
+	 * @see: 
+	 * @since: 
+	 * @author: zhuanggy
+	 * @date:2013-7-18
+	 */
+	public static boolean isNull(String str) {
+		if (str == null || str.equals("")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

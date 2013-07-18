@@ -7,6 +7,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.zgy.ringforu.MainActivityGroup;
@@ -14,6 +15,8 @@ import com.zgy.ringforu.R;
 import com.zgy.ringforu.util.ContactsUtil;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
+import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.StringUtil;
 
 public class BusyModeUtil {
 
@@ -212,7 +215,7 @@ public class BusyModeUtil {
 			// 创建一个NotificationManager的引用
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			// 定义Notification的各种属性
-			Notification notification = new Notification(R.drawable.ic_delete_n, context.getString(R.string.busymode_tip_open_toast), System.currentTimeMillis());
+			Notification notification = new Notification(R.drawable.ic_notification_busymode_on, context.getString(R.string.busymode_tip_open_toast), System.currentTimeMillis());
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 			notification.flags |= Notification.FLAG_NO_CLEAR;
@@ -254,32 +257,34 @@ public class BusyModeUtil {
 	public static void showRefusedNumberNotification(Context context, String number) {
 
 		NOTIFICATION_ID_BUSYMODE_REFUSED = NOTIFICATION_ID_BUSYMODE_REFUSED + 1;// 动态创建id
-		// 尚无法自定布局，因为3.0以下不支持通知栏里的按钮响应
-		// Notification notification = new Notification(R.drawable.ic_launcher, "拒接来电",
-		// System.currentTimeMillis());
+		// 3.0以下不支持通知栏里的按钮响应
+		// if (PhoneUtil.isUpAPI10(context)) {
+		// Log.e("", "  3.0 以上");
+		// Notification notification = new Notification(R.drawable.ic_notification_busymode_refused,
+		// context.getString(R.string.str_busymode_notification_refused_notify), System.currentTimeMillis());
 		// RemoteViews contentView = new RemoteViews(context.getPackageName(),
 		// R.layout.notification_busymode_refused);
 		// contentView.setImageViewResource(R.id.image_notification_busymode_refused_ic,
-		// R.drawable.ic_delete_n);
-		// contentView.setTextViewText(R.id.text_notification_busymode_refused_title, "忙碌模式下拒绝的来电");
+		// R.drawable.ic_notification_busymode_refused);
+		// contentView.setTextViewText(R.id.text_notification_busymode_refused_title,
+		// context.getString(R.string.busymode_refused_title));
 		// contentView.setTextViewText(R.id.text_notification_busymode_refused_content,
 		// ContactsUtil.getNameFromPhone(context, number));
 		//
 		// Intent i = new Intent(BUSYMODE_ACTION_CALL);
 		// i.putExtra(INTENT_ACTION_KEY_CALL, number);
-		// PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, i,
+		// PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, i,
 		// PendingIntent.FLAG_UPDATE_CURRENT);
 		// contentView.setOnClickPendingIntent(R.id.btn_notification_busymode_refused_call, pendingIntent);
 		//
 		// Intent i2 = new Intent(BUSYMODE_ACTION_CLEAR);
-		// i2.putExtra(INTENT_ACTION_KEY_CLEAR, id);
-		// PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0, i2,
+		// i2.putExtra(INTENT_ACTION_KEY_CLEAR, NOTIFICATION_ID_BUSYMODE_REFUSED);
+		// PendingIntent pendingIntent2 = PendingIntent.getBroadcast(context, 2, i2,
 		// PendingIntent.FLAG_UPDATE_CURRENT);
 		// contentView.setOnClickPendingIntent(R.id.btn_notification_busymode_refused_clear, pendingIntent2);
 		//
 		// notification.contentView = contentView;
 		//
-		// notification.flags |= Notification.FLAG_ONGOING_EVENT;
 		// // // 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 		// // notification.flags |= Notification.FLAG_NO_CLEAR;
 		// notification.flags |= Notification.FLAG_AUTO_CANCEL;
@@ -290,38 +295,40 @@ public class BusyModeUtil {
 		//
 		// NotificationManager mNotificationManager = (NotificationManager)
 		// context.getSystemService(Context.NOTIFICATION_SERVICE);
-		// mNotificationManager.notify(id, notification);
-
+		// mNotificationManager.notify(NOTIFICATION_ID_BUSYMODE_REFUSED, notification);
+		//
+		// Log.v("", " create notification id = " + NOTIFICATION_ID_BUSYMODE_REFUSED);
+		// } else {
+		// Log.e("", "  3.0 以下");
 		// // 定义Notification的各种属性
 		NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 		// 定义Notification的各种属性
 		Notification notification = new Notification(R.drawable.ic_notification_busymode_refused, context.getString(R.string.str_busymode_notification_refused_notify), System.currentTimeMillis());
-		// notification.flags |= Notification.FLAG_ONGOING_EVENT;
 		// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
 		// 表明在点击了通知栏中的"清除通知"后，此通知不清除，经常与FLAG_ONGOING_EVENT一起使用 notification.flags |=
 		// Notification.FLAG_SHOW_LIGHTS;
 
 		CharSequence contentTitle = context.getString(R.string.str_busymode_notification_refused_title);// 通知栏标题
-		CharSequence contentText = ContactsUtil.getNameFromPhone(context, number);
 
-		// if (contentText != null && contentText.length() > 0) {
-		// contentText = context.getString(R.string.str_busymode_notification_msg) +
-		// getBusyModeMsgContent(context); // 通知栏内容
-		// } else {
-		// contentText = context.getString(R.string.str_busymode_notification_nomsg);
-		// }
+		String name = ContactsUtil.getNameFromContactsByNumber(context, number);
+		
+		if(StringUtil.isNull(name)) {
+			name = context.getString(R.string.busymode_refused_unknown);
+		}
+		
+		CharSequence contentText = name + context.getString(R.string.busymode_refused_tel) + number;
 
 		Intent i = new Intent(BUSYMODE_ACTION_CALL);
 		i.putExtra(INTENT_ACTION_KEY_CALL, number);
 
-		// Intent notificationIntent = new Intent(context, BusyModeActivity.class);
 		// 点击该通知后要跳转的Activity
 		PendingIntent contentItent = PendingIntent.getBroadcast(context, PENDINGINTENT_ID_BUSYMODE, i, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
 		// 把Notification传递给NotificationManager
 		notificationManager.notify(NOTIFICATION_ID_BUSYMODE_REFUSED, notification);// 注意ID号，不能与此程序中的其他通知栏图标相同
+		// }
 
 	}
 }

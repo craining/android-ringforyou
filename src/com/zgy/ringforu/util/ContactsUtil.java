@@ -8,7 +8,10 @@ import com.zgy.ringforu.bean.ContactInfo;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.provider.ContactsContract;
+import android.provider.Contacts.People;
+import android.util.Log;
 
 public class ContactsUtil {
 
@@ -55,6 +58,44 @@ public class ContactsUtil {
 //		return list;
 //	}
 
+//	
+//	/**
+//	 * 根据号码获得联系人姓名
+//	 * 
+//	 * @Description:
+//	 * @param con
+//	 * @param number
+//	 * @return
+//	 * @see:
+//	 * @since:
+//	 * @author: zgy
+//	 * @date:2012-8-29
+//	 */
+//	//TODO 添加从sim卡里读取
+//	public static String getNameFromPhone(Context con, String number) {
+//		String name = number;
+//		String[] projection = { ContactsContract.PhoneLookup.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER };
+//		Cursor cursor = con.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projection, null, null, null);
+//		if (cursor != null && cursor.getCount() > 0) {
+//			cursor.moveToFirst();
+//			String newNumber = "";
+//			do {
+//				newNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+//				if (newNumber.contains(number) || number.contains(newNumber)) {
+//					name = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME)) + ":" + newNumber;
+//					break;
+//				}
+//			} while (cursor.moveToNext());
+//			cursor.close();
+//		}
+//
+//		return name;
+//	}
+	
+	
+	
+	
+	
 	
 	/**
 	 * 根据号码获得联系人姓名
@@ -68,21 +109,60 @@ public class ContactsUtil {
 	 * @author: zgy
 	 * @date:2012-8-29
 	 */
-	public static String getNameFromPhone(Context con, String number) {
-		String name = number;
+	public static String getNameFromContactsByNumber(Context con, String number) {
+		String name = null;
+
+		// 从手机通讯录查找
 		String[] projection = { ContactsContract.PhoneLookup.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER };
-		Cursor cursor = con.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projection, null, null, null);
-		if (cursor != null && cursor.getCount() > 0) {
-			cursor.moveToFirst();
-			String newNumber = "";
-			do {
-				newNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-				if (newNumber.contains(number) || number.contains(newNumber)) {
-					name = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME)) + ":" + newNumber;
-					break;
+		Cursor cursor = null;
+		try {
+			cursor = con.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projection, null, null, null);
+			if (cursor != null && cursor.getCount() > 0) {
+				cursor.moveToFirst();
+				String newNumber = "";
+				do {
+					newNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+					Log.v("", " newNumber =" + newNumber);
+					if (newNumber.contains(number) || number.contains(newNumber)) {
+						name = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
+						break;
+					}
+				} while (cursor.moveToNext());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (cursor != null) {
+				cursor.close();
+			}
+
+		}
+
+		// 未获取到姓名，尝试从sim卡里获取
+		if (StringUtil.isNull(name)) {
+			Cursor cur = null;
+			try {
+				cur = con.getContentResolver().query(Uri.parse("content://icc/adn"), null, null, null, null);
+				if (cur != null && cur.getCount() > 0) {
+					cur.moveToFirst();
+					String num = "";
+					do {
+						num = cur.getString(cur.getColumnIndex(People.NUMBER));
+						if (num.contains(number) || number.contains(num)) {
+							name = cur.getString(cur.getColumnIndex(People.NAME)) + ":" + num;
+							break;
+						}
+
+					} while (cur.moveToNext());
 				}
-			} while (cursor.moveToNext());
-			cursor.close();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (cur != null) {
+					cur.close();
+				}
+			}
 		}
 
 		return name;

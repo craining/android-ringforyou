@@ -176,7 +176,6 @@ public class RToolsActivity extends Activity implements OnClickListener {
 		} else {
 			imgWatermarkSwitch.setImageResource(R.drawable.ic_off);
 		}
-		WaterMarkUtil.checkWaterMarkState(RToolsActivity.this);
 		// 如果点亮屏幕为开，则设置图标显示为开
 		if (SmsLightScreenUtil.isSmsLightScreenOn()) {
 			imgSmsLightScreenSwitch.setImageResource(R.drawable.ic_on);
