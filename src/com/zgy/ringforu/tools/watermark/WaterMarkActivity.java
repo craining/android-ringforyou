@@ -323,6 +323,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		Uri uriTemp = Uri.fromFile(tempFileCutted);
 		Log.e(TAG, "after cut uriTemp =" + uriTemp.toString() + "  src uri = " + cutFileUri.toString());
 		Intent intent = new Intent("com.android.camera.action.CROP");
+//		Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
 		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.setDataAndType(cutFileUri, "image/*");
 		// 下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
