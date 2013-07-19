@@ -207,7 +207,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.img_important_help:
-			Intent i3 = new Intent(TabImportantActivity.this, HelpActivity.class);
+			Intent i3 = new Intent(TabImportantActivity.this, AboutActivity.class);
 			startActivity(i3);
 			break;
 		case R.id.img_important_set:

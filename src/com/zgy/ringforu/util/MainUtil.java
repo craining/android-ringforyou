@@ -46,7 +46,7 @@ public class MainUtil {
 	public static final int TYPE_MORE = 3;// ¸ü¶à
 
 	public static final String FILE_INNER = "/data/data/com.zgy.ringforu/files/";
-	public static final String FILE_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + "/.ringforu/";
+	public static final String FILE_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ringforu/";
 
 	public static final String FILE_IMPORTANT_NUM_LOG = "importantnumbers.cfg";
 	public static final String FILE_IMPORTANT_NAME_LOG = "importantnames.cfg";
@@ -457,13 +457,15 @@ public class MainUtil {
 		} else {
 			PhoneUtil.bIsVerbOn = true;
 		}
-
-		if (!(new File(MainUtil.FILE_SDCARD).exists())) {
-			new File(MainUtil.FILE_SDCARD).mkdirs();
-		}
-
 		if (!(new File(MainUtil.FILE_INNER).exists())) {
 			new File(MainUtil.FILE_INNER).mkdirs();
+		}
+
+		if (PhoneUtil.existSDcard()) {
+			File f = new File(MainUtil.FILE_SDCARD);
+			if (!f.exists()) {
+				f.mkdirs();
+			}
 		}
 		checkAllService(context);
 	}

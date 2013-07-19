@@ -206,7 +206,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.img_call_help:
-			Intent i3 = new Intent(TabCallActivity.this, HelpActivity.class);
+			Intent i3 = new Intent(TabCallActivity.this, AboutActivity.class);
 			startActivity(i3);
 			break;
 		case R.id.img_call_set:

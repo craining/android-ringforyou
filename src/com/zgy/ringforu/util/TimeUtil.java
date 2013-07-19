@@ -7,6 +7,10 @@ import java.util.Calendar;
 public class TimeUtil {
 
 
+	public static long getCurrentTimeMillis() {
+		return (System.currentTimeMillis() / 1000) * 1000;
+	}
+	
 	/**
 	 * 判断当前时间是否在闲时内
 	 * 

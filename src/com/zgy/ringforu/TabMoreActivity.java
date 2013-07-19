@@ -127,7 +127,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 			}
 			break;
 		case R.id.layout_more_help:
-			startActivity(new Intent(TabMoreActivity.this, HelpActivity.class));
+			startActivity(new Intent(TabMoreActivity.this, AboutActivity.class));
 			break;
 		case R.id.img_add_calm_important:
 			startActivity(new Intent(TabMoreActivity.this, AddSlientPerActivity.class));
