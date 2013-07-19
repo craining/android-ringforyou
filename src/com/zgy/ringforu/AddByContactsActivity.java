@@ -223,6 +223,8 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 					info.num = StringUtil.getRidofSpeciall(cursor.getString(2));
 					info.storeKey = cursor.getString(3);
 
+					Log.v(TAG, "info.name=" + info.name + "   changed=" + StringUtil.getRidofSpecialOfFileName(info.name));
+					
 					listContacts.add(info);
 				}
 
