@@ -39,6 +39,7 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/layout_tools_part_one"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_tools_title"
@@ -80,21 +81,79 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-             <ImageView
+            <ImageView
                 android:id="@+id/image_watermark_switch"
                 android:layout_width="50dip"
-                android:layout_height="20dip"
+                android:layout_height="fill_parent"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dip"
                 android:clickable="true"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:paddingBottom="15dip"
+                android:paddingTop="15dip" />
         </RelativeLayout>
+        <!-- 忙碌模式 -->
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
             android:background="@color/light_blue_bg" />
+
+        <RelativeLayout
+            android:id="@+id/layout_tool_busymode"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:background="@drawable/bg_list_item"
+            android:clickable="true" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dip"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/text_tools_busymode_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/busymode_title"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/busymode_info"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/image_busymode_switch"
+                android:layout_width="50dip"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dip"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:paddingBottom="15dip"
+                android:paddingTop="15dip" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_tools_part_one"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="30dip"
+        android:layout_marginTop="20dip"
+        android:background="@drawable/bg_bolder"
+        android:orientation="vertical" >
 
         <!-- 禁用移动网络 -->
 
@@ -131,12 +190,14 @@
             <ImageView
                 android:id="@+id/image_disablegprs_switch"
                 android:layout_width="50dip"
-                android:layout_height="20dip"
+                android:layout_height="fill_parent"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dip"
                 android:clickable="true"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:paddingBottom="15dip"
+                android:paddingTop="15dip" />
         </RelativeLayout>
 
         <View
@@ -179,12 +240,14 @@
             <ImageView
                 android:id="@+id/image_smslightscreen_switch"
                 android:layout_width="50dip"
-                android:layout_height="20dip"
+                android:layout_height="fill_parent"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dip"
                 android:clickable="true"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:paddingBottom="15dip"
+                android:paddingTop="15dip" />
         </RelativeLayout>
 
         <!-- 无信号时自动寻找信号 -->
@@ -227,61 +290,14 @@
             <ImageView
                 android:id="@+id/image_signalreconnect_switch"
                 android:layout_width="50dip"
-                android:layout_height="20dip"
+                android:layout_height="fill_parent"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dip"
                 android:clickable="true"
-                android:contentDescription="@string/app_name" />
-        </RelativeLayout>
-        
-        <!-- 忙碌模式 -->
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="2dip"
-            android:background="@color/light_blue_bg" />
-
-        <RelativeLayout
-            android:id="@+id/layout_tool_busymode"
-            android:layout_width="fill_parent"
-            android:layout_height="50dip"
-            android:background="@drawable/bg_list_item"
-            android:clickable="false" >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/text_tools_busymode_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/busymode_title"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/busymode_info"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/image_busymode_switch"
-                android:layout_width="50dip"
-                android:layout_height="20dip"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dip"
-                android:clickable="true"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:paddingBottom="15dip"
+                android:paddingTop="15dip" />
         </RelativeLayout>
     </LinearLayout>
 

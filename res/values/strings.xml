@@ -15,7 +15,7 @@
     <string name="add">Add</string>
     <string name="phonenumber">Phone Number</string>
     <string name="add_help">You can add friends, lover, families, boss or important customers.</string>
-    <string name="copyright">©2012&#8211;2014 ZGY. All Rights Reserved\r\n\r\nv1.0</string>
+    <string name="copyright">©2012&#8211;2015 ZGY. All Rights Reserved\r\n\r\nv2.0</string>
     <string name="set_str">Settings</string>
     <string name="help_verb">Enable Vibrations</string>
     <string name="help_verb_info">Vibrate when do operas</string>
@@ -135,6 +135,7 @@
     <string name="disable_gprs_title">禁用移动网络</string>
     <string name="disable_gprs_info">防止高额 gprs 数据流量费用</string>
     <string name="receive_numbers_null">不支持的数据！</string>
+    <string name="disable_gprs_notify_msg">点击更改设置</string>
     <string name="disable_gprs_on">当前状态：已禁用</string>
     <string name="disable_gprs_off">当前状态：未禁用</string>
     <string name="disable_gprs_on_tip">移动网络连接已禁用！</string>
@@ -148,17 +149,17 @@
     <string name="clear_data_over">备份文件已清空！</string>
     <string name="signalreconnect_title">掉线重连</string>
     <string name="signalreconnect_info">手机无信号时定时自动重连</string>
-    <string name="signalreconnect_tip">不建议使用，此功能尚不稳定！</string>
+    <string name="signalreconnect_tip">不建议使用，部分机型上此功能尚不稳定！</string>
     <string name="busymode_title">忙碌模式</string>
     <string name="busymode_info">自动拒接电话，并短信告知。</string>
     <string name="busymode_tip_open_toast">忙碌模式已经开启！</string>
     <string name="busymode_tip_close_toast">忙碌模式已经关闭！</string>
-    <string name="busymode_set_title">自动回复的短信内容</string>
+    <string name="busymode_set_title">自动回复</string>
     <string name="busymode_set_hint">(短信内容为空，表示只拒接不回复短信)</string>
     <string name="busymode_rule_tip">忙碌模式下对重要联系人和来电屏蔽不起作用。</string>
     <string name="str_open">开启</string>
     <string name="str_close">关闭</string>
-    <string name="str_busymode_notification_msg">拒绝来电，并发送短信告知：</string>
+    <string name="str_busymode_notification_msg">拒绝来电，自动回复：</string>
     <string name="str_busymode_notification_nomsg">只拒绝来电，不发送短信告知。</string>
     <string name="str_busymode_notification_refused_notify">自动拒接</string>
     <string name="str_busymode_notification_refused_title">自动拒接，点击呼叫</string>
@@ -204,6 +205,8 @@
     <string name="busymode_refused_tel">"  电话："</string>
     <string name="busymode_refused_unknown">未知来电</string>
     <string name="busymode_refused_title">来电已拒绝</string>
+    <string name="watermark_close">关闭</string>
+    <string name="watermark_close_finish">屏幕水印已关闭！</string>
     
     <string name="watermark_cannot_pick">无法拍照，请检查存储卡是否可用！</string>
 

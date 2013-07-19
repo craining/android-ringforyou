@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RToolsActivity;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.view.MyToast;
 
@@ -40,6 +41,8 @@ public class WaterMarkService extends Service {
 				if (wm == null && view == null) {
 					try {
 						createView();
+						Intent i = new Intent(RToolsActivity.ACTION_WATERMARK_ON);
+						sendBroadcast(i);
 					} catch (Exception e) {
 						MyToast.makeText(WaterMarkService.this, R.string.watermark_show_fail, Toast.LENGTH_SHORT, true).show();
 					}

@@ -25,6 +25,7 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 
 	private Button btnBack;
 	private Button btnOk;
+	private Button btnClose;
 	private EditText editMsgContent;
 	private WordsFlowView wordsFlow;
 
@@ -43,26 +44,32 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.busymode);
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
-		btnBack = (Button) findViewById(R.id.btn_busymodeset_return);
+		btnBack = (Button) findViewById(R.id.btn_busymodeset_back);
+		btnClose = (Button) findViewById(R.id.btn_busymode_title_close);
 		btnOk = (Button) findViewById(R.id.btn_busymodeset_ok);
 		editMsgContent = (EditText) findViewById(R.id.edit_busymode_msgcontent);
 		wordsFlow = (WordsFlowView) findViewById(R.id.busymode_flow);
 
 		// 显示“关闭”和“开启”
-		// 否则显示“返回”和“开启”
-		Bundle b = getIntent().getExtras();
-		if (b != null && b.containsKey("fromnotifybar") && b.getBoolean("fromnotifybar")) {
-			// 是从通知栏跳转过来的
-			btnBack.setBackgroundResource(R.drawable.bg_btn_red);
-			btnBack.setText(R.string.str_close);
-			btnBack.setGravity(Gravity.CENTER);
-			boolFromNotification = true;
+//		// 否则显示“返回”和“开启”
+//		Bundle b = getIntent().getExtras();
+//		if (b != null && b.containsKey("fromnotifybar") && b.getBoolean("fromnotifybar")) {
+//			// 是从通知栏跳转过来的
+//			boolFromNotification = true;
+//
+//		}
+
+		if (BusyModeUtil.isBusyModeOn()) {
+			btnClose.setVisibility(View.VISIBLE);
+		} else {
+			btnClose.setVisibility(View.GONE);
 		}
 
 		wordsFlow.setDuration(500l);
 		wordsFlow.setOnItemClickListener(this);
 		btnBack.setOnClickListener(this);
 		btnOk.setOnClickListener(this);
+		btnClose.setOnClickListener(this);
 
 		busyModesTitle = getResources().getStringArray(R.array.busymodes_title);
 		busyModeInfo = getResources().getStringArray(R.array.busymodes_info);
@@ -102,14 +109,15 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 
 		if (v instanceof Button) {
 			switch (v.getId()) {
-			case R.id.btn_busymodeset_return:
-				if (boolFromNotification) {
-					// 若是从通知栏跳过来的
-					BusyModeUtil.setBusyModeOn(BusyModeActivity.this, false, null, false);
-					MyToast.makeText(BusyModeActivity.this, R.string.busymode_tip_close_toast, MyToast.LENGTH_LONG, false).show();
-				}
+			case R.id.btn_busymodeset_back:
 				finish();
 				break;
+			case R.id.btn_busymode_title_close:
+				BusyModeUtil.setBusyModeOn(BusyModeActivity.this, false, null, false);
+				MyToast.makeText(BusyModeActivity.this, R.string.busymode_tip_close_toast, MyToast.LENGTH_LONG, false).show();
+				finish();
+				break;
+
 			case R.id.btn_busymodeset_ok:
 				// 设置自动回复的开关，以及短信回复的文字
 				if (TextUtils.isEmpty(editMsgContent.getText())) {

@@ -33,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RToolsActivity;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.view.MyDialog;
@@ -50,7 +51,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	private Button btnCancel;
 	private Button btnCut;
 	private Button btnDel;
-	private Button btnTitleDel;
+	private Button btnTitleClose;
 	private Button btnChange;
 	private Button btnOrientation;
 	private TextView textSeekbar;
@@ -101,7 +102,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		btnOk = (Button) findViewById(R.id.btn_watermark_ok);
 		btnChange = (Button) findViewById(R.id.btn_watermark_change);
 		btnDel = (Button) findViewById(R.id.btn_watermark_delete);
-		btnTitleDel = (Button) findViewById(R.id.btn_watermark_title_delete);
+		btnTitleClose = (Button) findViewById(R.id.btn_watermark_title_close);
 		btnCancel = (Button) findViewById(R.id.btn_watermark_cancel);
 		btnCut = (Button) findViewById(R.id.btn_watermark_cut);
 		btnOrientation = (Button) findViewById(R.id.btn_watermark_orientation);
@@ -119,7 +120,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		btnCut.setOnClickListener(this);
 		btnChange.setOnClickListener(this);
 		btnDel.setOnClickListener(this);
-		btnTitleDel.setOnClickListener(this);
+		btnTitleClose.setOnClickListener(this);
 		btnOrientation.setOnClickListener(this);
 		layoutChangeBg.setOnClickListener(this);
 
@@ -133,16 +134,16 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 				startPhotoZoom(stream);
 				return;
 			}
-		} else {
-			Bundle b = intent.getExtras();
-			if (b != null && b.containsKey("fromnotifybar") && b.getBoolean("fromnotifybar")) {
-				// 从通知栏跳转过来的
-				fromNotifBar = true;
-				btnTitleDel.setVisibility(View.VISIBLE);
-				btnDel.setVisibility(View.GONE);
-				btnCancel.setVisibility(View.GONE);
-			}
 		}
+		// else {
+		// Bundle b = intent.getExtras();
+		// if (b != null && b.containsKey("fromnotifybar") && b.getBoolean("fromnotifybar")) {
+		// // 从通知栏跳转过来的
+		// fromNotifBar = true;
+		// btnTitleClose.setVisibility(View.VISIBLE);
+		// btnOk.setVisibility(View.GONE);
+		// }
+		// }
 		refreshViews();
 	}
 
@@ -168,18 +169,12 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 
 		switch (v.getId()) {
 		case R.id.btn_watermark_ok:
-			if (WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.exists()) {
-				WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.delete();
-			}
-			if (FileUtil.save(WaterMarkUtil.FILE_WATERMARK_ALPHA, seekbarAlpha.getProgress() + "", WaterMarkActivity.this)) {
-				MyToast.makeText(WaterMarkActivity.this, R.string.watermark_set_success, Toast.LENGTH_SHORT, false).show();
-			}
-			WaterMarkUtil.setSwitchOnOff(true);
+			open();
 			finish();
 			break;
 
 		case R.id.btn_watermark_delete:
-
+			// 移除
 			if (WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.exists()) {
 				WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.delete();
 			}
@@ -188,22 +183,16 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 				WaterMarkUtil.FILE_WATERMARK_IMG.delete();
 			}
 			WaterMarkUtil.setSwitchOnOff(false);
+			WaterMarkUtil.checkWaterMarkState(WaterMarkActivity.this);
 			MyToast.makeText(WaterMarkActivity.this, R.string.watermark_del_success, Toast.LENGTH_SHORT, false).show();
 			finish();
 			break;
-		case R.id.btn_watermark_title_delete:
-			if (WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.exists()) {
-				WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.delete();
-			}
-
-			if (WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
-				WaterMarkUtil.FILE_WATERMARK_IMG.delete();
-			}
-
+		case R.id.btn_watermark_title_close:
+			// 关闭
 			WaterMarkUtil.setSwitchOnOff(false);
-			MyToast.makeText(WaterMarkActivity.this, R.string.watermark_del_success, Toast.LENGTH_SHORT, false).show();
+			WaterMarkUtil.checkWaterMarkState(WaterMarkActivity.this);
+			MyToast.makeText(WaterMarkActivity.this, R.string.watermark_close_finish, Toast.LENGTH_SHORT, false).show();
 			finish();
-
 			break;
 		case R.id.btn_watermark_change:
 			pickPic();
@@ -250,6 +239,16 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			break;
 		}
 
+	}
+
+	private void open() {
+		if (WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.exists()) {
+			WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.delete();
+		}
+		if (FileUtil.save(WaterMarkUtil.FILE_WATERMARK_ALPHA, seekbarAlpha.getProgress() + "", WaterMarkActivity.this)) {
+			MyToast.makeText(WaterMarkActivity.this, R.string.watermark_set_success, Toast.LENGTH_SHORT, false).show();
+		}
+		WaterMarkUtil.setSwitchOnOff(true);
 	}
 
 	private void setBgAndTextColor() {
@@ -451,21 +450,13 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			imgShow.setImageDrawable(new BitmapDrawable(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath()));
 			btnOk.setVisibility(View.VISIBLE);
 			btnCut.setVisibility(View.VISIBLE);
-
+			btnDel.setVisibility(View.VISIBLE);
 			// btnCancel.setVisibility(View.VISIBLE);
 			seekbarAlpha.setVisibility(View.VISIBLE);
 			textSeekbar.setVisibility(View.VISIBLE);
 			btnChange.setText(R.string.watermark_change);
 			// textChangeTip.setVisibility(View.VISIBLE);
 			layoutChangeBg.setVisibility(View.VISIBLE);
-			if (fromNotifBar) {
-				btnTitleDel.setVisibility(View.VISIBLE);
-				btnDel.setVisibility(View.GONE);
-				btnCancel.setVisibility(View.GONE);
-			} else {
-				btnDel.setVisibility(View.VISIBLE);
-			}
-
 		} else {
 			btnOk.setVisibility(View.GONE);
 			btnCut.setVisibility(View.GONE);
@@ -487,7 +478,13 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			imgShow.setAlpha(50);
 			seekbarAlpha.setProgress(50);
 		}
-
+		if (WaterMarkUtil.isWaterMarkSeted()) {
+			btnTitleClose.setVisibility(View.VISIBLE);
+			// btnOk.setVisibility(View.GONE);
+		} else {
+			btnTitleClose.setVisibility(View.GONE);
+			// btnOk.setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override
@@ -499,6 +496,15 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		// WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.delete();
 		// }
 		super.onDestroy();
+	}
+
+	@Override
+	protected void onPause() {
+
+		WaterMarkService.show = true;
+		WaterMarkUtil.ctrlWaterMarkBackService(WaterMarkActivity.this, true);
+
+		super.onPause();
 	}
 
 }

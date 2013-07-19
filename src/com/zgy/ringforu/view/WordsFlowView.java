@@ -45,7 +45,7 @@ public class WordsFlowView extends FrameLayout implements OnGlobalLayoutListener
 	public static final int CENTER_TO_LOCATION = 3;
 	/** 位移动画类型：从坐标点移动到中心点。 */
 	public static final int LOCATION_TO_CENTER = 4;
-	public static final long ANIM_DURATION = 800l;
+	public static final long ANIM_DURATION = 2000;
 	public static final int MAX = 50;// 词语最大个数
 	public static final int TEXT_SIZE_MAX = 25;
 	public static final int TEXT_SIZE_MIN = 15;

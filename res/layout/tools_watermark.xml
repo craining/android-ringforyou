@@ -28,19 +28,6 @@
             android:textColor="@color/white"
             android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/btn_watermark_title_delete"
-            android:layout_width="45dip"
-            android:layout_height="30dip"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="3.0dip"
-            android:background="@drawable/bg_btn_red"
-            android:text="@string/watermark_del"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:visibility="gone" />
-
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -63,6 +50,19 @@
             android:text="@string/watermark_set"
             android:textColor="@color/white"
             android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_watermark_title_close"
+            android:layout_width="45dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="58dip"
+            android:background="@drawable/bg_btn_red"
+            android:text="@string/watermark_close"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <LinearLayout
