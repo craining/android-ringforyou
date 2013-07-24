@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.zgy.ringforu.adapter.AccountAutoCompleteAdapter;
 import com.zgy.ringforu.util.MainUtil;
+import com.zgy.ringforu.util.NetWorkUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.SendEmailUtil;
 import com.zgy.ringforu.view.MyToast;
@@ -93,7 +94,7 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 
 		case R.id.btn_feedback_ok:
 
-			if (PhoneUtil.isConnectInternet(FeedBackActivity.this)) {
+			if (NetWorkUtil.isConnectInternet(FeedBackActivity.this)) {
 				new Thread(new Runnable() {
 
 					@Override
@@ -117,7 +118,7 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 				MyToast.makeText(FeedBackActivity.this, R.string.feedback_subminting, Toast.LENGTH_SHORT, false).show();
 				finish();
 			} else {
-				PhoneUtil.setNetConnection(FeedBackActivity.this, vb);
+				NetWorkUtil.setNetConnection(FeedBackActivity.this, vb);
 			}
 
 			break;

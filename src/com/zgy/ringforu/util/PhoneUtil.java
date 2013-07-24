@@ -227,57 +227,6 @@ public class PhoneUtil {
 		return sb.toString();
 	}
 
-	/**
-	 * 
-	 * 判断网络状态是否可用
-	 * 
-	 * @return true:网络可用; false:网络不可用
-	 */
-
-	public static boolean isConnectInternet(Context con) {
-		ConnectivityManager conManager = (ConnectivityManager) con.getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo networkInfo = conManager.getActiveNetworkInfo();
-		if (networkInfo != null) { // 注意，这个判断一定要的哦，要不然会出错
-
-			return networkInfo.isAvailable();
-		}
-
-		return false;
-	}
-
-	/**
-	 * 跳转到设置网络页面
-	 * 
-	 * @Description:
-	 * @param con
-	 * @see:
-	 * @since:
-	 * @author: zhuanggy
-	 * @date:2012-12-3
-	 */
-	public static void setNetConnection(final Context con, final Vibrator vb) {
-		// 设置网络
-		MyDialog.Builder builder = new MyDialog.Builder(con);
-		builder.setTitle(R.string.str_tip).setMessage(R.string.nonet_tip).setPositiveButton(R.string.str_set, new DialogInterface.OnClickListener() {
-
-			public void onClick(DialogInterface dialog, int whichButton) {
-				if (bIsVerbOn) {
-					vb.vibrate(new long[] { 0, 20 }, -1);
-				}
-				dialog.dismiss();
-				con.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
-			}
-		}).setNegativeButton(R.string.str_cancel, new DialogInterface.OnClickListener() {
-
-			public void onClick(DialogInterface dialog, int whichButton) {
-				dialog.dismiss();
-				if (bIsVerbOn) {
-					vb.vibrate(new long[] { 0, 20 }, -1);
-				}
-			}
-		}).create().show();
-	}
-
 	public static void hideKeyboard(Context con, EditText edit) {
 		// 隐藏软件盘
 		InputMethodManager imm = (InputMethodManager) con.getSystemService(Context.INPUT_METHOD_SERVICE);

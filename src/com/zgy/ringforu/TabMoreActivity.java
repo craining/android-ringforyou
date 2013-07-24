@@ -14,19 +14,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
+import com.zgy.ringforu.util.NetWorkUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
@@ -120,10 +113,10 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 			finish();
 			break;
 		case R.id.layout_more_feedback:
-			if (PhoneUtil.isConnectInternet(TabMoreActivity.this)) {
+			if (NetWorkUtil.isConnectInternet(TabMoreActivity.this)) {
 				startActivity(new Intent(TabMoreActivity.this, FeedBackActivity.class));
 			} else {
-				PhoneUtil.setNetConnection(TabMoreActivity.this, vb);
+				NetWorkUtil.setNetConnection(TabMoreActivity.this, vb);
 			}
 			break;
 		case R.id.layout_more_help:
