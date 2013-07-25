@@ -322,13 +322,11 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 
 		Uri uriTemp = Uri.fromFile(tempFileCutted);
 		Log.e(TAG, "after cut uriTemp =" + uriTemp.toString() + "  src uri = " + cutFileUri.toString());
-		Intent intent = new Intent("com.android.camera.action.CROP");
-//		Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
-		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-		intent.setDataAndType(cutFileUri, "image/*");
-		// 下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
+		
+		
+		Intent intent = new Intent(Intent.ACTION_GET_CONTENT, cutFileUri);
+		intent.setType("image/*");
 		intent.putExtra("crop", "true");
-		intent.putExtra("scale", true);
 		DisplayMetrics metric = getResources().getDisplayMetrics();
 		// aspectX aspectY 是宽高的比例
 		intent.putExtra("aspectX", metric.widthPixels);
@@ -337,10 +335,31 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		intent.putExtra("outputX", metric.widthPixels);
 		intent.putExtra("outputY", metric.heightPixels);
 		intent.putExtra("noFaceDetection", true);
+		intent.putExtra("scale", true);
 		intent.putExtra("return-data", false);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, uriTemp);
 		intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-		// intent.putExtra("circleCrop", true);
+		
+		
+//		Intent intent = new Intent("com.android.camera.action.CROP");
+//		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+//		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//		intent.setDataAndType(cutFileUri, "image/*");
+//		// 下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
+//		intent.putExtra("crop", "true");
+//		intent.putExtra("scale", true);
+//		DisplayMetrics metric = getResources().getDisplayMetrics();
+//		// aspectX aspectY 是宽高的比例
+//		intent.putExtra("aspectX", metric.widthPixels);
+//		intent.putExtra("aspectY", metric.heightPixels);
+//		// outputX outputY 是裁剪图片宽高
+//		intent.putExtra("outputX", metric.widthPixels);
+//		intent.putExtra("outputY", metric.heightPixels);
+//		intent.putExtra("noFaceDetection", true);
+//		intent.putExtra("return-data", false);
+//		intent.putExtra(MediaStore.EXTRA_OUTPUT, uriTemp);
+//		intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+//		// intent.putExtra("circleCrop", true);
 
 		startActivityForResult(intent, REQUEST_CUTPIC);
 	}
