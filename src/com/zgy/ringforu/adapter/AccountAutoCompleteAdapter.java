@@ -16,27 +16,17 @@ import android.widget.TextView;
 
 import com.zgy.ringforu.R;
 
-/**
- * 鐧诲綍鏃讹紝璐︽埛鑷姩鍖归厤鐨勯�閰嶅櫒
- * 
- * @Description:
- * @author: zhuanggy
- * @see:
- * @since:
- * @copyright 漏 35.com
- * @Date:2013-1-4
- */
 public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterable {
 
 	private Context context;
 	private ArrayFilter mFilter;
-	private ArrayList<String> mOriginalValues;// 鎵�湁鐨処tem
-	private List<String> mObjects;// 杩囨护鍚庣殑item
+	private ArrayList<String> mOriginalValues;// 所有的Item
+	private List<String> mObjects;// 过滤后的item
 	private final Object mLock = new Object();
-	// 娉ㄦ剰鏄湁搴忕殑
+	// 注意是有序的
 	private static final String[] normalDomains = { "126.com", "139.com", "163.com", "188.com", "189.com", "21cn.com", "263.net", "35.cn", "eyou.com", "foxmail.com", "gamail.com", "googlemail.com", "hotmail.com", "live.cn", "msn.com", "qq.com", "sina.com", "sohu.com", "tom.com", "vip.163.com", "vip.188.com", "vip.qq.com", "wo.com.cn", "yahoo.cn", "yahoo.com", "yahoo.com.cn", "yeah.net" };
 
-	private int lineTag = -1;// 鐢ㄦ潵鏍囪浠ュ墠鐧婚檰杩囩殑璐︽埛鍜岄�鐢ㄩ偖绠卞湴鍧�箣闂寸殑妯嚎鏄剧ず浣嶇疆
+	private int lineTag = -1;// 用来标记以前登陆过的账户和通用邮箱地址之间的横线显示位置
 
 	private static final String TAG = "AutoCompleteAdapter";
 
@@ -86,9 +76,9 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 				ArrayList<String> newValues = new ArrayList<String>();
 
 				if (prefixString.contains("@")) {
-					// 杈撳叆@鍚庣殑鍖归厤鍐呭
+					// 输入@后的匹配内容
 					if (occurTimes(prefixString, "@") == 1) {
-						// 浠呮湁涓�釜@
+						// 仅有一个@
 						if (mOriginalValues != null && mOriginalValues.size() > 0) {
 							final int count = mOriginalValues.size();
 							for (int i = 0; i < count; i++) {
@@ -118,7 +108,7 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 						}
 
 					} else {
-						// 澶氫釜@绗︼紝鏃犲尮閰�
+						// 多个@符，无匹配
 						synchronized (mLock) {
 							ArrayList<String> list = new ArrayList<String>();
 							results.values = list;
@@ -128,7 +118,7 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 					}
 
 				} else {
-					// 灏氭湭杈撳叆@鏃剁殑鍖归厤鍐呭
+					// 尚未输入@时的匹配内容
 					if (mOriginalValues != null && mOriginalValues.size() > 0) {
 						final int count = mOriginalValues.size();
 						for (int i = 0; i < count; i++) {
@@ -146,9 +136,9 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 					}
 				}
 
-				// 婊ら噸锛屽師鍥犳槸杩囨护鎺�XXX@35.cn閲嶅鐨勫彲鑳芥儏鍐�
+				// 滤重，原因是过滤掉 XXX@35.cn重复的可能情况
 				for (int m = 0; m < lineTag; m++) {
-					// 娉ㄦ剰姝ゅ鐨勨�a = lineTag鈥濓紝闇�纭繚newValues鐨剆ize澶т簬lineTag
+					// 注意此处的“a = lineTag”，需要确保newValues的size大于lineTag
 					for (int a = lineTag; a < newValues.size(); a++) {
 						if (newValues.get(a).equals(newValues.get(m))) {
 							newValues.remove(a);
@@ -238,11 +228,8 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 		View viewDive;
 	}
 
-	// public ArrayList<String> getAllItems() {
-	// return mOriginalValues;
-	// }
 	/**
-	 * 鍒ゆ柇鏌愪釜瀛楃涓暟
+	 * 判断某个字符个数
 	 * 
 	 * @param string
 	 * @param a
