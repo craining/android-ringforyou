@@ -311,6 +311,22 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		}).create().show();
 	}
 
+	// private void cropImageUri(Uri uri, int outputX, int outputY, int requestCode){
+	// Intent intent = new Intent("com.android.camera.action.CROP");
+	// intent.setDataAndType(uri, "image/*");
+	// intent.putExtra("crop", "true");
+	// intent.putExtra("aspectX", 2);
+	// intent.putExtra("aspectY", 1);
+	// intent.putExtra("outputX", outputX);
+	// intent.putExtra("outputY", outputY);
+	// intent.putExtra("scale", true);
+	// intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+	// intent.putExtra("return-data", false);
+	// intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+	// intent.putExtra("noFaceDetection", true); // no face detection
+	// startActivityForResult(intent, requestCode);
+	// }
+
 	/**
 	 * 裁剪图片方法实现
 	 * 
@@ -322,10 +338,28 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 
 		Uri uriTemp = Uri.fromFile(tempFileCutted);
 		Log.e(TAG, "after cut uriTemp =" + uriTemp.toString() + "  src uri = " + cutFileUri.toString());
-		
-		
-		Intent intent = new Intent(Intent.ACTION_GET_CONTENT, cutFileUri);
-		intent.setType("image/*");
+
+		//
+		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT, cutFileUri);
+		// intent.setData(cutFileUri);
+		// intent.setType("image/*");
+		// intent.putExtra("crop", "true");
+		// DisplayMetrics metric = getResources().getDisplayMetrics();
+		// // aspectX aspectY 是宽高的比例
+		// intent.putExtra("aspectX", metric.widthPixels);
+		// intent.putExtra("aspectY", metric.heightPixels);
+		// // outputX outputY 是裁剪图片宽高
+		// intent.putExtra("outputX", metric.widthPixels);
+		// intent.putExtra("outputY", metric.heightPixels);
+		// intent.putExtra("noFaceDetection", true);
+		// intent.putExtra("scale", true);
+		// intent.putExtra("return-data", false);
+		// intent.putExtra(MediaStore.EXTRA_OUTPUT, uriTemp);
+		// intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+
+		Intent intent = new Intent("com.android.camera.action.CROP");
+		intent.setDataAndType(cutFileUri, "image/*");
+		// 下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
 		intent.putExtra("crop", "true");
 		DisplayMetrics metric = getResources().getDisplayMetrics();
 		// aspectX aspectY 是宽高的比例
@@ -334,35 +368,31 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		// outputX outputY 是裁剪图片宽高
 		intent.putExtra("outputX", metric.widthPixels);
 		intent.putExtra("outputY", metric.heightPixels);
-		intent.putExtra("noFaceDetection", true);
 		intent.putExtra("scale", true);
-		intent.putExtra("return-data", false);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, uriTemp);
+		intent.putExtra("return-data", false);
 		intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-		
-		
-//		Intent intent = new Intent("com.android.camera.action.CROP");
-//		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
-//		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//		intent.setDataAndType(cutFileUri, "image/*");
-//		// 下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
-//		intent.putExtra("crop", "true");
-//		intent.putExtra("scale", true);
-//		DisplayMetrics metric = getResources().getDisplayMetrics();
-//		// aspectX aspectY 是宽高的比例
-//		intent.putExtra("aspectX", metric.widthPixels);
-//		intent.putExtra("aspectY", metric.heightPixels);
-//		// outputX outputY 是裁剪图片宽高
-//		intent.putExtra("outputX", metric.widthPixels);
-//		intent.putExtra("outputY", metric.heightPixels);
-//		intent.putExtra("noFaceDetection", true);
-//		intent.putExtra("return-data", false);
-//		intent.putExtra(MediaStore.EXTRA_OUTPUT, uriTemp);
-//		intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-//		// intent.putExtra("circleCrop", true);
+		intent.putExtra("noFaceDetection", true);
 
 		startActivityForResult(intent, REQUEST_CUTPIC);
 	}
+
+	// private void cropImageUri(Uri uri, int outputX, int outputY){
+	// Intent intent = new Intent("com.android.camera.action.CROP");
+	// intent.setDataAndType(uri, "image/*");
+	// intent.putExtra("crop", "true");
+	// intent.putExtra("aspectX", 2);
+	// intent.putExtra("aspectY", 1);
+	// intent.putExtra("outputX", outputX);
+	// intent.putExtra("outputY", outputY);
+	// intent.putExtra("scale", true);
+	// // intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+	// intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.parse("file:///sdcard/result.jpg"));
+	// intent.putExtra("return-data", false);
+	// intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+	// intent.putExtra("noFaceDetection", true); // no face detection
+	// startActivityForResult(intent, 0);
+	// }
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -409,6 +439,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 						tempFileSrc = new File(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
 						FileUtil.copyFileTo(getFileSrc, tempFileSrc);
 						startPhotoZoom(Uri.fromFile(tempFileSrc));
+						// cropImageUri(Uri.fromFile(tempFileSrc), 2000, 500);
 						break;
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -512,7 +543,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	@Override
 	protected void onResume() {
 		if (PhoneUtil.existSDcard()) {
-			File f = new File(MainUtil.FILE_SDCARD);
+			File f = new File(MainUtil.FILE_IN_SDCARD);
 			if (!f.exists()) {
 				f.mkdirs();
 			}
