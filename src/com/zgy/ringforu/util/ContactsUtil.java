@@ -122,7 +122,6 @@ public class ContactsUtil {
 				do {
 					newNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 					newNumber = StringUtil.getRidofSpeciall(newNumber);
-					Log.v("", " newNumber =" + newNumber);
 					if (newNumber.contains(number) || number.contains(newNumber)) {
 						name = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
 						break;
@@ -148,6 +147,7 @@ public class ContactsUtil {
 					String num = "";
 					do {
 						num = cur.getString(cur.getColumnIndex(People.NUMBER));
+						num = StringUtil.getRidofSpeciall(num);
 						if (num.contains(number) || number.contains(num)) {
 							name = cur.getString(cur.getColumnIndex(People.NAME)) + ":" + num;
 							break;

@@ -566,6 +566,7 @@ public final class R {
         public static final int tools_str=0x7f08003c;
         public static final int watermark_album=0x7f080043;
         public static final int watermark_camera=0x7f080042;
+        public static final int watermark_cannot_pick=0x7f0800bd;
         public static final int watermark_change=0x7f080049;
         public static final int watermark_change_tip=0x7f08004a;
         public static final int watermark_cut=0x7f080048;

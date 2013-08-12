@@ -66,8 +66,10 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	private static final int REQUEST_PICKPIC_GALLERY = 103;
 
 	// private File FILE_MARK = WaterMarkUtil.FILEPATH_WATERMARK;
-	// private File FILE_MARK_TEMP = new File(WaterMarkUtil.FILEPATH_WATERMARK_TEMP);
-	// private File FILE_ALPHA = new File(WaterMarkUtil.FILEPATH_WATERMARK_ALPHA);
+	// private File FILE_MARK_TEMP = new
+	// File(WaterMarkUtil.FILEPATH_WATERMARK_TEMP);
+	// private File FILE_ALPHA = new
+	// File(WaterMarkUtil.FILEPATH_WATERMARK_ALPHA);
 
 	private Vibrator vb = null;
 	private String[] arrayBbColors;
@@ -210,8 +212,22 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			finish();
 			break;
 		case R.id.btn_watermark_cut:
-			Uri uriMark = Uri.fromFile(WaterMarkUtil.FILE_WATERMARK_IMG);
-			startPhotoZoom(uriMark);
+
+			File tempFile = getOutputImageFile();
+			if (tempFile != null) {
+				try {
+					FileUtil.copyFileTo(WaterMarkUtil.FILE_WATERMARK_IMG, tempFile);
+					Uri uriMark = Uri.fromFile(tempFile);
+					startPhotoZoom(uriMark);
+				} catch (IOException e) {
+					e.printStackTrace();
+					MyToast.makeText(WaterMarkActivity.this, R.string.watermark_cannot_pick, Toast.LENGTH_SHORT, true).show();
+				}
+
+			} else {
+				MyToast.makeText(WaterMarkActivity.this, R.string.watermark_cannot_pick, Toast.LENGTH_SHORT, true).show();
+			}
+
 			break;
 		case R.id.btn_watermark_orientation:
 			if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
@@ -240,7 +256,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		if (currentBgColor == arrayBbColors.length) {
 			currentBgColor = 0;
 		}
-		// layoutMain.setAnimation(AnimationUtils.loadAnimation(getBaseContext(), R.anim.alpha_in_long));
+		// layoutMain.setAnimation(AnimationUtils.loadAnimation(getBaseContext(),
+		// R.anim.alpha_in_long));
 		layoutMain.setBackgroundColor(Color.parseColor(arrayBbColors[currentBgColor]));
 		textChangeTip.setTextColor(Color.parseColor(arrayTextColors[currentBgColor]));
 		textSeekbar.setTextColor(Color.parseColor(arrayTextColors[currentBgColor]));
@@ -275,13 +292,18 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 				}
 				clearWaterMark();
 				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				getOutputImageFile();
+				if (tempTakePicFile != null) {
+					tempTakePicUri = Uri.fromFile(tempTakePicFile);
+					// 留意一下这个文件路径是按照怎样的规则转换为一个uri的
+					Log.v(TAG, "根据路径转换的uri为：" + tempTakePicUri.toString());
+					intent.putExtra(MediaStore.EXTRA_OUTPUT, tempTakePicUri);
 
-				tempTakePicUri = Uri.fromFile(getOutputImageFile());
-				// 留意一下这个文件路径是按照怎样的规则转换为一个uri的
-				Log.v(TAG, "根据路径转换的uri为：" + tempTakePicUri.toString());
-				intent.putExtra(MediaStore.EXTRA_OUTPUT, tempTakePicUri);
+					startActivityForResult(intent, REQUEST_PICKPIC_CAMERA);
+				} else {
+					MyToast.makeText(WaterMarkActivity.this, R.string.watermark_cannot_pick, Toast.LENGTH_SHORT, true).show();
+				}
 
-				startActivityForResult(intent, REQUEST_PICKPIC_CAMERA);
 			}
 		}).create().show();
 	}
@@ -296,7 +318,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		if (WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CUT.exists()) {
 			WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CUT.delete();
 		}
-		Log.e(TAG, "after cut uriTemp =" + uriTemp.toString());
+		Log.e(TAG, "after cut uriTemp =" + uriTemp.toString() + "  src uri = " + cutFileUri.toString());
 		Intent intent = new Intent("com.android.camera.action.CROP");
 		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.setDataAndType(cutFileUri, "image/*");
@@ -388,16 +410,23 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	// 创建文件路径
 	private File getOutputImageFile() {
 		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-			File mediaDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "myCamara");
-			Log.v(TAG, "存储路径目录：" + mediaDir.getAbsolutePath());
+			// File mediaDir = new
+			// File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+			// + File.separator + "myCamara");
+			File mediaDir = WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CAMERA.getParentFile();
 			if (!mediaDir.exists()) {
-				if (!mediaDir.mkdirs())
-					Log.v(TAG, "存储路径目录创建失败");
-				return null;
+				mediaDir.mkdirs();
 			}
+			if (WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CAMERA.exists()) {
+				WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CAMERA.delete();
+			}
+			// Log.v(TAG, "存储路径目录：" + mediaDir.getAbsolutePath());
 			// 利用时间戳作为文件名
-			String timeStamp = (new SimpleDateFormat("yyyyMMdd_HHmmss")).format(new Date());
-			tempTakePicFile = new File(mediaDir.getAbsoluteFile() + File.separator + "IMG_" + timeStamp + ".jpg");
+			// String timeStamp = (new
+			// SimpleDateFormat("yyyyMMdd_HHmmss")).format(new Date());
+			// tempTakePicFile = new File(mediaDir.getAbsoluteFile() +
+			// File.separator + "IMG_" + timeStamp + ".jpg");
+			tempTakePicFile = WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CAMERA;
 			Log.v(TAG, "文件存储路径为：" + tempTakePicFile.getAbsolutePath());
 		}
 
