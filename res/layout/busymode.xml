@@ -12,7 +12,7 @@
         android:background="@drawable/bg_bar_top" >
 
         <Button
-            android:id="@+id/btn_busymodeset_return"
+            android:id="@+id/btn_busymodeset_back"
             android:layout_width="45dip"
             android:layout_height="30dip"
             android:layout_alignParentLeft="true"
@@ -47,6 +47,20 @@
             android:text="@string/str_open"
             android:textColor="@color/white"
             android:textSize="14sp" />
+        
+        <Button
+            android:id="@+id/btn_busymode_title_close"
+            android:layout_width="45dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="58dip"
+            android:background="@drawable/bg_btn_red"
+            android:text="@string/watermark_close"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone" />
+        
     </RelativeLayout>
 
     <LinearLayout
@@ -84,6 +98,6 @@
         android:layout_marginBottom="20dip"
         android:gravity="center_horizontal"
         android:text="@string/busymode_rule_tip"
-        android:textColor="@color/green" />
+        android:textColor="@color/black" />
 
 </RelativeLayout>

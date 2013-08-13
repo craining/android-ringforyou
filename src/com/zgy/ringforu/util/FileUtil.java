@@ -10,12 +10,10 @@ import java.util.Properties;
 import android.content.Context;
 import android.util.Log;
 
-
 public class FileUtil {
 
 	private static final String TAG = "FileUtil";
-	
-	
+
 	/**
 	 * 向 file 中写数据
 	 * 
@@ -65,8 +63,7 @@ public class FileUtil {
 		}
 		return result;
 	}
-	
-	
+
 	/**
 	 * 拷贝目录下的所有文件到指定目录
 	 * 
@@ -107,6 +104,9 @@ public class FileUtil {
 	public static boolean copyFileTo(File srcFile, File destFile) throws IOException {
 		if (srcFile.isDirectory() || destFile.isDirectory()) {
 			return false;// 判断是否是文件
+		}
+		if (destFile.exists()) {
+			destFile.delete();
 		}
 		FileInputStream fis = new FileInputStream(srcFile);
 		FileOutputStream fos = new FileOutputStream(destFile);

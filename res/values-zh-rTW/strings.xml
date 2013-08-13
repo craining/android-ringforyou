@@ -3,19 +3,19 @@
     <string name="app_name">XXX</string>
     <string name="back">返回</string>
     <string name="clear_all">清空</string>
-    <string name="main_title">XXX</string>
+    <string name="main_title">XXX </string>
     <string name="add_fromcontacts">從通訊錄添加</string>
     <string name="add_byhand">手動添加</string>
-    <string name="how_deleteitem">長按連絡人即可刪除</string>
-    <string name="how_additem">長按連絡人進行添加</string>
-    <string name="none_contact">沒有可添加的連絡人</string>
     <string name="import_items">還原備份</string>
     <string name="export_items">創建備份</string>
     <string name="name">姓名</string>
     <string name="add">添加</string>
     <string name="phonenumber">電話號碼</string>
+    <string name="how_deleteitem">長按連絡人即可刪除</string>
+    <string name="how_additem">長按連絡人進行添加</string>
+    <string name="none_contact">沒有可添加的連絡人</string>
     <string name="add_help">可以添加親人、愛人、朋友、上司、重要客戶等電話~，不會錯過哦~</string>
-    <string name="copyright">©2012&#8211;2014 ZGY. 版權所有\r\n\r\nv1.0</string>
+    <string name="copyright">©2012&#8211;2015 ZGY. 版權所有\r\n\r\nv2.0</string>
     <string name="set_str">設置</string>
     <string name="help_verb">振動回饋</string>
     <string name="help_verb_info">操作時振動回饋</string>
@@ -43,7 +43,7 @@
     <string name="export_success">備份成功！</string>
     <string name="export_fail">備份失敗！\r\n請確保存儲卡存在</string>
     <string name="import_sueccess">還原備份成功！</string>
-    <string name="import_fail">還原備份失敗！請確保存儲卡存在</string>
+    <string name="import_fail">還原備份失敗！\r\n請確保存儲卡存在</string>
     <string name="sure_delete">您確定要清空全部重要連絡人嗎？</string>
     <string name="clear_success">已清空！</string>
     <string name="feedback_submit">提交</string>
@@ -56,7 +56,7 @@
     <string name="str_set">設置</string>
     <string name="addslient_start">開始時刻：</string>
     <string name="addslient_end">結束時刻：</string>
-    <string name="addslient_fail_contained">添加失敗！\r\n已包含在另一個安靜時段中</string>
+    <string name="addslient_fail_contained">添加失敗！已包含在另一個安靜時段中</string>
     <string name="addslient_contain">此安靜時段包含另一個安靜時段，另一個安靜時段將被刪除！</string>
     <string name="addslient_fail_repeat">添加失敗！\r\n與另一個安靜時段重複</string>
     <string name="addslient_fail_conflict">添加失敗！\r\n與另一個安靜時段衝突</string>
@@ -67,7 +67,7 @@
 
     <string name="del_success">刪除成功！</string>
     <string name="tools_str">小功能</string>
-    <string name="tools_info">一些或許對您有用的小功能！</string>
+    <string name="tools_info">一些有趣的小功能！</string>
     <string name="watermark_title">螢幕浮水印</string>
     <string name="watermark_info">為你的手機螢幕加個專屬浮水印吧！</string>
     <string name="watermark_select_tip">獲取圖片</string>
@@ -86,5 +86,6 @@
     <string name="watermark_text">透明度：</string>
     <string name="watermark_show_fail">浮水印顯示失敗！</string>
     <string name="watermark_ori_tip">您可能需要重新剪裁圖片才能顯示正常的比例！</string>
+
 
 </resources>

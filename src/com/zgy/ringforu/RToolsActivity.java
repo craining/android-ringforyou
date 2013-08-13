@@ -2,9 +2,13 @@ package com.zgy.ringforu;
 
 import android.app.Activity;
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -22,6 +26,7 @@ import com.zgy.ringforu.tools.smslightscreen.SmsLightScreenUtil;
 import com.zgy.ringforu.tools.watermark.WaterMarkActivity;
 import com.zgy.ringforu.tools.watermark.WaterMarkUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.view.MyToast;
 
 public class RToolsActivity extends Activity implements OnClickListener {
@@ -29,6 +34,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 	private static final String TAG = "RToolsActivity";
 	private Button btnBack;
 	private RelativeLayout layoutWatermark;
+	private RelativeLayout layoutBusyMode;
 	private ImageView imgWatermarkSwitch;
 	// private RelativeLayout layoutDisableGprs;
 	// private RelativeLayout layoutSmsLightScreen;
@@ -45,6 +51,9 @@ public class RToolsActivity extends Activity implements OnClickListener {
 
 	private static final int REQUEST_WATERMARK = 100;
 
+	public static final String ACTION_WATERMARK_ON = "com.zgy.ringforu.ACTION_WATERMARK_ON";
+	private ToolsReceiver mReceiver;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -58,6 +67,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 
 		btnBack = (Button) findViewById(R.id.btn_tools_return);
 		layoutWatermark = (RelativeLayout) findViewById(R.id.layout_tool_watermark);
+		layoutBusyMode = (RelativeLayout) findViewById(R.id.layout_tool_busymode);
 		imgWatermarkSwitch = (ImageView) findViewById(R.id.image_watermark_switch);
 		// layoutDisableGprs = (RelativeLayout) findViewById(R.id.layout_tool_disablegprs);
 		// layoutSmsLightScreen = (RelativeLayout) findViewById(R.id.layout_tool_smslightscreen);
@@ -71,10 +81,16 @@ public class RToolsActivity extends Activity implements OnClickListener {
 		// layoutDisableGprs.setOnClickListener(this);
 		imgWatermarkSwitch.setOnClickListener(this);
 		layoutWatermark.setOnClickListener(this);
+		layoutBusyMode.setOnClickListener(this);
 		imgSmsLightScreenSwitch.setOnClickListener(this);
 		imgDisableGprsSwitch.setOnClickListener(this);
 		imgSignalReconnectSwitch.setOnClickListener(this);
 		imgBusyModeSwitch.setOnClickListener(this);
+
+		mReceiver = new ToolsReceiver();
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(ACTION_WATERMARK_ON);
+		registerReceiver(mReceiver, filter);
 	}
 
 	@Override
@@ -143,10 +159,20 @@ public class RToolsActivity extends Activity implements OnClickListener {
 			if (BusyModeUtil.isBusyModeOn()) {
 				BusyModeUtil.setBusyModeOn(RToolsActivity.this, false, null, false);
 			} else {
-				Intent i = new Intent(RToolsActivity.this, BusyModeActivity.class);
-				startActivity(i);
+				String content = BusyModeUtil.getBusyModeMsgContent(RToolsActivity.this);
+				if (TextUtils.isEmpty(content)) {
+					BusyModeUtil.setBusyModeOn(RToolsActivity.this, true, null, false);
+				} else {
+					BusyModeUtil.setBusyModeOn(RToolsActivity.this, true, content, true);
+				}
+				// Intent i = new Intent(RToolsActivity.this, BusyModeActivity.class);
+				// startActivity(i);
 			}
 			refreshSwitch();
+			break;
+		case R.id.layout_tool_busymode:
+			Intent i = new Intent(RToolsActivity.this, BusyModeActivity.class);
+			startActivity(i);
 			break;
 		default:
 			break;
@@ -194,14 +220,40 @@ public class RToolsActivity extends Activity implements OnClickListener {
 		} else {
 			imgSignalReconnectSwitch.setImageResource(R.drawable.ic_off);
 		}
+
+		String title = BusyModeUtil.getMessageTitleFromContent(RToolsActivity.this);
+		if (StringUtil.isNull(title)) {
+			textBusyModeTitle.setText(mStrBusyModeTitle);
+		} else {
+			textBusyModeTitle.setText(mStrBusyModeTitle + " - " + title);
+		}
+
 		// 忙碌模式是否开启
 		if (BusyModeUtil.isBusyModeOn()) {
 			imgBusyModeSwitch.setImageResource(R.drawable.ic_on);
-			textBusyModeTitle.setText(mStrBusyModeTitle + " - " + BusyModeUtil.getMessageTitleFromContent(RToolsActivity.this));
 		} else {
 			imgBusyModeSwitch.setImageResource(R.drawable.ic_off);
-			textBusyModeTitle.setText(mStrBusyModeTitle);
 		}
 		BusyModeUtil.checkBusyModeState(RToolsActivity.this);
 	}
+
+	private class ToolsReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			if (intent.getAction().equals(ACTION_WATERMARK_ON)) {
+				// 水印后台开启
+				refreshSwitch();
+			}
+		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (mReceiver != null) {
+			unregisterReceiver(mReceiver);
+		}
+	}
+
 }

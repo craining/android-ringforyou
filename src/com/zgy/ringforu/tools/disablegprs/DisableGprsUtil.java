@@ -9,6 +9,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo.State;
 import android.util.Log;
 
 import com.zgy.ringforu.R;
@@ -100,34 +101,45 @@ public class DisableGprsUtil {
 	/**
 	 * 判断打开或关闭 GPRS是否连接
 	 */
+	// public static boolean isMobileNetworkEnabled(Context context) {
+	// ConnectivityManager conMan = (ConnectivityManager)
+	// context.getSystemService(Context.CONNECTIVITY_SERVICE);
+	// // State wifi = conMan.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+	// // if (wifi != State.CONNECTED) {
+	// State mobile = conMan.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+	// if (mobile == State.CONNECTED) {
+	// return true;
+	// }
+	// // }
+	//
+	// return gprsIsOpenMethod("getMobileDataEnabled", conMan);
+	// }
 	public static boolean isMobileNetworkEnabled(Context context) {
 		ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		// // State wifi = conMan.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
-		// // if (wifi != State.CONNECTED) {
-		// State mobile = conMan.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
-		// if (mobile == State.CONNECTED) {
-		// return true;
-		// }
-		// // }
+		State wifi = conMan.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+		if (wifi != State.CONNECTED) {
+			State mobile = conMan.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+			if (mobile == State.CONNECTED) {
+				return true;
+			}
+		}
+		return false;
 
-		return gprsIsOpenMethod("getMobileDataEnabled", conMan);
 	}
 
 	/**
 	 * 打开或关闭 GPRS
 	 */
-	public static boolean gprsEnabled(boolean bEnable, Context context) {
+	public static void gprsEnabled(boolean bEnable, Context context) {
 
 		ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-		Object[] argObjects = null;
+		// Object[] argObjects = null;
+		// boolean isOpen = gprsIsOpenMethod("getMobileDataEnabled", conMan);
+		// if (isOpen == !bEnable) {
+		setGprsEnabled("setMobileDataEnabled", conMan, bEnable);
+		// }
 
-		boolean isOpen = gprsIsOpenMethod("getMobileDataEnabled", conMan);
-		if (isOpen == !bEnable) {
-			setGprsEnabled("setMobileDataEnabled", conMan, bEnable);
-		}
-
-		return isOpen;
 	}
 
 	// 检测GPRS是否打开
@@ -153,7 +165,6 @@ public class DisableGprsUtil {
 		Class cmClass = conMan.getClass();
 		Class[] argClasses = new Class[1];
 		argClasses[0] = boolean.class;
-
 		try {
 			Method method = cmClass.getMethod(methodName, argClasses);
 			method.invoke(conMan, isEnable);
@@ -173,19 +184,11 @@ public class DisableGprsUtil {
 			// 显示
 			// 创建一个NotificationManager的引用
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-			// 定义Notification的各种属性
-			Notification notification = new Notification(R.drawable.ic_notification_disablegprs_on, "Gprs数据连接已禁用！", System.currentTimeMillis());
+			Notification notification = new Notification(R.drawable.ic_notification_disablegprs_on, context.getString(R.string.disable_gprs_on_tip), System.currentTimeMillis());
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
-			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 			notification.flags |= Notification.FLAG_NO_CLEAR;
-			// 表明在点击了通知栏中的"清除通知"后，此通知不清除，经常与FLAG_ONGOING_EVENT一起使用 notification.flags |=
-			// Notification.FLAG_SHOW_LIGHTS;
-			// notification.defaults = Notification.DEFAULT_LIGHTS;
-			// notification.ledARGB = Color.YELLOW;
-			// notification.ledOnMS = 5000; // 设置通知的事件消息
-
-			CharSequence contentText = "点击更改设置";// 获得回复的短信内容
-			CharSequence contentTitle = "Gprs数据连接已禁用";// 根据短信内容获得标题
+			CharSequence contentText = context.getString(R.string.disable_gprs_notify_msg); // 获得回复的短信内容
+			CharSequence contentTitle = context.getString(R.string.disable_gprs_on_tip);// 根据短信内容获得标题
 
 			Intent notificationIntent = new Intent(context, DisableGprsActivity.class);
 			// 点击该通知后要跳转的Activity

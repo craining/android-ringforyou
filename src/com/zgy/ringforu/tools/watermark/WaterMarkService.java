@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RToolsActivity;
+import com.zgy.ringforu.util.BitmapUtil;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.view.MyToast;
 
@@ -40,6 +43,8 @@ public class WaterMarkService extends Service {
 				if (wm == null && view == null) {
 					try {
 						createView();
+						Intent i = new Intent(RToolsActivity.ACTION_WATERMARK_ON);
+						sendBroadcast(i);
 					} catch (Exception e) {
 						MyToast.makeText(WaterMarkService.this, R.string.watermark_show_fail, Toast.LENGTH_SHORT, true).show();
 					}
@@ -95,8 +100,9 @@ public class WaterMarkService extends Service {
 		// if (new File(WaterMarkUtil.FILEPATH_WATERMARK).exists()) {
 		// imgShow.setImageDrawable(new
 		// BitmapDrawable(Globle.FILEPATH_WATERMARK));
-		Bitmap bitmap = BitmapFactory.decodeFile(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath());
-		imgShow.setImageBitmap(bitmap);
+//		Bitmap bitmap = BitmapFactory.decodeFile(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath());
+		DisplayMetrics metric = getResources().getDisplayMetrics();
+		imgShow.setImageBitmap(BitmapUtil.readBitmapAutoSize(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath(), metric.widthPixels, metric.heightPixels));
 		// } else {
 		// imgShow.setImageDrawable(null);
 		// stopSelf();

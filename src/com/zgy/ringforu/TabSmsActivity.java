@@ -204,7 +204,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.img_sms_help:
-			Intent i3 = new Intent(TabSmsActivity.this, HelpActivity.class);
+			Intent i3 = new Intent(TabSmsActivity.this, AboutActivity.class);
 			startActivity(i3);
 			break;
 		case R.id.img_sms_set:

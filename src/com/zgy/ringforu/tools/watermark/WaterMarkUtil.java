@@ -24,8 +24,8 @@ import com.zgy.ringforu.util.MainUtil;
 public class WaterMarkUtil {
 
 	public static final File FILE_WATERMARK_IMG = new File("/data/data/com.zgy.ringforu/files/watermark.jpg");
-	public static final File FILE_WATERMARK_IMG_TEMP_CUT = new File("/mnt/sdcard/.ringforu/watermarktemp_cut");
-	public static final File FILE_WATERMARK_IMG_TEMP_CAMERA = new File("/mnt/sdcard/.ringforu/watermarktemp_camera");
+	public static final String FILE_WATERMARK_IMG_TEMP_CUT = MainUtil.FILE_IN_SDCARD +  "cut";
+	public static final String FILE_WATERMARK_IMG_TEMP_SRC = MainUtil.FILE_IN_SDCARD +  "src";
 	public static final String FILE_WATERMARK_ALPHA = "alpah.cfg";
 	public static final File FILEPATH_WATERMARK_ALPHA = new File("/data/data/com.zgy.ringforu/files/alpah.cfg");
 	public static final File FILE_WATERMARK_SWITCH = new File("/data/data/com.zgy.ringforu/watermark");

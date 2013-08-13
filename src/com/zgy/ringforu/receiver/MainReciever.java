@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.zgy.ringforu.tools.disablegprs.DisableGprsUtil;
-import com.zgy.ringforu.tools.signalreconnect.SignalReconnectUtil;
-import com.zgy.ringforu.tools.watermark.WaterMarkUtil;
 import com.zgy.ringforu.util.MainUtil;
 
 public class MainReciever extends BroadcastReceiver {

@@ -15,7 +15,7 @@
     <string name="how_additem">长按联系人进行添加</string>
     <string name="none_contact">没有可添加的联系人</string>
     <string name="add_help">可以添加亲人、爱人、朋友、上司、重要客户等电话~，不会错过哦~</string>
-    <string name="copyright">©2012&#8211;2014 ZGY. 版权所有\r\n\r\nv1.0</string>
+    <string name="copyright">©2012&#8211;2015 ZGY. 版权所有\r\n\r\nv2.0</string>
     <string name="set_str">设置</string>
     <string name="help_verb">振动反馈</string>
     <string name="help_verb_info">操作时振动反馈</string>
@@ -67,7 +67,7 @@
 
     <string name="del_success">删除成功！</string>
     <string name="tools_str">小功能</string>
-    <string name="tools_info">一些或许对您有用的小功能！</string>
+    <string name="tools_info">一些有趣的小功能！</string>
     <string name="watermark_title">屏幕水印</string>
     <string name="watermark_info">为你的手机屏幕加个专属水印吧！</string>
     <string name="watermark_select_tip">获取图片</string>
@@ -86,6 +86,5 @@
     <string name="watermark_text">透明度：</string>
     <string name="watermark_show_fail">水印显示失败！</string>
     <string name="watermark_ori_tip">您可能需要重新剪裁图片才能显示正常的比例！</string>
-
-
+ 
 </resources>
