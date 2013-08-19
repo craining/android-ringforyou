@@ -151,7 +151,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 				SignalReconnectUtil.ctrlSignalReconnect(RToolsActivity.this, false);
 			} else {
 				if (Build.VERSION.SDK_INT >= 17) {
-					MyToast.makeText(RToolsActivity.this, R.string.signalreconnect_not_support, MyToast.LENGTH_LONG, false).show();
+					MyToast.makeText(RToolsActivity.this, R.string.signalreconnect_not_support, MyToast.LENGTH_LONG, true).show();
 				} else {
 					SignalReconnectUtil.ctrlSignalReconnect(RToolsActivity.this, true);
 					MyToast.makeText(RToolsActivity.this, R.string.signalreconnect_success, MyToast.LENGTH_LONG, false).show();
