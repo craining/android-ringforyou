@@ -5,11 +5,8 @@ import java.io.File;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.util.Log;
 
-import com.zgy.ringforu.tools.disablegprs.DisableGprsService;
-import com.zgy.ringforu.tools.disablegprs.DisableGprsUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 

@@ -37,10 +37,10 @@ public class DisableGprsUtil {
 	 */
 	public static void checkDisableGprsState(Context context) {
 		if (DisableGprsUtil.isDisableGprsOn()) {
-			DisableGprsUtil.ctrlDisableGprsBackService(context, true);
+//			DisableGprsUtil.ctrlDisableGprsBackService(context, true);
 			showNotify(true, context);
 		} else {
-			DisableGprsUtil.ctrlDisableGprsBackService(context, false);
+//			DisableGprsUtil.ctrlDisableGprsBackService(context, false);
 			showNotify(false, context);
 		}
 	}
@@ -72,31 +72,31 @@ public class DisableGprsUtil {
 		checkDisableGprsState(context);
 	}
 
-	/**
-	 * 后台监听服务开关
-	 */
-	public static void ctrlDisableGprsBackService(Context context, boolean open) {
-		if (open) {
-			// if (!MainUtil.isServiceStarted(context, SERVICE_NAME_DISABLESCREEN)) {
-			Intent i = new Intent(context, DisableGprsService.class);
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			context.startService(i);
-			Log.v(TAG, "service is not running, need to start service!");
-			// } else {
-			// Log.v(TAG, "service is running, no need to start service!");
-			// }
-		} else {
-			if (MainUtil.isServiceStarted(context, SERVICE_NAME_DISABLESCREEN)) {
-				Intent i = new Intent(context, DisableGprsService.class);
-				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				context.stopService(i);
-				Log.v(TAG, "service is running, need to stop service!");
-			} else {
-				Log.v(TAG, "service is not running, no need to stop service!");
-			}
-		}
-
-	}
+//	/**
+//	 * 后台监听服务开关
+//	 */
+//	public static void ctrlDisableGprsBackService(Context context, boolean open) {
+//		if (open) {
+//			// if (!MainUtil.isServiceStarted(context, SERVICE_NAME_DISABLESCREEN)) {
+//			Intent i = new Intent(context, DisableGprsService.class);
+//			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//			context.startService(i);
+//			Log.v(TAG, "service is not running, need to start service!");
+//			// } else {
+//			// Log.v(TAG, "service is running, no need to start service!");
+//			// }
+//		} else {
+//			if (MainUtil.isServiceStarted(context, SERVICE_NAME_DISABLESCREEN)) {
+//				Intent i = new Intent(context, DisableGprsService.class);
+//				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//				context.stopService(i);
+//				Log.v(TAG, "service is running, need to stop service!");
+//			} else {
+//				Log.v(TAG, "service is not running, no need to stop service!");
+//			}
+//		}
+//
+//	}
 
 	/**
 	 * 判断打开或关闭 GPRS是否连接

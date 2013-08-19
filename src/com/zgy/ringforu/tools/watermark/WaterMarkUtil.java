@@ -2,7 +2,6 @@ package com.zgy.ringforu.tools.watermark;
 
 import java.io.File;
 
-import android.R.bool;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,8 +10,6 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.tools.disablegprs.DisableGprsActivity;
-import com.zgy.ringforu.tools.disablegprs.DisableGprsService;
 import com.zgy.ringforu.util.MainUtil;
 
 /**

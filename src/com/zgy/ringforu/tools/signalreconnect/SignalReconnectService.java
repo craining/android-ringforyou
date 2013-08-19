@@ -3,14 +3,9 @@ package com.zgy.ringforu.tools.signalreconnect;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
-import android.telephony.ServiceState;
-import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-
-import com.zgy.ringforu.tools.disablegprs.DisableGprsService;
 
 
 public class SignalReconnectService extends Service {
@@ -30,7 +25,7 @@ public class SignalReconnectService extends Service {
 	public void onStart(Intent intent, int startId) {
 		Log.e(TAG, "SignalReconnectService is start!");
 		if(SignalReconnectUtil.isSignalReconnectOn()) {
-			mTelephonyMgr = (TelephonyManager) getSystemService(DisableGprsService.TELEPHONY_SERVICE);
+			mTelephonyMgr = (TelephonyManager) getSystemService(SignalReconnectService.TELEPHONY_SERVICE);
 			myListenter = new SignalStrengthListener();
 			mTelephonyMgr.listen(myListenter, PhoneStateListener.LISTEN_SIGNAL_STRENGTH);
 		} else {

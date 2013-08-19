@@ -139,6 +139,7 @@
     <string name="disable_gprs_on">当前状态：已禁用</string>
     <string name="disable_gprs_off">当前状态：未禁用</string>
     <string name="disable_gprs_on_tip">移动网络连接已禁用！</string>
+    <string name="disable_gprs_on_tip_toast">移动网络连接已禁用！请查看通知栏。</string>
     <string name="disable_gprs_off_tip">移动网络连接已不再禁用！</string>
     <string name="sms_lightscreen_title">收到短信点亮屏幕</string>
     <string name="sms_lightscreen_info">防止手机静音错过普通短信</string>
@@ -149,7 +150,8 @@
     <string name="clear_data_over">备份文件已清空！</string>
     <string name="signalreconnect_title">掉线重连</string>
     <string name="signalreconnect_info">手机无信号时定时自动重连</string>
-    <string name="signalreconnect_tip">不建议使用，部分机型上此功能尚不稳定！</string>
+    <string name="signalreconnect_success">开启成功！</string>
+    <string name="signalreconnect_not_support">您的系统过于强大，暂不支持此功能！</string>
     <string name="busymode_title">忙碌模式</string>
     <string name="busymode_info">自动拒接电话，并短信告知。</string>
     <string name="busymode_tip_open_toast">忙碌模式已经开启！</string>

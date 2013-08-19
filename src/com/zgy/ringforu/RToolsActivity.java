@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.TextUtils;
@@ -149,8 +150,12 @@ public class RToolsActivity extends Activity implements OnClickListener {
 			if (SignalReconnectUtil.isSignalReconnectOn()) {
 				SignalReconnectUtil.ctrlSignalReconnect(RToolsActivity.this, false);
 			} else {
-				SignalReconnectUtil.ctrlSignalReconnect(RToolsActivity.this, true);
-				MyToast.makeText(RToolsActivity.this, R.string.signalreconnect_tip, MyToast.LENGTH_LONG, false).show();
+				if (Build.VERSION.SDK_INT >= 17) {
+					MyToast.makeText(RToolsActivity.this, R.string.signalreconnect_not_support, MyToast.LENGTH_LONG, false).show();
+				} else {
+					SignalReconnectUtil.ctrlSignalReconnect(RToolsActivity.this, true);
+					MyToast.makeText(RToolsActivity.this, R.string.signalreconnect_success, MyToast.LENGTH_LONG, false).show();
+				}
 			}
 			refreshSwitch();
 			break;

@@ -6,7 +6,6 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
-
     <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
@@ -80,7 +79,7 @@
                 <action android:name="android.intent.action.PICK_ACTIVITY" />
                 <action android:name="android.intent.action.SET_WALLPAPER" />
                 <action android:name="android.intent.action.DIAL"/>
-                <action android:name="android.intent.action.SENDTO"/>
+                <action android:name="android.intent.action.SENDTO"/>
                 -->
                 <action android:name="android.intent.action.SEND" />
                 <!-- 分享到 -->
@@ -125,7 +124,7 @@
                 <action android:name="android.intent.action.PICK_ACTIVITY" />
                 <action android:name="android.intent.action.SET_WALLPAPER" />
                 <action android:name="android.intent.action.DIAL"/>
-                <action android:name="android.intent.action.SENDTO"/>
+                <action android:name="android.intent.action.SENDTO"/>
                 -->
                 <action android:name="android.intent.action.SEND" />
                 <!-- 分享到 -->
@@ -174,6 +173,13 @@
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
                 <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
                 <action android:name="android.intent.action.WALLPAPER_CHANGED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.zgy.ringforu.tools.disablegprs.DisableGprsRecerver"
+            android:label="@string/app_name" >
+            <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
