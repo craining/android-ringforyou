@@ -52,7 +52,7 @@ public class NetWorkUtil {
 					vb.vibrate(new long[] { 0, 20 }, -1);
 				}
 				dialog.dismiss();
-				con.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+				con.startActivity(new Intent(Settings.ACTION_SETTINGS));
 			}
 		}).setNegativeButton(R.string.str_cancel, new DialogInterface.OnClickListener() {
 
