@@ -29,6 +29,7 @@ import com.zgy.ringforu.R;
 import com.zgy.ringforu.R.id;
 import com.zgy.ringforu.R.layout;
 import com.zgy.ringforu.R.string;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -44,7 +45,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 	private String allNumbersSelected;// 所有已选号码
 	private String allNameSelected;// 所有已选名字
 	private LinearLayout layoutShowNull;
-//	private RelativeLayout layoutMain;
+	// private RelativeLayout layoutMain;
 	private TextView textShowdelTip;
 	private ListView listMain;
 	private SimpleAdapter listItemAdapter;
@@ -64,7 +65,8 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.tab_activity_call);
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
-//		layoutMain = (RelativeLayout) findViewById(R.id.layout_tab_call_main);
+		// layoutMain = (RelativeLayout)
+		// findViewById(R.id.layout_tab_call_main);
 		layoutShowNull = (LinearLayout) findViewById(R.id.layout_call_null);
 		textShowdelTip = (TextView) findViewById(R.id.text_call_top_deletetip);
 
@@ -101,14 +103,6 @@ public class TabCallActivity extends Activity implements OnClickListener {
 	}
 
 	private void saveLastAll() {
-		File nameFile = MainUtil.FILE_CALL_PATH_NAME;
-		File numFile = MainUtil.FILE_CALL_PATH_NUM;
-		if (numFile.exists()) {
-			numFile.delete();
-		}
-		if (nameFile.exists()) {
-			nameFile.delete();
-		}
 		for (HashMap<String, String> a : listItem) {
 			MainUtil.insert(a.get("name"), a.get("number"), TabCallActivity.this, 1);
 		}
@@ -116,8 +110,9 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 	private void initListView() {
 		listItem = new ArrayList<HashMap<String, String>>();
-		allNumbersSelected = FileUtil.load(MainUtil.FILE_CALL_NUM_LOG, TabCallActivity.this, true);
-		allNameSelected = FileUtil.load(MainUtil.FILE_CALL_NAME_LOG, TabCallActivity.this, true);
+		MainConfig mainConfig = MainConfig.getInstance();
+		allNumbersSelected = mainConfig.getInterceptCallNumbers();
+		allNameSelected = mainConfig.getInterceptCallNames();
 		if (allNumbersSelected != null && allNameSelected != null) {
 			String[] allNums = allNumbersSelected.split(":::");
 			String[] allNames = allNameSelected.split(":::");
@@ -139,14 +134,14 @@ public class TabCallActivity extends Activity implements OnClickListener {
 			listMain.setVisibility(View.VISIBLE);
 			textShowdelTip.setVisibility(View.VISIBLE);
 			layoutShowNull.setVisibility(View.GONE);
-//			layoutMain.setBackgroundResource(R.drawable.bg_light);
+			// layoutMain.setBackgroundResource(R.drawable.bg_light);
 			btnClsList.setVisibility(View.VISIBLE);
 		} else {
 			// btnExport.setEnabled(false);
 			listMain.setVisibility(View.GONE);
 			textShowdelTip.setVisibility(View.GONE);
 			layoutShowNull.setVisibility(View.VISIBLE);
-//			layoutMain.setBackgroundColor(getResources().getColor(R.color.light_blue_bg));
+			// layoutMain.setBackgroundColor(getResources().getColor(R.color.light_blue_bg));
 			btnClsList.setVisibility(View.GONE);
 		}
 	}

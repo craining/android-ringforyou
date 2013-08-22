@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.MainUtil;
 
 /**
@@ -21,15 +22,19 @@ import com.zgy.ringforu.util.MainUtil;
 public class WaterMarkUtil {
 
 	public static final File FILE_WATERMARK_IMG = new File("/data/data/com.zgy.ringforu/files/watermark.jpg");
-	public static final String FILE_WATERMARK_IMG_TEMP_CUT = MainUtil.FILE_IN_SDCARD +  "cut";
-	public static final String FILE_WATERMARK_IMG_TEMP_SRC = MainUtil.FILE_IN_SDCARD +  "src";
-	public static final String FILE_WATERMARK_ALPHA = "alpah.cfg";
-	public static final File FILEPATH_WATERMARK_ALPHA = new File("/data/data/com.zgy.ringforu/files/alpah.cfg");
-	public static final File FILE_WATERMARK_SWITCH = new File("/data/data/com.zgy.ringforu/watermark");
+	public static final String FILE_WATERMARK_IMG_TEMP_CUT = MainUtil.FILE_IN_SDCARD + "cut";
+	public static final String FILE_WATERMARK_IMG_TEMP_SRC = MainUtil.FILE_IN_SDCARD + "src";
+	// public static final String FILE_WATERMARK_ALPHA = "alpah.cfg";
+	// public static final File FILEPATH_WATERMARK_ALPHA = new
+	// File("/data/data/com.zgy.ringforu/files/alpah.cfg");
+	// public static final File FILE_WATERMARK_SWITCH = new
+	// File("/data/data/com.zgy.ringforu/watermark");
 
 	private static final String SERVICE_NAME_WATERMARK = "com.zgy.ringforu.tools.watermark.WaterMarkService";
 
 	private static final String TAG = "WaterMarkUtil";
+
+	public static final int WATER_MARK_ALPHA_DEF = 50;
 
 	private static final int PENDINGINTENT_ID_WATERMARK_ON = 102;
 	private static final int NOTIFICATION_ID_DISABLEGPRS_ON = 102;
@@ -51,7 +56,7 @@ public class WaterMarkUtil {
 	 * @return
 	 */
 	public static boolean isWaterMarkSeted() {
-		if (FILE_WATERMARK_IMG.exists() && FILEPATH_WATERMARK_ALPHA.exists() && FILE_WATERMARK_SWITCH.exists()) {
+		if (FILE_WATERMARK_IMG.exists() && MainConfig.getInstance().isWaterMarkOn()) {
 			return true;
 		} else {
 			return false;
@@ -69,14 +74,12 @@ public class WaterMarkUtil {
 	 * @date:2013-7-18
 	 */
 	public static void setSwitchOnOff(boolean on) {
+		MainConfig mainConfig = MainConfig.getInstance();
 		if (on) {
-			if (!FILE_WATERMARK_SWITCH.exists()) {
-				FILE_WATERMARK_SWITCH.mkdir();
-			}
+			mainConfig.setWaterMarkOnOff(true);
+
 		} else {
-			if (FILE_WATERMARK_SWITCH.exists()) {
-				FILE_WATERMARK_SWITCH.delete();
-			}
+			mainConfig.setWaterMarkOnOff(false);
 		}
 	}
 
@@ -138,7 +141,8 @@ public class WaterMarkUtil {
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 			notification.flags |= Notification.FLAG_NO_CLEAR;
-			// 表明在点击了通知栏中的"清除通知"后，此通知不清除，经常与FLAG_ONGOING_EVENT一起使用 notification.flags |=
+			// 表明在点击了通知栏中的"清除通知"后，此通知不清除，经常与FLAG_ONGOING_EVENT一起使用
+			// notification.flags |=
 			// Notification.FLAG_SHOW_LIGHTS;
 			// notification.defaults = Notification.DEFAULT_LIGHTS;
 			// notification.ledARGB = Color.YELLOW;

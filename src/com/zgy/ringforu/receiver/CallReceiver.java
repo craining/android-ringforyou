@@ -11,6 +11,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.tools.busymode.BusyModeUtil;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
@@ -26,8 +27,9 @@ public class CallReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		String strAllNumsImportant = FileUtil.load(MainUtil.FILE_IMPORTANT_NUM_LOG, context, true);
-		String strAllNumsCall = FileUtil.load(MainUtil.FILE_CALL_NUM_LOG, context, true);
+		MainConfig mainConfig = MainConfig.getInstance();
+		String strAllNumsImportant = mainConfig.getImporantNumbers();
+		String strAllNumsCall = mainConfig.getInterceptCallNumbers();
 		// if (tm == null) {
 		tm = (TelephonyManager) context.getSystemService(Service.TELEPHONY_SERVICE);
 		// }

@@ -36,6 +36,7 @@ import com.zgy.ringforu.R.id;
 import com.zgy.ringforu.R.layout;
 import com.zgy.ringforu.R.string;
 import com.zgy.ringforu.bean.ContactInfo;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -229,7 +230,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 					info.storeKey = cursor.getString(3);
 
 					Log.v(TAG, "info.name=" + info.name + "   changed=" + StringUtil.getRidofSpecialOfFileName(info.name));
-					
+
 					listContacts.add(info);
 				}
 
@@ -250,9 +251,11 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 	 */
 	private void freshListView() {
 
-		String getAllNumsImportant = FileUtil.load(MainUtil.FILE_IMPORTANT_NUM_LOG, AddByContactsActivity.this, true);
-		String getAllNumsCall = FileUtil.load(MainUtil.FILE_CALL_NUM_LOG, AddByContactsActivity.this, true);
-		String getAllNumsSms = FileUtil.load(MainUtil.FILE_SMS_NUM_LOG, AddByContactsActivity.this, true);
+		MainConfig mainConfig = MainConfig.getInstance();
+
+		String getAllNumsImportant = mainConfig.getImporantNumbers();
+		String getAllNumsCall = mainConfig.getInterceptCallNumbers();
+		String getAllNumsSms = mainConfig.getInterceptSmsNumbers();
 
 		switch (tag) {
 		case MainUtil.TYPE_IMPORTANT:
@@ -261,7 +264,8 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 			if (listContacts != null && listContacts.size() > 0) {
 				for (ContactInfo info : listContacts) {
 					HashMap<String, String> map = new HashMap<String, String>();
-					if (info.match && (getAllNumsImportant == null || !getAllNumsImportant.contains(info.num)) && (getAllNumsCall == null || !getAllNumsCall.contains(info.num)) && (getAllNumsSms == null || !getAllNumsSms.contains(info.num))) {
+					if (info.match && (getAllNumsImportant == null || !getAllNumsImportant.contains(info.num)) && (getAllNumsCall == null || !getAllNumsCall.contains(info.num))
+							&& (getAllNumsSms == null || !getAllNumsSms.contains(info.num))) {
 						map.put("name", info.name);
 						map.put("number", info.num);
 						listItem.add(map);

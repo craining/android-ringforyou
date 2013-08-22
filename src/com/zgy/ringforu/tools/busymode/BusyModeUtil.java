@@ -12,6 +12,7 @@ import android.widget.RemoteViews;
 
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.activity.MainActivityGroup;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.ContactsUtil;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
@@ -20,9 +21,11 @@ import com.zgy.ringforu.util.StringUtil;
 
 public class BusyModeUtil {
 
-	public static final File FILE_BUSYMODE_SWITCH = new File("/data/data/com.zgy.ringforu/busymodeswitch");// 开关
-	public static final File FILE_BUSYMODE_MESSAGE = new File("/data/data/com.zgy.ringforu/files/busymodemsg.cfg");// 自动回复的短信
-	public static final String FILENAME_BUSYMODE_MESSAGE = "busymodemsg.cfg";
+	// public static final File FILE_BUSYMODE_SWITCH = new
+	// File("/data/data/com.zgy.ringforu/busymodeswitch");// 开关
+	// public static final File FILE_BUSYMODE_MESSAGE = new
+	// File("/data/data/com.zgy.ringforu/files/busymodemsg.cfg");// 自动回复的短信
+	// public static final String FILENAME_BUSYMODE_MESSAGE = "busymodemsg.cfg";
 
 	private static final int NOTIFICATION_ID_BUSYMODE_ON = 0;// 状态栏通知的id
 	private static final int PENDINGINTENT_ID_BUSYMODE = 0;
@@ -44,7 +47,7 @@ public class BusyModeUtil {
 	 * @return
 	 */
 	public static boolean isBusyModeOn() {
-		if (FILE_BUSYMODE_SWITCH.exists()) {
+		if (MainConfig.getInstance().isBusyModeOn()) {
 			return true;
 		} else {
 			return false;
@@ -58,12 +61,7 @@ public class BusyModeUtil {
 	 * @return
 	 */
 	public static String getBusyModeMsgContent(Context con) {
-		if (FILE_BUSYMODE_MESSAGE.exists()) {
-			return FileUtil.load(FILENAME_BUSYMODE_MESSAGE, con, false);
-		} else {
-			// return (con.getResources().getStringArray(R.array.busymodes_info))[0];
-			return "";
-		}
+		return MainConfig.getInstance().getBusyModeReplyStr();
 	}
 
 	// /**
@@ -85,26 +83,19 @@ public class BusyModeUtil {
 	 * @param on
 	 * @param msg
 	 */
-	public static void setBusyModeOn(Context con, boolean on, String msg, boolean autoSendMsg) {
-		if (on) {
-			if (!FILE_BUSYMODE_SWITCH.exists()) {
-				FILE_BUSYMODE_SWITCH.mkdir();
-			}
+	public static void setBusyModeOnOff(Context con, boolean on, String msg) {
 
-			if (FILE_BUSYMODE_MESSAGE.exists()) {
-				FILE_BUSYMODE_MESSAGE.delete();
-			}
+		MainConfig mainConfig = MainConfig.getInstance();
+		if (on) {
+			mainConfig.setBusyModeOnOff(true);
+
 			// 若回复短信，则存储，否则不存储
-			if (autoSendMsg) {
-				FileUtil.save(FILENAME_BUSYMODE_MESSAGE, msg, con);
-			}
+			msg = StringUtil.isNull(msg) ? "" : msg;
+			mainConfig.setBusyModeReplyStr(msg);
 
 		} else {
-			if (FILE_BUSYMODE_SWITCH.exists()) {
-				FILE_BUSYMODE_SWITCH.delete();
-			}
+			mainConfig.setBusyModeOnOff(false);
 		}
-
 	}
 
 	/**
@@ -219,7 +210,8 @@ public class BusyModeUtil {
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 			notification.flags |= Notification.FLAG_NO_CLEAR;
-			// 表明在点击了通知栏中的"清除通知"后，此通知不清除，经常与FLAG_ONGOING_EVENT一起使用 notification.flags |=
+			// 表明在点击了通知栏中的"清除通知"后，此通知不清除，经常与FLAG_ONGOING_EVENT一起使用
+			// notification.flags |=
 			// Notification.FLAG_SHOW_LIGHTS;
 			// notification.defaults = Notification.DEFAULT_LIGHTS;
 			// notification.ledARGB = Color.YELLOW;
@@ -260,8 +252,10 @@ public class BusyModeUtil {
 		// 3.0以下不支持通知栏里的按钮响应
 		// if (PhoneUtil.isUpAPI10(context)) {
 		// Log.e("", "  3.0 以上");
-		// Notification notification = new Notification(R.drawable.ic_notification_busymode_refused,
-		// context.getString(R.string.str_busymode_notification_refused_notify), System.currentTimeMillis());
+		// Notification notification = new
+		// Notification(R.drawable.ic_notification_busymode_refused,
+		// context.getString(R.string.str_busymode_notification_refused_notify),
+		// System.currentTimeMillis());
 		// RemoteViews contentView = new RemoteViews(context.getPackageName(),
 		// R.layout.notification_busymode_refused);
 		// contentView.setImageViewResource(R.id.image_notification_busymode_refused_ic,
@@ -273,15 +267,20 @@ public class BusyModeUtil {
 		//
 		// Intent i = new Intent(BUSYMODE_ACTION_CALL);
 		// i.putExtra(INTENT_ACTION_KEY_CALL, number);
-		// PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, i,
+		// PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+		// i,
 		// PendingIntent.FLAG_UPDATE_CURRENT);
-		// contentView.setOnClickPendingIntent(R.id.btn_notification_busymode_refused_call, pendingIntent);
+		// contentView.setOnClickPendingIntent(R.id.btn_notification_busymode_refused_call,
+		// pendingIntent);
 		//
 		// Intent i2 = new Intent(BUSYMODE_ACTION_CLEAR);
-		// i2.putExtra(INTENT_ACTION_KEY_CLEAR, NOTIFICATION_ID_BUSYMODE_REFUSED);
-		// PendingIntent pendingIntent2 = PendingIntent.getBroadcast(context, 2, i2,
+		// i2.putExtra(INTENT_ACTION_KEY_CLEAR,
+		// NOTIFICATION_ID_BUSYMODE_REFUSED);
+		// PendingIntent pendingIntent2 = PendingIntent.getBroadcast(context, 2,
+		// i2,
 		// PendingIntent.FLAG_UPDATE_CURRENT);
-		// contentView.setOnClickPendingIntent(R.id.btn_notification_busymode_refused_clear, pendingIntent2);
+		// contentView.setOnClickPendingIntent(R.id.btn_notification_busymode_refused_clear,
+		// pendingIntent2);
 		//
 		// notification.contentView = contentView;
 		//
@@ -289,15 +288,19 @@ public class BusyModeUtil {
 		// // notification.flags |= Notification.FLAG_NO_CLEAR;
 		// notification.flags |= Notification.FLAG_AUTO_CANCEL;
 		//
-		// Intent notificationIntent = new Intent(context, MainActivityGroup.class);
-		// PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
+		// Intent notificationIntent = new Intent(context,
+		// MainActivityGroup.class);
+		// PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
+		// notificationIntent, 0);
 		// notification.contentIntent = contentIntent;
 		//
 		// NotificationManager mNotificationManager = (NotificationManager)
 		// context.getSystemService(Context.NOTIFICATION_SERVICE);
-		// mNotificationManager.notify(NOTIFICATION_ID_BUSYMODE_REFUSED, notification);
+		// mNotificationManager.notify(NOTIFICATION_ID_BUSYMODE_REFUSED,
+		// notification);
 		//
-		// Log.v("", " create notification id = " + NOTIFICATION_ID_BUSYMODE_REFUSED);
+		// Log.v("", " create notification id = " +
+		// NOTIFICATION_ID_BUSYMODE_REFUSED);
 		// } else {
 		// Log.e("", "  3.0 以下");
 		// // 定义Notification的各种属性
@@ -306,17 +309,18 @@ public class BusyModeUtil {
 		Notification notification = new Notification(R.drawable.ic_notification_busymode_refused, context.getString(R.string.str_busymode_notification_refused_notify), System.currentTimeMillis());
 		// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
-		// 表明在点击了通知栏中的"清除通知"后，此通知不清除，经常与FLAG_ONGOING_EVENT一起使用 notification.flags |=
+		// 表明在点击了通知栏中的"清除通知"后，此通知不清除，经常与FLAG_ONGOING_EVENT一起使用
+		// notification.flags |=
 		// Notification.FLAG_SHOW_LIGHTS;
 
 		CharSequence contentTitle = context.getString(R.string.str_busymode_notification_refused_title);// 通知栏标题
 
 		String name = ContactsUtil.getNameFromContactsByNumber(context, number);
-		
-		if(StringUtil.isNull(name)) {
+
+		if (StringUtil.isNull(name)) {
 			name = context.getString(R.string.busymode_refused_unknown);
 		}
-		
+
 		CharSequence contentText = name + context.getString(R.string.busymode_refused_tel) + number;
 
 		Intent i = new Intent(BUSYMODE_ACTION_CALL);

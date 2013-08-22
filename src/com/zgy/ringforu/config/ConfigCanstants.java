@@ -18,4 +18,12 @@ public class ConfigCanstants {
 	public static final String SCREEN_WATERMARK_ALPHA = "SCREEN_WATERMARK_ALPHA";// 透明度
 	public static final String SLIENT_TIME = "SLIENT_TIME";// 安静时段
 
+	// TODO
+	public static final String INTERCEPT_CALL_NUMBER = "INTERCEPT_CALL_NUMBER";
+	public static final String INTERCEPT_SMS_NUMBER = "INTERCEPT_SMS_NUMBER";
+	public static final String IMPORTANT_CALL_NUMBER = "IMPORTANT_CALL_NUMBER";
+	
+	public static final String INTERCEPT_CALL_NAME = "INTERCEPT_CALL_NAME";
+	public static final String INTERCEPT_SMS_NAME = "INTERCEPT_SMS_NAME";
+	public static final String IMPORTANT_CALL_NAME = "IMPORTANT_CALL_NAME";
 }

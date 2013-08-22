@@ -167,13 +167,13 @@ public class RToolsActivity extends Activity implements OnClickListener {
 		case R.id.image_busymode_switch:
 			// 开关忙碌模式
 			if (BusyModeUtil.isBusyModeOn()) {
-				BusyModeUtil.setBusyModeOn(RToolsActivity.this, false, null, false);
+				BusyModeUtil.setBusyModeOnOff(RToolsActivity.this, false, null);
 			} else {
 				String content = BusyModeUtil.getBusyModeMsgContent(RToolsActivity.this);
 				if (TextUtils.isEmpty(content)) {
-					BusyModeUtil.setBusyModeOn(RToolsActivity.this, true, null, false);
+					BusyModeUtil.setBusyModeOnOff(RToolsActivity.this, true, null);
 				} else {
-					BusyModeUtil.setBusyModeOn(RToolsActivity.this, true, content, true);
+					BusyModeUtil.setBusyModeOnOff(RToolsActivity.this, true, content);
 				}
 				// Intent i = new Intent(RToolsActivity.this, BusyModeActivity.class);
 				// startActivity(i);

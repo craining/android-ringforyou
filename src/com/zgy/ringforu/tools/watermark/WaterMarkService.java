@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.zgy.ringforu.MainApplication;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.activity.RToolsActivity;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.BitmapUtil;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.view.MyToast;
@@ -72,34 +73,36 @@ public class WaterMarkService extends Service {
 		wm = (WindowManager) getApplicationContext().getSystemService("window");
 		wmParams = MainApplication.getMywmParams();
 		wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;// 该类型提供与用户交互，置于所有应用程序上方，但是在状态栏后面
-		wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;// 不接受任何按键事件
+		wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+				| WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;// 不接受任何按键事件
 		// wmParams.gravity = Gravity.LEFT | Gravity.TOP; //
 		// 调整悬浮窗口至左上角WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES |
 		// WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
 		wmParams.gravity = Gravity.FILL;
 
 		// Rect frame = new Rect();
-		// Window w = (Window) getApplicationContext().getSystemService("window");
+		// Window w = (Window)
+		// getApplicationContext().getSystemService("window");
 		// w.getDecorView().getWindowVisibleDisplayFrame(frame);
 		// Log.v(TAG, "getWindowVisibleDisplayFrame " + frame.top);
 		// 以屏幕左上角为原点，设置x、y初始值
-//		wmParams.x = 0;
-//		wmParams.y = 0;
+		// wmParams.x = 0;
+		// wmParams.y = 0;
 		// 设置悬浮窗口长宽数据
-//		wmParams.width = WindowManager.LayoutParams.FILL_PARENT;
-//		wmParams.height = WindowManager.LayoutParams.FILL_PARENT;
+		// wmParams.width = WindowManager.LayoutParams.FILL_PARENT;
+		// wmParams.height = WindowManager.LayoutParams.FILL_PARENT;
 		wmParams.format = PixelFormat.RGBA_8888;// 透明
 		ImageView imgShow = (ImageView) view.findViewById(R.id.watermark_image);
 
-		int alpha = 0;
-		alpha = Integer.parseInt(FileUtil.load(WaterMarkUtil.FILE_WATERMARK_ALPHA, WaterMarkService.this, false));
+		int alpha = MainConfig.getInstance().getWaterMarkAlpha();
 		// Log.v(TAG, "set alpha " + alpha);
 		imgShow.setAlpha(alpha);
 
 		// if (new File(WaterMarkUtil.FILEPATH_WATERMARK).exists()) {
 		// imgShow.setImageDrawable(new
 		// BitmapDrawable(Globle.FILEPATH_WATERMARK));
-//		Bitmap bitmap = BitmapFactory.decodeFile(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath());
+		// Bitmap bitmap =
+		// BitmapFactory.decodeFile(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath());
 		DisplayMetrics metric = getResources().getDisplayMetrics();
 		imgShow.setImageBitmap(BitmapUtil.readBitmapAutoSize(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath(), metric.widthPixels, metric.heightPixels));
 		// } else {

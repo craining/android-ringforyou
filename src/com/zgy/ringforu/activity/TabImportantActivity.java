@@ -29,6 +29,7 @@ import com.zgy.ringforu.R;
 import com.zgy.ringforu.R.id;
 import com.zgy.ringforu.R.layout;
 import com.zgy.ringforu.R.string;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -102,14 +103,6 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 	}
 
 	private void saveLastAll() {
-		File nameFile = MainUtil.FILE_IMPORTANT_PATH_NAME;
-		File numFile = MainUtil.FILE_IMPORTANT_PATH_NUM;
-		if (numFile.exists()) {
-			numFile.delete();
-		}
-		if (nameFile.exists()) {
-			nameFile.delete();
-		}
 		for (HashMap<String, String> a : listItem) {
 			MainUtil.insert(a.get("name"), a.get("number"), TabImportantActivity.this, 0);
 		}
@@ -117,8 +110,9 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 
 	private void initListView() {
 		listItem = new ArrayList<HashMap<String, String>>();
-		allNumbersSelected = FileUtil.load(MainUtil.FILE_IMPORTANT_NUM_LOG, TabImportantActivity.this, true);
-		allNameSelected = FileUtil.load(MainUtil.FILE_IMPORTANT_NAME_LOG, TabImportantActivity.this, true);
+		MainConfig mainConfig = MainConfig.getInstance();
+		allNumbersSelected = mainConfig.getImporantNumbers();
+		allNameSelected = mainConfig.getImporantNames();
 		// Log.e(TAG, "names=" + allNameSelected);
 		// Log.e(TAG, "nums=" + allNumbersSelected);
 		if (allNumbersSelected != null && allNameSelected != null) {

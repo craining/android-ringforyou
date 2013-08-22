@@ -31,6 +31,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.BitmapUtil;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
@@ -80,12 +81,15 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	private File tempFileSrc;
 	private File tempFileCutted;
 
+	private MainConfig mMainConfig;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tools_watermark);
+		mMainConfig = MainConfig.getInstance();
 
 		// DisplayMetrics metric = getResources().getDisplayMetrics();
 		// screenWidth = metric.widthPixels;
@@ -136,7 +140,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		}
 		// else {
 		// Bundle b = intent.getExtras();
-		// if (b != null && b.containsKey("fromnotifybar") && b.getBoolean("fromnotifybar")) {
+		// if (b != null && b.containsKey("fromnotifybar") &&
+		// b.getBoolean("fromnotifybar")) {
 		// // 从通知栏跳转过来的
 		// fromNotifBar = true;
 		// btnTitleClose.setVisibility(View.VISIBLE);
@@ -173,14 +178,11 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 
 		case R.id.btn_watermark_delete:
 			// 移除
-			if (WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.exists()) {
-				WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.delete();
-			}
+			WaterMarkUtil.setSwitchOnOff(false);
 
 			if (WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
 				WaterMarkUtil.FILE_WATERMARK_IMG.delete();
 			}
-			WaterMarkUtil.setSwitchOnOff(false);
 			WaterMarkUtil.checkWaterMarkState(WaterMarkActivity.this);
 			MyToast.makeText(WaterMarkActivity.this, R.string.watermark_del_success, MyToast.LENGTH_SHORT, false).show();
 			finish();
@@ -240,12 +242,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	}
 
 	private void open() {
-		if (WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.exists()) {
-			WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.delete();
-		}
-		if (FileUtil.save(WaterMarkUtil.FILE_WATERMARK_ALPHA, seekbarAlpha.getProgress() + "", WaterMarkActivity.this)) {
-			MyToast.makeText(WaterMarkActivity.this, R.string.watermark_set_success, MyToast.LENGTH_SHORT, false).show();
-		}
+		mMainConfig.setWaterMarkAlpha(seekbarAlpha.getProgress());
+		MyToast.makeText(WaterMarkActivity.this, R.string.watermark_set_success, MyToast.LENGTH_SHORT, false).show();
 		WaterMarkUtil.setSwitchOnOff(true);
 	}
 
@@ -311,7 +309,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		}).create().show();
 	}
 
-	// private void cropImageUri(Uri uri, int outputX, int outputY, int requestCode){
+	// private void cropImageUri(Uri uri, int outputX, int outputY, int
+	// requestCode){
 	// Intent intent = new Intent("com.android.camera.action.CROP");
 	// intent.setDataAndType(uri, "image/*");
 	// intent.putExtra("crop", "true");
@@ -355,7 +354,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		// intent.putExtra("scale", true);
 		// intent.putExtra("return-data", false);
 		// intent.putExtra(MediaStore.EXTRA_OUTPUT, uriTemp);
-		// intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+		// intent.putExtra("outputFormat",
+		// Bitmap.CompressFormat.JPEG.toString());
 
 		Intent intent = new Intent("com.android.camera.action.CROP");
 		intent.setDataAndType(cutFileUri, "image/*");
@@ -387,7 +387,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	// intent.putExtra("outputY", outputY);
 	// intent.putExtra("scale", true);
 	// // intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-	// intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.parse("file:///sdcard/result.jpg"));
+	// intent.putExtra(MediaStore.EXTRA_OUTPUT,
+	// Uri.parse("file:///sdcard/result.jpg"));
 	// intent.putExtra("return-data", false);
 	// intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
 	// intent.putExtra("noFaceDetection", true); // no face detection
@@ -512,14 +513,9 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			pickPic();
 		}
 		// 控制透明度
-		if (WaterMarkUtil.FILEPATH_WATERMARK_ALPHA.exists()) {
-			int alpahSaved = Integer.parseInt(FileUtil.load(WaterMarkUtil.FILE_WATERMARK_ALPHA, WaterMarkActivity.this, false));
-			seekbarAlpha.setProgress(alpahSaved);
-			imgShow.setAlpha(alpahSaved);
-		} else {
-			imgShow.setAlpha(50);
-			seekbarAlpha.setProgress(50);
-		}
+		int alpha = mMainConfig.getWaterMarkAlpha();
+		imgShow.setAlpha(alpha);
+		seekbarAlpha.setProgress(alpha);
 		if (WaterMarkUtil.isWaterMarkSeted()) {
 			btnTitleClose.setVisibility(View.VISIBLE);
 			// btnOk.setVisibility(View.GONE);

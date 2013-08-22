@@ -172,20 +172,26 @@ public class SetActivity extends Activity implements OnClickListener {
 			layoutImportant.setVisibility(View.GONE);
 			layoutCall.setVisibility(View.VISIBLE);
 			layoutSms.setVisibility(View.GONE);
-			// textCallHideStyleTitle.setText((new File(Globle.FILE_PATH_CALL_HIDE_TAG)).exists() ?
+			// textCallHideStyleTitle.setText((new
+			// File(Globle.FILE_PATH_CALL_HIDE_TAG)).exists() ?
 			// R.string.set_hidestyle_call2 : R.string.set_hidestyle_call1);
-			// textCallHideStyleInfo.setText((new File(Globle.FILE_PATH_CALL_HIDE_TAG)).exists() ?
-			// R.string.set_hidestyle_call2_info : R.string.set_hidestyle_call1_info);
+			// textCallHideStyleInfo.setText((new
+			// File(Globle.FILE_PATH_CALL_HIDE_TAG)).exists() ?
+			// R.string.set_hidestyle_call2_info :
+			// R.string.set_hidestyle_call1_info);
 			textCallHideStyleInfo.setText((new File(MainUtil.FILE_PATH_CALL_HIDE_TAG)).exists() ? R.string.set_hidestyle_call2 : R.string.set_hidestyle_call1);
 			break;
 		case MainUtil.TYPE_SMS:
 			layoutImportant.setVisibility(View.GONE);
 			layoutCall.setVisibility(View.GONE);
 			layoutSms.setVisibility(View.VISIBLE);
-			// textSmsHideStyleTitle.setText((new File(Globle.FILE_PATH_SMS_HIDE_TAG)).exists() ?
+			// textSmsHideStyleTitle.setText((new
+			// File(Globle.FILE_PATH_SMS_HIDE_TAG)).exists() ?
 			// R.string.set_hidestyle_sms2 : R.string.set_hidestyle_sms1);
-			// textSmsHideStyleInfo.setText((new File(Globle.FILE_PATH_SMS_HIDE_TAG)).exists() ?
-			// R.string.set_hidestyle_sms2_info : R.string.set_hidestyle_sms1_info);
+			// textSmsHideStyleInfo.setText((new
+			// File(Globle.FILE_PATH_SMS_HIDE_TAG)).exists() ?
+			// R.string.set_hidestyle_sms2_info :
+			// R.string.set_hidestyle_sms1_info);
 			textSmsHideStyleInfo.setText((new File(MainUtil.FILE_PATH_SMS_HIDE_TAG)).exists() ? R.string.set_hidestyle_sms2 : R.string.set_hidestyle_sms1);
 			break;
 
@@ -211,7 +217,7 @@ public class SetActivity extends Activity implements OnClickListener {
 			String strSlientP = mMainConfig.getSlientTime();
 			String[] ps = strSlientP.split(":::");
 			if (ps.length == 1) {
-				mMainConfig.setSlientTime("");//TODO delete key?
+				mMainConfig.setSlientTime("");// TODO delete key?
 			} else if (ps.length == 2) {
 				mMainConfig.setSlientTime(ps[1]);
 			}
@@ -262,7 +268,8 @@ public class SetActivity extends Activity implements OnClickListener {
 	}
 
 	// @Override
-	// protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	// protected void onActivityResult(int requestCode, int resultCode, Intent
+	// data) {
 	// super.onActivityResult(requestCode, resultCode, data);
 	// if (requestCode == 1) {
 	// // 从添加静音时段回来的
@@ -307,35 +314,39 @@ public class SetActivity extends Activity implements OnClickListener {
 		switch (tag) {
 		case MainUtil.TYPE_IMPORTANT:
 			// 备份重要联系人
-			if (!(MainUtil.FILE_IMPORTANT_PATH_NAME.exists())) {
+			String importantNums = mMainConfig.getImporantNumbers();
+			if (StringUtil.isNull(importantNums)) {
 				MyToast.makeText(SetActivity.this, R.string.set_backup_noimportant, Toast.LENGTH_SHORT, true).show();
 				return;
 			}
 			try {
-				if (FileUtil.copyFileTo(MainUtil.FILE_IMPORTANT_PATH_NAME, MainUtil.FILE_SDCARD_IMPORTANT_NAME) && FileUtil.copyFileTo(MainUtil.FILE_IMPORTANT_PATH_NUM, MainUtil.FILE_SDCARD_IMPORTANT_NUM)) {
+				if (FileUtil.save(MainUtil.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath(), mMainConfig.getImporantNames(), SetActivity.this)
+						&& FileUtil.save(MainUtil.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath(), mMainConfig.getImporantNumbers(), SetActivity.this)) {
 					MyToast.makeText(SetActivity.this, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
 				}
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
 			}
 
 			break;
 		case MainUtil.TYPE_CALL:
-			if (!(MainUtil.FILE_CALL_PATH_NAME.exists())) {
+			String callNums = mMainConfig.getInterceptCallNumbers();
+			if (StringUtil.isNull(callNums)) {
 				MyToast.makeText(SetActivity.this, R.string.set_backup_nocall, Toast.LENGTH_SHORT, true).show();
 				return;
 			}
 			// 备份通话拦截数据
 			try {
-				if (FileUtil.copyFileTo(MainUtil.FILE_CALL_PATH_NAME, MainUtil.FILE_SDCARD_CALL_NAME) && FileUtil.copyFileTo(MainUtil.FILE_CALL_PATH_NUM, MainUtil.FILE_SDCARD_CALL_NUM)) {
+				if (FileUtil.save(MainUtil.FILE_SDCARD_CALL_NAME.getAbsolutePath(), mMainConfig.getInterceptCallNames(), SetActivity.this)
+						&& FileUtil.save(MainUtil.FILE_SDCARD_CALL_NUM.getAbsolutePath(), mMainConfig.getInterceptCallNumbers(), SetActivity.this)) {
 					MyToast.makeText(SetActivity.this, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
 				}
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
 			}
@@ -343,17 +354,19 @@ public class SetActivity extends Activity implements OnClickListener {
 			break;
 		case MainUtil.TYPE_SMS:
 			// 备份拦截短信
-			if (!(MainUtil.FILE_SMS_PATH_NAME.exists())) {
+			String smsNumbers = mMainConfig.getInterceptSmsNumbers();
+			if (StringUtil.isNull(smsNumbers)) {
 				MyToast.makeText(SetActivity.this, R.string.set_backup_nosms, Toast.LENGTH_SHORT, true).show();
 				return;
 			}
 			try {
-				if (FileUtil.copyFileTo(MainUtil.FILE_SMS_PATH_NAME, MainUtil.FILE_SDCARD_SMS_NAME) && FileUtil.copyFileTo(MainUtil.FILE_SMS_PATH_NUM, MainUtil.FILE_SDCARD_SMS_NUM)) {
+				if (FileUtil.save(MainUtil.FILE_SDCARD_SMS_NAME.getAbsolutePath(), mMainConfig.getInterceptSmsNames(), SetActivity.this)
+						&& FileUtil.save(MainUtil.FILE_SDCARD_SMS_NUM.getAbsolutePath(), mMainConfig.getInterceptSmsNumbers(), SetActivity.this)) {
 					MyToast.makeText(SetActivity.this, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
 				}
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
 			}
@@ -375,26 +388,14 @@ public class SetActivity extends Activity implements OnClickListener {
 				return;
 			}
 			try {
-				if (FileUtil.copyFileTo(MainUtil.FILE_SDCARD_IMPORTANT_NAME, MainUtil.FILE_IMPORTANT_PATH_NAME) && FileUtil.copyFileTo(MainUtil.FILE_SDCARD_IMPORTANT_NUM, MainUtil.FILE_IMPORTANT_PATH_NUM)) {
-					MyToast.makeText(SetActivity.this, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
-				} else {
-					MyToast.makeText(SetActivity.this, R.string.import_fail, Toast.LENGTH_SHORT, true).show();
-					// if (new File(Globle.FILE_IMPORTANT_NUM_LOG).exists()) {
-					// new File(Globle.FILE_IMPORTANT_NUM_LOG).delete();
-					// }
-					// if (new File(Globle.FILE_IMPORTANT_NAME_LOG).exists()) {
-					// new File(Globle.FILE_IMPORTANT_NAME_LOG).delete();
-					// }
-				}
-			} catch (IOException e) {
+				mMainConfig.setImportantNames(FileUtil.load(MainUtil.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath(), SetActivity.this));
+				mMainConfig.setImportantNumbers(FileUtil.load(MainUtil.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath(), SetActivity.this));
+				MyToast.makeText(SetActivity.this, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
+				// MyToast.makeText(SetActivity.this, R.string.import_fail,
+				// Toast.LENGTH_SHORT, true).show();
+			} catch (Exception e) {
 				e.printStackTrace();
 				MyToast.makeText(SetActivity.this, R.string.import_fail, Toast.LENGTH_SHORT, true).show();
-				// if (new File(Globle.FILE_IMPORTANT_NUM_LOG).exists()) {
-				// new File(Globle.FILE_IMPORTANT_NUM_LOG).delete();
-				// }
-				// if (new File(Globle.FILE_IMPORTANT_NAME_LOG).exists()) {
-				// new File(Globle.FILE_IMPORTANT_NAME_LOG).delete();
-				// }
 			}
 			break;
 		case MainUtil.TYPE_CALL:
@@ -404,26 +405,14 @@ public class SetActivity extends Activity implements OnClickListener {
 			}
 			// 导入备份
 			try {
-				if (FileUtil.copyFileTo(MainUtil.FILE_SDCARD_CALL_NAME, MainUtil.FILE_CALL_PATH_NAME) && FileUtil.copyFileTo(MainUtil.FILE_SDCARD_CALL_NUM, MainUtil.FILE_CALL_PATH_NUM)) {
-					MyToast.makeText(SetActivity.this, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
-				} else {
-					MyToast.makeText(SetActivity.this, R.string.import_fail, Toast.LENGTH_SHORT, true).show();
-					// if (new File(Globle.FILE_CALL_NUM_LOG).exists()) {
-					// new File(Globle.FILE_CALL_NUM_LOG).delete();
-					// }
-					// if (new File(Globle.FILE_CALL_NAME_LOG).exists()) {
-					// new File(Globle.FILE_CALL_NAME_LOG).delete();
-					// }
-				}
-			} catch (IOException e) {
+				mMainConfig.setInterceptCallNames(FileUtil.load(MainUtil.FILE_SDCARD_CALL_NAME.getAbsolutePath(), SetActivity.this));
+				mMainConfig.setInterceptCallNumbers(FileUtil.load(MainUtil.FILE_SDCARD_CALL_NUM.getAbsolutePath(), SetActivity.this));
+				MyToast.makeText(SetActivity.this, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
+				// MyToast.makeText(SetActivity.this, R.string.import_fail,
+				// Toast.LENGTH_SHORT, true).show();
+			} catch (Exception e) {
 				e.printStackTrace();
 				MyToast.makeText(SetActivity.this, R.string.import_fail, Toast.LENGTH_SHORT, true).show();
-				// if (new File(Globle.FILE_IMPORTANT_NUM_LOG).exists()) {
-				// new File(Globle.FILE_IMPORTANT_NUM_LOG).delete();
-				// }
-				// if (new File(Globle.FILE_IMPORTANT_NAME_LOG).exists()) {
-				// new File(Globle.FILE_IMPORTANT_NAME_LOG).delete();
-				// }
 			}
 			break;
 		case MainUtil.TYPE_SMS:
@@ -433,26 +422,15 @@ public class SetActivity extends Activity implements OnClickListener {
 			}
 			// 导入备份
 			try {
-				if (FileUtil.copyFileTo(MainUtil.FILE_SDCARD_SMS_NAME, MainUtil.FILE_SMS_PATH_NAME) && FileUtil.copyFileTo(MainUtil.FILE_SDCARD_SMS_NUM, MainUtil.FILE_SMS_PATH_NUM)) {
-					MyToast.makeText(SetActivity.this, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
-				} else {
-					MyToast.makeText(SetActivity.this, R.string.import_fail, Toast.LENGTH_SHORT, true).show();
-					// if (new File(Globle.FILE_SMS_NUM_LOG).exists()) {
-					// new File(Globle.FILE_SMS_NUM_LOG).delete();
-					// }
-					// if (new File(Globle.FILE_SMS_NAME_LOG).exists()) {
-					// new File(Globle.FILE_SMS_NAME_LOG).delete();
-					// }
-				}
-			} catch (IOException e) {
+
+				mMainConfig.setInterceptSmsNames(FileUtil.load(MainUtil.FILE_SDCARD_SMS_NAME.getAbsolutePath(), SetActivity.this));
+				mMainConfig.setInterceptSmsNumbers(FileUtil.load(MainUtil.FILE_SDCARD_SMS_NUM.getAbsolutePath(), SetActivity.this));
+				MyToast.makeText(SetActivity.this, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
+				// MyToast.makeText(SetActivity.this, R.string.import_fail,
+				// Toast.LENGTH_SHORT, true).show();
+			} catch (Exception e) {
 				e.printStackTrace();
 				MyToast.makeText(SetActivity.this, R.string.import_fail, Toast.LENGTH_SHORT, true).show();
-				// if (new File(Globle.FILE_SMS_NUM_LOG).exists()) {
-				// new File(Globle.FILE_SMS_NUM_LOG).delete();
-				// }
-				// if (new File(Globle.FILE_SMS_NAME_LOG).exists()) {
-				// new File(Globle.FILE_SMS_NAME_LOG).delete();
-				// }
 			}
 			break;
 
@@ -462,31 +440,36 @@ public class SetActivity extends Activity implements OnClickListener {
 	}
 
 	/***************************
-	 * if (new File(Globle.FILE_SDCARD_NAME).exists() && new File(Globle.FILE_SDCARD_NUM).exists()) {
-	 * btnImport.setEnabled(true); } else { btnImport.setEnabled(false); }
+	 * if (new File(Globle.FILE_SDCARD_NAME).exists() && new
+	 * File(Globle.FILE_SDCARD_NUM).exists()) { btnImport.setEnabled(true); }
+	 * else { btnImport.setEnabled(false); }
 	 * 
 	 * private BroadcastReceiver broadcastRec;
 	 * 
 	 * private void listenSdState() { IntentFilter intentFilter = new
-	 * IntentFilter(Intent.ACTION_MEDIA_MOUNTED); intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
+	 * IntentFilter(Intent.ACTION_MEDIA_MOUNTED);
+	 * intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
 	 * intentFilter.addAction(Intent.ACTION_MEDIA_BAD_REMOVAL);
 	 * intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
 	 * intentFilter.addAction(Intent.ACTION_MEDIA_UNMOUNTED);
-	 * intentFilter.addAction(Intent.ACTION_MEDIA_UNMOUNTABLE); intentFilter.addDataScheme("file");
+	 * intentFilter.addAction(Intent.ACTION_MEDIA_UNMOUNTABLE);
+	 * intentFilter.addDataScheme("file");
 	 * 
 	 * broadcastRec = new BroadcastReceiver() {
 	 * 
 	 * @Override public void onReceive(Context context, Intent intent) { if
-	 *           (intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED)) { Log.v(TAG, "SD card mounted!!!");
-	 *           refreshViews(); } else if (intent.getAction().equals(Intent.ACTION_MEDIA_BAD_REMOVAL) ||
+	 *           (intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED)) {
+	 *           Log.v(TAG, "SD card mounted!!!"); refreshViews(); } else if
+	 *           (intent.getAction().equals(Intent.ACTION_MEDIA_BAD_REMOVAL) ||
 	 *           intent.getAction().equals(Intent.ACTION_MEDIA_REMOVED) ||
 	 *           intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTED) ||
-	 *           intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTABLE)) { Log.v(TAG,
-	 *           "SD card UNmounted!!!"); btnImport.setEnabled(false); btnExport.setEnabled(false); } } };
-	 *           registerReceiver(broadcastRec, intentFilter);// 注册监听函数 }
+	 *           intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTABLE)) {
+	 *           Log.v(TAG, "SD card UNmounted!!!");
+	 *           btnImport.setEnabled(false); btnExport.setEnabled(false); } }
+	 *           }; registerReceiver(broadcastRec, intentFilter);// 注册监听函数 }
 	 * 
-	 *           //onDestroy if (broadcastRec != null) { unregisterReceiver(broadcastRec); broadcastRec =
-	 *           null; }
+	 *           //onDestroy if (broadcastRec != null) {
+	 *           unregisterReceiver(broadcastRec); broadcastRec = null; }
 	 * 
 	 ****/
 }

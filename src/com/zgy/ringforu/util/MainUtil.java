@@ -49,24 +49,24 @@ public class MainUtil {
 	public static final String FILE_INNER = "/data/data/com.zgy.ringforu/files/";
 	public static final String FILE_IN_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ringforu/";
 
-	public static final String FILE_IMPORTANT_NUM_LOG = "importantnumbers.cfg";
-	public static final String FILE_IMPORTANT_NAME_LOG = "importantnames.cfg";
-	public static final File FILE_IMPORTANT_PATH_NUM = new File("/data/data/com.zgy.ringforu/files/importantnumbers.cfg");
-	public static final File FILE_IMPORTANT_PATH_NAME = new File("/data/data/com.zgy.ringforu/files/importantnames.cfg");
+//	public static final String FILE_IMPORTANT_NUM_LOG = "importantnumbers.cfg";
+//	public static final String FILE_IMPORTANT_NAME_LOG = "importantnames.cfg";
+//	public static final File FILE_IMPORTANT_PATH_NUM = new File("/data/data/com.zgy.ringforu/files/importantnumbers.cfg");
+//	public static final File FILE_IMPORTANT_PATH_NAME = new File("/data/data/com.zgy.ringforu/files/importantnames.cfg");
 	public static final File FILE_SDCARD_IMPORTANT_NUM = new File(FILE_IN_SDCARD + "importantnumbers.cfg");
 	public static final File FILE_SDCARD_IMPORTANT_NAME = new File(FILE_IN_SDCARD + "importantnames.cfg");
 
-	public static final String FILE_CALL_NUM_LOG = "callnumbers.cfg";
-	public static final String FILE_CALL_NAME_LOG = "callnames.cfg";
-	public static final File FILE_CALL_PATH_NUM = new File("/data/data/com.zgy.ringforu/files/callnumbers.cfg");
-	public static final File FILE_CALL_PATH_NAME = new File("/data/data/com.zgy.ringforu/files/callnames.cfg");
+//	public static final String FILE_CALL_NUM_LOG = "callnumbers.cfg";
+//	public static final String FILE_CALL_NAME_LOG = "callnames.cfg";
+//	public static final File FILE_CALL_PATH_NUM = new File("/data/data/com.zgy.ringforu/files/callnumbers.cfg");
+//	public static final File FILE_CALL_PATH_NAME = new File("/data/data/com.zgy.ringforu/files/callnames.cfg");
 	public static final File FILE_SDCARD_CALL_NUM = new File(FILE_IN_SDCARD + "callnumbers.cfg");
 	public static final File FILE_SDCARD_CALL_NAME = new File(FILE_IN_SDCARD + "callnames.cfg");
 
-	public static final String FILE_SMS_NUM_LOG = "smsnumbers.cfg";
-	public static final String FILE_SMS_NAME_LOG = "smsnames.cfg";
-	public static final File FILE_SMS_PATH_NUM = new File("/data/data/com.zgy.ringforu/files/smsnumbers.cfg");
-	public static final File FILE_SMS_PATH_NAME = new File("/data/data/com.zgy.ringforu/files/smsnames.cfg");
+//	public static final String FILE_SMS_NUM_LOG = "smsnumbers.cfg";
+//	public static final String FILE_SMS_NAME_LOG = "smsnames.cfg";
+//	public static final File FILE_SMS_PATH_NUM = new File("/data/data/com.zgy.ringforu/files/smsnumbers.cfg");
+//	public static final File FILE_SMS_PATH_NAME = new File("/data/data/com.zgy.ringforu/files/smsnames.cfg");
 	public static final File FILE_SDCARD_SMS_NUM = new File(FILE_IN_SDCARD + "smsnumbers.cfg");
 	public static final File FILE_SDCARD_SMS_NAME = new File(FILE_IN_SDCARD + "smsnames.cfg");
 
@@ -168,23 +168,24 @@ public class MainUtil {
 	 */
 	public static int insert(String strName, String strNum, Context con, int tag) {
 
+		MainConfig mainConfig = MainConfig.getInstance();
+		
 		int result = -1;
 		switch (tag) {
 		case TYPE_IMPORTANT:
-			String numbersImportant = FileUtil.load(FILE_IMPORTANT_NUM_LOG, con, false);
-			if (numbersImportant == null) {
-				FileUtil.save(FILE_IMPORTANT_NUM_LOG, strNum + ":::", con);
-				FileUtil.save(FILE_IMPORTANT_NAME_LOG, strName + ":::", con);
+			String numbersImportant = mainConfig.getImporantNumbers();
+			if (StringUtil.isNull(numbersImportant)) {
+				mainConfig.setImportantNumbers(strNum);
+				mainConfig.setImportantNames(strName);
 				result = 1;
 			} else {
-
 				if (getLeft(con, 0) <= 0) {
 					result = -1;
 				} else {
-					if (!numbersImportant.contains(strNum + ":::")) {
-						String namesImportant = FileUtil.load(FILE_IMPORTANT_NAME_LOG, con, false);
-						FileUtil.save(FILE_IMPORTANT_NUM_LOG, numbersImportant + strNum + ":::", con);
-						FileUtil.save(FILE_IMPORTANT_NAME_LOG, namesImportant + strName + ":::", con);
+					if (!numbersImportant.contains(strNum)) {
+						String namesImportant = mainConfig.getImporantNames();
+						mainConfig.setImportantNumbers(numbersImportant + ":::" + strNum);
+						mainConfig.setImportantNames(namesImportant + ":::" + strName);
 						result = 1;
 					} else {
 						result = 0;
@@ -193,20 +194,20 @@ public class MainUtil {
 			}
 			break;
 		case TYPE_CALL:
-			String numbersCall = FileUtil.load(FILE_CALL_NUM_LOG, con, false);
-			if (numbersCall == null) {
-				FileUtil.save(FILE_CALL_NUM_LOG, strNum + ":::", con);
-				FileUtil.save(FILE_CALL_NAME_LOG, strName + ":::", con);
+			String numbersCall =  mainConfig.getInterceptCallNumbers();
+			if (StringUtil.isNull(numbersCall)) {
+				mainConfig.setInterceptCallNumbers(strNum);
+				mainConfig.setInterceptCallNames(strName);
 				result = 1;
 			} else {
 
 				if (getLeft(con, 1) <= 0) {
 					result = -1;
 				} else {
-					if (!numbersCall.contains(strNum + ":::")) {
-						String namesCall = FileUtil.load(FILE_CALL_NAME_LOG, con, false);
-						FileUtil.save(FILE_CALL_NUM_LOG, numbersCall + strNum + ":::", con);
-						FileUtil.save(FILE_CALL_NAME_LOG, namesCall + strName + ":::", con);
+					if (!numbersCall.contains(strNum)) {
+						String namesCall = mainConfig.getInterceptCallNames();
+						mainConfig.setInterceptCallNumbers(numbersCall + ":::" + strNum);
+						mainConfig.setInterceptCallNames(namesCall + ":::" + strName);
 						result = 1;
 					} else {
 						result = 0;
@@ -215,10 +216,12 @@ public class MainUtil {
 			}
 			break;
 		case TYPE_SMS:
-			String numbersSms = FileUtil.load(FILE_SMS_NUM_LOG, con, false);
-			if (numbersSms == null) {
-				FileUtil.save(FILE_SMS_NUM_LOG, strNum + ":::", con);
-				FileUtil.save(FILE_SMS_NAME_LOG, strName + ":::", con);
+			String numbersSms = mainConfig.getInterceptSmsNumbers();
+			if (StringUtil.isNull(numbersSms)) {
+				
+				mainConfig.setInterceptSmsNumbers(strNum);
+				mainConfig.setInterceptSmsNames(strName);
+				
 				result = 1;
 			} else {
 
@@ -226,9 +229,9 @@ public class MainUtil {
 					result = -1;
 				} else {
 					if (!numbersSms.contains(strNum + ":::")) {
-						String namesSms = FileUtil.load(FILE_SMS_NAME_LOG, con, false);
-						FileUtil.save(FILE_SMS_NUM_LOG, numbersSms + strNum + ":::", con);
-						FileUtil.save(FILE_SMS_NAME_LOG, namesSms + strName + ":::", con);
+						String namesSms = mainConfig.getInterceptSmsNames();
+						mainConfig.setInterceptSmsNumbers(numbersSms + ":::" + strNum);
+						mainConfig.setInterceptSmsNames(namesSms + ":::" + strName);
 						result = 1;
 					} else {
 						result = 0;
@@ -259,26 +262,27 @@ public class MainUtil {
 	public static int getLeft(Context con, int tag) {
 		int result = MAX_NUMS;
 
+		MainConfig mainConfig = MainConfig.getInstance();
 		switch (tag) {
 		case TYPE_IMPORTANT:
-			String numbersImportant = FileUtil.load(FILE_IMPORTANT_NUM_LOG, con, false);
-			if (numbersImportant != null) {
+			String numbersImportant = mainConfig.getImporantNumbers();
+			if (!StringUtil.isNull(numbersImportant)) {
 				String[] arry = numbersImportant.split(":::");
 				Log.v(TAG, " arry.length" + arry.length);
 				result = MAX_NUMS - arry.length;
 			}
 			break;
 		case TYPE_CALL:
-			String numbersCall = FileUtil.load(FILE_CALL_NUM_LOG, con, false);
-			if (numbersCall != null) {
+			String numbersCall = mainConfig.getInterceptCallNumbers();
+			if (!StringUtil.isNull(numbersCall)) {
 				String[] arry = numbersCall.split(":::");
 				Log.v(TAG, " arry.length" + arry.length);
 				result = MAX_NUMS - arry.length;
 			}
 			break;
 		case TYPE_SMS:
-			String numbersSms = FileUtil.load(FILE_SMS_NUM_LOG, con, false);
-			if (numbersSms != null) {
+			String numbersSms = mainConfig.getInterceptSmsNumbers();
+			if (!StringUtil.isNull(numbersSms)) {
 				String[] arry = numbersSms.split(":::");
 				Log.v(TAG, " arry.length" + arry.length);
 				result = MAX_NUMS - arry.length;

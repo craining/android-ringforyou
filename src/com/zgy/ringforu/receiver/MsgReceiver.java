@@ -9,8 +9,8 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.tools.smslightscreen.SmsLightScreenUtil;
-import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
@@ -21,8 +21,9 @@ public class MsgReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		String strAllNumsImportant = FileUtil.load(MainUtil.FILE_IMPORTANT_NUM_LOG, context, true);
-		String strAllNumsSms = FileUtil.load(MainUtil.FILE_SMS_NUM_LOG, context, true);
+		MainConfig mainConfig = MainConfig.getInstance();
+		String strAllNumsImportant = mainConfig.getImporantNumbers();
+		String strAllNumsSms = mainConfig.getInterceptSmsNumbers();
 
 		if (intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
 			SmsMessage[] msg = null;
@@ -51,7 +52,7 @@ public class MsgReceiver extends BroadcastReceiver {
 			getFromNum = StringUtil.getRidofSpeciall(getFromNum);
 			if (strAllNumsImportant != null && strAllNumsImportant.contains(getFromNum)) {
 				Log.e(TAG, "check screen light");
-				SmsLightScreenUtil.checkSmsLightScreenOn(context);//µ„¡¡∆¡ƒª”Î∑Ò
+				SmsLightScreenUtil.checkSmsLightScreenOn(context);// µ„¡¡∆¡ƒª”Î∑Ò
 				if (MainUtil.isEffective(context)) {
 					PhoneUtil.turnUpMost(context);
 				} else {
@@ -71,7 +72,7 @@ public class MsgReceiver extends BroadcastReceiver {
 				}
 			} else {
 				Log.e(TAG, "check screen light");
-				SmsLightScreenUtil.checkSmsLightScreenOn(context);//µ„¡¡∆¡ƒª”Î∑Ò
+				SmsLightScreenUtil.checkSmsLightScreenOn(context);// µ„¡¡∆¡ƒª”Î∑Ò
 			}
 		}
 	}

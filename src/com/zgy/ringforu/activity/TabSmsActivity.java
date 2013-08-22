@@ -29,6 +29,7 @@ import com.zgy.ringforu.R;
 import com.zgy.ringforu.R.id;
 import com.zgy.ringforu.R.layout;
 import com.zgy.ringforu.R.string;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -101,14 +102,6 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 	}
 
 	private void saveLastAll() {
-		File nameFile = MainUtil.FILE_SMS_PATH_NAME;
-		File numFile = MainUtil.FILE_SMS_PATH_NUM;
-		if (numFile.exists()) {
-			numFile.delete();
-		}
-		if (nameFile.exists()) {
-			nameFile.delete();
-		}
 		for (HashMap<String, String> a : listItem) {
 			MainUtil.insert(a.get("name"), a.get("number"), TabSmsActivity.this, 2);
 		}
@@ -116,8 +109,9 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 
 	private void initListView() {
 		listItem = new ArrayList<HashMap<String, String>>();
-		allNumbersSelected = FileUtil.load(MainUtil.FILE_SMS_NUM_LOG, TabSmsActivity.this, true);
-		allNameSelected = FileUtil.load(MainUtil.FILE_SMS_NAME_LOG, TabSmsActivity.this, true);
+		MainConfig mainConfig = MainConfig.getInstance();
+		allNumbersSelected = mainConfig.getInterceptSmsNumbers();
+		allNameSelected = mainConfig.getInterceptSmsNames();
 		if (allNumbersSelected != null && allNameSelected != null) {
 			String[] allNums = allNumbersSelected.split(":::");
 			String[] allNames = allNameSelected.split(":::");

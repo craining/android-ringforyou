@@ -113,7 +113,7 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 				finish();
 				break;
 			case R.id.btn_busymode_title_close:
-				BusyModeUtil.setBusyModeOn(BusyModeActivity.this, false, null, false);
+				BusyModeUtil.setBusyModeOnOff(BusyModeActivity.this, false, null);
 				MyToast.makeText(BusyModeActivity.this, R.string.busymode_tip_close_toast, MyToast.LENGTH_LONG, false).show();
 				finish();
 				break;
@@ -121,9 +121,9 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 			case R.id.btn_busymodeset_ok:
 				// 设置自动回复的开关，以及短信回复的文字
 				if (TextUtils.isEmpty(editMsgContent.getText())) {
-					BusyModeUtil.setBusyModeOn(BusyModeActivity.this, true, null, false);
+					BusyModeUtil.setBusyModeOnOff(BusyModeActivity.this, true, null);
 				} else {
-					BusyModeUtil.setBusyModeOn(BusyModeActivity.this, true, editMsgContent.getText().toString(), true);
+					BusyModeUtil.setBusyModeOnOff(BusyModeActivity.this, true, editMsgContent.getText().toString());
 				}
 
 				MyToast.makeText(BusyModeActivity.this, R.string.busymode_tip_open_toast, MyToast.LENGTH_LONG, false).show();
