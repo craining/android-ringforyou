@@ -28,6 +28,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.tools.busymode.BusyModeUtil;
 import com.zgy.ringforu.tools.disablegprs.DisableGprsUtil;
 import com.zgy.ringforu.tools.signalreconnect.SignalReconnectUtil;
@@ -73,8 +74,8 @@ public class MainUtil {
 	public static final int MAX_NUMS = 10;
 
 	// 安静时段配置文件
-	public static final String FILE_SLIENT_PER = "slient.cfg";
-	public static final String FILE_PATH_SLIENT_PER = "/data/data/com.zgy.ringforu/files/slient.cfg";
+	// public static final String FILE_SLIENT_PER = "slient.cfg";
+	// public static final String FILE_PATH_SLIENT_PER = "/data/data/com.zgy.ringforu/files/slient.cfg";
 
 	public static final String FEEDBACK_EMAIL_TO = "craining@163.com";
 	public static final String FEEDBACK_TITLE = "RingForYou反馈";
@@ -306,62 +307,58 @@ public class MainUtil {
 	 */
 	public static int insertSlientP(Context con, String per) {
 		int result = 2;
-		String preTimePer = "";
-		if ((new File(FILE_PATH_SLIENT_PER).exists())) {
-			preTimePer = FileUtil.load(FILE_SLIENT_PER, con, false);
-			if (preTimePer != null) {
-				if (preTimePer.contains(per)) {
-					return -1;// 重复
-				} else {
-					String[] a = preTimePer.split(":::");
-					String[] pretimes = a[0].split("-");
-					String[] newtimes = per.split("-");
+		String preTimePer = MainConfig.getInstance().getSlientTime();
+		if (!StringUtil.isNull(preTimePer)) {
+			if (preTimePer.contains(per)) {
+				return -1;// 重复
+			} else {
+				String[] a = preTimePer.split(":::");
+				String[] pretimes = a[0].split("-");
+				String[] newtimes = per.split("-");
 
-					if (pretimes[0].equals(newtimes[0])) {
-						if (TimeUtil.isTestTimeInFreeTime(pretimes[0], pretimes[1], newtimes[1])) {
-							// 01:00-05:00
-							// 01:00-04:00
-							// 被包含
-							return 0;
-						} else {
-							// 01:00-05:00
-							// 01:00-06:00
-							// 包含
-							result = 3;
-						}
-
-					} else if (pretimes[1].equals(newtimes[1])) {
-						if (TimeUtil.isTestTimeInFreeTime(pretimes[0], pretimes[1], newtimes[0])) {
-							// 03:00-04:00
-							// 01:00-04:00
-							// 被包含
-							return 0;
-						} else {
-							// 01:00-05:00
-							// 01:00-06:00
-							// 包含
-							result = 3;
-						}
-					} else if (TimeUtil.isTestTimeInFreeTime(pretimes[0], pretimes[1], newtimes[0]) && TimeUtil.isTestTimeInFreeTime(pretimes[0], pretimes[1], newtimes[1])) {
-						return 0;// 被包含
-					} else if (TimeUtil.isTestTimeInFreeTime(pretimes[0], pretimes[1], newtimes[0]) || TimeUtil.isTestTimeInFreeTime(pretimes[0], pretimes[1], newtimes[1])) {
-						return 1;// 冲突
+				if (pretimes[0].equals(newtimes[0])) {
+					if (TimeUtil.isTestTimeInFreeTime(pretimes[0], pretimes[1], newtimes[1])) {
+						// 01:00-05:00
+						// 01:00-04:00
+						// 被包含
+						return 0;
 					} else {
-						if (TimeUtil.isTestTimeInFreeTime(newtimes[0], newtimes[1], pretimes[0]) && TimeUtil.isTestTimeInFreeTime(newtimes[0], newtimes[1], pretimes[1])) {
-							result = 3;// 包含
-						}
+						// 01:00-05:00
+						// 01:00-06:00
+						// 包含
+						result = 3;
+					}
+
+				} else if (pretimes[1].equals(newtimes[1])) {
+					if (TimeUtil.isTestTimeInFreeTime(pretimes[0], pretimes[1], newtimes[0])) {
+						// 03:00-04:00
+						// 01:00-04:00
+						// 被包含
+						return 0;
+					} else {
+						// 01:00-05:00
+						// 01:00-06:00
+						// 包含
+						result = 3;
+					}
+				} else if (TimeUtil.isTestTimeInFreeTime(pretimes[0], pretimes[1], newtimes[0]) && TimeUtil.isTestTimeInFreeTime(pretimes[0], pretimes[1], newtimes[1])) {
+					return 0;// 被包含
+				} else if (TimeUtil.isTestTimeInFreeTime(pretimes[0], pretimes[1], newtimes[0]) || TimeUtil.isTestTimeInFreeTime(pretimes[0], pretimes[1], newtimes[1])) {
+					return 1;// 冲突
+				} else {
+					if (TimeUtil.isTestTimeInFreeTime(newtimes[0], newtimes[1], pretimes[0]) && TimeUtil.isTestTimeInFreeTime(newtimes[0], newtimes[1], pretimes[1])) {
+						result = 3;// 包含
 					}
 				}
 			}
 		}
 
 		if (result == 3) {
-			(new File(FILE_PATH_SLIENT_PER)).delete();
-			Log.v(TAG, "delete the other periord");
-			FileUtil.save(MainUtil.FILE_SLIENT_PER, per + ":::", con);
+			Log.v(TAG, "contains the pre periord");
+			MainConfig.getInstance().setSlientTime(per);
 		}
 		if (result == 2) {
-			FileUtil.save(MainUtil.FILE_SLIENT_PER, preTimePer + per + ":::", con);
+			MainConfig.getInstance().setSlientTime(preTimePer + ":::" + per);
 		}
 		return result;
 	}
@@ -374,9 +371,10 @@ public class MainUtil {
 	public static boolean isEffective(Context con) {
 		boolean result = true;
 
-		if ((new File(FILE_PATH_SLIENT_PER).exists())) {
-			String strSlientP = FileUtil.load(FILE_SLIENT_PER, con, false);
-			if (strSlientP != null && strSlientP.contains(":::")) {
+		String strSlientP = MainConfig.getInstance().getSlientTime();
+
+		if (!StringUtil.isNull(strSlientP)) {
+			if (strSlientP.contains(":::")) {
 				String[] a = strSlientP.split(":::");
 				for (String a_item : a) {
 					if (a_item != null && a_item.contains("-")) {

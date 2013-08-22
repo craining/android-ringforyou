@@ -2,8 +2,6 @@ package com.zgy.ringforu.tools.watermark;
 
 import android.app.Service;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.util.DisplayMetrics;
@@ -15,8 +13,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.zgy.ringforu.MainApplication;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.RToolsActivity;
+import com.zgy.ringforu.activity.RToolsActivity;
 import com.zgy.ringforu.util.BitmapUtil;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.view.MyToast;
@@ -71,7 +70,7 @@ public class WaterMarkService extends Service {
 		// 设置LayoutParams(全局变量）相关参数
 		view = LayoutInflater.from(this).inflate(R.layout.watermark_floating, null);
 		wm = (WindowManager) getApplicationContext().getSystemService("window");
-		wmParams = ((MainApplication) getApplication()).getMywmParams();
+		wmParams = MainApplication.getMywmParams();
 		wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;// 该类型提供与用户交互，置于所有应用程序上方，但是在状态栏后面
 		wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;// 不接受任何按键事件
 		// wmParams.gravity = Gravity.LEFT | Gravity.TOP; //

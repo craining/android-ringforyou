@@ -14,55 +14,55 @@ public class FileUtil {
 
 	private static final String TAG = "FileUtil";
 
-	/**
-	 * 向 file 中写数据
-	 * 
-	 * @param fileName
-	 * @param toSave
-	 * @return
-	 */
-	public static boolean save(String fileName, String toSave, Context con) {
-		Properties properties = new Properties();
-
-		properties.put("string", toSave);
-		try {
-			FileOutputStream stream = con.openFileOutput(fileName, Context.MODE_WORLD_WRITEABLE);
-			properties.store(stream, "string");
-		} catch (FileNotFoundException e) {
-			return false;
-		} catch (IOException e) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * 读取 file 中的数据
-	 * 
-	 * @param fileName
-	 * @return
-	 */
-	public static String load(String fileName, Context con, boolean skip) {
-		Properties properties = new Properties();
-		try {
-			FileInputStream stream = con.openFileInput(fileName);
-			properties.load(stream);
-		} catch (FileNotFoundException e) {
-			return null;
-		} catch (IOException e) {
-			return null;
-		}
-
-		String result = null;
-		result = properties.get("string").toString();
-		Log.v(TAG, "读取内容" + result);
-		if (skip && result != null && result.length() > 4) {
-			result = result.substring(0, result.length() - 3);
-			Log.v(TAG, "返回内容" + result);
-		}
-		return result;
-	}
+//	/**
+//	 * 向 file 中写数据
+//	 * 
+//	 * @param fileName
+//	 * @param toSave
+//	 * @return
+//	 */
+//	public static boolean save(String fileName, String toSave, Context con) {
+//		Properties properties = new Properties();
+//
+//		properties.put("string", toSave);
+//		try {
+//			FileOutputStream stream = con.openFileOutput(fileName, Context.MODE_WORLD_WRITEABLE);
+//			properties.store(stream, "string");
+//		} catch (FileNotFoundException e) {
+//			return false;
+//		} catch (IOException e) {
+//			return false;
+//		}
+//
+//		return true;
+//	}
+//
+//	/**
+//	 * 读取 file 中的数据
+//	 * 
+//	 * @param fileName
+//	 * @return
+//	 */
+//	public static String load(String fileName, Context con, boolean skip) {
+//		Properties properties = new Properties();
+//		try {
+//			FileInputStream stream = con.openFileInput(fileName);
+//			properties.load(stream);
+//		} catch (FileNotFoundException e) {
+//			return null;
+//		} catch (IOException e) {
+//			return null;
+//		}
+//
+//		String result = null;
+//		result = properties.get("string").toString();
+//		Log.v(TAG, "读取内容" + result);
+//		if (skip && result != null && result.length() > 4) {
+//			result = result.substring(0, result.length() - 3);
+//			Log.v(TAG, "返回内容" + result);
+//		}
+//		return result;
+//	}
 
 	/**
 	 * 拷贝目录下的所有文件到指定目录

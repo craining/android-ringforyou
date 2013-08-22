@@ -85,64 +85,9 @@ public class CallReceiver extends BroadcastReceiver {
 								PhoneUtil.doActionAboutCall(con, PhoneUtil.HANG_UP_CALL);
 							}
 						}, 1000);
-
-						// Log.e(TAG, "change phone airplane state to offhook incoming call! -- off");
-						// // 飞行模式
-						// PhoneUtil.setAirplaneModeOff(con, true);
-						// // SystemClock.sleep(5000);
-						// // Log.e(TAG, "change phone airplane state to offhook incoming call! -- on");
-						// // PhoneUtil.setAirplaneModeOff(con, false);
-						//
-						// new Handler().postDelayed(new Runnable() {
-						//
-						// public void run() {
-						// Log.e(TAG, "change phone airplane state to offhook incoming call! -- on");
-						// PhoneUtil.setAirplaneModeOff(con, false);
-						// }
-						// }, 5000);
-
 					} else {
 						PhoneUtil.doActionAboutCall(con, PhoneUtil.HANG_UP_CALL);
-						// 自动挂断
-						// try {
-						// // Field field =
-						// // this.getClass().getSuperclass().getDeclaredField("mAbortBroadcast");
-						// // Field field =
-						// //
-						// CallReceiver.this.getClass().getSuperclass().getDeclaredField("mAbortBroadcast");
-						// Field field =
-						// CallReceiver.this.getClass().getSuperclass().getDeclaredField("mPendingResult");
-						// Object obj = field.get(CallReceiver.this);
-						// field = obj.getClass().getDeclaredField("mAbortBroadcast");
-						//
-						// // Field field =
-						// // CallReceiver.this.getClass().getSuperclass().getDeclaredField("mFinished");
-						// field.setAccessible(true);
-						// field.set(obj, true);
-						// } catch (Exception e) {
-						// e.printStackTrace();
-						// }
-
-						// 无法abrot，因为是无序广播
-						// abortBroadcast();
-						// setResultData(null);
-
-						// mAbortBroadcast
-
 						Log.e(TAG, "offhook incoming call!");
-						// try {
-						// Method getITelephonyMethod =
-						// TelephonyManager.class.getDeclaredMethod("getITelephony", (Class[]) null);
-						// getITelephonyMethod.setAccessible(true);
-						// TelephonyManager mTelephonyManager = (TelephonyManager)
-						// con.getSystemService(Context.TELEPHONY_SERVICE);
-						// Object mITelephony = getITelephonyMethod.invoke(mTelephonyManager, (Object[])
-						// null);
-						// mITelephony.getClass().getMethod("endCall", new Class[] {}).invoke(mITelephony, new
-						// Object[] {});
-						// } catch (Exception e) {
-						// e.printStackTrace();
-						// }
 					}
 				} else {
 					// 正常，判断是否为忙碌模式

@@ -10,8 +10,8 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.zgy.ringforu.MainActivityGroup;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.activity.MainActivityGroup;
 import com.zgy.ringforu.util.ContactsUtil;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
