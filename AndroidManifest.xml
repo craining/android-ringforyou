@@ -2,6 +2,7 @@
     package="com.zgy.ringforu"
     android:versionCode="2"
     android:versionName="2.0" >
+
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
@@ -61,7 +62,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".AddByInputActivity"
+            android:name=".activity.AddByInputActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
@@ -79,7 +80,7 @@
                 <action android:name="android.intent.action.PICK_ACTIVITY" />
                 <action android:name="android.intent.action.SET_WALLPAPER" />
                 <action android:name="android.intent.action.DIAL"/>
-                <action android:name="android.intent.action.SENDTO"/>
+                <action android:name="android.intent.action.SENDTO"/>
                 -->
                 <action android:name="android.intent.action.SEND" />
                 <!-- 分享到 -->
@@ -98,7 +99,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="activity..AddSlientPerActivity"
+            android:name=".activity.AddSlientPerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
@@ -116,28 +117,19 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
             <intent-filter>
-
-                <!--
-                <action android:name="android.intent.action.EDIT" />编辑联系人
                 <action android:name="android.intent.action.CHOOSER" />
                 <action android:name="android.intent.action.PICK" />
-                <action android:name="android.intent.action.PICK_ACTIVITY" />
-                <action android:name="android.intent.action.SET_WALLPAPER" />
-                <action android:name="android.intent.action.DIAL"/>
-                <action android:name="android.intent.action.SENDTO"/>
-                -->
+                <action android:name="android.intent.action.SENDTO" />
                 <action android:name="android.intent.action.SEND" />
                 <!-- 分享到 -->
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="text/plain" >
+                <data android:mimeType="image/*" >
                 </data>
             </intent-filter>
         </activity>
-        <!-- android:theme="@style/activity" -->
-
         <activity
-            android:name=".SetHideStyleActivity"
+            android:name=".activity.SetHideStyleActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />

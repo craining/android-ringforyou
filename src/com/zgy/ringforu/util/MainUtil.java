@@ -27,6 +27,7 @@ import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.tools.busymode.BusyModeUtil;
@@ -39,50 +40,18 @@ public class MainUtil {
 
 	private static final String TAG = "MainUtil";
 
-	public static final int DLG_BTN_ALPHA = 100;// 对话框按钮的透明度
-
-	public static final int TYPE_IMPORTANT = 0;// 重要联系人的操作
-	public static final int TYPE_CALL = 1;// 屏蔽电话的操作
-	public static final int TYPE_SMS = 2;// 屏蔽短信的操作
-	public static final int TYPE_MORE = 3;// 更多
-
 	public static final String FILE_INNER = "/data/data/com.zgy.ringforu/files/";
 	public static final String FILE_IN_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ringforu/";
 
-//	public static final String FILE_IMPORTANT_NUM_LOG = "importantnumbers.cfg";
-//	public static final String FILE_IMPORTANT_NAME_LOG = "importantnames.cfg";
-//	public static final File FILE_IMPORTANT_PATH_NUM = new File("/data/data/com.zgy.ringforu/files/importantnumbers.cfg");
-//	public static final File FILE_IMPORTANT_PATH_NAME = new File("/data/data/com.zgy.ringforu/files/importantnames.cfg");
 	public static final File FILE_SDCARD_IMPORTANT_NUM = new File(FILE_IN_SDCARD + "importantnumbers.cfg");
 	public static final File FILE_SDCARD_IMPORTANT_NAME = new File(FILE_IN_SDCARD + "importantnames.cfg");
 
-//	public static final String FILE_CALL_NUM_LOG = "callnumbers.cfg";
-//	public static final String FILE_CALL_NAME_LOG = "callnames.cfg";
-//	public static final File FILE_CALL_PATH_NUM = new File("/data/data/com.zgy.ringforu/files/callnumbers.cfg");
-//	public static final File FILE_CALL_PATH_NAME = new File("/data/data/com.zgy.ringforu/files/callnames.cfg");
 	public static final File FILE_SDCARD_CALL_NUM = new File(FILE_IN_SDCARD + "callnumbers.cfg");
 	public static final File FILE_SDCARD_CALL_NAME = new File(FILE_IN_SDCARD + "callnames.cfg");
 
-//	public static final String FILE_SMS_NUM_LOG = "smsnumbers.cfg";
-//	public static final String FILE_SMS_NAME_LOG = "smsnames.cfg";
-//	public static final File FILE_SMS_PATH_NUM = new File("/data/data/com.zgy.ringforu/files/smsnumbers.cfg");
-//	public static final File FILE_SMS_PATH_NAME = new File("/data/data/com.zgy.ringforu/files/smsnames.cfg");
 	public static final File FILE_SDCARD_SMS_NUM = new File(FILE_IN_SDCARD + "smsnumbers.cfg");
 	public static final File FILE_SDCARD_SMS_NAME = new File(FILE_IN_SDCARD + "smsnames.cfg");
 
-	// 最多可添加10个
-	public static final int MAX_NUMS = 10;
-
-	// 安静时段配置文件
-	// public static final String FILE_SLIENT_PER = "slient.cfg";
-	// public static final String FILE_PATH_SLIENT_PER = "/data/data/com.zgy.ringforu/files/slient.cfg";
-
-	public static final String FEEDBACK_EMAIL_TO = "craining@163.com";
-	public static final String FEEDBACK_TITLE = "RingForYou反馈";
-	public static final String FEEDBACK_VERSION = "\r\n-------------------\r\nAPP VERSION: v2.0";
-
-	public static final String FILE_PATH_CALL_HIDE_TAG = "/data/data/com.zgy.ringforu/files/callhide2";// 此目录存在则通话拦截方式为2
-	public static final String FILE_PATH_SMS_HIDE_TAG = "/data/data/com.zgy.ringforu/files/smshide2";// 此目录存在则短信拦截方式为2
 
 	// /**
 	// * 在12:00--13:59
@@ -172,7 +141,8 @@ public class MainUtil {
 		
 		int result = -1;
 		switch (tag) {
-		case TYPE_IMPORTANT:
+		case MainCanstants.TYPE_IMPORTANT:
+			
 			String numbersImportant = mainConfig.getImporantNumbers();
 			if (StringUtil.isNull(numbersImportant)) {
 				mainConfig.setImportantNumbers(strNum);
@@ -193,7 +163,7 @@ public class MainUtil {
 				}
 			}
 			break;
-		case TYPE_CALL:
+		case MainCanstants.TYPE_INTECEPT_CALL:
 			String numbersCall =  mainConfig.getInterceptCallNumbers();
 			if (StringUtil.isNull(numbersCall)) {
 				mainConfig.setInterceptCallNumbers(strNum);
@@ -215,7 +185,7 @@ public class MainUtil {
 				}
 			}
 			break;
-		case TYPE_SMS:
+		case MainCanstants.TYPE_INTECEPT_SMS:
 			String numbersSms = mainConfig.getInterceptSmsNumbers();
 			if (StringUtil.isNull(numbersSms)) {
 				
@@ -260,32 +230,32 @@ public class MainUtil {
 	 * @date:2012-11-23
 	 */
 	public static int getLeft(Context con, int tag) {
-		int result = MAX_NUMS;
+		int result = MainCanstants.MAX_NUMS;
 
 		MainConfig mainConfig = MainConfig.getInstance();
 		switch (tag) {
-		case TYPE_IMPORTANT:
+		case MainCanstants.TYPE_IMPORTANT:
 			String numbersImportant = mainConfig.getImporantNumbers();
 			if (!StringUtil.isNull(numbersImportant)) {
 				String[] arry = numbersImportant.split(":::");
 				Log.v(TAG, " arry.length" + arry.length);
-				result = MAX_NUMS - arry.length;
+				result = MainCanstants.MAX_NUMS - arry.length;
 			}
 			break;
-		case TYPE_CALL:
+		case MainCanstants.TYPE_INTECEPT_CALL:
 			String numbersCall = mainConfig.getInterceptCallNumbers();
 			if (!StringUtil.isNull(numbersCall)) {
 				String[] arry = numbersCall.split(":::");
 				Log.v(TAG, " arry.length" + arry.length);
-				result = MAX_NUMS - arry.length;
+				result = MainCanstants.MAX_NUMS - arry.length;
 			}
 			break;
-		case TYPE_SMS:
+		case MainCanstants.TYPE_INTECEPT_SMS:
 			String numbersSms = mainConfig.getInterceptSmsNumbers();
 			if (!StringUtil.isNull(numbersSms)) {
 				String[] arry = numbersSms.split(":::");
 				Log.v(TAG, " arry.length" + arry.length);
-				result = MAX_NUMS - arry.length;
+				result = MainCanstants.MAX_NUMS - arry.length;
 			}
 			break;
 

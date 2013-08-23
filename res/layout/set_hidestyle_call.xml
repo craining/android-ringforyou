@@ -64,14 +64,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_call1"
+                    android:text="@string/set_hidestyle_call_null"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_call1_info"
+                    android:text="@string/set_hidestyle_call_null_info"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -111,14 +111,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_call2"
+                    android:text="@string/set_hidestyle_call_shutdown"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_call2_info"
+                    android:text="@string/set_hidestyle_call_shutdown_info"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
             </LinearLayout>

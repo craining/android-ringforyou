@@ -25,6 +25,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.R.id;
 import com.zgy.ringforu.R.layout;
@@ -33,6 +34,7 @@ import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
 
@@ -103,8 +105,10 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 	}
 
 	private void saveLastAll() {
+		MainConfig.getInstance().setImportantNumbers("");
+		MainConfig.getInstance().setImportantNames("");
 		for (HashMap<String, String> a : listItem) {
-			MainUtil.insert(a.get("name"), a.get("number"), TabImportantActivity.this, 0);
+			MainUtil.insert(a.get("name"), a.get("number"), TabImportantActivity.this, MainCanstants.TYPE_IMPORTANT);
 		}
 	}
 
@@ -115,7 +119,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 		allNameSelected = mainConfig.getImporantNames();
 		// Log.e(TAG, "names=" + allNameSelected);
 		// Log.e(TAG, "nums=" + allNumbersSelected);
-		if (allNumbersSelected != null && allNameSelected != null) {
+		if (!StringUtil.isNull(allNumbersSelected) && !StringUtil.isNull(allNameSelected)) {
 			String[] allNums = allNumbersSelected.split(":::");
 			String[] allNames = allNameSelected.split(":::");
 			for (int i = 0; i < allNums.length; i++) {
@@ -169,13 +173,13 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btn_important_addfrom:
 			Intent i = new Intent(TabImportantActivity.this, AddByContactsActivity.class);
-			i.putExtra("tag", 0);
-			startActivityForResult(i, 1);
+			i.putExtra("tag", MainCanstants.TYPE_IMPORTANT);
+			startActivity(i);
 			break;
 		case R.id.btn_important_addby:
 			Intent i2 = new Intent(TabImportantActivity.this, AddByInputActivity.class);
-			i2.putExtra("tag", 0);
-			startActivityForResult(i2, 1);
+			i2.putExtra("tag", MainCanstants.TYPE_IMPORTANT);
+			startActivity(i2);
 			break;
 		case R.id.btn_important_clslist:
 			// 清空重要联系人
@@ -210,7 +214,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.img_important_set:
 			Intent i4 = new Intent(TabImportantActivity.this, SetActivity.class);
-			i4.putExtra("tag", 0);
+			i4.putExtra("tag", MainCanstants.TYPE_IMPORTANT);
 			startActivity(i4);
 			break;
 		default:

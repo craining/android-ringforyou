@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.R.drawable;
 import com.zgy.ringforu.R.id;
@@ -87,16 +88,16 @@ public class MainActivityGroup extends ActivityGroup implements OnClickListener 
 	// 在主界面中显示其他界面
 	public void showView(int flag) {
 		switch (flag) {
-		case MainUtil.TYPE_IMPORTANT:
+		case MainCanstants.TYPE_IMPORTANT:
 			showImportant();
 			break;
-		case MainUtil.TYPE_CALL:
+		case MainCanstants.TYPE_INTECEPT_CALL:
 			showCall();
 			break;
-		case MainUtil.TYPE_SMS:
+		case MainCanstants.TYPE_INTECEPT_SMS:
 			showSms();
 			break;
-		case MainUtil.TYPE_MORE:
+		case MainCanstants.TYPE_MORE:
 			showMore();
 			break;
 		default:

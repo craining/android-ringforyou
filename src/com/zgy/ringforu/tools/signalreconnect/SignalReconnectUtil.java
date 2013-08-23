@@ -7,12 +7,14 @@ import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 
 public class SignalReconnectUtil {
 
-	public static final File FILE_SIGNAL_RECONNECT_SWITCH = new File("/data/data/com.zgy.ringforu/signalreconnect");// 是否掉线重连的开关
+	// public static final File FILE_SIGNAL_RECONNECT_SWITCH = new
+	// File("/data/data/com.zgy.ringforu/signalreconnect");// 是否掉线重连的开关
 	private static final String SERVICE_NAME_SIGNAL_RECONNECT = "com.zgy.ringforu.tools.signalreconnect.SignalReconnectService";
 
 	private static final String TAG = "SignalReconnectUtil";
@@ -25,7 +27,7 @@ public class SignalReconnectUtil {
 	 * @return
 	 */
 	public static boolean isSignalReconnectOn() {
-		if (FILE_SIGNAL_RECONNECT_SWITCH.exists()) {
+		if (MainConfig.getInstance().isSignalReconnectOn()) {
 			return true;
 		} else {
 			return false;
@@ -38,15 +40,7 @@ public class SignalReconnectUtil {
 	 * @param open
 	 */
 	public static void ctrlSignalReconnect(Context context, boolean open) {
-		if (open) {
-			if (!isSignalReconnectOn()) {
-				FILE_SIGNAL_RECONNECT_SWITCH.mkdir();
-			}
-		} else {
-			if (isSignalReconnectOn()) {
-				FILE_SIGNAL_RECONNECT_SWITCH.delete();
-			}
-		}
+		MainConfig.getInstance().setSignalReconnectOnOff(open);
 		checkSignalReconnectState(context);
 	}
 
@@ -56,11 +50,11 @@ public class SignalReconnectUtil {
 	 * @param context
 	 */
 	public static void doSignalReconnect(final Context context) {
-		
-		//此处策略为：
-		//通过开关一次飞行模式，实现重新连接sim卡网络功能
-		//在信号（asu）低于10时，视为信号过低，
-		
+
+		// 此处策略为：
+		// 通过开关一次飞行模式，实现重新连接sim卡网络功能
+		// 在信号（asu）低于10时，视为信号过低，
+
 		if (isSignalReconnectOn() && doReconnect) {
 			doReconnect = false;
 			Log.e(TAG, "change phone airplane state to reconnect START");
@@ -116,7 +110,7 @@ public class SignalReconnectUtil {
 	 */
 	public static void ctrlSignalReconnectBackService(Context context, boolean open) {
 		if (open) {
-			//此处需用在未开启服务的情况下开启，防止重复注册监听器
+			// 此处需用在未开启服务的情况下开启，防止重复注册监听器
 			if (!MainUtil.isServiceStarted(context, SERVICE_NAME_SIGNAL_RECONNECT)) {
 				Intent i = new Intent(context, SignalReconnectService.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

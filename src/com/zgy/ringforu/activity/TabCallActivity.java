@@ -25,6 +25,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.R.id;
 import com.zgy.ringforu.R.layout;
@@ -33,6 +34,7 @@ import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
 
@@ -103,8 +105,11 @@ public class TabCallActivity extends Activity implements OnClickListener {
 	}
 
 	private void saveLastAll() {
+		MainConfig.getInstance().setInterceptCallNumbers("");
+		MainConfig.getInstance().setInterceptCallNames("");
+		MainUtil.insert("", "", TabCallActivity.this, MainCanstants.TYPE_INTECEPT_CALL);
 		for (HashMap<String, String> a : listItem) {
-			MainUtil.insert(a.get("name"), a.get("number"), TabCallActivity.this, 1);
+			MainUtil.insert(a.get("name"), a.get("number"), TabCallActivity.this, MainCanstants.TYPE_INTECEPT_CALL);
 		}
 	}
 
@@ -113,7 +118,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		MainConfig mainConfig = MainConfig.getInstance();
 		allNumbersSelected = mainConfig.getInterceptCallNumbers();
 		allNameSelected = mainConfig.getInterceptCallNames();
-		if (allNumbersSelected != null && allNameSelected != null) {
+		if (!StringUtil.isNull(allNumbersSelected) && !StringUtil.isNull(allNameSelected)) {
 			String[] allNums = allNumbersSelected.split(":::");
 			String[] allNames = allNameSelected.split(":::");
 			for (int i = 0; i < allNums.length; i++) {
@@ -168,13 +173,13 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btn_call_addfrom:
 			Intent i = new Intent(TabCallActivity.this, AddByContactsActivity.class);
-			i.putExtra("tag", 1);
-			startActivityForResult(i, 1);
+			i.putExtra("tag", MainCanstants.TYPE_INTECEPT_CALL);
+			startActivity(i);
 			break;
 		case R.id.btn_call_addby:
 			Intent i2 = new Intent(TabCallActivity.this, AddByInputActivity.class);
-			i2.putExtra("tag", 1);
-			startActivityForResult(i2, 1);
+			i2.putExtra("tag", MainCanstants.TYPE_INTECEPT_CALL);
+			startActivity(i2);
 			break;
 
 		case R.id.btn_call_clslist:
@@ -210,7 +215,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.img_call_set:
 			Intent i4 = new Intent(TabCallActivity.this, SetActivity.class);
-			i4.putExtra("tag", 1);
+			i4.putExtra("tag", MainCanstants.TYPE_INTECEPT_CALL);
 			startActivity(i4);
 			break;
 		default:

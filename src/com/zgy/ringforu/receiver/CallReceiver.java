@@ -11,6 +11,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.tools.busymode.BusyModeUtil;
 import com.zgy.ringforu.util.FileUtil;
@@ -77,9 +78,19 @@ public class CallReceiver extends BroadcastReceiver {
 				} else if (strAllNumsCall != null && strAllNumsCall.contains(StringUtil.getRidofSpeciall(incomingNumber))) {
 
 					// 屏蔽电话，
-					if ((new File(MainUtil.FILE_PATH_CALL_HIDE_TAG)).exists()) {
-
+					PhoneUtil.turnDownThenUp(con);
+					switch (MainConfig.getInstance().getInterceptCallStyle()) {
+					case ConfigCanstants.STYLE_INTERCEPT_CALL_NULL:
+						Log.e(TAG, "INTERCEPT_CALL_STYLE_NULL");
+						PhoneUtil.doActionAboutCall(con, PhoneUtil.HANG_UP_CALL);
+						break;
+					case ConfigCanstants.STYLE_INTERCEPT_CALL_SHUTDOWN:
+						Log.e(TAG, "INTERCEPT_CALL_STYLE_SHUTDOWN");
+						PhoneUtil.doActionAboutCall(con, PhoneUtil.HANG_UP_CALL);
+						break;
+					case ConfigCanstants.STYLE_INTERCEPT_CALL_RECEIVE_SHUTDOWN:
 						// 接听后立刻挂断
+						Log.e(TAG, "INTERCEPT_CALL_STYLE_RECEIVE_SHUTDOWN");
 						PhoneUtil.doActionAboutCall(con, PhoneUtil.ANSWER_RINGING_CALL);
 						new Handler().postDelayed(new Runnable() {
 
@@ -87,10 +98,13 @@ public class CallReceiver extends BroadcastReceiver {
 								PhoneUtil.doActionAboutCall(con, PhoneUtil.HANG_UP_CALL);
 							}
 						}, 1000);
-					} else {
-						PhoneUtil.doActionAboutCall(con, PhoneUtil.HANG_UP_CALL);
-						Log.e(TAG, "offhook incoming call!");
+						break;
+					default:
+						break;
 					}
+
+					// PhoneUtil.doActionAboutCall(con, PhoneUtil.HANG_UP_CALL);
+					// Log.e(TAG, "offhook incoming call!");
 				} else {
 					// 正常，判断是否为忙碌模式
 					if (BusyModeUtil.isBusyModeOn()) {

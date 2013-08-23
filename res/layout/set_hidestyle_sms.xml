@@ -64,14 +64,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_sms1"
+                    android:text="@string/set_hidestyle_sms_disceceive"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_sms1_info"
+                    android:text="@string/set_hidestyle_sms_disceceive_info"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -111,14 +111,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_sms2"
+                    android:text="@string/set_hidestyle_sms_slient"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_sms2_info"
+                    android:text="@string/set_hidestyle_sms_slient_info"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
             </LinearLayout>

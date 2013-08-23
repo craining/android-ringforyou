@@ -14,11 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.R.id;
-import com.zgy.ringforu.R.layout;
-import com.zgy.ringforu.R.string;
-import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.view.MyToast;
@@ -67,9 +64,9 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 		btnImportant = (Button) findViewById(R.id.btn_receivedata_important);
 
 		
-		btnSms.getBackground().setAlpha(MainUtil.DLG_BTN_ALPHA);
-		btnCall.getBackground().setAlpha(MainUtil.DLG_BTN_ALPHA);
-		btnImportant.getBackground().setAlpha(MainUtil.DLG_BTN_ALPHA);
+		btnSms.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
+		btnCall.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
+		btnImportant.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
 		
 		
 		String content = getString(R.string.receivedata_content1) + getNumber;

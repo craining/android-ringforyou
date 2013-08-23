@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.tools.smslightscreen.SmsLightScreenUtil;
 import com.zgy.ringforu.util.MainUtil;
@@ -60,15 +61,20 @@ public class MsgReceiver extends BroadcastReceiver {
 				}
 			} else if (strAllNumsSms != null && strAllNumsSms.contains(getFromNum)) {
 				// ∆¡±Œ∂Ã–≈£¨
-				if ((new File(MainUtil.FILE_PATH_SMS_HIDE_TAG)).exists()) {
-					Log.e(TAG, "hide sms calm down!");
+				switch (MainConfig.getInstance().getInterceptSmsStyle()) {
+				case ConfigCanstants.STYLE_INTERCEPT_SMS_SLIENT:
+					Log.e(TAG, "hide sms slient!");
 					// ±£¡Ù∂Ã–≈
-					PhoneUtil.hideMsg(context);
-				} else {
+					PhoneUtil.turnDownThenUp(context);
+					break;
+				case ConfigCanstants.STYLE_INTERCEPT_SMS_DISRECEIVE:
 					Log.e(TAG, "hide sms abort broadcast!");
 					// ≤ª¥Ê¥¢∂Ã–≈
 					abortBroadcast();
 					setResultData(null);
+					break;
+				default:
+					break;
 				}
 			} else {
 				Log.e(TAG, "check screen light");

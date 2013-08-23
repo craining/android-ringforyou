@@ -110,23 +110,18 @@ public class PhoneUtil {
 		// audioMgr.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_OFF);
 	}
 
+
 	/**
-	 * 屏蔽短信
-	 * 
+	 * 先静音，再回复
 	 * @Description:
 	 * @param context
-	 * @see:
-	 * @since:
+	 * @see: 
+	 * @since: 
 	 * @author: zhuanggy
-	 * @date:2012-11-22
+	 * @date:2013-8-23
 	 */
-	public static void hideMsg(final Context context) {
-		// 先静音、在清除通知栏、再还原声音
+	public static void turnDownThenUp(final Context context) {
 		turnDown(context);
-		// NotificationManager nm = (NotificationManager)
-		// context.getSystemService(Context.NOTIFICATION_SERVICE);
-		// nm.cancelAll();
-		// SystemClock.sleep(1000);
 
 		new Handler().postDelayed(new Runnable() {
 
@@ -134,8 +129,35 @@ public class PhoneUtil {
 				turnPre(context);
 			}
 		}, 5000);
-
+		
 	}
+	
+//	/**
+//	 * 屏蔽短信
+//	 * 
+//	 * @Description:
+//	 * @param context
+//	 * @see:
+//	 * @since:
+//	 * @author: zhuanggy
+//	 * @date:2012-11-22
+//	 */
+//	public static void hideMsg(final Context context) {
+//		// 先静音、在清除通知栏、再还原声音
+//		turnDown(context);
+//		// NotificationManager nm = (NotificationManager)
+//		// context.getSystemService(Context.NOTIFICATION_SERVICE);
+//		// nm.cancelAll();
+//		// SystemClock.sleep(1000);
+//
+//		new Handler().postDelayed(new Runnable() {
+//
+//			public void run() {
+//				turnPre(context);
+//			}
+//		}, 5000);
+//
+//	}
 
 	/**
 	 * 还原之前音量模式

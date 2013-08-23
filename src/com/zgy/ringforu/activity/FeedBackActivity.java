@@ -19,13 +19,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.R.drawable;
-import com.zgy.ringforu.R.id;
-import com.zgy.ringforu.R.layout;
-import com.zgy.ringforu.R.string;
 import com.zgy.ringforu.adapter.AccountAutoCompleteAdapter;
-import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.NetWorkUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.SendEmailUtil;
@@ -107,8 +103,8 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 						SendEmailUtil send = new SendEmailUtil();
 						try {
 							StringBuilder sb = new StringBuilder();
-							sb.append(editContent.getText().toString()).append(getAddr()).append(MainUtil.FEEDBACK_VERSION).append(PhoneUtil.getHandsetInfo(FeedBackActivity.this));
-							send.sendMail(MainUtil.FEEDBACK_TITLE, sb.toString(), MainUtil.FEEDBACK_EMAIL_TO);
+							sb.append(editContent.getText().toString()).append(getAddr()).append(MainCanstants.FEEDBACK_VERSION).append(PhoneUtil.getHandsetInfo(FeedBackActivity.this));
+							send.sendMail(MainCanstants.FEEDBACK_TITLE, sb.toString(), MainCanstants.FEEDBACK_EMAIL_TO);
 						} catch (AddressException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

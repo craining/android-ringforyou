@@ -30,6 +30,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.R.anim;
 import com.zgy.ringforu.R.id;
@@ -258,7 +259,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 		String getAllNumsSms = mainConfig.getInterceptSmsNumbers();
 
 		switch (tag) {
-		case MainUtil.TYPE_IMPORTANT:
+		case MainCanstants.TYPE_IMPORTANT:
 			// 重要联系人添加，不能包含屏蔽短信或电话的人
 			listItem = new ArrayList<HashMap<String, String>>();
 			if (listContacts != null && listContacts.size() > 0) {
@@ -274,7 +275,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 			}
 
 			break;
-		case MainUtil.TYPE_CALL:
+		case MainCanstants.TYPE_INTECEPT_CALL:
 			// 添加屏蔽电话的人，不能包含重要联系人
 			listItem = new ArrayList<HashMap<String, String>>();
 			if (listContacts != null && listContacts.size() > 0) {
@@ -289,7 +290,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 			}
 
 			break;
-		case MainUtil.TYPE_SMS:
+		case MainCanstants.TYPE_INTECEPT_SMS:
 			// 添加屏蔽短信，不能包含重要联系人
 			listItem = new ArrayList<HashMap<String, String>>();
 			if (listContacts != null && listContacts.size() > 0) {

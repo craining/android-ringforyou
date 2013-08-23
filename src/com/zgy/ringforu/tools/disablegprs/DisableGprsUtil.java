@@ -12,13 +12,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo.State;
 import android.util.Log;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.MainUtil;
 
 public class DisableGprsUtil {
 
-	public static final File FILE_DISABLESCREEN_SWITCH = new File("/data/data/com.zgy.ringforu/disablegprs");// 关闭控制与否
-	private static final String SERVICE_NAME_DISABLESCREEN = "com.zgy.ringforu.tools.disablegprs.DisableGprsService";
+	// public static final File FILE_DISABLESCREEN_SWITCH = new
+	// File("/data/data/com.zgy.ringforu/disablegprs");// 关闭控制与否
 
 	private static final String TAG = "DisableGprsUtil";
 
@@ -37,10 +39,10 @@ public class DisableGprsUtil {
 	 */
 	public static void checkDisableGprsState(Context context) {
 		if (DisableGprsUtil.isDisableGprsOn()) {
-//			DisableGprsUtil.ctrlDisableGprsBackService(context, true);
+			// DisableGprsUtil.ctrlDisableGprsBackService(context, true);
 			showNotify(true, context);
 		} else {
-//			DisableGprsUtil.ctrlDisableGprsBackService(context, false);
+			// DisableGprsUtil.ctrlDisableGprsBackService(context, false);
 			showNotify(false, context);
 		}
 	}
@@ -49,7 +51,7 @@ public class DisableGprsUtil {
 	 * 判断开关是否开启
 	 */
 	public static boolean isDisableGprsOn() {
-		if (FILE_DISABLESCREEN_SWITCH.exists()) {
+		if (MainConfig.getInstance().isDisableGprsOn()) {
 			return true;
 		} else {
 			return false;
@@ -60,43 +62,35 @@ public class DisableGprsUtil {
 	 * 开关
 	 */
 	public static void ctrlDisableGprsSwitch(Context context, boolean open) {
-		if (open) {
-			if (!FILE_DISABLESCREEN_SWITCH.exists()) {
-				FILE_DISABLESCREEN_SWITCH.mkdir();
-			}
-		} else {
-			if (FILE_DISABLESCREEN_SWITCH.exists()) {
-				FILE_DISABLESCREEN_SWITCH.delete();
-			}
-		}
+		MainConfig.getInstance().setDisableGprsOnOff(open);
 		checkDisableGprsState(context);
 	}
 
-//	/**
-//	 * 后台监听服务开关
-//	 */
-//	public static void ctrlDisableGprsBackService(Context context, boolean open) {
-//		if (open) {
-//			// if (!MainUtil.isServiceStarted(context, SERVICE_NAME_DISABLESCREEN)) {
-//			Intent i = new Intent(context, DisableGprsService.class);
-//			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//			context.startService(i);
-//			Log.v(TAG, "service is not running, need to start service!");
-//			// } else {
-//			// Log.v(TAG, "service is running, no need to start service!");
-//			// }
-//		} else {
-//			if (MainUtil.isServiceStarted(context, SERVICE_NAME_DISABLESCREEN)) {
-//				Intent i = new Intent(context, DisableGprsService.class);
-//				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//				context.stopService(i);
-//				Log.v(TAG, "service is running, need to stop service!");
-//			} else {
-//				Log.v(TAG, "service is not running, no need to stop service!");
-//			}
-//		}
-//
-//	}
+	// /**
+	// * 后台监听服务开关
+	// */
+	// public static void ctrlDisableGprsBackService(Context context, boolean open) {
+	// if (open) {
+	// // if (!MainUtil.isServiceStarted(context, SERVICE_NAME_DISABLESCREEN)) {
+	// Intent i = new Intent(context, DisableGprsService.class);
+	// i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	// context.startService(i);
+	// Log.v(TAG, "service is not running, need to start service!");
+	// // } else {
+	// // Log.v(TAG, "service is running, no need to start service!");
+	// // }
+	// } else {
+	// if (MainUtil.isServiceStarted(context, SERVICE_NAME_DISABLESCREEN)) {
+	// Intent i = new Intent(context, DisableGprsService.class);
+	// i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	// context.stopService(i);
+	// Log.v(TAG, "service is running, need to stop service!");
+	// } else {
+	// Log.v(TAG, "service is not running, no need to stop service!");
+	// }
+	// }
+	//
+	// }
 
 	/**
 	 * 判断打开或关闭 GPRS是否连接

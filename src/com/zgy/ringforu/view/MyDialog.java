@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.util.MainUtil;
 
 public class MyDialog extends Dialog {
 
@@ -117,8 +117,8 @@ public class MyDialog extends Dialog {
 			Button btnPositive = (Button) layout.findViewById(R.id.btn_dlg_positive);
 			Button btnNegative = (Button) layout.findViewById(R.id.btn_dlg_negative);
 			// …Ë÷√∞ÎÕ∏√˜
-			btnPositive.getBackground().setAlpha(MainUtil.DLG_BTN_ALPHA);
-			btnNegative.getBackground().setAlpha(MainUtil.DLG_BTN_ALPHA);
+			btnPositive.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
+			btnNegative.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
 
 			textTitle.setText(title);
 

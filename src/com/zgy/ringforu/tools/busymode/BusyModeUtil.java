@@ -1,31 +1,17 @@
 package com.zgy.ringforu.tools.busymode;
 
-import java.io.File;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.widget.RemoteViews;
 
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.activity.MainActivityGroup;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.ContactsUtil;
-import com.zgy.ringforu.util.FileUtil;
-import com.zgy.ringforu.util.MainUtil;
-import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
 
 public class BusyModeUtil {
-
-	// public static final File FILE_BUSYMODE_SWITCH = new
-	// File("/data/data/com.zgy.ringforu/busymodeswitch");// 开关
-	// public static final File FILE_BUSYMODE_MESSAGE = new
-	// File("/data/data/com.zgy.ringforu/files/busymodemsg.cfg");// 自动回复的短信
-	// public static final String FILENAME_BUSYMODE_MESSAGE = "busymodemsg.cfg";
 
 	private static final int NOTIFICATION_ID_BUSYMODE_ON = 0;// 状态栏通知的id
 	private static final int PENDINGINTENT_ID_BUSYMODE = 0;

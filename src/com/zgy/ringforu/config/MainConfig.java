@@ -37,11 +37,11 @@ public class MainConfig extends PreferenceUtil {
 	}
 
 	public synchronized boolean isWaterMarkOn() {
-		return getBool(ConfigCanstants.SCREEN_WATERMARK, false);
+		return getBool(ConfigCanstants.SWITCH_SCREEN_WATERMARK, false);
 	}
 
 	public synchronized void setWaterMarkOnOff(boolean on) {
-		putBool(ConfigCanstants.SCREEN_WATERMARK, on);
+		putBool(ConfigCanstants.SWITCH_SCREEN_WATERMARK, on);
 	}
 
 	public synchronized void setWaterMarkAlpha(int alpha) {
@@ -61,11 +61,11 @@ public class MainConfig extends PreferenceUtil {
 	}
 
 	public synchronized boolean isBusyModeOn() {
-		return getBool(ConfigCanstants.BUSYMODE, false);
+		return getBool(ConfigCanstants.SWITCH_BUSYMODE, false);
 	}
 
 	public synchronized void setBusyModeOnOff(boolean on) {
-		putBool(ConfigCanstants.BUSYMODE, on);
+		putBool(ConfigCanstants.SWITCH_BUSYMODE, on);
 	}
 
 	public synchronized String getImporantNumbers() {
@@ -91,8 +91,7 @@ public class MainConfig extends PreferenceUtil {
 	public synchronized void setInterceptSmsNumbers(String numbers) {
 		putString(ConfigCanstants.INTERCEPT_SMS_NUMBER, numbers);
 	}
-	
-	
+
 	public synchronized String getImporantNames() {
 		return getString(ConfigCanstants.IMPORTANT_CALL_NAME, null);
 	}
@@ -116,4 +115,47 @@ public class MainConfig extends PreferenceUtil {
 	public synchronized void setInterceptSmsNames(String names) {
 		putString(ConfigCanstants.INTERCEPT_SMS_NAME, names);
 	}
+
+	public synchronized int getInterceptCallStyle() {
+		return getInt(ConfigCanstants.STYLE_INTERCEPT_CALL, 0);
+	}
+
+	public synchronized void setInterceptCallStyle(int style) {
+		putInt(ConfigCanstants.STYLE_INTERCEPT_CALL, style);
+	}
+
+	public synchronized int getInterceptSmsStyle() {
+		return getInt(ConfigCanstants.STYLE_INTERCEPT_SMS, 0);
+	}
+
+	public synchronized void setInterceptSmsStyle(int style) {
+		putInt(ConfigCanstants.STYLE_INTERCEPT_SMS, style);
+	}
+
+	public synchronized boolean isDisableGprsOn() {
+		return getBool(ConfigCanstants.SWITCH_DISABLE_GPRS, false);
+	}
+
+	public synchronized void setDisableGprsOnOff(boolean on) {
+		putBool(ConfigCanstants.SWITCH_DISABLE_GPRS, on);
+	}
+
+	public synchronized boolean isSignalReconnectOn() {
+		return getBool(ConfigCanstants.SWITCH_SIGNAL_RECONNECT, false);
+	}
+
+	public synchronized void setSignalReconnectOnOff(boolean on) {
+		putBool(ConfigCanstants.SWITCH_SIGNAL_RECONNECT, on);
+	}
+	
+
+	public synchronized boolean isSmsLightScreenOn() {
+		return getBool(ConfigCanstants.SWITCH_SMSLIGHTSCREEN, false);
+	}
+
+	public synchronized void setSmsLightScreenOnOff(boolean on) {
+		putBool(ConfigCanstants.SWITCH_SMSLIGHTSCREEN, on);
+	}
+	
+	
 }

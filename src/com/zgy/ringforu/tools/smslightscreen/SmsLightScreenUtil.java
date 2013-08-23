@@ -2,6 +2,8 @@ package com.zgy.ringforu.tools.smslightscreen;
 
 import java.io.File;
 
+import com.zgy.ringforu.config.MainConfig;
+
 import android.content.Context;
 import android.os.Handler;
 import android.os.PowerManager;
@@ -10,7 +12,6 @@ import android.util.Log;
 
 public class SmsLightScreenUtil {
 
-	public static final File FILE_SMSLIGHTSCREEN_SWITCH = new File("/data/data/com.zgy.ringforu/smslightscreen");// 关闭控制与否
 
 	private static final String TAG = "SmsLightScreenUtil";
 
@@ -20,7 +21,7 @@ public class SmsLightScreenUtil {
 	 * @return
 	 */
 	public static boolean isSmsLightScreenOn() {
-		if (FILE_SMSLIGHTSCREEN_SWITCH.exists()) {
+		if (MainConfig.getInstance().isSmsLightScreenOn()) {
 			return true;
 		} else {
 			return false;
@@ -58,17 +59,7 @@ public class SmsLightScreenUtil {
 	 * @param open
 	 * @return true为已开启，false为已关闭
 	 */
-	public static boolean ctrlSmsLightScreenSwitch(boolean open) {
-		if (open) {
-			if (!isSmsLightScreenOn()) {
-				FILE_SMSLIGHTSCREEN_SWITCH.mkdir();
-			}
-			return true;
-		} else {
-			if (isSmsLightScreenOn()) {
-				FILE_SMSLIGHTSCREEN_SWITCH.delete();
-			}
-			return false;
-		}
+	public static void ctrlSmsLightScreenSwitch(boolean open) {
+		MainConfig.getInstance().setSmsLightScreenOnOff(open);
 	}
 }

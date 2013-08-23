@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.view.MyToast;
@@ -31,9 +32,9 @@ public class DisableGprsActivity extends Activity {
 		btnBack = (Button) findViewById(R.id.btn_back);
 		textShowState = (TextView) findViewById(R.id.text_showstate);
 
-		btnOpen.getBackground().setAlpha(MainUtil.DLG_BTN_ALPHA);
-		btnClose.getBackground().setAlpha(MainUtil.DLG_BTN_ALPHA);
-		btnBack.getBackground().setAlpha(MainUtil.DLG_BTN_ALPHA);
+		btnOpen.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
+		btnClose.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
+		btnBack.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
 		
 		if (DisableGprsUtil.isDisableGprsOn()) {
 			textShowState.setText(R.string.disable_gprs_on);
