@@ -1,5 +1,7 @@
 package com.zgy.ringforu.tools.busymode;
 
+import com.zgy.ringforu.RingForU;
+
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,7 +15,8 @@ public class NotificationBusyModeRefusedReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.e(TAG, "onReceive");
+		if (RingForU.DEBUG)
+			Log.e(TAG, "onReceive");
 		if (intent.getAction().equals(BusyModeUtil.BUSYMODE_ACTION_CALL)) {
 			String number = intent.getExtras().getString(BusyModeUtil.INTENT_ACTION_KEY_CALL);
 			Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
@@ -21,7 +24,8 @@ public class NotificationBusyModeRefusedReceiver extends BroadcastReceiver {
 			context.startActivity(i);
 		} else if (intent.getAction().equals(BusyModeUtil.BUSYMODE_ACTION_CLEAR)) {
 			int id = intent.getExtras().getInt(BusyModeUtil.INTENT_ACTION_KEY_CLEAR);
-			Log.v(TAG, "cancel id = " + id);
+			if (RingForU.DEBUG)
+				Log.v(TAG, "cancel id = " + id);
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			notificationManager.cancel(id);
 		}

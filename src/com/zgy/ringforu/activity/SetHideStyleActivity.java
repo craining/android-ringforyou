@@ -26,11 +26,23 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 
 	private int tag = 1;// 1为通话的拦截方式； 2为短信的拦截方式
 
-	private RelativeLayout layoutStyle1;
-	private RelativeLayout layoutStyle2;
+	// SMS
+	private RelativeLayout smsDisreceive;
+	private RelativeLayout smsSlientReceive;
 
-	private ImageView imgStyleSelected1;
-	private ImageView imgStyleSelected2;
+	private ImageView imgSmsDisreceive;
+	private ImageView imgSmsSlientReceive;
+
+	// CALL
+	private RelativeLayout callNoAnswer;
+	private RelativeLayout callNull;
+	private RelativeLayout callShutDwon;
+	private RelativeLayout callReceiveShutDown;
+
+	private ImageView imgCallNoAnswer;
+	private ImageView imgCallNull;
+	private ImageView imgCallShutDwon;
+	private ImageView imgCallReceiveShutDown;
 
 	private Button btnBack;
 
@@ -51,20 +63,31 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 		switch (tag) {
 		case MainCanstants.TYPE_INTECEPT_CALL:
 			setContentView(R.layout.set_hidestyle_call);
-			layoutStyle1 = (RelativeLayout) findViewById(R.id.layout_sethidestyle_call1);
-			layoutStyle2 = (RelativeLayout) findViewById(R.id.layout_sethidestyle_call2);
-			imgStyleSelected1 = (ImageView) findViewById(R.id.img_sethidestyle_call1);
-			imgStyleSelected2 = (ImageView) findViewById(R.id.img_sethidestyle_call2);
+			callNoAnswer = (RelativeLayout) findViewById(R.id.layout_sethidestyle_call_no_answer);
+			callNull = (RelativeLayout) findViewById(R.id.layout_sethidestyle_call_null);
+			callShutDwon = (RelativeLayout) findViewById(R.id.layout_sethidestyle_call_shutdown);
+			callReceiveShutDown = (RelativeLayout) findViewById(R.id.layout_sethidestyle_call_receive_shutdown);
+			imgCallNoAnswer = (ImageView) findViewById(R.id.img_sethidestyle_call_no_answer);
+			imgCallNull = (ImageView) findViewById(R.id.img_sethidestyle_call_null);
+			imgCallShutDwon = (ImageView) findViewById(R.id.img_sethidestyle_call_shutdown);
+			imgCallReceiveShutDown = (ImageView) findViewById(R.id.img_sethidestyle_call_receive_shutdown);
 			btnBack = (Button) findViewById(R.id.btn_sethidestyle_return_call);
+			callNoAnswer.setOnClickListener(this);
+			callNull.setOnClickListener(this);
+			callShutDwon.setOnClickListener(this);
+			callReceiveShutDown.setOnClickListener(this);
 			refreshCallSelected();
 			break;
 		case MainCanstants.TYPE_INTECEPT_SMS:
 			setContentView(R.layout.set_hidestyle_sms);
-			layoutStyle1 = (RelativeLayout) findViewById(R.id.layout_sethidestyle_sms1);
-			layoutStyle2 = (RelativeLayout) findViewById(R.id.layout_sethidestyle_sms2);
-			imgStyleSelected1 = (ImageView) findViewById(R.id.img_sethidestyle_sms1);
-			imgStyleSelected2 = (ImageView) findViewById(R.id.img_sethidestyle_sms2);
+			smsDisreceive = (RelativeLayout) findViewById(R.id.layout_sethidestyle_sms_disreceive);
+			smsSlientReceive = (RelativeLayout) findViewById(R.id.layout_sethidestyle_sms_slient);
+			imgSmsDisreceive = (ImageView) findViewById(R.id.img_sethidestyle_sms_disreceive);
+			imgSmsSlientReceive = (ImageView) findViewById(R.id.img_sethidestyle_sms_slient);
 			btnBack = (Button) findViewById(R.id.btn_sethidestyle_return_sms);
+
+			smsDisreceive.setOnClickListener(this);
+			smsSlientReceive.setOnClickListener(this);
 			refreshSmsSelected();
 			break;
 
@@ -72,10 +95,6 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 			break;
 		}
 
-		layoutStyle1.setOnClickListener(this);
-		layoutStyle2.setOnClickListener(this);
-		imgStyleSelected1.setOnClickListener(this);
-		imgStyleSelected2.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
 	}
 
@@ -84,30 +103,35 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 		if (PhoneUtil.bIsVerbOn) {
 			vb.vibrate(new long[] { 0, 20 }, -1);
 		}
-		// if (tag == MainCanstants.TYPE_INTECEPT_CALL) {
 		switch (v.getId()) {
-		case R.id.layout_sethidestyle_call1:
+		case R.id.layout_sethidestyle_call_null:
 			MainConfig.getInstance().setInterceptCallStyle(ConfigCanstants.STYLE_INTERCEPT_CALL_NULL);
 			refreshCallSelected();
 			break;
-		case R.id.layout_sethidestyle_call2:
+		case R.id.layout_sethidestyle_call_shutdown:
 			MainConfig.getInstance().setInterceptCallStyle(ConfigCanstants.STYLE_INTERCEPT_CALL_SHUTDOWN);
 			refreshCallSelected();
 			break;
+
+		case R.id.layout_sethidestyle_call_no_answer:
+			MainConfig.getInstance().setInterceptCallStyle(ConfigCanstants.STYLE_INTERCEPT_CALL_NO_ANSWER);
+			refreshCallSelected();
+			break;
+		case R.id.layout_sethidestyle_call_receive_shutdown:
+			MainConfig.getInstance().setInterceptCallStyle(ConfigCanstants.STYLE_INTERCEPT_CALL_RECEIVE_SHUTDOWN);
+			refreshCallSelected();
+			break;
+
 		case R.id.btn_sethidestyle_return_call:
 			finish();
 			break;
-		// default:
-		// break;
-		// }
-		// } else {
-		// switch (v.getId()) {
-		case R.id.layout_sethidestyle_sms1:
+
+		case R.id.layout_sethidestyle_sms_disreceive:
 			MainConfig.getInstance().setInterceptSmsStyle(ConfigCanstants.STYLE_INTERCEPT_SMS_SLIENT);
-			
+
 			refreshSmsSelected();
 			break;
-		case R.id.layout_sethidestyle_sms2:
+		case R.id.layout_sethidestyle_sms_slient:
 			MainConfig.getInstance().setInterceptSmsStyle(ConfigCanstants.STYLE_INTERCEPT_SMS_DISRECEIVE);
 			refreshSmsSelected();
 			break;
@@ -124,12 +148,30 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 	private void refreshCallSelected() {
 		switch (MainConfig.getInstance().getInterceptCallStyle()) {
 		case ConfigCanstants.STYLE_INTERCEPT_CALL_NULL:
-			imgStyleSelected1.setVisibility(View.VISIBLE);
-			imgStyleSelected2.setVisibility(View.GONE);
+			imgCallNull.setVisibility(View.VISIBLE);
+			imgCallNoAnswer.setVisibility(View.GONE);
+			imgCallShutDwon.setVisibility(View.GONE);
+			imgCallReceiveShutDown.setVisibility(View.GONE);
 			break;
 		case ConfigCanstants.STYLE_INTERCEPT_CALL_SHUTDOWN:
-			imgStyleSelected1.setVisibility(View.GONE);
-			imgStyleSelected2.setVisibility(View.VISIBLE);
+			imgCallNull.setVisibility(View.GONE);
+			imgCallNoAnswer.setVisibility(View.GONE);
+			imgCallShutDwon.setVisibility(View.VISIBLE);
+			imgCallReceiveShutDown.setVisibility(View.GONE);
+			break;
+
+		case ConfigCanstants.STYLE_INTERCEPT_CALL_NO_ANSWER:
+			imgCallNull.setVisibility(View.GONE);
+			imgCallNoAnswer.setVisibility(View.VISIBLE);
+			imgCallShutDwon.setVisibility(View.GONE);
+			imgCallReceiveShutDown.setVisibility(View.GONE);
+			break;
+
+		case ConfigCanstants.STYLE_INTERCEPT_CALL_RECEIVE_SHUTDOWN:
+			imgCallNull.setVisibility(View.GONE);
+			imgCallNoAnswer.setVisibility(View.GONE);
+			imgCallShutDwon.setVisibility(View.GONE);
+			imgCallReceiveShutDown.setVisibility(View.VISIBLE);
 			break;
 		default:
 			break;
@@ -139,12 +181,12 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 	private void refreshSmsSelected() {
 		switch (MainConfig.getInstance().getInterceptSmsStyle()) {
 		case ConfigCanstants.STYLE_INTERCEPT_SMS_DISRECEIVE:
-			imgStyleSelected1.setVisibility(View.GONE);
-			imgStyleSelected2.setVisibility(View.VISIBLE);
+			imgSmsDisreceive.setVisibility(View.GONE);
+			imgSmsSlientReceive.setVisibility(View.VISIBLE);
 			break;
 		case ConfigCanstants.STYLE_INTERCEPT_SMS_SLIENT:
-			imgStyleSelected1.setVisibility(View.VISIBLE);
-			imgStyleSelected2.setVisibility(View.GONE);
+			imgSmsDisreceive.setVisibility(View.VISIBLE);
+			imgSmsSlientReceive.setVisibility(View.GONE);
 			break;
 		default:
 			break;

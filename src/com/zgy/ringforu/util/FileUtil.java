@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.zgy.ringforu.RingForU;
+
 import android.content.Context;
 import android.util.Log;
 
@@ -57,6 +59,7 @@ public class FileUtil {
 
 		String result = null;
 		result = properties.get("string").toString();
+		if (RingForU.DEBUG)
 		Log.v(TAG, "读取内容" + result);
 		return result;
 	}
@@ -118,4 +121,40 @@ public class FileUtil {
 
 		return true;
 	}
+	
+	/**
+	 * 递归删除某目录及其所有子文件和子目录
+	 * 
+	 * @Description:
+	 * @param dir
+	 * @return
+	 * @see:
+	 * @since:
+	 * @author: zhuanggy
+	 * @date:2013-7-24
+	 */
+	public static boolean delFileDir(File dir) {
+		if (dir == null || !dir.exists()) {
+			return false;
+		}
+		if (dir.isFile()) {
+			dir.delete();
+		} else {
+			File[] listFiles = dir.listFiles();
+			if (listFiles == null || listFiles.length == 0) {
+				dir.delete();
+			} else {
+				for (File file : listFiles) {
+					if (file.isFile()) {
+						file.delete();
+					} else if (file.isDirectory()) {
+						delFileDir(file);
+					}
+				}
+			}
+		}
+
+		return true;
+	}
+
 }

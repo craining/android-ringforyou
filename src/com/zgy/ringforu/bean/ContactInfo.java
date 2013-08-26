@@ -2,6 +2,8 @@ package com.zgy.ringforu.bean;
 
 import android.util.Log;
 
+import com.zgy.ringforu.RingForU;
+
 public class ContactInfo {
 
 	public boolean match = true;
@@ -43,13 +45,15 @@ public class ContactInfo {
 
 	@Override
 	public int hashCode() {
-		Log.e("", "hashCode");
+		if (RingForU.DEBUG)
+			Log.e("", "hashCode");
 		return this.name.hashCode() + this.num.hashCode() + this.storeKey.hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		Log.e("", "equals");
+		if (RingForU.DEBUG)
+			Log.e("", "equals");
 		if (this == obj) {
 			return true;
 		}

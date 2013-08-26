@@ -1,6 +1,5 @@
 package com.zgy.ringforu.activity;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,18 +19,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.R.id;
-import com.zgy.ringforu.R.layout;
-import com.zgy.ringforu.R.string;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
@@ -89,7 +84,8 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				Log.v(TAG, "delete: " + position);
+				if (RingForU.DEBUG)
+					Log.v(TAG, "delete: " + position);
 				if (PhoneUtil.bIsVerbOn) {
 					vb.vibrate(new long[] { 0, 20 }, -1);
 				}
@@ -155,7 +151,8 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
-		Log.e(TAG, "onResume");
+		if (RingForU.DEBUG)
+			Log.e(TAG, "onResume");
 		initListView();
 		super.onResume();
 	}

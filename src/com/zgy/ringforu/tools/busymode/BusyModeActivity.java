@@ -5,8 +5,6 @@ import android.app.Service;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -51,13 +49,13 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 		wordsFlow = (WordsFlowView) findViewById(R.id.busymode_flow);
 
 		// 显示“关闭”和“开启”
-//		// 否则显示“返回”和“开启”
-//		Bundle b = getIntent().getExtras();
-//		if (b != null && b.containsKey("fromnotifybar") && b.getBoolean("fromnotifybar")) {
-//			// 是从通知栏跳转过来的
-//			boolFromNotification = true;
-//
-//		}
+		// // 否则显示“返回”和“开启”
+		// Bundle b = getIntent().getExtras();
+		// if (b != null && b.containsKey("fromnotifybar") && b.getBoolean("fromnotifybar")) {
+		// // 是从通知栏跳转过来的
+		// boolFromNotification = true;
+		//
+		// }
 
 		if (BusyModeUtil.isBusyModeOn()) {
 			btnClose.setVisibility(View.VISIBLE);
@@ -77,6 +75,7 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 		// 添加
 		// feedKeywordsFlow(wordsFlow, busyModesTitle);
 		wordsFlow.feedKeywordsAll(busyModesTitle);
+		// if (RingForU.DEBUG)
 		// Log.e(TAG, "test test point 1");
 		setSelectedMsgContent(BusyModeUtil.getBusyModeMsgContent(BusyModeActivity.this), true);
 	}

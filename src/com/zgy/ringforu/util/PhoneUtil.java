@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.view.MyDialog;
 
 public class PhoneUtil {
@@ -85,7 +86,8 @@ public class PhoneUtil {
 	 * @date:2012-11-22
 	 */
 	public static void turnUpMost(Context context) {
-		Log.v(TAG, "turnUpMost");
+		if (RingForU.DEBUG)
+			Log.v(TAG, "turnUpMost");
 		AudioManager audioMgr = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		audioMgr.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_ON);
 		audioMgr.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
@@ -104,19 +106,20 @@ public class PhoneUtil {
 	 * @date:2012-11-22
 	 */
 	public static void turnDown(Context context) {
-		Log.v(TAG, "turnDown");
+		if (RingForU.DEBUG)
+			Log.v(TAG, "turnDown");
 		AudioManager audioMgr = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		audioMgr.setRingerMode(AudioManager.RINGER_MODE_SILENT);// 静音模式、不震动
 		// audioMgr.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_OFF);
 	}
 
-
 	/**
 	 * 先静音，再回复
+	 * 
 	 * @Description:
 	 * @param context
-	 * @see: 
-	 * @since: 
+	 * @see:
+	 * @since:
 	 * @author: zhuanggy
 	 * @date:2013-8-23
 	 */
@@ -129,35 +132,35 @@ public class PhoneUtil {
 				turnPre(context);
 			}
 		}, 5000);
-		
+
 	}
-	
-//	/**
-//	 * 屏蔽短信
-//	 * 
-//	 * @Description:
-//	 * @param context
-//	 * @see:
-//	 * @since:
-//	 * @author: zhuanggy
-//	 * @date:2012-11-22
-//	 */
-//	public static void hideMsg(final Context context) {
-//		// 先静音、在清除通知栏、再还原声音
-//		turnDown(context);
-//		// NotificationManager nm = (NotificationManager)
-//		// context.getSystemService(Context.NOTIFICATION_SERVICE);
-//		// nm.cancelAll();
-//		// SystemClock.sleep(1000);
-//
-//		new Handler().postDelayed(new Runnable() {
-//
-//			public void run() {
-//				turnPre(context);
-//			}
-//		}, 5000);
-//
-//	}
+
+	// /**
+	// * 屏蔽短信
+	// *
+	// * @Description:
+	// * @param context
+	// * @see:
+	// * @since:
+	// * @author: zhuanggy
+	// * @date:2012-11-22
+	// */
+	// public static void hideMsg(final Context context) {
+	// // 先静音、在清除通知栏、再还原声音
+	// turnDown(context);
+	// // NotificationManager nm = (NotificationManager)
+	// // context.getSystemService(Context.NOTIFICATION_SERVICE);
+	// // nm.cancelAll();
+	// // SystemClock.sleep(1000);
+	//
+	// new Handler().postDelayed(new Runnable() {
+	//
+	// public void run() {
+	// turnPre(context);
+	// }
+	// }, 5000);
+	//
+	// }
 
 	/**
 	 * 还原之前音量模式
@@ -170,7 +173,8 @@ public class PhoneUtil {
 	 * @date:2012-11-22
 	 */
 	public static void turnPre(Context context) {
-		Log.v(TAG, "turnPre");
+		if (RingForU.DEBUG)
+			Log.v(TAG, "turnPre");
 		AudioManager audioMgr = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		audioMgr.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 	}
@@ -244,8 +248,8 @@ public class PhoneUtil {
 		// sb.append("\r\nSimState = " + tm.getSimState());
 		sb.append("\r\nSubscriberId(IMSI) = " + tm.getSubscriberId());
 		// sb.append("\r\nVoiceMailNumber = " + tm.getVoiceMailNumber());
-
-		Log.i("info", sb.toString());
+		if (RingForU.DEBUG)
+			Log.i("info", sb.toString());
 		return sb.toString();
 	}
 
@@ -295,7 +299,8 @@ public class PhoneUtil {
 		List<String> divideContents = smsManager.divideMessage(content);
 		for (String text : divideContents) {
 			smsManager.sendTextMessage(tonumber, null, text, null, null);
-			Log.e(TAG, "send msg, to:" + tonumber + "  content: " + content);
+			if (RingForU.DEBUG)
+				Log.e(TAG, "send msg, to:" + tonumber + "  content: " + content);
 		}
 	}
 
@@ -317,7 +322,8 @@ public class PhoneUtil {
 			java.lang.reflect.Field field;
 			field = build_version_class.getField("SDK_INT");
 			version = (Integer) field.get(new android.os.Build.VERSION());
-			Log.v(TAG, "isUpAPI10 ? api = " + version);
+			if (RingForU.DEBUG)
+				Log.v(TAG, "isUpAPI10 ? api = " + version);
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {

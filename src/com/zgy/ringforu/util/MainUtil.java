@@ -1,40 +1,20 @@
 package com.zgy.ringforu.util;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Properties;
 
 import android.app.ActivityManager;
-import android.app.NotificationManager;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.media.AudioManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Environment;
-import android.os.SystemClock;
-import android.os.Vibrator;
-import android.provider.Settings;
-import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 
 import com.zgy.ringforu.MainCanstants;
-import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.tools.busymode.BusyModeUtil;
 import com.zgy.ringforu.tools.disablegprs.DisableGprsUtil;
 import com.zgy.ringforu.tools.signalreconnect.SignalReconnectUtil;
 import com.zgy.ringforu.tools.watermark.WaterMarkUtil;
-import com.zgy.ringforu.view.MyDialog;
 
 public class MainUtil {
 
@@ -51,7 +31,6 @@ public class MainUtil {
 
 	public static final File FILE_SDCARD_SMS_NUM = new File(FILE_IN_SDCARD + "smsnumbers.cfg");
 	public static final File FILE_SDCARD_SMS_NAME = new File(FILE_IN_SDCARD + "smsnames.cfg");
-
 
 	// /**
 	// * 在12:00--13:59
@@ -138,11 +117,11 @@ public class MainUtil {
 	public static int insert(String strName, String strNum, Context con, int tag) {
 
 		MainConfig mainConfig = MainConfig.getInstance();
-		
+
 		int result = -1;
 		switch (tag) {
 		case MainCanstants.TYPE_IMPORTANT:
-			
+
 			String numbersImportant = mainConfig.getImporantNumbers();
 			if (StringUtil.isNull(numbersImportant)) {
 				mainConfig.setImportantNumbers(strNum);
@@ -164,7 +143,7 @@ public class MainUtil {
 			}
 			break;
 		case MainCanstants.TYPE_INTECEPT_CALL:
-			String numbersCall =  mainConfig.getInterceptCallNumbers();
+			String numbersCall = mainConfig.getInterceptCallNumbers();
 			if (StringUtil.isNull(numbersCall)) {
 				mainConfig.setInterceptCallNumbers(strNum);
 				mainConfig.setInterceptCallNames(strName);
@@ -188,17 +167,17 @@ public class MainUtil {
 		case MainCanstants.TYPE_INTECEPT_SMS:
 			String numbersSms = mainConfig.getInterceptSmsNumbers();
 			if (StringUtil.isNull(numbersSms)) {
-				
+
 				mainConfig.setInterceptSmsNumbers(strNum);
 				mainConfig.setInterceptSmsNames(strName);
-				
+
 				result = 1;
 			} else {
 
 				if (getLeft(con, 2) <= 0) {
 					result = -1;
 				} else {
-					if (!numbersSms.contains(strNum + ":::")) {
+					if (!numbersSms.contains(strNum)) {
 						String namesSms = mainConfig.getInterceptSmsNames();
 						mainConfig.setInterceptSmsNumbers(numbersSms + ":::" + strNum);
 						mainConfig.setInterceptSmsNames(namesSms + ":::" + strName);
@@ -238,7 +217,8 @@ public class MainUtil {
 			String numbersImportant = mainConfig.getImporantNumbers();
 			if (!StringUtil.isNull(numbersImportant)) {
 				String[] arry = numbersImportant.split(":::");
-				Log.v(TAG, " arry.length" + arry.length);
+				if (RingForU.DEBUG)
+					Log.v(TAG, " arry.length" + arry.length);
 				result = MainCanstants.MAX_NUMS - arry.length;
 			}
 			break;
@@ -246,7 +226,8 @@ public class MainUtil {
 			String numbersCall = mainConfig.getInterceptCallNumbers();
 			if (!StringUtil.isNull(numbersCall)) {
 				String[] arry = numbersCall.split(":::");
-				Log.v(TAG, " arry.length" + arry.length);
+				if (RingForU.DEBUG)
+					Log.v(TAG, " arry.length" + arry.length);
 				result = MainCanstants.MAX_NUMS - arry.length;
 			}
 			break;
@@ -254,7 +235,8 @@ public class MainUtil {
 			String numbersSms = mainConfig.getInterceptSmsNumbers();
 			if (!StringUtil.isNull(numbersSms)) {
 				String[] arry = numbersSms.split(":::");
-				Log.v(TAG, " arry.length" + arry.length);
+				if (RingForU.DEBUG)
+					Log.v(TAG, " arry.length" + arry.length);
 				result = MainCanstants.MAX_NUMS - arry.length;
 			}
 			break;
@@ -280,7 +262,7 @@ public class MainUtil {
 	 * @date:2012-12-4
 	 */
 	public static int insertSlientP(Context con, String per) {
-		int result = 2;
+		int result = 2;// 默认不包含
 		String preTimePer = MainConfig.getInstance().getSlientTime();
 		if (!StringUtil.isNull(preTimePer)) {
 			if (preTimePer.contains(per)) {
@@ -328,11 +310,12 @@ public class MainUtil {
 		}
 
 		if (result == 3) {
-			Log.v(TAG, "contains the pre periord");
+			if (RingForU.DEBUG)
+				Log.v(TAG, "contains the pre periord");
 			MainConfig.getInstance().setSlientTime(per);
 		}
 		if (result == 2) {
-			MainConfig.getInstance().setSlientTime(preTimePer + ":::" + per);
+			MainConfig.getInstance().setSlientTime(StringUtil.isNull(preTimePer) ? per : preTimePer + ":::" + per);
 		}
 		return result;
 	}
@@ -367,24 +350,29 @@ public class MainUtil {
 	 * 清空缓存（备份文件）
 	 */
 	public static void clearData() {
-		if (FILE_SDCARD_IMPORTANT_NUM.exists()) {
-			FILE_SDCARD_IMPORTANT_NUM.delete();
+
+		if (new File(FILE_IN_SDCARD).exists()) {
+			FileUtil.delFileDir(new File(FILE_IN_SDCARD));
 		}
-		if (FILE_SDCARD_IMPORTANT_NAME.exists()) {
-			FILE_SDCARD_IMPORTANT_NAME.delete();
-		}
-		if (FILE_SDCARD_CALL_NUM.exists()) {
-			FILE_SDCARD_CALL_NUM.delete();
-		}
-		if (FILE_SDCARD_CALL_NAME.exists()) {
-			FILE_SDCARD_CALL_NAME.delete();
-		}
-		if (FILE_SDCARD_SMS_NUM.exists()) {
-			FILE_SDCARD_SMS_NUM.delete();
-		}
-		if (FILE_SDCARD_SMS_NAME.exists()) {
-			FILE_SDCARD_SMS_NAME.delete();
-		}
+
+		// if (FILE_SDCARD_IMPORTANT_NUM.exists()) {
+		// FILE_SDCARD_IMPORTANT_NUM.delete();
+		// }
+		// if (FILE_SDCARD_IMPORTANT_NAME.exists()) {
+		// FILE_SDCARD_IMPORTANT_NAME.delete();
+		// }
+		// if (FILE_SDCARD_CALL_NUM.exists()) {
+		// FILE_SDCARD_CALL_NUM.delete();
+		// }
+		// if (FILE_SDCARD_CALL_NAME.exists()) {
+		// FILE_SDCARD_CALL_NAME.delete();
+		// }
+		// if (FILE_SDCARD_SMS_NUM.exists()) {
+		// FILE_SDCARD_SMS_NUM.delete();
+		// }
+		// if (FILE_SDCARD_SMS_NAME.exists()) {
+		// FILE_SDCARD_SMS_NAME.delete();
+		// }
 	}
 
 	/**

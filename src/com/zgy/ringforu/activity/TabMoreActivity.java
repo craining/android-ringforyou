@@ -19,10 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.R.drawable;
-import com.zgy.ringforu.R.id;
-import com.zgy.ringforu.R.layout;
-import com.zgy.ringforu.R.string;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.NetWorkUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -102,7 +99,8 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
-		Log.e(TAG, "onResume");
+		if (RingForU.DEBUG)
+			Log.e(TAG, "onResume");
 		super.onResume();
 	}
 

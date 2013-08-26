@@ -47,10 +47,61 @@
         android:background="@drawable/bg_bolder"
         android:orientation="vertical" >
 
+        <!-- 自动挂断 -->
+
         <RelativeLayout
-            android:id="@+id/layout_sethidestyle_call1"
+            android:id="@+id/layout_sethidestyle_call_no_answer"
             android:layout_width="fill_parent"
             android:layout_height="50dip" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="30dip"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_hidestyle_call_no_answer"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_hidestyle_call_no_answer_info"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_sethidestyle_call_no_answer"
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dip"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_selected" />
+        </RelativeLayout>
+
+        <!-- 返回空号 -->
+
+        <RelativeLayout
+            android:id="@+id/layout_sethidestyle_call_null"
+            android:layout_width="fill_parent"
+            android:layout_height="52dip" >
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:layout_alignParentTop="true"
+                android:background="@color/light_blue_bg" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -77,7 +128,7 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/img_sethidestyle_call1"
+                android:id="@+id/img_sethidestyle_call_null"
                 android:layout_width="15dip"
                 android:layout_height="15dip"
                 android:layout_alignParentRight="true"
@@ -88,8 +139,10 @@
                 android:src="@drawable/ic_selected" />
         </RelativeLayout>
 
+        <!-- 关机提示 -->
+
         <RelativeLayout
-            android:id="@+id/layout_sethidestyle_call2"
+            android:id="@+id/layout_sethidestyle_call_shutdown"
             android:layout_width="fill_parent"
             android:layout_height="52dip" >
 
@@ -124,7 +177,56 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/img_sethidestyle_call2"
+                android:id="@+id/img_sethidestyle_call_shutdown"
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dip"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_selected" />
+        </RelativeLayout>
+
+        <!-- 接听后挂断 -->
+
+        <RelativeLayout
+            android:id="@+id/layout_sethidestyle_call_receive_shutdown"
+            android:layout_width="fill_parent"
+            android:layout_height="52dip" >
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:layout_alignParentTop="true"
+                android:background="@color/light_blue_bg" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="30dip"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_hidestyle_call_receive_shutdown"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_hidestyle_call_receive_shutdown_info"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_sethidestyle_call_receive_shutdown"
                 android:layout_width="15dip"
                 android:layout_height="15dip"
                 android:layout_alignParentRight="true"

@@ -2,7 +2,7 @@ package com.zgy.ringforu.config;
 
 import android.content.Context;
 
-import com.zgy.ringforu.MainApplication;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.tools.watermark.WaterMarkUtil;
 import com.zgy.ringforu.util.PreferenceUtil;
 
@@ -25,7 +25,7 @@ public class MainConfig extends PreferenceUtil {
 
 	@Override
 	protected Context getContext() {
-		return MainApplication.getInstance();
+		return RingForU.getInstance();
 	}
 
 	public synchronized String getSlientTime() {
@@ -117,7 +117,7 @@ public class MainConfig extends PreferenceUtil {
 	}
 
 	public synchronized int getInterceptCallStyle() {
-		return getInt(ConfigCanstants.STYLE_INTERCEPT_CALL, 0);
+		return getInt(ConfigCanstants.STYLE_INTERCEPT_CALL, ConfigCanstants.STYLE_INTERCEPT_CALL_NO_ANSWER);
 	}
 
 	public synchronized void setInterceptCallStyle(int style) {
@@ -125,7 +125,7 @@ public class MainConfig extends PreferenceUtil {
 	}
 
 	public synchronized int getInterceptSmsStyle() {
-		return getInt(ConfigCanstants.STYLE_INTERCEPT_SMS, 0);
+		return getInt(ConfigCanstants.STYLE_INTERCEPT_SMS, ConfigCanstants.STYLE_INTERCEPT_SMS_DISRECEIVE);
 	}
 
 	public synchronized void setInterceptSmsStyle(int style) {
@@ -147,7 +147,6 @@ public class MainConfig extends PreferenceUtil {
 	public synchronized void setSignalReconnectOnOff(boolean on) {
 		putBool(ConfigCanstants.SWITCH_SIGNAL_RECONNECT, on);
 	}
-	
 
 	public synchronized boolean isSmsLightScreenOn() {
 		return getBool(ConfigCanstants.SWITCH_SMSLIGHTSCREEN, false);
@@ -156,6 +155,5 @@ public class MainConfig extends PreferenceUtil {
 	public synchronized void setSmsLightScreenOnOff(boolean on) {
 		putBool(ConfigCanstants.SWITCH_SMSLIGHTSCREEN, on);
 	}
-	
-	
+
 }

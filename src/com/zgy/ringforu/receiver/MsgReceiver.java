@@ -1,7 +1,5 @@
 package com.zgy.ringforu.receiver;
 
-import java.io.File;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +7,7 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.tools.smslightscreen.SmsLightScreenUtil;
@@ -49,26 +48,31 @@ public class MsgReceiver extends BroadcastReceiver {
 			for (SmsMessage currMsg : msg) {
 				getFromNum = currMsg.getDisplayOriginatingAddress();
 			}
-			// Log.v(TAG, getFromNum);
+			if (RingForU.DEBUG)
+				Log.v(TAG, getFromNum);
 			getFromNum = StringUtil.getRidofSpeciall(getFromNum);
 			if (strAllNumsImportant != null && strAllNumsImportant.contains(getFromNum)) {
-				Log.e(TAG, "check screen light");
+				if (RingForU.DEBUG)
+					Log.e(TAG, "check screen light");
 				SmsLightScreenUtil.checkSmsLightScreenOn(context);// µ„¡¡∆¡ƒª”Î∑Ò
 				if (MainUtil.isEffective(context)) {
 					PhoneUtil.turnUpMost(context);
 				} else {
-					Log.v(TAG, "not effective!");
+					if (RingForU.DEBUG)
+						Log.v(TAG, "not effective!");
 				}
 			} else if (strAllNumsSms != null && strAllNumsSms.contains(getFromNum)) {
 				// ∆¡±Œ∂Ã–≈£¨
 				switch (MainConfig.getInstance().getInterceptSmsStyle()) {
 				case ConfigCanstants.STYLE_INTERCEPT_SMS_SLIENT:
-					Log.e(TAG, "hide sms slient!");
+					if (RingForU.DEBUG)
+						Log.e(TAG, "hide sms slient!");
 					// ±£¡Ù∂Ã–≈
 					PhoneUtil.turnDownThenUp(context);
 					break;
 				case ConfigCanstants.STYLE_INTERCEPT_SMS_DISRECEIVE:
-					Log.e(TAG, "hide sms abort broadcast!");
+					if (RingForU.DEBUG)
+						Log.e(TAG, "hide sms abort broadcast!");
 					// ≤ª¥Ê¥¢∂Ã–≈
 					abortBroadcast();
 					setResultData(null);
@@ -77,7 +81,8 @@ public class MsgReceiver extends BroadcastReceiver {
 					break;
 				}
 			} else {
-				Log.e(TAG, "check screen light");
+				if (RingForU.DEBUG)
+					Log.e(TAG, "check screen light");
 				SmsLightScreenUtil.checkSmsLightScreenOn(context);// µ„¡¡∆¡ƒª”Î∑Ò
 			}
 		}

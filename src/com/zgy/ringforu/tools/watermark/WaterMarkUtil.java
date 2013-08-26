@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.MainUtil;
 
@@ -108,18 +109,22 @@ public class WaterMarkUtil {
 				Intent i = new Intent(context, WaterMarkService.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startService(i);
-				Log.v(TAG, "service is not running, need to start service!");
+				if (RingForU.DEBUG)
+					Log.v(TAG, "service is not running, need to start service!");
 			} else {
-				Log.v(TAG, "service is running, no need to start service!");
+				if (RingForU.DEBUG)
+					Log.v(TAG, "service is running, no need to start service!");
 			}
 		} else {
 			if (MainUtil.isServiceStarted(context, SERVICE_NAME_WATERMARK)) {
 				Intent i = new Intent(context, WaterMarkService.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.stopService(i);
-				Log.v(TAG, "service is running, need to stop service!");
+				if (RingForU.DEBUG)
+					Log.v(TAG, "service is running, need to stop service!");
 			} else {
-				Log.v(TAG, "service is not running, no need to stop service!");
+				if (RingForU.DEBUG)
+					Log.v(TAG, "service is not running, no need to stop service!");
 			}
 		}
 

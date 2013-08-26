@@ -13,12 +13,11 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.zgy.ringforu.MainApplication;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.activity.RToolsActivity;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.BitmapUtil;
-import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.view.MyToast;
 
 public class WaterMarkService extends Service {
@@ -36,7 +35,8 @@ public class WaterMarkService extends Service {
 		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
 
-		Log.e(TAG, "WaterMarkService is start!");
+		if (RingForU.DEBUG)
+			Log.e(TAG, "WaterMarkService is start!");
 		if (show) {
 
 			if (WaterMarkUtil.isWaterMarkSeted()) {
@@ -71,10 +71,9 @@ public class WaterMarkService extends Service {
 		// 设置LayoutParams(全局变量）相关参数
 		view = LayoutInflater.from(this).inflate(R.layout.watermark_floating, null);
 		wm = (WindowManager) getApplicationContext().getSystemService("window");
-		wmParams = MainApplication.getMywmParams();
+		wmParams = RingForU.getMywmParams();
 		wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;// 该类型提供与用户交互，置于所有应用程序上方，但是在状态栏后面
-		wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-				| WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;// 不接受任何按键事件
+		wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;// 不接受任何按键事件
 		// wmParams.gravity = Gravity.LEFT | Gravity.TOP; //
 		// 调整悬浮窗口至左上角WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES |
 		// WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
@@ -127,7 +126,8 @@ public class WaterMarkService extends Service {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Log.e(TAG, "WaterMarkService is destroyed!");
+		if (RingForU.DEBUG)
+			Log.e(TAG, "WaterMarkService is destroyed!");
 
 		if (wm != null && view != null) {
 			if (view.isShown())

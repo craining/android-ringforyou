@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.ContactsUtil;
 import com.zgy.ringforu.util.StringUtil;
@@ -237,6 +238,7 @@ public class BusyModeUtil {
 		NOTIFICATION_ID_BUSYMODE_REFUSED = NOTIFICATION_ID_BUSYMODE_REFUSED + 1;// 动态创建id
 		// 3.0以下不支持通知栏里的按钮响应
 		// if (PhoneUtil.isUpAPI10(context)) {
+		//if (RingForU.DEBUG)
 		// Log.e("", "  3.0 以上");
 		// Notification notification = new
 		// Notification(R.drawable.ic_notification_busymode_refused,

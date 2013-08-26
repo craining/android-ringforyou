@@ -2,7 +2,7 @@ package com.zgy.ringforu.db;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import com.zgy.ringforu.MainApplication;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.util.SQLiteHelper;
 
 public class DbHelper extends SQLiteHelper {
@@ -14,7 +14,7 @@ public class DbHelper extends SQLiteHelper {
 	private static String DROP_TB_INFO = "DROP TABLE IF EXISTS " + Columns.Tb_Info.TB_NAME;;
 
 	public DbHelper() {
-		super(MainApplication.getInstance(), DB_NAME, null, DB_VERSION);
+		super(RingForU.getInstance(), DB_NAME, null, DB_VERSION);
 	}
 
 	@Override

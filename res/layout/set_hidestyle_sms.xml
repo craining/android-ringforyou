@@ -48,7 +48,7 @@
         android:orientation="vertical" >
 
         <RelativeLayout
-            android:id="@+id/layout_sethidestyle_sms1"
+            android:id="@+id/layout_sethidestyle_sms_disreceive"
             android:layout_width="fill_parent"
             android:layout_height="50dip" >
 
@@ -64,20 +64,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_sms_disceceive"
+                    android:text="@string/set_hidestyle_sms_disreceive"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_sms_disceceive_info"
+                    android:text="@string/set_hidestyle_sms_disreceive_info"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/img_sethidestyle_sms1"
+                android:id="@+id/img_sethidestyle_sms_disreceive"
                 android:layout_width="15dip"
                 android:layout_height="15dip"
                 android:layout_alignParentRight="true"
@@ -89,7 +89,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/layout_sethidestyle_sms2"
+            android:id="@+id/layout_sethidestyle_sms_slient"
             android:layout_width="fill_parent"
             android:layout_height="52dip" >
 
@@ -124,7 +124,7 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/img_sethidestyle_sms2"
+                android:id="@+id/img_sethidestyle_sms_slient"
                 android:layout_width="15dip"
                 android:layout_height="15dip"
                 android:layout_alignParentRight="true"

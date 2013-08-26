@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -57,23 +58,27 @@ public class SignalReconnectUtil {
 
 		if (isSignalReconnectOn() && doReconnect) {
 			doReconnect = false;
-			Log.e(TAG, "change phone airplane state to reconnect START");
+			if (RingForU.DEBUG)
+				Log.e(TAG, "change phone airplane state to reconnect START");
 
 			new Handler().postDelayed(new Runnable() {
 
 				public void run() {
 					PhoneUtil.setAirplaneModeOff(context, false);// 信号过低后，60秒后开启飞行模式
-					Log.e(TAG, "on");
+					if (RingForU.DEBUG)
+						Log.e(TAG, "on");
 					new Handler().postDelayed(new Runnable() {
 
 						public void run() {
-							Log.e(TAG, "off");
+							if (RingForU.DEBUG)
+								Log.e(TAG, "off");
 							PhoneUtil.setAirplaneModeOff(context, true);// 延迟8秒后关闭飞行模式
 							new Handler().postDelayed(new Runnable() {
 
 								public void run() {
 									doReconnect = true;// 延迟60秒后,设置可以再次重新开关飞行模式
-									Log.e(TAG, "change phone airplane state to reconnect STOP");
+									if (RingForU.DEBUG)
+										Log.e(TAG, "change phone airplane state to reconnect STOP");
 								}
 							}, 60000);
 
@@ -83,7 +88,8 @@ public class SignalReconnectUtil {
 			}, 60000);
 
 		} else {
-			Log.e(TAG, "change phone airplane state to reconnect NO NO NO");
+			if (RingForU.DEBUG)
+				Log.e(TAG, "change phone airplane state to reconnect NO NO NO");
 		}
 	}
 
@@ -115,18 +121,22 @@ public class SignalReconnectUtil {
 				Intent i = new Intent(context, SignalReconnectService.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startService(i);
-				Log.v(TAG, "service is not running, need to start service!");
+				if (RingForU.DEBUG)
+					Log.v(TAG, "service is not running, need to start service!");
 			} else {
-				Log.v(TAG, "service is running, no need to start service!");
+				if (RingForU.DEBUG)
+					Log.v(TAG, "service is running, no need to start service!");
 			}
 		} else {
 			if (MainUtil.isServiceStarted(context, SERVICE_NAME_SIGNAL_RECONNECT)) {
 				Intent i = new Intent(context, SignalReconnectService.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.stopService(i);
-				Log.v(TAG, "service is running, need to stop service!");
+				if (RingForU.DEBUG)
+					Log.v(TAG, "service is running, need to stop service!");
 			} else {
-				Log.v(TAG, "service is not running, no need to stop service!");
+				if (RingForU.DEBUG)
+					Log.v(TAG, "service is not running, no need to stop service!");
 			}
 		}
 

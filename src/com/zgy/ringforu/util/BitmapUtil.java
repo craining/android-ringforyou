@@ -3,6 +3,8 @@ package com.zgy.ringforu.util;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 
+import com.zgy.ringforu.RingForU;
+
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -89,8 +91,8 @@ public class BitmapUtil {
 			matrix.postScale((float) width / w, (float) height / h); // 长和宽放大缩小的比例
 			bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
 		}
-
-		Log.e("", "bitmap.w=" + bitmap.getWidth() + " h=" + bitmap.getHeight());
+		if (RingForU.DEBUG)
+			Log.e("", "bitmap.w=" + bitmap.getWidth() + " h=" + bitmap.getHeight());
 		// // GoOutDebug.e(TAG, "w = " + output.getWidth() + "   h = " + output.getHeight());
 		// // 创建一个新的bitmap，然后在bitmap里创建一个圆角画布，将之前的图片画在里面。
 		// Bitmap output = Bitmap.createBitmap(width, height, Config.ARGB_8888);

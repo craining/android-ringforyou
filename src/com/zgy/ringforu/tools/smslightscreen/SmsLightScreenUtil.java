@@ -1,17 +1,15 @@
 package com.zgy.ringforu.tools.smslightscreen;
 
-import java.io.File;
-
-import com.zgy.ringforu.config.MainConfig;
-
 import android.content.Context;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.util.Log;
 
-public class SmsLightScreenUtil {
+import com.zgy.ringforu.RingForU;
+import com.zgy.ringforu.config.MainConfig;
 
+public class SmsLightScreenUtil {
 
 	private static final String TAG = "SmsLightScreenUtil";
 
@@ -38,12 +36,14 @@ public class SmsLightScreenUtil {
 				PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
 				final WakeLock wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "tag");
 				wakeLock.acquire();
-				Log.e(TAG, "acquire wakeLock");
+				if (RingForU.DEBUG)
+					Log.e(TAG, "acquire wakeLock");
 				new Handler().postDelayed(new Runnable() {
 
 					public void run() {
 						wakeLock.release();
-						Log.e(TAG, "release wakeLock");
+						if (RingForU.DEBUG)
+							Log.e(TAG, "release wakeLock");
 					}
 				}, 5000);
 

@@ -1,8 +1,5 @@
 package com.zgy.ringforu.activity;
 
-import java.io.File;
-import java.io.IOException;
-
 import android.app.Activity;
 import android.app.Service;
 import android.content.DialogInterface;
@@ -22,6 +19,7 @@ import android.widget.Toast;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.FileUtil;
@@ -134,9 +132,12 @@ public class SetActivity extends Activity implements OnClickListener {
 	 * @date:2012-12-4
 	 */
 	private void refreshView() {
-		Log.v(TAG, "refresh set views");
+		if (RingForU.DEBUG)
+			Log.v(TAG, "refresh set views");
 
 		String strSlient = mMainConfig.getSlientTime();
+		if (RingForU.DEBUG)
+			Log.v(TAG, "strSlient = " + strSlient);
 
 		// 刷新安静时段的显示
 		if (StringUtil.isNull(strSlient)) {
@@ -145,6 +146,7 @@ public class SetActivity extends Activity implements OnClickListener {
 			layoutImportantClam2.setVisibility(View.GONE);
 			imgImportantAddClam.setVisibility(View.VISIBLE);
 		} else {
+			if(RingForU.DEBUG) 
 			Log.v(TAG, strSlient + "<-- strSlientP");
 			String[] ps = strSlient.split(":::");
 			if (ps.length == 1) {
@@ -200,6 +202,12 @@ public class SetActivity extends Activity implements OnClickListener {
 		case ConfigCanstants.STYLE_INTERCEPT_CALL_SHUTDOWN:
 			result = getString(R.string.set_hidestyle_call_shutdown);
 			break;
+		case ConfigCanstants.STYLE_INTERCEPT_CALL_NO_ANSWER:
+			result = getString(R.string.set_hidestyle_call_no_answer);
+			break;
+		case ConfigCanstants.STYLE_INTERCEPT_CALL_RECEIVE_SHUTDOWN:
+			result = getString(R.string.set_hidestyle_call_receive_shutdown);
+			break;
 		default:
 			break;
 		}
@@ -216,7 +224,7 @@ public class SetActivity extends Activity implements OnClickListener {
 			result = getString(R.string.set_hidestyle_sms_slient);
 			break;
 		case ConfigCanstants.STYLE_INTERCEPT_SMS_DISRECEIVE:
-			result = getString(R.string.set_hidestyle_sms_disceceive);
+			result = getString(R.string.set_hidestyle_sms_disreceive);
 			break;
 		default:
 			break;

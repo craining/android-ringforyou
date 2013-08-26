@@ -36,6 +36,7 @@ import com.zgy.ringforu.R.anim;
 import com.zgy.ringforu.R.id;
 import com.zgy.ringforu.R.layout;
 import com.zgy.ringforu.R.string;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.bean.ContactInfo;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.FileUtil;
@@ -230,7 +231,8 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 					info.num = StringUtil.getRidofSpeciall(cursor.getString(2));
 					info.storeKey = cursor.getString(3);
 
-					Log.v(TAG, "info.name=" + info.name + "   changed=" + StringUtil.getRidofSpecialOfFileName(info.name));
+					if (RingForU.DEBUG)
+						Log.v(TAG, "info.name=" + info.name + "   changed=" + StringUtil.getRidofSpecialOfFileName(info.name));
 
 					listContacts.add(info);
 				}
@@ -265,8 +267,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 			if (listContacts != null && listContacts.size() > 0) {
 				for (ContactInfo info : listContacts) {
 					HashMap<String, String> map = new HashMap<String, String>();
-					if (info.match && (getAllNumsImportant == null || !getAllNumsImportant.contains(info.num)) && (getAllNumsCall == null || !getAllNumsCall.contains(info.num))
-							&& (getAllNumsSms == null || !getAllNumsSms.contains(info.num))) {
+					if (info.match && (getAllNumsImportant == null || !getAllNumsImportant.contains(info.num)) && (getAllNumsCall == null || !getAllNumsCall.contains(info.num)) && (getAllNumsSms == null || !getAllNumsSms.contains(info.num))) {
 						map.put("name", info.name);
 						map.put("number", info.num);
 						listItem.add(map);
@@ -310,8 +311,8 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 		default:
 			break;
 		}
-
-		Log.v(TAG, "listItem " + listItem.size());
+		if (RingForU.DEBUG)
+			Log.v(TAG, "listItem " + listItem.size());
 		listItemAdapter = new SimpleAdapter(AddByContactsActivity.this, listItem, R.layout.listrow, new String[] { "name", "number" }, new int[] { R.id.name, R.id.number });
 		listviewContacts.setAdapter(listItemAdapter);
 		refreshViews();
@@ -392,7 +393,8 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 
 			switch (msg.what) {
 			case MSG_REFRESH_LISTVEW:
-				Log.v(TAG, "on fresh ");
+				if (RingForU.DEBUG)
+					Log.v(TAG, "on fresh ");
 				// imgLoading.setVisibility(View.GONE);
 				freshListView();
 				break;

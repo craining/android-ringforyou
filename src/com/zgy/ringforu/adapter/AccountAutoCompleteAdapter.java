@@ -41,6 +41,7 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 
 	@Override
 	public Filter getFilter() {
+		// if(RingForU.DEBUG)
 		// Log.e(TAG, "getFilter");
 		if (mFilter == null) {
 			mFilter = new ArrayFilter();
@@ -52,7 +53,7 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 
 		@Override
 		protected FilterResults performFiltering(CharSequence prefix) {
-
+			// if(RingForU.DEBUG)
 			// Log.e(TAG, "FilterResults");
 
 			FilterResults results = new FilterResults();
@@ -160,6 +161,7 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 
 		@Override
 		protected void publishResults(CharSequence constraint, FilterResults results) {
+			// if(RingForU.DEBUG)
 			// Log.e(TAG, "publishResults");
 			mObjects = (List<String>) results.values;
 			if (results.count > 0) {
@@ -189,6 +191,7 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
+		// if(RingForU.DEBUG)
 		// Log.e(TAG, "getView");
 		ViewHolder holder = null;
 		if (convertView == null) {

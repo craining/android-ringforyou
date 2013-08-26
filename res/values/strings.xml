@@ -110,14 +110,18 @@
     <string name="set_backup_nobackups">存储卡上没有备份文件！</string>
     <string name="set_hidestyle_sms">短信屏蔽方式</string>
     <string name="set_hidestyle_call">来电屏蔽方式</string>
+    <string name="set_hidestyle_call_no_answer">直接挂断</string>
+    <string name="set_hidestyle_call_no_answer_info">自动挂断，返回音由运营商自动返回</string>
+    <string name="set_hidestyle_call_receive_shutdown">接听后挂断</string>
+    <string name="set_hidestyle_call_receive_shutdown_info">自动接听，然后自动挂断</string>
     <string name="set_hidestyle_call_null">拒接，空号提示</string>
     <string name="set_hidestyle_call_null_info">自动拒接，并返回空号提示音</string>
     <string name="set_hidestyle_call_shutdown">拒接，关机提示</string>
     <string name="set_hidestyle_call_shutdown_info">自动拒接，并返回已关机提示音</string>
-    <string name="set_hidestyle_sms_disceceive">拒收</string>
-    <string name="set_hidestyle_sms_disceceive_info">不收取短信。</string>
+    <string name="set_hidestyle_sms_disreceive">拒收</string>
+    <string name="set_hidestyle_sms_disreceive_info">不收取短信</string>
     <string name="set_hidestyle_sms_slient">静音接收</string>
-    <string name="set_hidestyle_sms_slient_info">收到要屏蔽的短信时静音，通知栏仍有提示。</string>
+    <string name="set_hidestyle_sms_slient_info">收到要屏蔽的短信时静音</string>
 
     <!-- 2013-01-17 -->
     <string name="receivedata_title">请选择操作：</string>

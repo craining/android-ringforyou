@@ -11,7 +11,6 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -31,6 +30,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.BitmapUtil;
 import com.zgy.ringforu.util.FileUtil;
@@ -297,7 +297,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 
 					Uri tempTakePicUri = Uri.fromFile(tempFileSrc);
 					// 留意一下这个文件路径是按照怎样的规则转换为一个uri的
-					Log.v(TAG, "根据路径转换的uri为：" + tempTakePicUri.toString());
+					if (RingForU.DEBUG)
+						Log.v(TAG, "根据路径转换的uri为：" + tempTakePicUri.toString());
 					intent.putExtra(MediaStore.EXTRA_OUTPUT, tempTakePicUri);
 
 					startActivityForResult(intent, REQUEST_PICKPIC_CAMERA);
@@ -336,7 +337,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		tempFileCutted = new File(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CUT + TimeUtil.getCurrentTimeMillis());
 
 		Uri uriTemp = Uri.fromFile(tempFileCutted);
-		Log.e(TAG, "after cut uriTemp =" + uriTemp.toString() + "  src uri = " + cutFileUri.toString());
+		if (RingForU.DEBUG)
+			Log.e(TAG, "after cut uriTemp =" + uriTemp.toString() + "  src uri = " + cutFileUri.toString());
 
 		//
 		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT, cutFileUri);
@@ -432,7 +434,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		case REQUEST_PICKPIC_GALLERY:
 			if (data != null) {
 				Uri picPath = data.getData();
-				Log.e(TAG, "PIC uri=" + picPath);
+				if (RingForU.DEBUG)
+					Log.e(TAG, "PIC uri=" + picPath);
 				if (picPath != null) {
 					File getFileSrc = new File(getImageAbsolutePath(picPath));
 

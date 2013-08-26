@@ -2,9 +2,10 @@ package com.zgy.ringforu.config;
 
 public class ConfigCanstants {
 
-	public static final int STYLE_INTERCEPT_CALL_NULL = 1;// 空号
-	public static final int STYLE_INTERCEPT_CALL_SHUTDOWN = 2;// 关机
-	public static final int STYLE_INTERCEPT_CALL_RECEIVE_SHUTDOWN = 3;// 接听挂断
+	public static final int STYLE_INTERCEPT_CALL_NO_ANSWER = 1;// 直接挂断
+	public static final int STYLE_INTERCEPT_CALL_NULL = 2;// 空号
+	public static final int STYLE_INTERCEPT_CALL_SHUTDOWN = 3;// 关机
+	public static final int STYLE_INTERCEPT_CALL_RECEIVE_SHUTDOWN = 4;// 接听挂断
 
 	public static final int STYLE_INTERCEPT_SMS_SLIENT = 1;// 静音接收
 	public static final int STYLE_INTERCEPT_SMS_DISRECEIVE = 2;// 不接收

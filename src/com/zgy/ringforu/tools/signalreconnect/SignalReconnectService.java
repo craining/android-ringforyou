@@ -1,5 +1,7 @@
 package com.zgy.ringforu.tools.signalreconnect;
 
+import com.zgy.ringforu.RingForU;
+
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -7,15 +9,13 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-
 public class SignalReconnectService extends Service {
 
-	
 	private static final String TAG = "SignalReconnectService";
-	
+
 	private TelephonyManager mTelephonyMgr;
 	private SignalStrengthListener myListenter;
-	
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -23,8 +23,9 @@ public class SignalReconnectService extends Service {
 
 	@Override
 	public void onStart(Intent intent, int startId) {
-		Log.e(TAG, "SignalReconnectService is start!");
-		if(SignalReconnectUtil.isSignalReconnectOn()) {
+		if (RingForU.DEBUG)
+			Log.e(TAG, "SignalReconnectService is start!");
+		if (SignalReconnectUtil.isSignalReconnectOn()) {
 			mTelephonyMgr = (TelephonyManager) getSystemService(SignalReconnectService.TELEPHONY_SERVICE);
 			myListenter = new SignalStrengthListener();
 			mTelephonyMgr.listen(myListenter, PhoneStateListener.LISTEN_SIGNAL_STRENGTH);
@@ -36,8 +37,9 @@ public class SignalReconnectService extends Service {
 
 	@Override
 	public void onDestroy() {
-		Log.e(TAG, "SignalReconnectService is destroy!");
-		if(mTelephonyMgr != null && myListenter != null) {
+		if (RingForU.DEBUG)
+			Log.e(TAG, "SignalReconnectService is destroy!");
+		if (mTelephonyMgr != null && myListenter != null) {
 			mTelephonyMgr.listen(myListenter, PhoneStateListener.LISTEN_NONE);
 			mTelephonyMgr = null;
 			myListenter = null;
@@ -51,22 +53,19 @@ public class SignalReconnectService extends Service {
 		return null;
 	}
 
- 
-	
 	private class SignalStrengthListener extends PhoneStateListener {
 
 		@Override
 		public void onSignalStrengthChanged(int asu) {
 			// TODO Auto-generated method stub
 			super.onSignalStrengthChanged(asu);
-			if(asu < 10) {
+			if (asu < 10) {
 				SignalReconnectUtil.doSignalReconnect(SignalReconnectService.this);
 			}
-			Log.e(TAG, "asu = " + asu);
+			if (RingForU.DEBUG)
+				Log.e(TAG, "asu = " + asu);
 		}
 
-		
-		
 	}
 
 }

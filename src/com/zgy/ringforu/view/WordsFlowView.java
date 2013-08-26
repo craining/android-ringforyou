@@ -208,13 +208,14 @@ public class WordsFlowView extends FrameLayout implements OnGlobalLayoutListener
 			// 关键字的个数。
 			int size = vecKeywords.size();
 			int xItem = width / size, yItem = height / size;
-			Log.d("ANDROID_LAB", "--------------------------width=" + width + " height=" + height + "  xItem=" + xItem + " yItem=" + yItem + "---------------------------");
+			// Log.d("ANDROID_LAB", "--------------------------width=" + width + " height=" + height +
+			// "  xItem=" + xItem + " yItem=" + yItem + "---------------------------");
 			LinkedList<Integer> listX = new LinkedList<Integer>(), listY = new LinkedList<Integer>();
 			for (int i = 0; i < size; i++) {
 				// 准备随机候选数，分别对应x/y轴位置
 				listX.add(i * xItem);
 				listY.add(i * yItem + (yItem >> 2));
-				Log.v(TAG, "ListX:" + (i * xItem) + "#listY:" + (i * yItem + (yItem >> 2)));
+				// Log.v(TAG, "ListX:" + (i * xItem) + "#listY:" + (i * yItem + (yItem >> 2)));
 			}
 			// TextView[] txtArr = new TextView[size];
 			LinkedList<TextView> listTxtTop = new LinkedList<TextView>();
