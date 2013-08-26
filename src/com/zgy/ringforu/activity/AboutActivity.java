@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 
 public class AboutActivity extends Activity {
@@ -31,9 +32,7 @@ public class AboutActivity extends Activity {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				if (PhoneUtil.bIsVerbOn) {
-					vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-				}
+				PhoneUtil.doVibraterNormal(vb);
 				finish();
 				return false;
 			}

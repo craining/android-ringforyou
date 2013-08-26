@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Environment;
+import android.os.Vibrator;
 import android.util.Log;
 
 import com.zgy.ringforu.MainCanstants;
@@ -413,9 +414,9 @@ public class MainUtil {
 	public static void mainInitData(Context context) {
 		// 得到振动的开关状态
 		if (new File(PhoneUtil.FILE_PATH_VERB_TAG).exists()) {
-			PhoneUtil.bIsVerbOn = false;
+			MainCanstants.bIsVerbOn = false;
 		} else {
-			PhoneUtil.bIsVerbOn = true;
+			MainCanstants.bIsVerbOn = true;
 		}
 		if (!(new File(MainUtil.FILE_INNER).exists())) {
 			new File(MainUtil.FILE_INNER).mkdirs();
@@ -429,4 +430,5 @@ public class MainUtil {
 		}
 		checkAllService(context);
 	}
+
 }

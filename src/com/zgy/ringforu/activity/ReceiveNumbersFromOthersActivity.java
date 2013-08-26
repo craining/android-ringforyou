@@ -74,9 +74,9 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 
 		// 得到振动的开关状态
 		if (new File(PhoneUtil.FILE_PATH_VERB_TAG).exists()) {
-			PhoneUtil.bIsVerbOn = false;
+			MainCanstants.bIsVerbOn = false;
 		} else {
-			PhoneUtil.bIsVerbOn = true;
+			MainCanstants.bIsVerbOn = true;
 		}
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
@@ -85,9 +85,7 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 	@Override
 	public void onClick(View v) {
 
-		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-		}
+		PhoneUtil.doVibraterNormal(vb);
 
 		switch (v.getId()) {
 		case R.id.btn_receivedata_sms:

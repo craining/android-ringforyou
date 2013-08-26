@@ -157,10 +157,7 @@ public class MainActivityGroup extends ActivityGroup implements OnClickListener 
 
 	@Override
 	public void onClick(View v) {
-		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-		}
-
+		PhoneUtil.doVibraterNormal(vb);
 		switch (v.getId()) {
 		case R.id.tab_important:
 			flag = 0;

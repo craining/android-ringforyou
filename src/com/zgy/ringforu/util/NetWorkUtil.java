@@ -11,7 +11,6 @@ import android.provider.Settings;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.view.MyDialog;
 
-
 public class NetWorkUtil {
 
 	/**
@@ -48,9 +47,7 @@ public class NetWorkUtil {
 		builder.setTitle(R.string.str_tip).setMessage(R.string.nonet_tip).setPositiveButton(R.string.str_set, new DialogInterface.OnClickListener() {
 
 			public void onClick(DialogInterface dialog, int whichButton) {
-				if (PhoneUtil.bIsVerbOn) {
-					vb.vibrate(new long[] { 0, 20 }, -1);
-				}
+				PhoneUtil.doVibraterNormal(vb);
 				dialog.dismiss();
 				con.startActivity(new Intent(Settings.ACTION_SETTINGS));
 			}
@@ -58,9 +55,7 @@ public class NetWorkUtil {
 
 			public void onClick(DialogInterface dialog, int whichButton) {
 				dialog.dismiss();
-				if (PhoneUtil.bIsVerbOn) {
-					vb.vibrate(new long[] { 0, 20 }, -1);
-				}
+				PhoneUtil.doVibraterNormal(vb);
 			}
 		}).create().show();
 	}

@@ -105,9 +105,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 
-		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-		}
+		PhoneUtil.doVibraterNormal(vb);
 
 		switch (v.getId()) {
 		case R.id.btn_tools_return:

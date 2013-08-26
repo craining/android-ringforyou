@@ -66,8 +66,8 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 			public void onClick(View v) {
 				// 震动的开启关闭
 				File tag = new File(PhoneUtil.FILE_PATH_VERB_TAG);
-				if (!PhoneUtil.bIsVerbOn) {
-					vb.vibrate(MainCanstants.VIBRATE_STREGTH);
+				if (!MainCanstants.bIsVerbOn) {
+					vb.vibrate(MainCanstants.VIBRATE_STREGTH_NORMAL);
 					if (tag.exists()) {
 						tag.delete();
 					}
@@ -77,7 +77,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 					}
 				}
 
-				PhoneUtil.bIsVerbOn = !PhoneUtil.bIsVerbOn;
+				MainCanstants.bIsVerbOn = !MainCanstants.bIsVerbOn;
 				refreshViews();
 
 			}
@@ -86,7 +86,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 	private void refreshViews() {
 		// 刷新震动开关的显示
-		if (PhoneUtil.bIsVerbOn) {
+		if (MainCanstants.bIsVerbOn) {
 			imgV.setImageResource(R.drawable.ic_on);
 		} else {
 			imgV.setImageResource(R.drawable.ic_off);
@@ -108,9 +108,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 
-		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-		}
+		PhoneUtil.doVibraterNormal(vb);
 
 		switch (v.getId()) {
 		case R.id.btn_set_return:
@@ -155,17 +153,13 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
-					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-					}
+					PhoneUtil.doVibraterNormal(vb);
 				}
 			}).setNegativeButton(R.string.str_ok, new DialogInterface.OnClickListener() {
 
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
-					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-					}
+					PhoneUtil.doVibraterNormal(vb);
 					// 删除文件
 					MainUtil.clearData();
 					MyToast.makeText(TabMoreActivity.this, R.string.clear_data_over, Toast.LENGTH_LONG, false).show();

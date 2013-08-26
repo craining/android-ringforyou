@@ -235,10 +235,7 @@ public class SetActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-
-		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-		}
+		PhoneUtil.doVibraterNormal(vb);
 
 		switch (v.getId()) {
 		case R.id.btn_set_return:
@@ -318,9 +315,7 @@ public class SetActivity extends Activity implements OnClickListener {
 
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
-					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-					}
+					PhoneUtil.doVibraterNormal(vb);
 					// 导出备份
 					exportData();
 				}
@@ -328,9 +323,7 @@ public class SetActivity extends Activity implements OnClickListener {
 
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
-					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-					}
+					PhoneUtil.doVibraterNormal(vb);
 					// 导入备份
 					importData();
 				}

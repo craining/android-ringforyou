@@ -86,9 +86,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 				if (RingForU.DEBUG)
 					Log.v(TAG, "delete: " + position);
-				if (PhoneUtil.bIsVerbOn) {
-					vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-				}
+				PhoneUtil.doVibraterNormal(vb);
 				listItem.remove(position);
 				listItemAdapter.notifyDataSetChanged();
 				refreshViews();
@@ -163,9 +161,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 
-		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-		}
+		PhoneUtil.doVibraterNormal(vb);
 
 		switch (v.getId()) {
 		case R.id.btn_call_addfrom:
@@ -186,9 +182,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
-					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-					}
+					PhoneUtil.doVibraterNormal(vb);
 					listItem = new ArrayList<HashMap<String, String>>();
 					listItemAdapter.notifyDataSetChanged();
 					refreshViews();
@@ -199,9 +193,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
-					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-					}
+					PhoneUtil.doVibraterNormal(vb);
 				}
 			}).create().show();
 

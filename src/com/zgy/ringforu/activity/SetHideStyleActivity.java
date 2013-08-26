@@ -95,9 +95,7 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-		}
+		PhoneUtil.doVibraterNormal(vb);
 		switch (v.getId()) {
 		case R.id.layout_sethidestyle_call_null:
 			MainConfig.getInstance().setInterceptCallStyle(ConfigCanstants.STYLE_INTERCEPT_CALL_NULL);

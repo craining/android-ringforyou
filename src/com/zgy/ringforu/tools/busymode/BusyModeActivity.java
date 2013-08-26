@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.view.MyToast;
@@ -102,10 +103,7 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 
-		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(new long[] { 0, 20 }, -1);
-		}
-
+		PhoneUtil.doVibraterNormal(vb);
 		if (v instanceof Button) {
 			switch (v.getId()) {
 			case R.id.btn_busymodeset_back:

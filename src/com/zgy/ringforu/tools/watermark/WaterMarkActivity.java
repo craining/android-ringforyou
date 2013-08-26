@@ -165,11 +165,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 
 	@Override
 	public void onClick(View v) {
-
-		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(new long[] { 0, 20 }, -1);
-		}
-
+		PhoneUtil.doVibraterNormal(vb);
 		switch (v.getId()) {
 		case R.id.btn_watermark_ok:
 			open();
@@ -270,9 +266,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 
 			public void onClick(DialogInterface dialog, int whichButton) {
 				dialog.dismiss();
-				if (PhoneUtil.bIsVerbOn) {
-					vb.vibrate(new long[] { 0, 20 }, -1);
-				}
+				PhoneUtil.doVibraterNormal(vb);
 				clearWaterMark();
 				Intent intent = new Intent(Intent.ACTION_PICK, null);
 				intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
@@ -281,10 +275,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		}).setNegativeButton(R.string.watermark_camera, new DialogInterface.OnClickListener() {
 
 			public void onClick(DialogInterface dialog, int whichButton) {
-				if (PhoneUtil.bIsVerbOn) {
-					vb.vibrate(new long[] { 0, 20 }, -1);
-				}
-
+				PhoneUtil.doVibraterNormal(vb);
 				if (PhoneUtil.existSDcard()) {
 					dialog.dismiss();
 					clearWaterMark();

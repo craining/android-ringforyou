@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.view.MyDialog;
@@ -26,8 +27,6 @@ public class PhoneUtil {
 
 	private static final String TAG = "PhoneUtil";
 
-	// 操作震动反馈相关
-	public static boolean bIsVerbOn = true;
 	public static final String FILE_PATH_VERB_TAG = "/data/data/com.zgy.ringforu/files/notverb";// 此目录存在判断是否震动
 
 	public static final int ANSWER_RINGING_CALL = 10;
@@ -337,6 +336,18 @@ public class PhoneUtil {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	public static void doVibraterNormal(Vibrator v) {
+		if (MainCanstants.bIsVerbOn) {
+			v.vibrate(MainCanstants.VIBRATE_STREGTH_NORMAL);
+		}
+	}
+
+	public static void doVibraterError(Vibrator v) {
+		if (MainCanstants.bIsVerbOn) {
+			v.vibrate(MainCanstants.VIBRATE_STREGTH_ERROR, -1);
 		}
 	}
 

@@ -104,24 +104,18 @@ public class AddByInputActivity extends Activity implements OnClickListener {
 				switch (result) {
 				case -1:
 					MyToast.makeText(AddByInputActivity.this, R.string.add_cannot_more, Toast.LENGTH_SHORT, true).show();
-					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(new long[] { 0, 20, 100, 20 }, -1);
-					}
+					PhoneUtil.doVibraterError(vb);
 					break;
 				case 0:
 					MyToast.makeText(AddByInputActivity.this, R.string.add_repeat, Toast.LENGTH_SHORT, true).show();
 					editNumber.setText("");
-					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(new long[] { 0, 20, 100, 20 }, -1);
-					}
+					PhoneUtil.doVibraterError(vb);
 					break;
 				case 1:
 					MyToast.makeText(AddByInputActivity.this, R.string.add_success, Toast.LENGTH_SHORT, false).show();
 					editName.setText("");
 					editNumber.setText("");
-					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
-					}
+					PhoneUtil.doVibraterNormal(vb);
 					refresh();
 					break;
 
