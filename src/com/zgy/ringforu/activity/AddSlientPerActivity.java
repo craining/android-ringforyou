@@ -10,10 +10,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.R.id;
-import com.zgy.ringforu.R.layout;
-import com.zgy.ringforu.R.string;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.TimeUtil;
@@ -116,7 +114,7 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(new long[] { 0, 20 }, -1);
+			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 		}
 		switch (v.getId()) {
 		case R.id.btn_add_slient_return:

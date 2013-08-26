@@ -146,8 +146,8 @@ public class SetActivity extends Activity implements OnClickListener {
 			layoutImportantClam2.setVisibility(View.GONE);
 			imgImportantAddClam.setVisibility(View.VISIBLE);
 		} else {
-			if(RingForU.DEBUG) 
-			Log.v(TAG, strSlient + "<-- strSlientP");
+			if (RingForU.DEBUG)
+				Log.v(TAG, strSlient + "<-- strSlientP");
 			String[] ps = strSlient.split(":::");
 			if (ps.length == 1) {
 				// 添加了一个安静时段
@@ -237,7 +237,7 @@ public class SetActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 
 		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(new long[] { 0, 20 }, -1);
+			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 		}
 
 		switch (v.getId()) {
@@ -319,7 +319,7 @@ public class SetActivity extends Activity implements OnClickListener {
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
 					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(new long[] { 0, 20 }, -1);
+						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 					}
 					// 导出备份
 					exportData();
@@ -329,7 +329,7 @@ public class SetActivity extends Activity implements OnClickListener {
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
 					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(new long[] { 0, 20 }, -1);
+						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 					}
 					// 导入备份
 					importData();

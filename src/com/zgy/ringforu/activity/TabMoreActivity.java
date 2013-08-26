@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.util.MainUtil;
@@ -66,7 +67,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 				// 震动的开启关闭
 				File tag = new File(PhoneUtil.FILE_PATH_VERB_TAG);
 				if (!PhoneUtil.bIsVerbOn) {
-					vb.vibrate(new long[] { 0, 20 }, -1);
+					vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 					if (tag.exists()) {
 						tag.delete();
 					}
@@ -108,7 +109,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 
 		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(new long[] { 0, 20 }, -1);
+			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 		}
 
 		switch (v.getId()) {
@@ -155,7 +156,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
 					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(new long[] { 0, 20 }, -1);
+						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 					}
 				}
 			}).setNegativeButton(R.string.str_ok, new DialogInterface.OnClickListener() {
@@ -163,7 +164,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
 					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(new long[] { 0, 20 }, -1);
+						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 					}
 					// 删除文件
 					MainUtil.clearData();

@@ -1,7 +1,5 @@
 package com.zgy.ringforu.activity;
 
-import java.io.File;
-
 import android.app.Activity;
 import android.app.Service;
 import android.os.Bundle;
@@ -15,11 +13,8 @@ import android.widget.RelativeLayout;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.R.id;
-import com.zgy.ringforu.R.layout;
 import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 
 public class SetHideStyleActivity extends Activity implements OnClickListener {
@@ -101,7 +96,7 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(new long[] { 0, 20 }, -1);
+			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 		}
 		switch (v.getId()) {
 		case R.id.layout_sethidestyle_call_null:

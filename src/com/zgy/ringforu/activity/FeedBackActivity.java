@@ -53,14 +53,13 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 		btnBack.setOnClickListener(this);
 		btnSubmit.setOnClickListener(this);
 
-		
 		AccountAutoCompleteAdapter adapter = new AccountAutoCompleteAdapter(FeedBackActivity.this, null);
 		editEmail.setDrawingCacheBackgroundColor(Color.TRANSPARENT);
 		editEmail.setAdapter(adapter);
 		editEmail.setThreshold(0);
-		
+
 		editEmail.setDropDownBackgroundResource(R.drawable.edit_bg_normal_nopadding);
-		
+
 		editContent.addTextChangedListener(new TextWatcher() {
 
 			@Override
@@ -86,7 +85,7 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(new long[] { 0, 20 }, -1);
+			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 		}
 		switch (v.getId()) {
 		case R.id.btn_feedback_return:

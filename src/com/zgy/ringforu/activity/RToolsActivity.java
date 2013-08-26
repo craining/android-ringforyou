@@ -18,11 +18,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.R.drawable;
-import com.zgy.ringforu.R.id;
-import com.zgy.ringforu.R.layout;
-import com.zgy.ringforu.R.string;
 import com.zgy.ringforu.tools.busymode.BusyModeActivity;
 import com.zgy.ringforu.tools.busymode.BusyModeUtil;
 import com.zgy.ringforu.tools.disablegprs.DisableGprsActivity;
@@ -109,7 +106,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 
 		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(new long[] { 0, 20 }, -1);
+			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 		}
 
 		switch (v.getId()) {

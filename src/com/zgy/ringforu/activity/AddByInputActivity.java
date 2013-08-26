@@ -13,10 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.R.id;
-import com.zgy.ringforu.R.layout;
-import com.zgy.ringforu.R.string;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
@@ -32,8 +30,8 @@ public class AddByInputActivity extends Activity implements OnClickListener {
 	private TextView textShowLeft;
 	private Vibrator vb = null;
 	private int tag = 0;// 默认为重要联系人的添加 1:屏蔽电话 2:屏蔽短信
-	
-	private boolean addOne = false;//只添加一个，添加完成就退出
+
+	private boolean addOne = false;// 只添加一个，添加完成就退出
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +49,7 @@ public class AddByInputActivity extends Activity implements OnClickListener {
 		btnBack = (Button) findViewById(R.id.btn_add_input_return);
 		btnBack.setOnClickListener(this);
 		btnOk.setOnClickListener(this);
-		
+
 		Bundle b = getIntent().getExtras();
 		if (b != null) {
 			tag = b.getInt("tag");
@@ -63,7 +61,7 @@ public class AddByInputActivity extends Activity implements OnClickListener {
 				}
 			}
 		}
-		
+
 		refresh();
 
 	}
@@ -122,7 +120,7 @@ public class AddByInputActivity extends Activity implements OnClickListener {
 					editName.setText("");
 					editNumber.setText("");
 					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(new long[] { 0, 20 }, -1);
+						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 					}
 					refresh();
 					break;
@@ -130,8 +128,8 @@ public class AddByInputActivity extends Activity implements OnClickListener {
 				default:
 					break;
 				}
-				
-				if(addOne) {
+
+				if (addOne) {
 					finish();
 				}
 			}

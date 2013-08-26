@@ -12,6 +12,8 @@ public class MainCanstants {
 	
 	public static final int DLG_BTN_ALPHA = 100;// 对话框按钮的透明度
 	
+	public static final int VIBRATE_STREGTH = 50;//振动强度
+	
 	// 最多可添加10个
 	public static final int MAX_NUMS = 10;
 

@@ -13,9 +13,6 @@ import android.widget.LinearLayout;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.R.drawable;
-import com.zgy.ringforu.R.id;
-import com.zgy.ringforu.R.layout;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 
@@ -161,7 +158,7 @@ public class MainActivityGroup extends ActivityGroup implements OnClickListener 
 	@Override
 	public void onClick(View v) {
 		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(new long[] { 0, 20 }, -1);
+			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 		}
 
 		switch (v.getId()) {

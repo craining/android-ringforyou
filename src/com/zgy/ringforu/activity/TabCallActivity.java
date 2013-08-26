@@ -84,10 +84,10 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				if(RingForU.DEBUG) 
-				Log.v(TAG, "delete: " + position);
+				if (RingForU.DEBUG)
+					Log.v(TAG, "delete: " + position);
 				if (PhoneUtil.bIsVerbOn) {
-					vb.vibrate(new long[] { 0, 20 }, -1);
+					vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 				}
 				listItem.remove(position);
 				listItemAdapter.notifyDataSetChanged();
@@ -154,8 +154,8 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
-		if(RingForU.DEBUG) 
-		Log.e(TAG, "onResume");
+		if (RingForU.DEBUG)
+			Log.e(TAG, "onResume");
 		initListView();
 		super.onResume();
 	}
@@ -164,7 +164,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 
 		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(new long[] { 0, 20 }, -1);
+			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 		}
 
 		switch (v.getId()) {
@@ -187,7 +187,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
 					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(new long[] { 0, 20 }, -1);
+						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 					}
 					listItem = new ArrayList<HashMap<String, String>>();
 					listItemAdapter.notifyDataSetChanged();
@@ -200,7 +200,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
 					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(new long[] { 0, 20 }, -1);
+						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 					}
 				}
 			}).create().show();

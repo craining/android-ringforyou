@@ -10,9 +10,8 @@ import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.widget.LinearLayout;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.R.id;
-import com.zgy.ringforu.R.layout;
 import com.zgy.ringforu.util.PhoneUtil;
 
 public class AboutActivity extends Activity {
@@ -33,7 +32,7 @@ public class AboutActivity extends Activity {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				if (PhoneUtil.bIsVerbOn) {
-					vb.vibrate(new long[] { 0, 20 }, -1);
+					vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 				}
 				finish();
 				return false;

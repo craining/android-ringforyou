@@ -34,9 +34,9 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
 		String action = intent.getAction();
-		
+
 		if (Intent.ACTION_SEND.equals(action)) {
-			if(intent.hasExtra(Intent.EXTRA_TEXT)) {
+			if (intent.hasExtra(Intent.EXTRA_TEXT)) {
 				CharSequence text = getIntent().getCharSequenceExtra(Intent.EXTRA_TEXT);
 				if (text != null) {
 					getNumber = StringUtil.getNumbersFromString(text.toString());
@@ -52,7 +52,6 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 				MyToast.makeText(ReceiveNumbersFromOthersActivity.this, R.string.receive_numbers_null, Toast.LENGTH_LONG, true).show();
 				finish();
 			}
-			
 
 		}
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -63,12 +62,10 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 		textShowContent = (TextView) findViewById(R.id.text_receivedata_content);
 		btnImportant = (Button) findViewById(R.id.btn_receivedata_important);
 
-		
 		btnSms.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
 		btnCall.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
 		btnImportant.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
-		
-		
+
 		String content = getString(R.string.receivedata_content1) + getNumber;
 		textShowContent.setText(content);
 		btnSms.setOnClickListener(this);
@@ -89,7 +86,7 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 	public void onClick(View v) {
 
 		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(new long[] { 0, 20 }, -1);
+			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 		}
 
 		switch (v.getId()) {

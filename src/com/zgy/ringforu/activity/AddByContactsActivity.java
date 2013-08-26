@@ -137,7 +137,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 					listItemAdapter.notifyDataSetChanged();
 					MyToast.makeText(AddByContactsActivity.this, R.string.add_success, Toast.LENGTH_SHORT, false).show();
 					if (PhoneUtil.bIsVerbOn) {
-						vb.vibrate(new long[] { 0, 20 }, -1);
+						vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 					}
 					refreshViews();
 					break;
@@ -360,7 +360,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 
 		if (PhoneUtil.bIsVerbOn) {
-			vb.vibrate(new long[] { 0, 20 }, -1);
+			vb.vibrate(MainCanstants.VIBRATE_STREGTH);
 		}
 		switch (v.getId()) {
 		case R.id.btn_add_contact_return:
