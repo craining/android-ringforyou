@@ -1,7 +1,5 @@
 package com.zgy.ringforu.activity;
 
-import java.io.File;
-
 import android.app.Activity;
 import android.app.Service;
 import android.content.Intent;
@@ -16,6 +14,8 @@ import android.widget.Toast;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
+import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.view.MyToast;
@@ -54,6 +54,9 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 			}
 
 		}
+		
+		MainUtil.mainInitData(RingForU.getInstance());
+		
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.receivenumbers);
 
@@ -72,12 +75,6 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 		btnCall.setOnClickListener(this);
 		btnImportant.setOnClickListener(this);
 
-		// 得到振动的开关状态
-		if (new File(PhoneUtil.FILE_PATH_VERB_TAG).exists()) {
-			MainCanstants.bIsVerbOn = false;
-		} else {
-			MainCanstants.bIsVerbOn = true;
-		}
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 	}

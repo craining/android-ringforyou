@@ -174,12 +174,12 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 	private void refreshSmsSelected() {
 		switch (MainConfig.getInstance().getInterceptSmsStyle()) {
 		case ConfigCanstants.STYLE_INTERCEPT_SMS_DISRECEIVE:
-			imgSmsDisreceive.setVisibility(View.GONE);
-			imgSmsSlientReceive.setVisibility(View.VISIBLE);
-			break;
-		case ConfigCanstants.STYLE_INTERCEPT_SMS_SLIENT:
 			imgSmsDisreceive.setVisibility(View.VISIBLE);
 			imgSmsSlientReceive.setVisibility(View.GONE);
+			break;
+		case ConfigCanstants.STYLE_INTERCEPT_SMS_SLIENT:
+			imgSmsDisreceive.setVisibility(View.GONE);
+			imgSmsSlientReceive.setVisibility(View.VISIBLE);
 			break;
 		default:
 			break;

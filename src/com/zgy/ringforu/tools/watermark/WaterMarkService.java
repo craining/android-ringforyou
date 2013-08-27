@@ -104,11 +104,14 @@ public class WaterMarkService extends Service {
 		// BitmapFactory.decodeFile(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath());
 		DisplayMetrics metric = getResources().getDisplayMetrics();
 		imgShow.setImageBitmap(BitmapUtil.readBitmapAutoSize(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath(), metric.widthPixels, metric.heightPixels));
+
 		// } else {
 		// imgShow.setImageDrawable(null);
 		// stopSelf();
 		// }
 		wm.addView(view, wmParams);
+
+		// Log.v(TAG, "imgShow h=" + imgShow.getMeasuredHeight() + "  w=" + imgShow.getMeasuredWidth());
 	}
 
 	// private void updateViewPosition() {

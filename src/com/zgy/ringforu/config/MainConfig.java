@@ -156,4 +156,11 @@ public class MainConfig extends PreferenceUtil {
 		putBool(ConfigCanstants.SWITCH_SMSLIGHTSCREEN, on);
 	}
 
+	public synchronized boolean isVibrateOn() {
+		return getBool(ConfigCanstants.SWITCH_OPERA_VIRBRATE, true);
+	}
+
+	public synchronized void setVibrateOnOff(boolean on) {
+		putBool(ConfigCanstants.SWITCH_OPERA_VIRBRATE, on);
+	}
 }

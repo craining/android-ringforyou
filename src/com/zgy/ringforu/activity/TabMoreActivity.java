@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.NetWorkUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -65,16 +66,11 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// 震动的开启关闭
-				File tag = new File(PhoneUtil.FILE_PATH_VERB_TAG);
 				if (!MainCanstants.bIsVerbOn) {
 					vb.vibrate(MainCanstants.VIBRATE_STREGTH_NORMAL);
-					if (tag.exists()) {
-						tag.delete();
-					}
+					MainConfig.getInstance().setVibrateOnOff(true);
 				} else {
-					if (!tag.exists()) {
-						tag.mkdir();
-					}
+					MainConfig.getInstance().setVibrateOnOff(false);
 				}
 
 				MainCanstants.bIsVerbOn = !MainCanstants.bIsVerbOn;

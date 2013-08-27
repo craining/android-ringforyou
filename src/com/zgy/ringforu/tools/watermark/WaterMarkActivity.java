@@ -358,9 +358,9 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		// aspectX aspectY 是宽高的比例
 		intent.putExtra("aspectX", metric.widthPixels);
 		intent.putExtra("aspectY", metric.heightPixels);
-		// outputX outputY 是裁剪图片宽高
-		intent.putExtra("outputX", metric.widthPixels);
-		intent.putExtra("outputY", metric.heightPixels);
+		// // outputX outputY 是裁剪图片宽高
+		// intent.putExtra("outputX", metric.widthPixels);
+		// intent.putExtra("outputY", metric.heightPixels);
 		intent.putExtra("scale", true);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, uriTemp);
 		intent.putExtra("return-data", false);

@@ -27,8 +27,6 @@ public class PhoneUtil {
 
 	private static final String TAG = "PhoneUtil";
 
-	public static final String FILE_PATH_VERB_TAG = "/data/data/com.zgy.ringforu/files/notverb";// 此目录存在判断是否震动
-
 	public static final int ANSWER_RINGING_CALL = 10;
 	public static final int SILENCE_RINGING_CALL = 11;
 	public static final int HANG_UP_CALL = 12;

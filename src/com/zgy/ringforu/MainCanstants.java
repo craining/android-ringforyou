@@ -9,7 +9,7 @@ public class MainCanstants {
 
 	public static final int DLG_BTN_ALPHA = 100;// 对话框按钮的透明度
 	// 操作振动反馈相关
-	public static final int VIBRATE_STREGTH_NORMAL = 50;// 振动强度
+	public static final int VIBRATE_STREGTH_NORMAL = 40;// 振动强度
 	public static final long[] VIBRATE_STREGTH_ERROR = new long[] { 0, 20, 100, 20 };// 振动强度
 	public static boolean bIsVerbOn = true;
 	// 最多可添加10个
