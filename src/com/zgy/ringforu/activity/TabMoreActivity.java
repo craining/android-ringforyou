@@ -59,7 +59,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 		layoutHelp.setOnClickListener(this);
 		layoutTools.setOnClickListener(this);
 		layoutClear.setOnClickListener(this);
-
+		
 		// 震动的开关需单独处理
 		imgV.setOnClickListener(new View.OnClickListener() {
 
@@ -96,6 +96,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
+		refreshViews();
 		if (RingForU.DEBUG)
 			Log.e(TAG, "onResume");
 		super.onResume();

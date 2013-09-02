@@ -1,5 +1,8 @@
 package com.zgy.ringforu;
 
+import com.zgy.ringforu.activity.MainActivityGroup;
+import com.zgy.ringforu.util.MainUtil;
+
 import android.app.Application;
 import android.view.WindowManager;
 
@@ -29,6 +32,8 @@ public class RingForU extends Application {
 
 		application = this;
 
+		MainUtil.mainInitData(application);// 初始化数据
+		
 		super.onCreate();
 	}
 

@@ -37,7 +37,6 @@ public class MainActivityGroup extends ActivityGroup implements OnClickListener 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_group);
 
-		MainUtil.mainInitData(MainActivityGroup.this);// 初始化数据
 		initMainView();
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 		// 主界面开始接收参数
