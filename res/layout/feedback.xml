@@ -15,7 +15,6 @@
 
         <TextView
             style="@style/text_top_title"
-            android:layout_width="fill_parent"
             android:text="@string/feedback" />
 
         <Button

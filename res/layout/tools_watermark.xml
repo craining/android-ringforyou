@@ -16,7 +16,6 @@
             style="@style/btn_left_top_back" />
 
         <TextView
-            android:layout_width="fill_parent"
             style="@style/text_top_title"
             android:text="@string/watermark_title" />
 
