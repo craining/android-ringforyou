@@ -31,7 +31,8 @@
         <!-- 模糊 <item name="android:backgroundDimEnabled">true</item> -->
 
     </style>
-    
+
+    <!-- 与顶部标题栏相关的style -->
     <style name="layout_top_title">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">@dimen/layout_top_height</item>

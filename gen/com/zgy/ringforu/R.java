@@ -57,6 +57,13 @@ public final class R {
         public static final int btn_margin_left_top_back=0x7f070002;
         public static final int btn_padding_right_top_back=0x7f070003;
         public static final int btn_textsize_top_back=0x7f070004;
+        /**  顶部标题栏相关 
+
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw600dp devices (e.g. 7" tablets) here.
+    
+ 顶部标题栏相关 
+         */
         public static final int btn_width_left_top_back=0x7f070000;
         public static final int layout_top_height=0x7f070006;
         public static final int text_textsize_top_title=0x7f070005;
@@ -626,6 +633,8 @@ public final class R {
         /**  模糊 
          */
         public static final int dialog=0x7f090001;
+        /**  与顶部标题栏相关的style 
+         */
         public static final int layout_top_title=0x7f090003;
         public static final int text_top_title=0x7f090005;
     }
