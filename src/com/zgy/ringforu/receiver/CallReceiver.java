@@ -7,8 +7,8 @@ import android.content.Intent;
 import android.os.Handler;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
@@ -60,21 +60,21 @@ public class CallReceiver extends BroadcastReceiver {
 
 			case TelephonyManager.CALL_STATE_IDLE:
 				if (RingForU.DEBUG)
-					Log.v(TAG, "idle");
+					LogRingForu.v(TAG, "idle");
 				break;
 			case TelephonyManager.CALL_STATE_OFFHOOK:
 				if (RingForU.DEBUG)
-					Log.v(TAG, "offhook");
+					LogRingForu.v(TAG, "offhook");
 				break;
 			case TelephonyManager.CALL_STATE_RINGING:
 				if (RingForU.DEBUG)
-					Log.v(TAG, "ring num: " + incomingNumber);
+					LogRingForu.v(TAG, "ring num: " + incomingNumber);
 				if (strAllNumsImportant != null && strAllNumsImportant.contains(StringUtil.getRidofSpeciall(incomingNumber))) {
 					if (MainUtil.isEffective(con)) {
 						PhoneUtil.turnUpMost(con);
 					} else {
 						if (RingForU.DEBUG)
-							Log.v(TAG, "not effective!");
+							LogRingForu.v(TAG, "not effective!");
 					}
 
 				} else if (strAllNumsCall != null && strAllNumsCall.contains(StringUtil.getRidofSpeciall(incomingNumber))) {
@@ -84,17 +84,17 @@ public class CallReceiver extends BroadcastReceiver {
 					switch (MainConfig.getInstance().getInterceptCallStyle()) {
 					case ConfigCanstants.STYLE_INTERCEPT_CALL_NULL:
 						if (RingForU.DEBUG)
-							Log.e(TAG, "INTERCEPT_CALL_STYLE_NULL");
+							LogRingForu.e(TAG, "INTERCEPT_CALL_STYLE_NULL");
 
 						break;
 					case ConfigCanstants.STYLE_INTERCEPT_CALL_SHUTDOWN:
 						if (RingForU.DEBUG)
-							Log.e(TAG, "INTERCEPT_CALL_STYLE_SHUTDOWN");
+							LogRingForu.e(TAG, "INTERCEPT_CALL_STYLE_SHUTDOWN");
 						break;
 					case ConfigCanstants.STYLE_INTERCEPT_CALL_RECEIVE_SHUTDOWN:
 						// ½ÓÌýºóÁ¢¿Ì¹Ò¶Ï
 						if (RingForU.DEBUG)
-							Log.e(TAG, "INTERCEPT_CALL_STYLE_RECEIVE_SHUTDOWN");
+							LogRingForu.e(TAG, "INTERCEPT_CALL_STYLE_RECEIVE_SHUTDOWN");
 						PhoneUtil.doActionAboutCall(con, PhoneUtil.ANSWER_RINGING_CALL);
 						new Handler().postDelayed(new Runnable() {
 
@@ -105,7 +105,7 @@ public class CallReceiver extends BroadcastReceiver {
 						break;
 					case ConfigCanstants.STYLE_INTERCEPT_CALL_NO_ANSWER:
 						if (RingForU.DEBUG)
-							Log.e(TAG, "STYLE_INTERCEPT_CALL_NO_ANSWER");
+							LogRingForu.e(TAG, "STYLE_INTERCEPT_CALL_NO_ANSWER");
 						PhoneUtil.doActionAboutCall(con, PhoneUtil.HANG_UP_CALL);
 						break;
 					default:
@@ -117,12 +117,12 @@ public class CallReceiver extends BroadcastReceiver {
 						PhoneUtil.doActionAboutCall(con, PhoneUtil.HANG_UP_CALL);
 						BusyModeUtil.showRefusedNumberNotification(con, incomingNumber);
 						if (RingForU.DEBUG)
-							Log.e(TAG, "BUSY MODE, offhook incoming call!");
+							LogRingForu.e(TAG, "BUSY MODE, offhook incoming call!");
 						String msg = BusyModeUtil.getBusyModeMsgContent(con);
 						if (msg != null && msg.length() > 0) {
 							PhoneUtil.sendMessage(con, incomingNumber, msg);
 							if (RingForU.DEBUG)
-								Log.e(TAG, "BUSY MODE, offhook incoming call then send msg!");
+								LogRingForu.e(TAG, "BUSY MODE, offhook incoming call then send msg!");
 						}
 					}
 				}

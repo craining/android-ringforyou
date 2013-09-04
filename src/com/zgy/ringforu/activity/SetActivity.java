@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -17,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
@@ -133,11 +133,11 @@ public class SetActivity extends Activity implements OnClickListener {
 	 */
 	private void refreshView() {
 		if (RingForU.DEBUG)
-			Log.v(TAG, "refresh set views");
+			LogRingForu.v(TAG, "refresh set views");
 
 		String strSlient = mMainConfig.getSlientTime();
 		if (RingForU.DEBUG)
-			Log.v(TAG, "strSlient = " + strSlient);
+			LogRingForu.v(TAG, "strSlient = " + strSlient);
 
 		// 刷新安静时段的显示
 		if (StringUtil.isNull(strSlient)) {
@@ -147,7 +147,7 @@ public class SetActivity extends Activity implements OnClickListener {
 			imgImportantAddClam.setVisibility(View.VISIBLE);
 		} else {
 			if (RingForU.DEBUG)
-				Log.v(TAG, strSlient + "<-- strSlientP");
+				LogRingForu.v(TAG, strSlient + "<-- strSlientP");
 			String[] ps = strSlient.split(":::");
 			if (ps.length == 1) {
 				// 添加了一个安静时段
@@ -477,11 +477,11 @@ public class SetActivity extends Activity implements OnClickListener {
 	 * broadcastRec = new BroadcastReceiver() {
 	 * 
 	 * @Override public void onReceive(Context context, Intent intent) { if
-	 *           (intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED)) { Log.v(TAG, "SD card mounted!!!");
+	 *           (intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED)) { LogRingForu.v(TAG, "SD card mounted!!!");
 	 *           refreshViews(); } else if (intent.getAction().equals(Intent.ACTION_MEDIA_BAD_REMOVAL) ||
 	 *           intent.getAction().equals(Intent.ACTION_MEDIA_REMOVED) ||
 	 *           intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTED) ||
-	 *           intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTABLE)) { Log.v(TAG,
+	 *           intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTABLE)) { LogRingForu.v(TAG,
 	 *           "SD card UNmounted!!!"); btnImport.setEnabled(false); btnExport.setEnabled(false); } } };
 	 *           registerReceiver(broadcastRec, intentFilter);// 注册监听函数 }
 	 * 

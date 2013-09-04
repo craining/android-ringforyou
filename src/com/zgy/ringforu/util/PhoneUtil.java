@@ -4,24 +4,19 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
-import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
-import com.zgy.ringforu.view.MyDialog;
 
 public class PhoneUtil {
 
@@ -84,7 +79,7 @@ public class PhoneUtil {
 	 */
 	public static void turnUpMost(Context context) {
 		if (RingForU.DEBUG)
-			Log.v(TAG, "turnUpMost");
+			LogRingForu.v(TAG, "turnUpMost");
 		AudioManager audioMgr = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		audioMgr.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_ON);
 		audioMgr.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
@@ -104,7 +99,7 @@ public class PhoneUtil {
 	 */
 	public static void turnDown(Context context) {
 		if (RingForU.DEBUG)
-			Log.v(TAG, "turnDown");
+			LogRingForu.v(TAG, "turnDown");
 		AudioManager audioMgr = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		audioMgr.setRingerMode(AudioManager.RINGER_MODE_SILENT);// 静音模式、不震动
 		// audioMgr.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_OFF);
@@ -171,7 +166,7 @@ public class PhoneUtil {
 	 */
 	public static void turnPre(Context context) {
 		if (RingForU.DEBUG)
-			Log.v(TAG, "turnPre");
+			LogRingForu.v(TAG, "turnPre");
 		AudioManager audioMgr = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		audioMgr.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 	}
@@ -246,7 +241,7 @@ public class PhoneUtil {
 		sb.append("\r\nSubscriberId(IMSI) = " + tm.getSubscriberId());
 		// sb.append("\r\nVoiceMailNumber = " + tm.getVoiceMailNumber());
 		if (RingForU.DEBUG)
-			Log.i("info", sb.toString());
+			LogRingForu.i("info", sb.toString());
 		return sb.toString();
 	}
 
@@ -297,7 +292,7 @@ public class PhoneUtil {
 		for (String text : divideContents) {
 			smsManager.sendTextMessage(tonumber, null, text, null, null);
 			if (RingForU.DEBUG)
-				Log.e(TAG, "send msg, to:" + tonumber + "  content: " + content);
+				LogRingForu.e(TAG, "send msg, to:" + tonumber + "  content: " + content);
 		}
 	}
 
@@ -320,7 +315,7 @@ public class PhoneUtil {
 			field = build_version_class.getField("SDK_INT");
 			version = (Integer) field.get(new android.os.Build.VERSION());
 			if (RingForU.DEBUG)
-				Log.v(TAG, "isUpAPI10 ? api = " + version);
+				LogRingForu.v(TAG, "isUpAPI10 ? api = " + version);
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {

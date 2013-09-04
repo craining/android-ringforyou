@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.view.MyToast;
@@ -77,7 +76,7 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 		// feedKeywordsFlow(wordsFlow, busyModesTitle);
 		wordsFlow.feedKeywordsAll(busyModesTitle);
 		// if (RingForU.DEBUG)
-		// Log.e(TAG, "test test point 1");
+		// LogRingForu.e(TAG, "test test point 1");
 		setSelectedMsgContent(BusyModeUtil.getBusyModeMsgContent(BusyModeActivity.this), true);
 	}
 

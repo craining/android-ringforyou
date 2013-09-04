@@ -7,7 +7,6 @@ import java.util.Vector;
 import android.content.Context;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -176,7 +175,7 @@ public class WordsFlowView extends FrameLayout implements OnGlobalLayoutListener
 				continue;
 			}
 			FrameLayout.LayoutParams layParams = (LayoutParams) txt.getLayoutParams();
-			// Log.d("ANDROID_LAB", txt.getText() + " leftM=" +
+			// LogRingForu.d("ANDROID_LAB", txt.getText() + " leftM=" +
 			// layParams.leftMargin + " topM=" + layParams.topMargin
 			// + " width=" + txt.getWidth());
 			int[] xy = new int[] { layParams.leftMargin, layParams.topMargin, txt.getWidth() };
@@ -208,14 +207,14 @@ public class WordsFlowView extends FrameLayout implements OnGlobalLayoutListener
 			// 关键字的个数。
 			int size = vecKeywords.size();
 			int xItem = width / size, yItem = height / size;
-			// Log.d("ANDROID_LAB", "--------------------------width=" + width + " height=" + height +
+			// LogRingForu.d("ANDROID_LAB", "--------------------------width=" + width + " height=" + height +
 			// "  xItem=" + xItem + " yItem=" + yItem + "---------------------------");
 			LinkedList<Integer> listX = new LinkedList<Integer>(), listY = new LinkedList<Integer>();
 			for (int i = 0; i < size; i++) {
 				// 准备随机候选数，分别对应x/y轴位置
 				listX.add(i * xItem);
 				listY.add(i * yItem + (yItem >> 2));
-				// Log.v(TAG, "ListX:" + (i * xItem) + "#listY:" + (i * yItem + (yItem >> 2)));
+				// LogRingForu.v(TAG, "ListX:" + (i * xItem) + "#listY:" + (i * yItem + (yItem >> 2)));
 			}
 			// TextView[] txtArr = new TextView[size];
 			LinkedList<TextView> listTxtTop = new LinkedList<TextView>();
@@ -272,7 +271,7 @@ public class WordsFlowView extends FrameLayout implements OnGlobalLayoutListener
 		for (int i = 0; i < size; i++) {
 			TextView txt = listTxt.get(i);
 			int[] iXY = (int[]) txt.getTag();
-			// Log.d("ANDROID_LAB", "fix[  " + txt.getText() + "  ] x:" +
+			// LogRingForu.d("ANDROID_LAB", "fix[  " + txt.getText() + "  ] x:" +
 			// iXY[IDX_X] + " y:" + iXY[IDX_Y] + " r2="
 			// + iXY[IDX_DIS_Y]);
 			// 第二次修正:修正y坐标
@@ -286,7 +285,7 @@ public class WordsFlowView extends FrameLayout implements OnGlobalLayoutListener
 				int endX = startX + kXY[IDX_TXT_LENGTH];
 				// y轴以中心点为分隔线，在同一侧
 				if (yDistance * (kXY[IDX_Y] - yCenter) > 0) {
-					// Log.d("ANDROID_LAB", "compare:" +
+					// LogRingForu.d("ANDROID_LAB", "compare:" +
 					// listTxt.get(k).getText());
 					if (isXMixed(startX, endX, iXY[IDX_X], iXY[IDX_X] + iXY[IDX_TXT_LENGTH])) {
 						int tmpMove = Math.abs(iXY[IDX_Y] - kXY[IDX_Y]);
@@ -296,12 +295,12 @@ public class WordsFlowView extends FrameLayout implements OnGlobalLayoutListener
 							// 取消默认值。
 							yMove = 0;
 						}
-						// Log.d("ANDROID_LAB", "break");
+						// LogRingForu.d("ANDROID_LAB", "break");
 						break inner;
 					}
 				}
 			}
-			// Log.d("ANDROID_LAB", txt.getText() + " yMove=" + yMove);
+			// LogRingForu.d("ANDROID_LAB", txt.getText() + " yMove=" + yMove);
 			if (yMove > yItem) {
 				int maxMove = yMove - yItem;
 				int randomMove = random.nextInt(maxMove);

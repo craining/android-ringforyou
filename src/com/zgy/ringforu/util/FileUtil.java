@@ -2,15 +2,14 @@ package com.zgy.ringforu.util;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.zgy.ringforu.RingForU;
-
 import android.content.Context;
-import android.util.Log;
+
+import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.RingForU;
 
 public class FileUtil {
 
@@ -60,7 +59,7 @@ public class FileUtil {
 		String result = null;
 		result = properties.get("string").toString();
 		if (RingForU.DEBUG)
-		Log.v(TAG, "读取内容" + result);
+		LogRingForu.v(TAG, "读取内容" + result);
 		return result;
 	}
 

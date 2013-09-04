@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -23,6 +22,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
@@ -85,7 +85,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 				if (RingForU.DEBUG)
-					Log.v(TAG, "delete: " + position);
+					LogRingForu.v(TAG, "delete: " + position);
 				PhoneUtil.doVibraterNormal(vb);
 				listItem.remove(position);
 				listItemAdapter.notifyDataSetChanged();
@@ -150,7 +150,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		if (RingForU.DEBUG)
-			Log.e(TAG, "onResume");
+			LogRingForu.e(TAG, "onResume");
 		initListView();
 		super.onResume();
 	}

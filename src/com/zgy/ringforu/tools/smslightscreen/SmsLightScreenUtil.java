@@ -4,8 +4,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
-import android.util.Log;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
 
@@ -37,13 +37,13 @@ public class SmsLightScreenUtil {
 				final WakeLock wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "tag");
 				wakeLock.acquire();
 				if (RingForU.DEBUG)
-					Log.e(TAG, "acquire wakeLock");
+					LogRingForu.e(TAG, "acquire wakeLock");
 				new Handler().postDelayed(new Runnable() {
 
 					public void run() {
 						wakeLock.release();
 						if (RingForU.DEBUG)
-							Log.e(TAG, "release wakeLock");
+							LogRingForu.e(TAG, "release wakeLock");
 					}
 				}, 5000);
 

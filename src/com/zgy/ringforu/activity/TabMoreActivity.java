@@ -1,6 +1,5 @@
 package com.zgy.ringforu.activity;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -18,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
@@ -98,7 +97,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 	protected void onResume() {
 		refreshViews();
 		if (RingForU.DEBUG)
-			Log.e(TAG, "onResume");
+			LogRingForu.e(TAG, "onResume");
 		super.onResume();
 	}
 

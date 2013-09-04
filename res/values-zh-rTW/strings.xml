@@ -47,7 +47,7 @@
     <string name="sure_delete">您確定要清空全部重要連絡人嗎？</string>
     <string name="clear_success">已清空！</string>
     <string name="feedback_submit">提交</string>
-    <string name="feedback_hint_1">電子郵箱</string>
+    <string name="feedback_hint_1">您的電子郵箱</string>
     <string name="feedback_contentnull">回饋內容不能為空！</string>
     <string name="feedback_contentfail">回饋失敗！\r\n請保持網路暢通</string>
     <string name="feedback_nonetwork">當前沒有網路連接，無法回饋！</string>

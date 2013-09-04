@@ -47,7 +47,7 @@
     <string name="sure_delete">Sure to clear all important contacts you added?</string>
     <string name="clear_success">Successfully cleared!</string>
     <string name="feedback_submit">Submit</string>
-    <string name="feedback_hint_1">Email Address</string>
+    <string name="feedback_hint_1">Your Email Address</string>
     <string name="feedback_contentnull">You cannot submit nothing!</string>
     <string name="feedback_contentfail">Submit failed! \r\nNetwork is not available.</string>
     <string name="feedback_nonetwork">Network is not available, you cannot submit!</string>
@@ -217,8 +217,8 @@
     <string name="about_maker">制作人：</string>
     <string name="about_maker_name">庄广钰</string>
     <string name="about_programer">开发：</string>
-    <string name="about_programer_name">craining</string>
+    <string name="about_programer_name">庄广钰</string>
     <string name="about_qa">测试：</string>
-    <string name="about_qa_name">xxy</string>
+    <string name="about_qa_name">徐欣莹</string>
 
 </resources>

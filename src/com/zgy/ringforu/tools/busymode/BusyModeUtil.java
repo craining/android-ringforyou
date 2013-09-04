@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.ContactsUtil;
 import com.zgy.ringforu.util.StringUtil;
@@ -239,7 +238,7 @@ public class BusyModeUtil {
 		// 3.0以下不支持通知栏里的按钮响应
 		// if (PhoneUtil.isUpAPI10(context)) {
 		//if (RingForU.DEBUG)
-		// Log.e("", "  3.0 以上");
+		// LogRingForu.e("", "  3.0 以上");
 		// Notification notification = new
 		// Notification(R.drawable.ic_notification_busymode_refused,
 		// context.getString(R.string.str_busymode_notification_refused_notify),
@@ -287,10 +286,10 @@ public class BusyModeUtil {
 		// mNotificationManager.notify(NOTIFICATION_ID_BUSYMODE_REFUSED,
 		// notification);
 		//
-		// Log.v("", " create notification id = " +
+		// LogRingForu.v("", " create notification id = " +
 		// NOTIFICATION_ID_BUSYMODE_REFUSED);
 		// } else {
-		// Log.e("", "  3.0 以下");
+		// LogRingForu.e("", "  3.0 以下");
 		// // 定义Notification的各种属性
 		NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 		// 定义Notification的各种属性

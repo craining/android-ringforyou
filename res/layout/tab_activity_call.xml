@@ -8,11 +8,7 @@
 
     <RelativeLayout
         android:id="@+id/layout_call_title"
-        android:layout_width="fill_parent"
-        android:layout_height="45dip"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/bg_bar_top"
-        android:orientation="horizontal" >
+        style="@style/layout_top_title" >
 
         <Button
             android:id="@+id/btn_call_clslist"
@@ -28,14 +24,8 @@
 
         <TextView
             android:id="@+id/text_call_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:singleLine="true"
-            android:text="@string/tab_call"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            style="@style/text_top_title"
+            android:text="@string/tab_call" />
 
         <ImageView
             android:id="@+id/img_call_help"

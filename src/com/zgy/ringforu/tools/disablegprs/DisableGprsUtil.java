@@ -1,6 +1,5 @@
 package com.zgy.ringforu.tools.disablegprs;
 
-import java.io.File;
 import java.lang.reflect.Method;
 
 import android.app.Notification;
@@ -10,12 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo.State;
-import android.util.Log;
 
-import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.util.MainUtil;
 
 public class DisableGprsUtil {
 
@@ -75,18 +71,18 @@ public class DisableGprsUtil {
 	// Intent i = new Intent(context, DisableGprsService.class);
 	// i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	// context.startService(i);
-	// Log.v(TAG, "service is not running, need to start service!");
+	// LogRingForu.v(TAG, "service is not running, need to start service!");
 	// // } else {
-	// // Log.v(TAG, "service is running, no need to start service!");
+	// // LogRingForu.v(TAG, "service is running, no need to start service!");
 	// // }
 	// } else {
 	// if (MainUtil.isServiceStarted(context, SERVICE_NAME_DISABLESCREEN)) {
 	// Intent i = new Intent(context, DisableGprsService.class);
 	// i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	// context.stopService(i);
-	// Log.v(TAG, "service is running, need to stop service!");
+	// LogRingForu.v(TAG, "service is running, need to stop service!");
 	// } else {
-	// Log.v(TAG, "service is not running, no need to stop service!");
+	// LogRingForu.v(TAG, "service is not running, no need to stop service!");
 	// }
 	// }
 	//

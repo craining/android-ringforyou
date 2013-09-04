@@ -1,7 +1,14 @@
 <resources>
 
-    <dimen name="padding_small">8dp</dimen>
-    <dimen name="padding_medium">8dp</dimen>
-    <dimen name="padding_large">16dp</dimen>
+    <dimen name="btn_width_left_top_back">45dip</dimen>
+    <dimen name="btn_height_left_top_back">30dip</dimen>
+    <dimen name="btn_margin_left_top_back">3dip</dimen>
+    <dimen name="btn_padding_right_top_back">5dip</dimen>
+    <dimen name="btn_textsize_top_back">14sp</dimen>
+    <dimen name="text_textsize_top_title">18sp</dimen>
+    
+    
+    <dimen name="layout_top_height">45dip</dimen>
+    
 
 </resources>

@@ -47,9 +47,19 @@ public final class R {
         public static final int yellow_border=0x7f060002;
     }
     public static final class dimen {
-        public static final int padding_large=0x7f070002;
-        public static final int padding_medium=0x7f070001;
-        public static final int padding_small=0x7f070000;
+        /** 
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
+    
+         */
+        public static final int activity_horizontal_margin=0x7f070007;
+        public static final int btn_height_left_top_back=0x7f070001;
+        public static final int btn_margin_left_top_back=0x7f070002;
+        public static final int btn_padding_right_top_back=0x7f070003;
+        public static final int btn_textsize_top_back=0x7f070004;
+        public static final int btn_width_left_top_back=0x7f070000;
+        public static final int layout_top_height=0x7f070006;
+        public static final int text_textsize_top_title=0x7f070005;
     }
     public static final class drawable {
         public static final int bg_account_autocomplete_listitem=0x7f020000;
@@ -196,8 +206,8 @@ public final class R {
         public static final int busymode_flow=0x7f0a0023;
         public static final int edit_addcontact_search=0x7f0a0005;
         public static final int edit_busymode_msgcontent=0x7f0a0022;
-        public static final int edit_feedback_content=0x7f0a002d;
-        public static final int edit_feedback_email=0x7f0a002c;
+        public static final int edit_feedback_content=0x7f0a002c;
+        public static final int edit_feedback_email=0x7f0a002d;
         public static final int edit_name=0x7f0a000f;
         public static final int edit_num=0x7f0a0010;
         public static final int image_busymode_switch=0x7f0a00c2;
@@ -612,8 +622,11 @@ public final class R {
  模糊 <item name="android:backgroundDimEnabled">true</item> 
          */
         public static final int activity=0x7f090002;
+        public static final int btn_left_top_back=0x7f090004;
         /**  模糊 
          */
         public static final int dialog=0x7f090001;
+        public static final int layout_top_title=0x7f090003;
+        public static final int text_top_title=0x7f090005;
     }
 }

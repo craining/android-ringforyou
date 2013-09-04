@@ -7,34 +7,16 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="45dip"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/bg_bar_top" >
+		style="@style/layout_top_title" >
 
         <Button
             android:id="@+id/btn_feedback_return"
-            android:layout_width="45dip"
-            android:layout_height="30dip"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="3.0dip"
-            android:background="@drawable/bg_btn_return"
-            android:gravity="center_vertical|right"
-            android:paddingRight="5dip"
-            android:text="@string/back"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+            style="@style/btn_left_top_back" />
 
         <TextView
+            style="@style/text_top_title"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/feedback"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:text="@string/feedback" />
 
         <Button
             android:id="@+id/btn_feedback_ok"
@@ -47,6 +29,19 @@
             android:text="@string/feedback_submit"
             android:textColor="@color/white" />
     </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edit_feedback_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="30dip"
+        android:layout_marginTop="20dip"
+        android:background="@drawable/edit_bg"
+        android:gravity="top"
+        android:hint="@string/feedback_content"
+        android:lines="6"
+        android:textSize="15sp" />
 
     <AutoCompleteTextView
         android:id="@+id/edit_feedback_email"
@@ -64,31 +59,5 @@
         android:maxLength="128"
         android:textColor="@color/black"
         android:textSize="15sp" />
-    
-    <EditText
-        android:id="@+id/edit_feedback_content"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:layout_marginTop="20dip"
-        android:background="@drawable/edit_bg"
-        android:gravity="top"
-        android:lines="6"
-        android:hint="@string/feedback_content"
-        android:textSize="15sp"/>
 
-    <!--
-          <EditText
-        android:id="@+id/edit_feedback_email"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:layout_marginTop="20dip"
-        android:background="@drawable/edit_bg"
-        android:inputType="textEmailAddress"
-        android:hint="@string/feedback_hint_1"
-        android:textSize="15sp" />
-    -->
 </LinearLayout>

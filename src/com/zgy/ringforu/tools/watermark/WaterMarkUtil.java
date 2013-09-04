@@ -7,8 +7,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
@@ -110,10 +110,10 @@ public class WaterMarkUtil {
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startService(i);
 				if (RingForU.DEBUG)
-					Log.v(TAG, "service is not running, need to start service!");
+					LogRingForu.v(TAG, "service is not running, need to start service!");
 			} else {
 				if (RingForU.DEBUG)
-					Log.v(TAG, "service is running, no need to start service!");
+					LogRingForu.v(TAG, "service is running, no need to start service!");
 			}
 		} else {
 			if (MainUtil.isServiceStarted(context, SERVICE_NAME_WATERMARK)) {
@@ -121,10 +121,10 @@ public class WaterMarkUtil {
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.stopService(i);
 				if (RingForU.DEBUG)
-					Log.v(TAG, "service is running, need to stop service!");
+					LogRingForu.v(TAG, "service is running, need to stop service!");
 			} else {
 				if (RingForU.DEBUG)
-					Log.v(TAG, "service is not running, no need to stop service!");
+					LogRingForu.v(TAG, "service is not running, no need to stop service!");
 			}
 		}
 

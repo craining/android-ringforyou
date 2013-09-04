@@ -1,13 +1,13 @@
 package com.zgy.ringforu.tools.signalreconnect;
 
-import com.zgy.ringforu.RingForU;
-
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.util.Log;
+
+import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.RingForU;
 
 public class SignalReconnectService extends Service {
 
@@ -24,7 +24,7 @@ public class SignalReconnectService extends Service {
 	@Override
 	public void onStart(Intent intent, int startId) {
 		if (RingForU.DEBUG)
-			Log.e(TAG, "SignalReconnectService is start!");
+			LogRingForu.e(TAG, "SignalReconnectService is start!");
 		if (SignalReconnectUtil.isSignalReconnectOn()) {
 			mTelephonyMgr = (TelephonyManager) getSystemService(SignalReconnectService.TELEPHONY_SERVICE);
 			myListenter = new SignalStrengthListener();
@@ -38,7 +38,7 @@ public class SignalReconnectService extends Service {
 	@Override
 	public void onDestroy() {
 		if (RingForU.DEBUG)
-			Log.e(TAG, "SignalReconnectService is destroy!");
+			LogRingForu.e(TAG, "SignalReconnectService is destroy!");
 		if (mTelephonyMgr != null && myListenter != null) {
 			mTelephonyMgr.listen(myListenter, PhoneStateListener.LISTEN_NONE);
 			mTelephonyMgr = null;
@@ -63,7 +63,7 @@ public class SignalReconnectService extends Service {
 				SignalReconnectUtil.doSignalReconnect(SignalReconnectService.this);
 			}
 			if (RingForU.DEBUG)
-				Log.e(TAG, "asu = " + asu);
+				LogRingForu.e(TAG, "asu = " + asu);
 		}
 
 	}

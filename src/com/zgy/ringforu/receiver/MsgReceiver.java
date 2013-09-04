@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
-import android.util.Log;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
@@ -49,30 +49,30 @@ public class MsgReceiver extends BroadcastReceiver {
 				getFromNum = currMsg.getDisplayOriginatingAddress();
 			}
 			if (RingForU.DEBUG)
-				Log.v(TAG, getFromNum);
+				LogRingForu.v(TAG, getFromNum);
 			getFromNum = StringUtil.getRidofSpeciall(getFromNum);
 			if (strAllNumsImportant != null && strAllNumsImportant.contains(getFromNum)) {
 				if (RingForU.DEBUG)
-					Log.e(TAG, "check screen light");
+					LogRingForu.e(TAG, "check screen light");
 				SmsLightScreenUtil.checkSmsLightScreenOn(context);// µ„¡¡∆¡ƒª”Î∑Ò
 				if (MainUtil.isEffective(context)) {
 					PhoneUtil.turnUpMost(context);
 				} else {
 					if (RingForU.DEBUG)
-						Log.v(TAG, "not effective!");
+						LogRingForu.v(TAG, "not effective!");
 				}
 			} else if (strAllNumsSms != null && strAllNumsSms.contains(getFromNum)) {
 				// ∆¡±Œ∂Ã–≈£¨
 				switch (MainConfig.getInstance().getInterceptSmsStyle()) {
 				case ConfigCanstants.STYLE_INTERCEPT_SMS_SLIENT:
 					if (RingForU.DEBUG)
-						Log.e(TAG, "hide sms slient!");
+						LogRingForu.e(TAG, "hide sms slient!");
 					// ±£¡Ù∂Ã–≈
 					PhoneUtil.turnDownThenUp(context);
 					break;
 				case ConfigCanstants.STYLE_INTERCEPT_SMS_DISRECEIVE:
 					if (RingForU.DEBUG)
-						Log.e(TAG, "hide sms abort broadcast!");
+						LogRingForu.e(TAG, "hide sms abort broadcast!");
 					// ≤ª¥Ê¥¢∂Ã–≈
 					abortBroadcast();
 					setResultData(null);
@@ -82,7 +82,7 @@ public class MsgReceiver extends BroadcastReceiver {
 				}
 			} else {
 				if (RingForU.DEBUG)
-					Log.e(TAG, "check screen light");
+					LogRingForu.e(TAG, "check screen light");
 				SmsLightScreenUtil.checkSmsLightScreenOn(context);// µ„¡¡∆¡ƒª”Î∑Ò
 			}
 		}

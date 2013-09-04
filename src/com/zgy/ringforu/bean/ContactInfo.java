@@ -1,7 +1,6 @@
 package com.zgy.ringforu.bean;
 
-import android.util.Log;
-
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.RingForU;
 
 public class ContactInfo {
@@ -46,14 +45,14 @@ public class ContactInfo {
 	@Override
 	public int hashCode() {
 		if (RingForU.DEBUG)
-			Log.e("", "hashCode");
+			LogRingForu.e("", "hashCode");
 		return this.name.hashCode() + this.num.hashCode() + this.storeKey.hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (RingForU.DEBUG)
-			Log.e("", "equals");
+			LogRingForu.e("", "equals");
 		if (this == obj) {
 			return true;
 		}

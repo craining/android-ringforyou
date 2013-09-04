@@ -3,19 +3,12 @@ package com.zgy.ringforu.util;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 
-import com.zgy.ringforu.RingForU;
-
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.util.Log;
+
+import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.RingForU;
 
 public class BitmapUtil {
 
@@ -95,8 +88,8 @@ public class BitmapUtil {
 			bitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
 		}
 		if (RingForU.DEBUG) {
-			Log.e("", "w = " + w + "  h=" + h + " (float) width / w" + (float) width / w + "   (float) height / h=" + (float) height / h);
-			Log.e("", "bitmap.w=" + bitmap.getWidth() + " h=" + bitmap.getHeight());
+			LogRingForu.e("", "w = " + w + "  h=" + h + " (float) width / w" + (float) width / w + "   (float) height / h=" + (float) height / h);
+			LogRingForu.e("", "bitmap.w=" + bitmap.getWidth() + " h=" + bitmap.getHeight());
 		}
 
 		// // GoOutDebug.e(TAG, "w = " + output.getWidth() + "   h = " + output.getHeight());

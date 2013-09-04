@@ -6,9 +6,8 @@ import java.util.List;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Environment;
-import android.os.Vibrator;
-import android.util.Log;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
@@ -47,7 +46,7 @@ public class MainUtil {
 	// */
 	// public static int inTime() {
 	// int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-	// Log.v(TAG, "hour" + hour);
+	// LogRingForu.v(TAG, "hour" + hour);
 	// if (hour >= 18) {
 	// return 1;
 	// } else if (hour == 12 || hour == 13) {
@@ -60,7 +59,7 @@ public class MainUtil {
 
 	//
 	// public static boolean writeFile(String str, File file, boolean add) {
-	// Log.v(TAG, file.toString() + "wrote in:" + str);
+	// LogRingForu.v(TAG, file.toString() + "wrote in:" + str);
 	//
 	// FileOutputStream out;
 	// try {
@@ -219,7 +218,7 @@ public class MainUtil {
 			if (!StringUtil.isNull(numbersImportant)) {
 				String[] arry = numbersImportant.split(":::");
 				if (RingForU.DEBUG)
-					Log.v(TAG, " arry.length" + arry.length);
+					LogRingForu.v(TAG, " arry.length" + arry.length);
 				result = MainCanstants.MAX_NUMS - arry.length;
 			}
 			break;
@@ -228,7 +227,7 @@ public class MainUtil {
 			if (!StringUtil.isNull(numbersCall)) {
 				String[] arry = numbersCall.split(":::");
 				if (RingForU.DEBUG)
-					Log.v(TAG, " arry.length" + arry.length);
+					LogRingForu.v(TAG, " arry.length" + arry.length);
 				result = MainCanstants.MAX_NUMS - arry.length;
 			}
 			break;
@@ -237,7 +236,7 @@ public class MainUtil {
 			if (!StringUtil.isNull(numbersSms)) {
 				String[] arry = numbersSms.split(":::");
 				if (RingForU.DEBUG)
-					Log.v(TAG, " arry.length" + arry.length);
+					LogRingForu.v(TAG, " arry.length" + arry.length);
 				result = MainCanstants.MAX_NUMS - arry.length;
 			}
 			break;
@@ -312,7 +311,7 @@ public class MainUtil {
 
 		if (result == 3) {
 			if (RingForU.DEBUG)
-				Log.v(TAG, "contains the pre periord");
+				LogRingForu.v(TAG, "contains the pre periord");
 			MainConfig.getInstance().setSlientTime(per);
 		}
 		if (result == 2) {

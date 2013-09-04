@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.activity.RToolsActivity;
@@ -36,7 +36,7 @@ public class WaterMarkService extends Service {
 		super.onStart(intent, startId);
 
 		if (RingForU.DEBUG)
-			Log.e(TAG, "WaterMarkService is start!");
+			LogRingForu.e(TAG, "WaterMarkService is start!");
 		if (show) {
 
 			if (WaterMarkUtil.isWaterMarkSeted()) {
@@ -66,7 +66,7 @@ public class WaterMarkService extends Service {
 	}
 
 	private void createView() {
-		// Log.v(TAG, "set View ");
+		// LogRingForu.v(TAG, "set View ");
 
 		// 设置LayoutParams(全局变量）相关参数
 		view = LayoutInflater.from(this).inflate(R.layout.watermark_floating, null);
@@ -83,7 +83,7 @@ public class WaterMarkService extends Service {
 		// Window w = (Window)
 		// getApplicationContext().getSystemService("window");
 		// w.getDecorView().getWindowVisibleDisplayFrame(frame);
-		// Log.v(TAG, "getWindowVisibleDisplayFrame " + frame.top);
+		// LogRingForu.v(TAG, "getWindowVisibleDisplayFrame " + frame.top);
 		// 以屏幕左上角为原点，设置x、y初始值
 		// wmParams.x = 0;
 		// wmParams.y = 0;
@@ -94,7 +94,7 @@ public class WaterMarkService extends Service {
 		ImageView imgShow = (ImageView) view.findViewById(R.id.watermark_image);
 
 		int alpha = MainConfig.getInstance().getWaterMarkAlpha();
-		// Log.v(TAG, "set alpha " + alpha);
+		// LogRingForu.v(TAG, "set alpha " + alpha);
 		imgShow.setAlpha(alpha);
 
 		// if (new File(WaterMarkUtil.FILEPATH_WATERMARK).exists()) {
@@ -111,7 +111,7 @@ public class WaterMarkService extends Service {
 		// }
 		wm.addView(view, wmParams);
 
-		// Log.v(TAG, "imgShow h=" + imgShow.getMeasuredHeight() + "  w=" + imgShow.getMeasuredWidth());
+		// LogRingForu.v(TAG, "imgShow h=" + imgShow.getMeasuredHeight() + "  w=" + imgShow.getMeasuredWidth());
 	}
 
 	// private void updateViewPosition() {
@@ -130,7 +130,7 @@ public class WaterMarkService extends Service {
 	public void onDestroy() {
 		super.onDestroy();
 		if (RingForU.DEBUG)
-			Log.e(TAG, "WaterMarkService is destroyed!");
+			LogRingForu.e(TAG, "WaterMarkService is destroyed!");
 
 		if (wm != null && view != null) {
 			if (view.isShown())

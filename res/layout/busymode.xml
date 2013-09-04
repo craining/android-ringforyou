@@ -7,34 +7,16 @@
 
     <RelativeLayout
         android:id="@+id/layout_busymodeset_title"
-        android:layout_width="fill_parent"
-        android:layout_height="45dip"
-        android:background="@drawable/bg_bar_top" >
+		style="@style/layout_top_title">
 
         <Button
             android:id="@+id/btn_busymodeset_back"
-            android:layout_width="45dip"
-            android:layout_height="30dip"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="3dip"
-            android:background="@drawable/bg_btn_return"
-            android:gravity="center_vertical|right"
-            android:paddingRight="5dip"
-            android:text="@string/back"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+            style="@style/btn_left_top_back" />
 
         <TextView
+            style="@style/text_top_title"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/busymode_set_title"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:text="@string/busymode_set_title" />
 
         <Button
             android:id="@+id/btn_busymodeset_ok"
@@ -47,7 +29,7 @@
             android:text="@string/str_open"
             android:textColor="@color/white"
             android:textSize="14sp" />
-        
+
         <Button
             android:id="@+id/btn_busymode_title_close"
             android:layout_width="45dip"
@@ -60,7 +42,6 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             android:visibility="gone" />
-        
     </RelativeLayout>
 
     <LinearLayout

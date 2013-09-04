@@ -8,22 +8,12 @@
 
     <RelativeLayout
         android:id="@+id/layout_more_title"
-        android:layout_width="fill_parent"
-        android:layout_height="45dip"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/bg_bar_top"
-        android:orientation="horizontal" >
+		style="@style/layout_top_title">
 
         <TextView
             android:id="@+id/text_more_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:singleLine="true"
-            android:text="@string/tab_more"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            style="@style/text_top_title"
+            android:text="@string/tab_more" />
     </RelativeLayout>
 
     <ScrollView

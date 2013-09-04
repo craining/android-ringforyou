@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -29,6 +28,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
@@ -94,7 +94,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		// DisplayMetrics metric = getResources().getDisplayMetrics();
 		// screenWidth = metric.widthPixels;
 		// screenHeight = metric.heightPixels;
-		// Log.v(TAG, "get screen " + screenWidth + "x" + screenHeight);
+		// LogRingForu.v(TAG, "get screen " + screenWidth + "x" + screenHeight);
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 		arrayBbColors = getResources().getStringArray(R.array.bg_markwater);
 		arrayTextColors = getResources().getStringArray(R.array.color_markwater_text);
@@ -289,7 +289,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 					Uri tempTakePicUri = Uri.fromFile(tempFileSrc);
 					// 留意一下这个文件路径是按照怎样的规则转换为一个uri的
 					if (RingForU.DEBUG)
-						Log.v(TAG, "根据路径转换的uri为：" + tempTakePicUri.toString());
+						LogRingForu.v(TAG, "根据路径转换的uri为：" + tempTakePicUri.toString());
 					intent.putExtra(MediaStore.EXTRA_OUTPUT, tempTakePicUri);
 
 					startActivityForResult(intent, REQUEST_PICKPIC_CAMERA);
@@ -329,7 +329,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 
 		Uri uriTemp = Uri.fromFile(tempFileCutted);
 		if (RingForU.DEBUG)
-			Log.e(TAG, "after cut uriTemp =" + uriTemp.toString() + "  src uri = " + cutFileUri.toString());
+			LogRingForu.e(TAG, "after cut uriTemp =" + uriTemp.toString() + "  src uri = " + cutFileUri.toString());
 
 		//
 		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT, cutFileUri);
@@ -426,7 +426,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			if (data != null) {
 				Uri picPath = data.getData();
 				if (RingForU.DEBUG)
-					Log.e(TAG, "PIC uri=" + picPath);
+					LogRingForu.e(TAG, "PIC uri=" + picPath);
 				if (picPath != null) {
 					File getFileSrc = new File(getImageAbsolutePath(picPath));
 

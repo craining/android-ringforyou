@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,16 +29,12 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.R.anim;
-import com.zgy.ringforu.R.id;
-import com.zgy.ringforu.R.layout;
-import com.zgy.ringforu.R.string;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.bean.ContactInfo;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
@@ -226,7 +221,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 					info.storeKey = cursor.getString(3);
 
 					if (RingForU.DEBUG)
-						Log.v(TAG, "info.name=" + info.name + "   changed=" + StringUtil.getRidofSpecialOfFileName(info.name));
+						LogRingForu.v(TAG, "info.name=" + info.name + "   changed=" + StringUtil.getRidofSpecialOfFileName(info.name));
 
 					listContacts.add(info);
 				}
@@ -306,7 +301,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 			break;
 		}
 		if (RingForU.DEBUG)
-			Log.v(TAG, "listItem " + listItem.size());
+			LogRingForu.v(TAG, "listItem " + listItem.size());
 		listItemAdapter = new SimpleAdapter(AddByContactsActivity.this, listItem, R.layout.listrow, new String[] { "name", "number" }, new int[] { R.id.name, R.id.number });
 		listviewContacts.setAdapter(listItemAdapter);
 		refreshViews();
@@ -386,7 +381,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 			switch (msg.what) {
 			case MSG_REFRESH_LISTVEW:
 				if (RingForU.DEBUG)
-					Log.v(TAG, "on fresh ");
+					LogRingForu.v(TAG, "on fresh ");
 				// imgLoading.setVisibility(View.GONE);
 				freshListView();
 				break;

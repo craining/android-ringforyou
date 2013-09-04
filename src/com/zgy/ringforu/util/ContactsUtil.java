@@ -1,16 +1,10 @@
 package com.zgy.ringforu.util;
 
-import java.util.ArrayList;
-
-import com.zgy.ringforu.R;
-import com.zgy.ringforu.bean.ContactInfo;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.provider.Contacts.People;
-import android.util.Log;
+import android.provider.ContactsContract;
 
 public class ContactsUtil {
 

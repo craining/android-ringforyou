@@ -47,7 +47,7 @@
     <string name="sure_delete">您确定要清空全部重要联系人吗？</string>
     <string name="clear_success">已清空！</string>
     <string name="feedback_submit">提交</string>
-    <string name="feedback_hint_1">电子邮箱</string>
+    <string name="feedback_hint_1">您的电子邮箱</string>
     <string name="feedback_contentnull">反馈内容不能为空！</string>
     <string name="feedback_contentfail">反馈失败！\r\n请保持网络畅通</string>
     <string name="feedback_nonetwork">当前没有网络连接，无法反馈！</string>
