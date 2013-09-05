@@ -12,15 +12,7 @@
 
         <Button
             android:id="@+id/btn_call_clslist"
-            android:layout_width="45dip"
-            android:layout_height="30dip"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dip"
-            android:background="@drawable/bg_btn_red"
-            android:text="@string/clear_all"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+            style="@style/btn_left_top_clear"/>
 
         <TextView
             android:id="@+id/text_call_title"
@@ -43,14 +35,7 @@
 
         <ImageView
             android:id="@+id/img_call_set"
-            android:layout_width="25dip"
-            android:layout_height="25dip"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dip"
-            android:clickable="true"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/bg_btn_set" />
+			style="@style/img_right_top_set"/>
     </RelativeLayout>
 
     <LinearLayout

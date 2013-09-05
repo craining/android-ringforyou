@@ -12,6 +12,8 @@ import android.os.Vibrator;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.CheckBox;
+import android.widget.Checkable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -31,11 +33,12 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 	private static final String TAG = "TabCallActivity";
 
-	private ImageView imgV;
+	private CheckBox checkV;
 	private RelativeLayout layoutFeedback;
 	private RelativeLayout layoutHelp;
 	private RelativeLayout layoutTools;
 	private RelativeLayout layoutClear;
+	private RelativeLayout layoutV;
 
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 
@@ -52,15 +55,16 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 		layoutHelp = (RelativeLayout) findViewById(R.id.layout_more_help);
 		layoutTools = (RelativeLayout) findViewById(R.id.layout_more_tools);
 		layoutClear = (RelativeLayout) findViewById(R.id.layout_more_clear);
-		imgV = (ImageView) findViewById(R.id.img_more_checkv);
+		layoutV = (RelativeLayout) findViewById(R.id.layout_more_v);
+		checkV = (CheckBox) findViewById(R.id.check_more_checkv);
 
 		layoutFeedback.setOnClickListener(this);
 		layoutHelp.setOnClickListener(this);
 		layoutTools.setOnClickListener(this);
 		layoutClear.setOnClickListener(this);
-		
+
 		// 震动的开关需单独处理
-		imgV.setOnClickListener(new View.OnClickListener() {
+		layoutV.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -81,11 +85,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 	private void refreshViews() {
 		// 刷新震动开关的显示
-		if (MainCanstants.bIsVerbOn) {
-			imgV.setImageResource(R.drawable.ic_on);
-		} else {
-			imgV.setImageResource(R.drawable.ic_off);
-		}
+		checkV.setChecked(MainCanstants.bIsVerbOn);
 	}
 
 	@Override

@@ -6,14 +6,28 @@
     -->
 
 
-  <!-- 顶部标题栏相关 -->
-    <dimen name="btn_width_left_top_back">60dip</dimen>
+  <!-- 顶部标题栏相关 
+  
+      <dimen name="btn_width_left_top_back">60dip</dimen>
     <dimen name="btn_height_left_top_back">45dip</dimen>
     <dimen name="btn_margin_left_top_back">25dip</dimen>
     <dimen name="btn_padding_right_top_back">5dip</dimen>
     <dimen name="btn_textsize_top_back">18sp</dimen>
     <dimen name="text_textsize_top_title">20sp</dimen>
     <dimen name="layout_top_height">60dip</dimen>
+  -->
+
+    
+    
+    
+    <dimen name="btn_width_top">68dip</dimen>
+    <dimen name="btn_height_top">45dip</dimen>
+    <dimen name="btn_margin_left_right_top">8dip</dimen>
+    <dimen name="btn_padding_left_top_back">5dip</dimen>
+    <dimen name="btn_textsize_top_title">21sp</dimen>
+    <dimen name="text_textsize_top_title">27sp</dimen>
+    <dimen name="layout_top_height">68dip</dimen>
+    
     
     
 </resources>

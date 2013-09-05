@@ -7,19 +7,11 @@
 
     <RelativeLayout
         android:id="@+id/layout_important_title"
-		style="@style/layout_top_title">
+        style="@style/layout_top_title" >
 
         <Button
             android:id="@+id/btn_important_clslist"
-            android:layout_width="45dip"
-            android:layout_height="30dip"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dip"
-            android:background="@drawable/bg_btn_red"
-            android:text="@string/clear_all"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+            style="@style/btn_left_top_clear" />
 
         <TextView
             android:id="@+id/text_important_title"
@@ -42,14 +34,7 @@
 
         <ImageView
             android:id="@+id/img_important_set"
-            android:layout_width="25dip"
-            android:layout_height="25dip"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dip"
-            android:clickable="true"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/bg_btn_set" />
+            style="@style/img_right_top_set" />
     </RelativeLayout>
 
     <LinearLayout
@@ -147,42 +132,5 @@
             android:dividerHeight="1dip"
             android:listSelector="#00000000" />
     </LinearLayout>
-    <!--
-  <LinearLayout
-        android:id="@+id/layout_main_bottom"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dip"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:gravity="bottom"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/btn_backup_create"
-            android:layout_width="fill_parent"
-            android:layout_height="30dip"
-            android:layout_weight="2"
-            android:background="@drawable/bg_btn_blue"
-            android:text="@string/export_items"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3" />
-
-        <Button
-            android:id="@+id/btn_backup_reback"
-            android:layout_width="fill_parent"
-            android:layout_height="30dip"
-            android:layout_weight="2"
-            android:background="@drawable/bg_btn_blue"
-            android:text="@string/import_items"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-    </LinearLayout>    -->
 
 </RelativeLayout>

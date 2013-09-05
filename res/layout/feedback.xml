@@ -18,15 +18,9 @@
             android:text="@string/feedback" />
 
         <Button
-            android:id="@+id/btn_feedback_ok"
-            android:layout_width="45dip"
-            android:layout_height="30dip"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dip"
-            android:background="@drawable/bg_btn_blue"
-            android:text="@string/feedback_submit"
-            android:textColor="@color/white" />
+            android:id="@+id/btn_feedback_ok" 
+            style="@style/btn_right_top"
+            android:text="@string/feedback_submit" />
     </RelativeLayout>
 
     <EditText

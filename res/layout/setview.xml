@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:id="@+id/layout_set_title"
-		style="@style/layout_top_title">
+        style="@style/layout_top_title" >
 
         <Button
             android:id="@+id/btn_set_return"
@@ -32,161 +32,86 @@
 
             <LinearLayout
                 android:id="@+id/layout_set_important"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dip"
-                android:layout_marginRight="30dip"
-                android:layout_marginTop="20dip"
-                android:background="@drawable/bg_bolder"
-                android:orientation="vertical" >
+                style="@style/layout_set_block" >
 
                 <!-- 联系人 备份 -->
 
                 <RelativeLayout
                     android:id="@+id/layout_set_backup_important"
-                    android:layout_width="fill_parent"
-                    android:layout_height="52dip"
+                    style="@style/layout_set_item"
                     android:background="@drawable/bg_list_item"
                     android:clickable="true" >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dip"
-                        android:orientation="vertical" >
+                    <LinearLayout style="@style/layout_set_item_content_left" >
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/set_backup"
-                            android:textColor="@color/black"
-                            android:textSize="15sp" />
+                            style="@style/text_set_item_content_left_top"
+                            android:text="@string/set_backup" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/set_backup_important_info"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            style="@style/text_set_item_content_left_bottom"
+                            android:text="@string/set_backup_important_info" />
                     </LinearLayout>
                 </RelativeLayout>
+
+                <View style="@style/line_set_item_diver" />
 
                 <!-- 失效时段添加 -->
 
                 <RelativeLayout
                     android:id="@+id/layout_calm_important"
-                    android:layout_width="fill_parent"
-                    android:layout_height="52dip" >
+                    style="@style/layout_set_item" >
 
-                    <View
-                        android:layout_width="fill_parent"
-                        android:layout_height="2dip"
-                        android:layout_alignParentTop="true"
-                        android:background="@color/light_blue_bg" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dip"
-                        android:orientation="vertical" >
+                    <LinearLayout style="@style/layout_set_item_content_left" >
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/clam_per"
-                            android:textColor="@color/black"
-                            android:textSize="15sp" />
+                            style="@style/text_set_item_content_left_top"
+                            android:text="@string/clam_per" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/clam_info"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            style="@style/text_set_item_content_left_bottom"
+                            android:text="@string/clam_info" />
                     </LinearLayout>
 
                     <ImageView
                         android:id="@+id/img_add_calm_important"
-                        android:layout_width="30dip"
-                        android:layout_height="30dip"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dip"
-                        android:clickable="true"
+                        style="@style/img_set_calm_item_right"
                         android:contentDescription="@string/app_name"
                         android:src="@drawable/ic_add" />
                 </RelativeLayout>
                 <!-- 失效时段1 -->
 
+                <View style="@style/line_set_item_diver" />
+
                 <RelativeLayout
                     android:id="@+id/layout_clam_1_important"
-                    android:layout_width="fill_parent"
-                    android:layout_height="51dip" >
-
-                    <View
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dip"
-                        android:layout_alignParentTop="true"
-                        android:background="@color/light_blue_bg" />
+                    style="@style/layout_set_item" >
 
                     <TextView
                         android:id="@+id/text_calmper_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="40dip"
-                        android:layout_marginTop="1dip"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        style="@style/text_set_calm_item_left" />
 
                     <ImageView
                         android:id="@+id/img_del_calm_1_important"
-                        android:layout_width="30dip"
-                        android:layout_height="30dip"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dip"
-                        android:clickable="true"
+                        style="@style/img_set_calm_item_right"
                         android:contentDescription="@string/app_name"
                         android:src="@drawable/ic_delete" />
                 </RelativeLayout>
                 <!-- 失效时段2 -->
 
+                <View style="@style/line_set_item_diver" />
+
                 <RelativeLayout
                     android:id="@+id/layout_clam_2_important"
-                    android:layout_width="fill_parent"
-                    android:layout_height="51dip" >
-
-                    <View
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dip"
-                        android:layout_alignParentTop="true"
-                        android:background="@color/light_blue_bg" />
+                    style="@style/layout_set_item" >
 
                     <TextView
                         android:id="@+id/text_calmper_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="40dip"
-                        android:layout_marginTop="1dip"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        style="@style/text_set_calm_item_left" />
 
                     <ImageView
                         android:id="@+id/img_del_calm_2_important"
-                        android:layout_width="30dip"
-                        android:layout_height="30dip"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dip"
-                        android:clickable="true"
+                        style="@style/img_set_calm_item_right"
                         android:contentDescription="@string/app_name"
                         android:src="@drawable/ic_delete" />
                 </RelativeLayout>
@@ -199,94 +124,53 @@
 
             <LinearLayout
                 android:id="@+id/layout_set_call"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/layout_set_important"
-                android:layout_marginLeft="30dip"
-                android:layout_marginRight="30dip"
-                android:layout_marginTop="20dip"
-                android:background="@drawable/bg_bolder"
-                android:orientation="vertical" >
+                style="@style/layout_set_block"
+                android:layout_below="@id/layout_set_important" >
 
                 <!-- 通话：备份 -->
 
                 <RelativeLayout
                     android:id="@+id/layout_set_backup_call"
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dip"
+                    style="@style/layout_set_item"
                     android:background="@drawable/bg_list_item"
                     android:clickable="true" >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dip"
-                        android:orientation="vertical" >
+                    <LinearLayout style="@style/layout_set_item_content_left" >
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/set_backup"
-                            android:textColor="@color/black"
-                            android:textSize="15sp" />
+                            style="@style/text_set_item_content_left_top"
+                            android:text="@string/set_backup" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/set_backup_call_info"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            style="@style/text_set_item_content_left_bottom"
+                            android:text="@string/set_backup_call_info" />
                     </LinearLayout>
                 </RelativeLayout>
                 <!-- 通话拦截方式 -->
 
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="2dip"
-                    android:background="@color/light_blue_bg" />
+                <View style="@style/line_set_item_diver" />
 
                 <RelativeLayout
                     android:id="@+id/layout_set_hidestyle_call"
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dip"
+                    style="@style/layout_set_item"
                     android:background="@drawable/bg_list_item"
                     android:clickable="true" >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dip"
-                        android:orientation="vertical" >
+                    <LinearLayout style="@style/layout_set_item_content_left" >
 
                         <TextView
                             android:id="@+id/text_set_hidestyle_calltitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/set_hidestyle_call"
-                            android:textColor="@color/black"
-                            android:textSize="15sp" />
+                            style="@style/text_set_item_content_left_top"
+                            android:text="@string/set_hidestyle_call" />
 
                         <TextView
                             android:id="@+id/text_set_hidestyle_callinfo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            style="@style/text_set_item_content_left_bottom" />
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dip"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="18dip"
-                        android:clickable="false"
-                        android:contentDescription="@string/app_name"
-                        android:src="@drawable/ic_list_arrow" />
+                        style="@style/img_set_item_arrow"
+                        android:contentDescription="@string/app_name" />
                 </RelativeLayout>
             </LinearLayout>
             <!-- =========================================================================================================== -->
@@ -296,94 +180,53 @@
 
             <LinearLayout
                 android:id="@+id/layout_set_sms"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/layout_set_call"
-                android:layout_marginLeft="30dip"
-                android:layout_marginRight="30dip"
-                android:layout_marginTop="20dip"
-                android:background="@drawable/bg_bolder"
-                android:orientation="vertical" >
+                style="@style/layout_set_block"
+                android:layout_below="@id/layout_set_call" >
 
                 <!-- 短信： 备份 -->
 
                 <RelativeLayout
                     android:id="@+id/layout_set_backup_sms"
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dip"
+                    style="@style/layout_set_item"
                     android:background="@drawable/bg_list_item"
                     android:clickable="true" >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dip"
-                        android:orientation="vertical" >
+                    <LinearLayout style="@style/layout_set_item_content_left" >
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/set_backup"
-                            android:textColor="@color/black"
-                            android:textSize="15sp" />
+                            style="@style/text_set_item_content_left_top"
+                            android:text="@string/set_backup" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/set_backup_sms_info"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            style="@style/text_set_item_content_left_bottom"
+                            android:text="@string/set_backup_sms_info" />
                     </LinearLayout>
                 </RelativeLayout>
 
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="2dip"
-                    android:background="@color/light_blue_bg" />
+                <View style="@style/line_set_item_diver" />
                 <!-- 短信拦截方式 -->
 
                 <RelativeLayout
                     android:id="@+id/layout_set_hidestyle_sms"
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dip"
+                    style="@style/layout_set_item"
                     android:background="@drawable/bg_list_item"
                     android:clickable="true" >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dip"
-                        android:orientation="vertical" >
+                    <LinearLayout style="@style/layout_set_item_content_left" >
 
                         <TextView
                             android:id="@+id/text_set_hidestyle_smstitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/set_hidestyle_sms"
-                            android:textColor="@color/black"
-                            android:textSize="15sp" />
+                            style="@style/text_set_item_content_left_top"
+                            android:text="@string/set_hidestyle_sms" />
 
                         <TextView
                             android:id="@+id/text_set_hidestyle_smsinfo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            style="@style/text_set_item_content_left_bottom" />
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dip"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="18dip"
-                        android:clickable="false"
-                        android:contentDescription="@string/app_name"
-                        android:src="@drawable/ic_list_arrow" />
+                        style="@style/img_set_item_arrow"
+                        android:contentDescription="@string/app_name" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>

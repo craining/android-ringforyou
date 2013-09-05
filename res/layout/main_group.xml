@@ -25,96 +25,54 @@
 
         <LinearLayout
             android:id="@+id/tab_important"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            style="@style/layout_tab_bottom" >
 
             <ImageView
                 android:id="@+id/img_tab_important"
-                android:layout_width="32dp"
-                android:layout_height="30dp"
-                android:layout_gravity="top|center"
-                android:layout_marginTop="4dp"/>
+                style="@style/img_tab_bottom" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_important"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
+                style="@style/text_tab_bottom"
+                android:text="@string/tab_important" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/tab_call"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            style="@style/layout_tab_bottom" >
 
             <ImageView
                 android:id="@+id/img_tab_call"
-                android:layout_width="32dp"
-                android:layout_height="30dp"
-                android:layout_gravity="top|center"
-                android:layout_marginTop="4dp"/>
+                style="@style/img_tab_bottom" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_call"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
+                style="@style/text_tab_bottom"
+                android:text="@string/tab_call" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/tab_sms"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            style="@style/layout_tab_bottom" >
 
             <ImageView
                 android:id="@+id/img_tab_sms"
-                android:layout_width="32dp"
-                android:layout_height="30dp"
-                android:layout_gravity="top|center"
-                android:layout_marginTop="4dp"/>
+                style="@style/img_tab_bottom" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_sms"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
+                style="@style/text_tab_bottom"
+                android:text="@string/tab_sms" />
         </LinearLayout>
-        
-         <LinearLayout
+
+        <LinearLayout
             android:id="@+id/tab_more"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            style="@style/layout_tab_bottom" >
 
             <ImageView
                 android:id="@+id/img_tab_more"
-                android:layout_width="32dp"
-                android:layout_height="30dp"
-                android:layout_gravity="top|center"
-                android:layout_marginTop="4dp"/>
+                style="@style/img_tab_bottom" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_more"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
+                style="@style/text_tab_bottom"
+                android:text="@string/tab_more" />
         </LinearLayout>
-        
     </LinearLayout>
-
 </LinearLayout>

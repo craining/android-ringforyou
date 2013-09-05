@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:id="@+id/layout_sethidestyle_title_call"
-		style="@style/layout_top_title" >
+        style="@style/layout_top_title" >
 
         <Button
             android:id="@+id/btn_sethidestyle_return_call"
@@ -18,203 +18,100 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layout_sethidestyle_title_call"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:layout_marginTop="20dip"
-        android:background="@drawable/bg_bolder"
-        android:orientation="vertical" >
+        style="@style/layout_set_block"
+        android:layout_below="@id/layout_sethidestyle_title_call" >
 
         <!-- 自动挂断 -->
 
         <RelativeLayout
             android:id="@+id/layout_sethidestyle_call_no_answer"
-            android:layout_width="fill_parent"
-            android:layout_height="50dip" >
+            style="@style/layout_set_item" >
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
-                android:layout_marginRight="30dip"
-                android:orientation="vertical" >
+            <LinearLayout style="@style/layout_set_item_content_left" >
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_call_no_answer"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    style="@style/text_set_item_content_left_top"
+                    android:text="@string/set_hidestyle_call_no_answer" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_call_no_answer_info"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    style="@style/text_set_item_content_left_bottom"
+                    android:text="@string/set_hidestyle_call_no_answer_info" />
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/img_sethidestyle_call_no_answer"
-                android:layout_width="15dip"
-                android:layout_height="15dip"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dip"
-                android:clickable="true"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_selected" />
+                style="@style/img_set_item_selected" />
         </RelativeLayout>
+
+        <View style="@style/line_set_item_diver" />
 
         <!-- 返回空号 -->
 
         <RelativeLayout
             android:id="@+id/layout_sethidestyle_call_null"
-            android:layout_width="fill_parent"
-            android:layout_height="52dip" >
+            style="@style/layout_set_item" >
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="2dip"
-                android:layout_alignParentTop="true"
-                android:background="@color/light_blue_bg" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
-                android:layout_marginRight="30dip"
-                android:orientation="vertical" >
+            <LinearLayout style="@style/layout_set_item_content_left" >
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_call_null"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    style="@style/text_set_item_content_left_top"
+                    android:text="@string/set_hidestyle_call_null" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_call_null_info"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    style="@style/text_set_item_content_left_bottom"
+                    android:text="@string/set_hidestyle_call_null_info" />
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/img_sethidestyle_call_null"
-                android:layout_width="15dip"
-                android:layout_height="15dip"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dip"
-                android:clickable="true"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_selected" />
+                style="@style/img_set_item_selected" />
         </RelativeLayout>
+
+        <View style="@style/line_set_item_diver" />
 
         <!-- 关机提示 -->
 
         <RelativeLayout
             android:id="@+id/layout_sethidestyle_call_shutdown"
-            android:layout_width="fill_parent"
-            android:layout_height="52dip" >
+            style="@style/layout_set_item" >
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="2dip"
-                android:layout_alignParentTop="true"
-                android:background="@color/light_blue_bg" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
-                android:layout_marginRight="30dip"
-                android:orientation="vertical" >
+            <LinearLayout style="@style/layout_set_item_content_left" >
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_call_shutdown"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    style="@style/text_set_item_content_left_top"
+                    android:text="@string/set_hidestyle_call_shutdown" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_call_shutdown_info"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    style="@style/text_set_item_content_left_bottom"
+                    android:text="@string/set_hidestyle_call_shutdown_info" />
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/img_sethidestyle_call_shutdown"
-                android:layout_width="15dip"
-                android:layout_height="15dip"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dip"
-                android:clickable="true"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_selected" />
+                style="@style/img_set_item_selected" />
         </RelativeLayout>
 
+        <View style="@style/line_set_item_diver" />
         <!-- 接听后挂断 -->
 
         <RelativeLayout
             android:id="@+id/layout_sethidestyle_call_receive_shutdown"
-            android:layout_width="fill_parent"
-            android:layout_height="52dip" >
+            style="@style/layout_set_item" >
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="2dip"
-                android:layout_alignParentTop="true"
-                android:background="@color/light_blue_bg" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
-                android:layout_marginRight="30dip"
-                android:orientation="vertical" >
+            <LinearLayout style="@style/layout_set_item_content_left" >
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_call_receive_shutdown"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    style="@style/text_set_item_content_left_top"
+                    android:text="@string/set_hidestyle_call_receive_shutdown" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/set_hidestyle_call_receive_shutdown_info"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    style="@style/text_set_item_content_left_bottom"
+                    android:text="@string/set_hidestyle_call_receive_shutdown_info" />
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/img_sethidestyle_call_receive_shutdown"
-                android:layout_width="15dip"
-                android:layout_height="15dip"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dip"
-                android:clickable="true"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_selected" />
+                style="@style/img_set_item_selected" />
         </RelativeLayout>
     </LinearLayout>
 

@@ -52,21 +52,56 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f070007;
-        public static final int btn_height_left_top_back=0x7f070001;
-        public static final int btn_margin_left_top_back=0x7f070002;
-        public static final int btn_padding_right_top_back=0x7f070003;
-        public static final int btn_textsize_top_back=0x7f070004;
+        public static final int activity_horizontal_margin=0x7f070021;
+        public static final int btn_height_top=0x7f070001;
+        public static final int btn_margin_left_right_top=0x7f070002;
+        public static final int btn_margin_right_second=0x7f070007;
+        public static final int btn_padding_left_top_back=0x7f070003;
+        public static final int btn_textsize_top_title=0x7f070004;
         /**  顶部标题栏相关 
 
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw600dp devices (e.g. 7" tablets) here.
     
  顶部标题栏相关 
+  
+      <dimen name="btn_width_left_top_back">60dip</dimen>
+    <dimen name="btn_height_left_top_back">45dip</dimen>
+    <dimen name="btn_margin_left_top_back">25dip</dimen>
+    <dimen name="btn_padding_right_top_back">5dip</dimen>
+    <dimen name="btn_textsize_top_back">18sp</dimen>
+    <dimen name="text_textsize_top_title">20sp</dimen>
+    <dimen name="layout_top_height">60dip</dimen>
+  
          */
-        public static final int btn_width_left_top_back=0x7f070000;
+        public static final int btn_width_top=0x7f070000;
+        public static final int img_right_top_set_wh=0x7f070008;
+        public static final int img_set_calm_item_right_margin_right=0x7f07001b;
+        public static final int img_set_calm_item_right_wh=0x7f07001a;
+        public static final int img_set_item_arrow_height=0x7f070018;
+        public static final int img_set_item_arrow_margin_right=0x7f070019;
+        public static final int img_set_item_check_wh=0x7f070015;
+        public static final int img_set_item_selected_margin_right=0x7f070013;
+        public static final int img_set_item_selected_wh=0x7f070012;
+        public static final int img_set_item_switch_margin_right=0x7f070016;
+        public static final int img_set_item_switch_padding_tb=0x7f070017;
+        public static final int img_set_item_switch_width=0x7f070014;
+        public static final int img_tab_h=0x7f07001e;
+        public static final int img_tab_margin_top=0x7f07001f;
+        public static final int img_tab_w=0x7f07001d;
+        public static final int layout_margin_left_right=0x7f070009;
+        public static final int layout_margin_top_title=0x7f07000a;
+        public static final int layout_set_item_height=0x7f07000b;
+        public static final int layout_set_item_margin_left=0x7f07000c;
+        public static final int layout_set_item_margin_right=0x7f07000d;
         public static final int layout_top_height=0x7f070006;
+        public static final int line_set_child_item_div_height=0x7f070011;
+        public static final int line_set_item_div_height=0x7f070010;
+        public static final int text_set_calm_item_left_margin_left=0x7f07001c;
         public static final int text_textsize_top_title=0x7f070005;
+        public static final int textsize_set_item_bottom=0x7f07000f;
+        public static final int textsize_set_item_top=0x7f07000e;
+        public static final int textsize_tab_bottom=0x7f070020;
     }
     public static final class drawable {
         public static final int bg_account_autocomplete_listitem=0x7f020000;
@@ -143,29 +178,33 @@ public final class R {
         public static final int ic_notification_disablegprs_on=0x7f020047;
         public static final int ic_notification_watermark_on=0x7f020048;
         public static final int ic_off=0x7f020049;
-        public static final int ic_on=0x7f02004a;
-        public static final int ic_search=0x7f02004b;
-        public static final int ic_selected=0x7f02004c;
-        public static final int ic_set_n=0x7f02004d;
-        public static final int ic_set_p=0x7f02004e;
-        public static final int ic_tab_call_normal=0x7f02004f;
-        public static final int ic_tab_call_pressed=0x7f020050;
-        public static final int ic_tab_important_normal=0x7f020051;
-        public static final int ic_tab_important_pressed=0x7f020052;
-        public static final int ic_tab_more_normal=0x7f020053;
-        public static final int ic_tab_more_pressed=0x7f020054;
-        public static final int ic_tab_sms_normal=0x7f020055;
-        public static final int ic_tab_sms_pressed=0x7f020056;
-        public static final int seekbar_define_style=0x7f020057;
-        public static final int seekbar_line_back=0x7f020058;
-        public static final int seekbar_line_top=0x7f020059;
-        public static final int seekbar_point_back=0x7f02005a;
-        public static final int seekbar_point_top=0x7f02005b;
-        public static final int seekbar_thumb=0x7f02005c;
-        public static final int tab_bg=0x7f02005d;
-        public static final int tab_selected=0x7f02005e;
-        public static final int wheel_bg=0x7f02005f;
-        public static final int wheel_val=0x7f020060;
+        public static final int ic_off_check=0x7f02004a;
+        public static final int ic_on=0x7f02004b;
+        public static final int ic_on_check=0x7f02004c;
+        public static final int ic_search=0x7f02004d;
+        public static final int ic_selected=0x7f02004e;
+        public static final int ic_set_n=0x7f02004f;
+        public static final int ic_set_p=0x7f020050;
+        public static final int ic_tab_call_normal=0x7f020051;
+        public static final int ic_tab_call_pressed=0x7f020052;
+        public static final int ic_tab_important_normal=0x7f020053;
+        public static final int ic_tab_important_pressed=0x7f020054;
+        public static final int ic_tab_more_normal=0x7f020055;
+        public static final int ic_tab_more_pressed=0x7f020056;
+        public static final int ic_tab_sms_normal=0x7f020057;
+        public static final int ic_tab_sms_pressed=0x7f020058;
+        public static final int seekbar_define_style=0x7f020059;
+        public static final int seekbar_line_back=0x7f02005a;
+        public static final int seekbar_line_top=0x7f02005b;
+        public static final int seekbar_point_back=0x7f02005c;
+        public static final int seekbar_point_top=0x7f02005d;
+        public static final int seekbar_thumb=0x7f02005e;
+        public static final int selector_checkbox_setting=0x7f02005f;
+        public static final int selector_checkbox_setting_check=0x7f020060;
+        public static final int tab_bg=0x7f020061;
+        public static final int tab_selected=0x7f020062;
+        public static final int wheel_bg=0x7f020063;
+        public static final int wheel_val=0x7f020064;
     }
     public static final class id {
         public static final int autocomplete_diver=0x7f0a0072;
@@ -174,14 +213,14 @@ public final class R {
         public static final int btn_add_input_return=0x7f0a000c;
         public static final int btn_add_slient_add=0x7f0a0016;
         public static final int btn_add_slient_return=0x7f0a0014;
-        public static final int btn_back=0x7f0a00ab;
+        public static final int btn_back=0x7f0a00ac;
         public static final int btn_busymode_title_close=0x7f0a0021;
         public static final int btn_busymodeset_back=0x7f0a001f;
         public static final int btn_busymodeset_ok=0x7f0a0020;
         public static final int btn_call_addby=0x7f0a007c;
         public static final int btn_call_addfrom=0x7f0a007b;
         public static final int btn_call_clslist=0x7f0a0075;
-        public static final int btn_close=0x7f0a00aa;
+        public static final int btn_close=0x7f0a00ab;
         public static final int btn_dlg_negative=0x7f0a0029;
         public static final int btn_dlg_positive=0x7f0a0028;
         public static final int btn_feedback_ok=0x7f0a002b;
@@ -192,38 +231,39 @@ public final class R {
         public static final int btn_notification_busymode_refused_call=0x7f0a003e;
         public static final int btn_notification_busymode_refused_clear=0x7f0a003f;
         public static final int btn_ok=0x7f0a000e;
-        public static final int btn_open=0x7f0a00a9;
+        public static final int btn_open=0x7f0a00aa;
         public static final int btn_receivedata_call=0x7f0a0046;
         public static final int btn_receivedata_important=0x7f0a0047;
         public static final int btn_receivedata_sms=0x7f0a0045;
         public static final int btn_set_return=0x7f0a005c;
         public static final int btn_sethidestyle_return_call=0x7f0a004a;
         public static final int btn_sethidestyle_return_sms=0x7f0a0055;
-        public static final int btn_sms_addby=0x7f0a00a0;
-        public static final int btn_sms_addfrom=0x7f0a009f;
-        public static final int btn_sms_clslist=0x7f0a0099;
-        public static final int btn_tools_return=0x7f0a00bc;
-        public static final int btn_watermark_cancel=0x7f0a00ae;
-        public static final int btn_watermark_change=0x7f0a00b6;
-        public static final int btn_watermark_cut=0x7f0a00b5;
-        public static final int btn_watermark_delete=0x7f0a00b7;
-        public static final int btn_watermark_ok=0x7f0a00af;
-        public static final int btn_watermark_orientation=0x7f0a00b4;
-        public static final int btn_watermark_title_close=0x7f0a00b0;
+        public static final int btn_sms_addby=0x7f0a00a1;
+        public static final int btn_sms_addfrom=0x7f0a00a0;
+        public static final int btn_sms_clslist=0x7f0a009a;
+        public static final int btn_tools_return=0x7f0a00bd;
+        public static final int btn_watermark_cancel=0x7f0a00af;
+        public static final int btn_watermark_change=0x7f0a00b7;
+        public static final int btn_watermark_cut=0x7f0a00b6;
+        public static final int btn_watermark_delete=0x7f0a00b8;
+        public static final int btn_watermark_ok=0x7f0a00b0;
+        public static final int btn_watermark_orientation=0x7f0a00b5;
+        public static final int btn_watermark_title_close=0x7f0a00b1;
         public static final int busymode_flow=0x7f0a0023;
+        public static final int check_busymode_switch=0x7f0a00c3;
+        public static final int check_more_checkv=0x7f0a0094;
+        public static final int check_tool_disablegprs=0x7f0a00c5;
+        public static final int check_tool_signalreconnect=0x7f0a00c9;
+        public static final int check_tool_smslightscreen=0x7f0a00c7;
+        public static final int check_watermark_switch=0x7f0a00c0;
         public static final int edit_addcontact_search=0x7f0a0005;
         public static final int edit_busymode_msgcontent=0x7f0a0022;
         public static final int edit_feedback_content=0x7f0a002c;
         public static final int edit_feedback_email=0x7f0a002d;
         public static final int edit_name=0x7f0a000f;
         public static final int edit_num=0x7f0a0010;
-        public static final int image_busymode_switch=0x7f0a00c2;
-        public static final int image_disablegprs_switch=0x7f0a00c4;
         public static final int image_notification_busymode_ic=0x7f0a003a;
         public static final int image_notification_busymode_refused_ic=0x7f0a0041;
-        public static final int image_signalreconnect_switch=0x7f0a00c8;
-        public static final int image_smslightscreen_switch=0x7f0a00c6;
-        public static final int image_watermark_switch=0x7f0a00bf;
         public static final int img_add_calm_important=0x7f0a0060;
         public static final int img_add_contact_animation=0x7f0a0008;
         public static final int img_addcontacts_clear=0x7f0a0006;
@@ -233,20 +273,19 @@ public final class R {
         public static final int img_del_calm_2_important=0x7f0a0066;
         public static final int img_important_help=0x7f0a0084;
         public static final int img_important_set=0x7f0a0085;
-        public static final int img_more_checkv=0x7f0a0093;
         public static final int img_sethidestyle_call_no_answer=0x7f0a004c;
         public static final int img_sethidestyle_call_null=0x7f0a004e;
         public static final int img_sethidestyle_call_receive_shutdown=0x7f0a0052;
         public static final int img_sethidestyle_call_shutdown=0x7f0a0050;
         public static final int img_sethidestyle_sms_disreceive=0x7f0a0057;
         public static final int img_sethidestyle_sms_slient=0x7f0a0059;
-        public static final int img_sms_help=0x7f0a009b;
-        public static final int img_sms_set=0x7f0a009c;
+        public static final int img_sms_help=0x7f0a009c;
+        public static final int img_sms_set=0x7f0a009d;
         public static final int img_tab_call=0x7f0a0035;
         public static final int img_tab_important=0x7f0a0033;
         public static final int img_tab_more=0x7f0a0039;
         public static final int img_tab_sms=0x7f0a0037;
-        public static final int img_watermark=0x7f0a00ba;
+        public static final int img_watermark=0x7f0a00bb;
         public static final int layout_about=0x7f0a0000;
         public static final int layout_add_contact_tip=0x7f0a0007;
         public static final int layout_add_contact_title=0x7f0a0001;
@@ -267,12 +306,13 @@ public final class R {
         public static final int layout_important_middle=0x7f0a0086;
         public static final int layout_important_null=0x7f0a008b;
         public static final int layout_important_title=0x7f0a0081;
-        public static final int layout_more_clear=0x7f0a0096;
-        public static final int layout_more_feedback=0x7f0a0095;
-        public static final int layout_more_help=0x7f0a0097;
+        public static final int layout_more_clear=0x7f0a0097;
+        public static final int layout_more_feedback=0x7f0a0096;
+        public static final int layout_more_help=0x7f0a0098;
         public static final int layout_more_normal=0x7f0a0092;
         public static final int layout_more_title=0x7f0a0090;
-        public static final int layout_more_tools=0x7f0a0094;
+        public static final int layout_more_tools=0x7f0a0095;
+        public static final int layout_more_v=0x7f0a0093;
         public static final int layout_notification_busymode_refused_btns=0x7f0a003d;
         public static final int layout_notification_busymode_refused_title=0x7f0a0040;
         public static final int layout_set=0x7f0a005a;
@@ -295,40 +335,40 @@ public final class R {
         public static final int layout_sethidestyle_sms_slient=0x7f0a0058;
         public static final int layout_sethidestyle_title_call=0x7f0a0049;
         public static final int layout_sethidestyle_title_sms=0x7f0a0054;
-        public static final int layout_sms_add=0x7f0a009e;
-        public static final int layout_sms_middle=0x7f0a009d;
-        public static final int layout_sms_null=0x7f0a00a2;
-        public static final int layout_sms_title=0x7f0a0098;
+        public static final int layout_sms_add=0x7f0a009f;
+        public static final int layout_sms_middle=0x7f0a009e;
+        public static final int layout_sms_null=0x7f0a00a3;
+        public static final int layout_sms_title=0x7f0a0099;
         public static final int layout_tab_call_main=0x7f0a0073;
         public static final int layout_tab_important_main=0x7f0a0080;
         public static final int layout_tab_sms_main=0x7f0a008f;
-        public static final int layout_toast=0x7f0a00a6;
-        public static final int layout_tool_busymode=0x7f0a00c0;
-        public static final int layout_tool_disablegprs=0x7f0a00c3;
-        public static final int layout_tool_signalreconnect=0x7f0a00c7;
-        public static final int layout_tool_smslightscreen=0x7f0a00c5;
-        public static final int layout_tool_watermark=0x7f0a00be;
-        public static final int layout_tools_part_one=0x7f0a00bd;
-        public static final int layout_tools_title=0x7f0a00bb;
-        public static final int layout_watermark_changebg=0x7f0a00b1;
-        public static final int layout_watermark_main=0x7f0a00ac;
-        public static final int layout_watermark_operas=0x7f0a00b3;
-        public static final int layout_watermark_top=0x7f0a00ad;
+        public static final int layout_toast=0x7f0a00a7;
+        public static final int layout_tool_busymode=0x7f0a00c1;
+        public static final int layout_tool_disablegprs=0x7f0a00c4;
+        public static final int layout_tool_signalreconnect=0x7f0a00c8;
+        public static final int layout_tool_smslightscreen=0x7f0a00c6;
+        public static final int layout_tool_watermark=0x7f0a00bf;
+        public static final int layout_tools_part_one=0x7f0a00be;
+        public static final int layout_tools_title=0x7f0a00bc;
+        public static final int layout_watermark_changebg=0x7f0a00b2;
+        public static final int layout_watermark_main=0x7f0a00ad;
+        public static final int layout_watermark_operas=0x7f0a00b4;
+        public static final int layout_watermark_top=0x7f0a00ae;
         public static final int list_call=0x7f0a007f;
         public static final int list_contacts=0x7f0a0009;
         public static final int list_important=0x7f0a008e;
-        public static final int list_sms=0x7f0a00a5;
+        public static final int list_sms=0x7f0a00a6;
         public static final int moreList=0x7f0a0012;
         public static final int name=0x7f0a002e;
         public static final int number=0x7f0a002f;
-        public static final int seekbar_watermark=0x7f0a00b9;
+        public static final int seekbar_watermark=0x7f0a00ba;
         public static final int tab_call=0x7f0a0034;
         public static final int tab_important=0x7f0a0032;
         public static final int tab_layout_bottombody=0x7f0a0031;
         public static final int tab_layout_topbody=0x7f0a0030;
         public static final int tab_more=0x7f0a0038;
         public static final int tab_sms=0x7f0a0036;
-        public static final int text=0x7f0a00a7;
+        public static final int text=0x7f0a00a8;
         public static final int text_add_contact=0x7f0a0003;
         public static final int text_add_input=0x7f0a000d;
         public static final int text_addcontacts_null=0x7f0a000a;
@@ -354,16 +394,16 @@ public final class R {
         public static final int text_set_hidestyle_calltitle=0x7f0a006a;
         public static final int text_set_hidestyle_smsinfo=0x7f0a0070;
         public static final int text_set_hidestyle_smstitle=0x7f0a006f;
-        public static final int text_showstate=0x7f0a00a8;
+        public static final int text_showstate=0x7f0a00a9;
         public static final int text_slient_title=0x7f0a0015;
-        public static final int text_sms_null_text=0x7f0a00a4;
-        public static final int text_sms_null_title=0x7f0a00a3;
-        public static final int text_sms_title=0x7f0a009a;
-        public static final int text_sms_top_deletetip=0x7f0a00a1;
-        public static final int text_tools_busymode_title=0x7f0a00c1;
-        public static final int text_watermark=0x7f0a00b8;
-        public static final int text_watermark_changetip=0x7f0a00b2;
-        public static final int watermark_image=0x7f0a00c9;
+        public static final int text_sms_null_text=0x7f0a00a5;
+        public static final int text_sms_null_title=0x7f0a00a4;
+        public static final int text_sms_title=0x7f0a009b;
+        public static final int text_sms_top_deletetip=0x7f0a00a2;
+        public static final int text_tools_busymode_title=0x7f0a00c2;
+        public static final int text_watermark=0x7f0a00b9;
+        public static final int text_watermark_changetip=0x7f0a00b3;
+        public static final int watermark_image=0x7f0a00ca;
         public static final int wheel_alarmaddhour_end=0x7f0a001c;
         public static final int wheel_alarmaddhour_start=0x7f0a0018;
         public static final int wheel_alarmaddmins_end=0x7f0a001d;
@@ -630,12 +670,37 @@ public final class R {
          */
         public static final int activity=0x7f090002;
         public static final int btn_left_top_back=0x7f090004;
+        public static final int btn_left_top_clear=0x7f090005;
+        public static final int btn_right_top=0x7f090007;
+        public static final int checkbox_set_item_check=0x7f090012;
+        /**  设置页，item右侧开关按钮 
+         */
+        public static final int checkbox_set_item_switch=0x7f090011;
         /**  模糊 
          */
         public static final int dialog=0x7f090001;
+        public static final int img_right_top_set=0x7f090008;
+        public static final int img_set_calm_item_right=0x7f090014;
+        /**  设置页，右侧箭头 
+         */
+        public static final int img_set_item_arrow=0x7f090013;
+        public static final int img_set_item_selected=0x7f090010;
+        public static final int img_tab_bottom=0x7f090017;
+        /**  设置区块 
+         */
+        public static final int layout_set_block=0x7f090009;
+        public static final int layout_set_item=0x7f09000a;
+        public static final int layout_set_item_content_left=0x7f09000b;
+        public static final int layout_tab_bottom=0x7f090018;
         /**  与顶部标题栏相关的style 
          */
         public static final int layout_top_title=0x7f090003;
-        public static final int text_top_title=0x7f090005;
+        public static final int line_set_child_item_diver=0x7f09000f;
+        public static final int line_set_item_diver=0x7f09000e;
+        public static final int text_set_calm_item_left=0x7f090015;
+        public static final int text_set_item_content_left_bottom=0x7f09000d;
+        public static final int text_set_item_content_left_top=0x7f09000c;
+        public static final int text_tab_bottom=0x7f090016;
+        public static final int text_top_title=0x7f090006;
     }
 }

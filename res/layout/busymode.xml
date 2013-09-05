@@ -19,27 +19,20 @@
 
         <Button
             android:id="@+id/btn_busymodeset_ok"
-            android:layout_width="45dip"
-            android:layout_height="30dip"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="3dip"
-            android:background="@drawable/bg_btn_blue"
-            android:text="@string/str_open"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+			style="@style/btn_right_top"
+            android:text="@string/str_open" />
 
         <Button
             android:id="@+id/btn_busymode_title_close"
-            android:layout_width="45dip"
-            android:layout_height="30dip"
+            android:layout_width="@dimen/btn_width_top"
+            android:layout_height="@dimen/btn_height_top"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="58dip"
+            android:layout_marginRight="@dimen/btn_margin_right_second"
             android:background="@drawable/bg_btn_red"
             android:text="@string/watermark_close"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/btn_textsize_top_title"
             android:visibility="gone" />
     </RelativeLayout>
 

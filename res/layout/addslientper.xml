@@ -19,16 +19,9 @@
             style="@style/text_top_title" />
 
         <Button
-            android:id="@+id/btn_add_slient_add"
-            android:layout_width="45dip"
-            android:layout_height="30dip"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="3dip"
-            android:background="@drawable/bg_btn_blue"
-            android:text="@string/add"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:id="@+id/btn_add_slient_add" 
+            style="@style/btn_right_top"
+            android:text="@string/add" />
     </RelativeLayout>
 
     <LinearLayout
