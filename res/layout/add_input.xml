@@ -10,7 +10,7 @@
 
         <Button
             android:id="@+id/btn_add_input_return"
-            style="btn_left_top_back" />
+            style="@style/btn_left_top_back" />
 
         <TextView
             android:id="@+id/text_add_input"

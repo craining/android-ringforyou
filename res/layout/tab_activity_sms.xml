@@ -7,11 +7,11 @@
 
     <RelativeLayout
         android:id="@+id/layout_sms_title"
-		style="@style/layout_top_title">
+        style="@style/layout_top_title" >
 
         <Button
             android:id="@+id/btn_sms_clslist"
-			style="@style/btn_left_top_clear"/>
+            style="@style/btn_left_top_clear" />
 
         <TextView
             android:id="@+id/text_sms_title"
@@ -34,7 +34,7 @@
 
         <ImageView
             android:id="@+id/img_sms_set"
-			style="@style/img_right_top_set"/>
+            style="@style/img_right_top_set" />
     </RelativeLayout>
 
     <LinearLayout
@@ -56,12 +56,8 @@
 
             <Button
                 android:id="@+id/btn_sms_addfrom"
-                android:layout_width="fill_parent"
-                android:layout_height="30dip"
-                android:layout_weight="2"
-                android:background="@drawable/bg_btn_blue"
-                android:text="@string/add_fromcontacts"
-                android:textColor="@color/white" />
+                style="@style/btn_main_add"
+                android:text="@string/add_fromcontacts" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -70,12 +66,8 @@
 
             <Button
                 android:id="@+id/btn_sms_addby"
-                android:layout_width="fill_parent"
-                android:layout_height="30dip"
-                android:layout_weight="2"
-                android:background="@drawable/bg_btn_blue"
-                android:text="@string/add_byhand"
-                android:textColor="@color/white" />
+                style="@style/btn_main_add"
+                android:text="@string/add_byhand" />
         </LinearLayout>
 
         <TextView

@@ -52,8 +52,9 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f070021;
+        public static final int activity_horizontal_margin=0x7f070022;
         public static final int btn_height_top=0x7f070001;
+        public static final int btn_main_add_height=0x7f070021;
         public static final int btn_margin_left_right_top=0x7f070002;
         public static final int btn_margin_right_second=0x7f070007;
         public static final int btn_padding_left_top_back=0x7f070003;
@@ -671,6 +672,7 @@ public final class R {
         public static final int activity=0x7f090002;
         public static final int btn_left_top_back=0x7f090004;
         public static final int btn_left_top_clear=0x7f090005;
+        public static final int btn_main_add=0x7f090019;
         public static final int btn_right_top=0x7f090007;
         public static final int checkbox_set_item_check=0x7f090012;
         /**  设置页，item右侧开关按钮 

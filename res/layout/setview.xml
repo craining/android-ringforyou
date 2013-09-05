@@ -81,11 +81,11 @@
                 </RelativeLayout>
                 <!-- 失效时段1 -->
 
-                <View style="@style/line_set_item_diver" />
-
                 <RelativeLayout
                     android:id="@+id/layout_clam_1_important"
                     style="@style/layout_set_item" >
+
+                    <View style="@style/line_set_item_diver" />
 
                     <TextView
                         android:id="@+id/text_calmper_1"
@@ -99,11 +99,11 @@
                 </RelativeLayout>
                 <!-- 失效时段2 -->
 
-                <View style="@style/line_set_item_diver" />
-
                 <RelativeLayout
                     android:id="@+id/layout_clam_2_important"
                     style="@style/layout_set_item" >
+
+                    <View style="@style/line_set_item_diver" />
 
                     <TextView
                         android:id="@+id/text_calmper_2"

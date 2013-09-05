@@ -88,8 +88,8 @@ public class AddByInputActivity extends Activity implements OnClickListener {
 			String number = "";
 			if (TextUtils.isEmpty(editNumber.getText())) {
 				MyToast.makeText(AddByInputActivity.this, R.string.add_null, Toast.LENGTH_SHORT, true).show();
-			} else if (editNumber.getText().length() < 7) {
-				MyToast.makeText(AddByInputActivity.this, R.string.add_error, Toast.LENGTH_SHORT, true).show();
+//			} else if (editNumber.getText().length() < 7) {
+//				MyToast.makeText(AddByInputActivity.this, R.string.add_error, Toast.LENGTH_SHORT, true).show();
 			} else {
 
 				if (TextUtils.isEmpty(editName.getText())) {
