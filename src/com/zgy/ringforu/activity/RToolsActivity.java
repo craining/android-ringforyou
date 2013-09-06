@@ -15,21 +15,18 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Checkable;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.tools.busymode.BusyModeActivity;
 import com.zgy.ringforu.tools.busymode.BusyModeUtil;
-import com.zgy.ringforu.tools.disablegprs.DisableGprsActivity;
 import com.zgy.ringforu.tools.disablegprs.DisableGprsUtil;
 import com.zgy.ringforu.tools.signalreconnect.SignalReconnectUtil;
 import com.zgy.ringforu.tools.smslightscreen.SmsLightScreenUtil;
 import com.zgy.ringforu.tools.watermark.WaterMarkActivity;
 import com.zgy.ringforu.tools.watermark.WaterMarkUtil;
+import com.zgy.ringforu.util.ActivityManager;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.view.MyToast;
@@ -38,28 +35,25 @@ public class RToolsActivity extends Activity implements OnClickListener {
 
 	private static final String TAG = "RToolsActivity";
 	private Button btnBack;
-	private RelativeLayout layoutWatermark, layoutBusyMode, layoutSmsLightScreen, layoutDisableGprs,
-			layoutSignalReconnect;
-	private CheckBox checkWatermarkSwitch, checkSmsLightScreenSwitch, checkDisableGprsSwitch,
-			checkSignalReconnectSwitch, checkBusyModeSwitch;
-	// private RelativeLayout layoutDisableGprs;
-	// private RelativeLayout layoutSmsLightScreen;
+	private RelativeLayout layoutWatermark, layoutBusyMode, layoutSmsLightScreen, layoutDisableGprs, layoutSignalReconnect;
+	private CheckBox checkWatermarkSwitch, checkSmsLightScreenSwitch, checkDisableGprsSwitch, checkSignalReconnectSwitch, checkBusyModeSwitch;
 	private TextView textBusyModeTitle;
+	private TextView textBusyModeInfo;
 
 	private String mStrBusyModeTitle = "";
 
 	private Vibrator vb = null;
-
-	private static final int REQUEST_WATERMARK = 100;
 
 	public static final String ACTION_WATERMARK_ON = "com.zgy.ringforu.ACTION_WATERMARK_ON";
 	private ToolsReceiver mReceiver;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+		ActivityManager.push(this);
+
 		setContentView(R.layout.toolsview);
 
 		mStrBusyModeTitle = getString(R.string.busymode_title);
@@ -70,8 +64,6 @@ public class RToolsActivity extends Activity implements OnClickListener {
 		layoutWatermark = (RelativeLayout) findViewById(R.id.layout_tool_watermark);
 		layoutBusyMode = (RelativeLayout) findViewById(R.id.layout_tool_busymode);
 		checkWatermarkSwitch = (CheckBox) findViewById(R.id.check_watermark_switch);
-		// layoutDisableGprs = (RelativeLayout) findViewById(R.id.layout_tool_disablegprs);
-		// layoutSmsLightScreen = (RelativeLayout) findViewById(R.id.layout_tool_smslightscreen);
 		checkSmsLightScreenSwitch = (CheckBox) findViewById(R.id.check_tool_smslightscreen);
 		checkDisableGprsSwitch = (CheckBox) findViewById(R.id.check_tool_disablegprs);
 		checkSignalReconnectSwitch = (CheckBox) findViewById(R.id.check_tool_signalreconnect);
@@ -81,9 +73,9 @@ public class RToolsActivity extends Activity implements OnClickListener {
 
 		checkBusyModeSwitch = (CheckBox) findViewById(R.id.check_busymode_switch);
 		textBusyModeTitle = (TextView) findViewById(R.id.text_tools_busymode_title);
+		textBusyModeInfo = (TextView) findViewById(R.id.text_tools_busymode_info);
 
 		btnBack.setOnClickListener(this);
-		// layoutDisableGprs.setOnClickListener(this);
 		checkWatermarkSwitch.setOnClickListener(this);
 		layoutWatermark.setOnClickListener(this);
 		layoutBusyMode.setOnClickListener(this);
@@ -135,7 +127,8 @@ public class RToolsActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.layout_tool_disablegprs:
 			// 禁用移动网络
-			// startActivity(new Intent(RToolsActivity.this, DisableGprsActivity.class));
+			// startActivity(new Intent(RToolsActivity.this,
+			// DisableGprsActivity.class));
 			if (DisableGprsUtil.isDisableGprsOn()) {
 				DisableGprsUtil.ctrlDisableGprsSwitch(RToolsActivity.this, false);
 			} else {
@@ -149,7 +142,8 @@ public class RToolsActivity extends Activity implements OnClickListener {
 				SmsLightScreenUtil.ctrlSmsLightScreenSwitch(false);
 			} else {
 				SmsLightScreenUtil.ctrlSmsLightScreenSwitch(true);
-				// MyToast.makeText(RToolsActivity.this, R.string.sms_lightscreen_toast_on, Toast.LENGTH_LONG,
+				// MyToast.makeText(RToolsActivity.this,
+				// R.string.sms_lightscreen_toast_on, Toast.LENGTH_LONG,
 				// false).show();
 			}
 			refreshSwitch();
@@ -179,7 +173,8 @@ public class RToolsActivity extends Activity implements OnClickListener {
 				} else {
 					BusyModeUtil.setBusyModeOnOff(RToolsActivity.this, true, content);
 				}
-				// Intent i = new Intent(RToolsActivity.this, BusyModeActivity.class);
+				// Intent i = new Intent(RToolsActivity.this,
+				// BusyModeActivity.class);
 				// startActivity(i);
 			}
 			refreshSwitch();
@@ -193,17 +188,6 @@ public class RToolsActivity extends Activity implements OnClickListener {
 		}
 
 	}
-
-	// @Override
-	// protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	// if (resultCode == RESULT_OK && requestCode == REQUEST_WATERMARK) {
-	// Uri picPath = data.getData();
-	// Intent intent = new Intent(RToolsActivity.this, RToolWaterMarkActivity.class);
-	// intent.putExtra("picuri", picPath.toString());
-	// startActivity(intent);
-	// super.onActivityResult(requestCode, resultCode, data);
-	// }
-	// }
 
 	/**
 	 * 刷新显示是否开关
@@ -224,8 +208,16 @@ public class RToolsActivity extends Activity implements OnClickListener {
 			textBusyModeTitle.setText(mStrBusyModeTitle);
 		} else {
 			textBusyModeTitle.setText(mStrBusyModeTitle + " - " + title);
+			if(getResources().getStringArray(R.array.busymodes_title)[9].equals(title)) {
+				//不回复短信
+				textBusyModeInfo.setText(R.string.busymode_info_notreply);
+			}else {
+				textBusyModeInfo.setText(R.string.busymode_info);
+			}
 		}
 
+		
+		
 		// 忙碌模式是否开启
 		checkBusyModeSwitch.setChecked(BusyModeUtil.isBusyModeOn());
 		BusyModeUtil.checkBusyModeState(RToolsActivity.this);
@@ -248,6 +240,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 		if (mReceiver != null) {
 			unregisterReceiver(mReceiver);
 		}
+		ActivityManager.pop(this);
 	}
 
 }

@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.util.ActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 
@@ -37,6 +38,8 @@ public class MainActivityGroup extends ActivityGroup implements OnClickListener 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_group);
 
+		ActivityManager.push(this);
+		
 		initMainView();
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 		// 主界面开始接收参数
@@ -178,4 +181,11 @@ public class MainActivityGroup extends ActivityGroup implements OnClickListener 
 			break;
 		}
 	}
+	
+	@Override
+	protected void onDestroy() {
+		ActivityManager.pop(this);
+		super.onDestroy();
+	}
+
 }

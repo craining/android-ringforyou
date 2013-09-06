@@ -163,4 +163,12 @@ public class MainConfig extends PreferenceUtil {
 	public synchronized void setVibrateOnOff(boolean on) {
 		putBool(ConfigCanstants.SWITCH_OPERA_VIRBRATE, on);
 	}
+
+	public synchronized boolean isNotificationOn() {
+		return getBool(ConfigCanstants.NOTIFICATION_SWITCH, true);
+	}
+
+	public synchronized void setNotificationOnOff(boolean on) {
+		putBool(ConfigCanstants.NOTIFICATION_SWITCH, on);
+	}
 }

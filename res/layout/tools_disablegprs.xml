@@ -35,11 +35,23 @@
         android:gravity="bottom"
         android:orientation="horizontal" >
 
+        
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="fill_parent"
+            android:layout_height="39dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="1"
+            android:background="@drawable/dlg_btn_bg"
+            android:text="@string/gprs_cancel"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+        
         <Button
             android:id="@+id/btn_open"
             android:layout_width="fill_parent"
             android:layout_height="39dip"
-            android:layout_marginRight="10dip"
+            android:layout_marginLeft="10dip"
             android:layout_weight="1"
             android:background="@drawable/dlg_btn_blue_bg"
             android:text="@string/gprs_disable"
@@ -50,23 +62,14 @@
             android:id="@+id/btn_close"
             android:layout_width="fill_parent"
             android:layout_height="39dip"
-            android:layout_marginRight="10dip"
+            android:layout_marginLeft="10dip"
             android:layout_weight="1"
             android:background="@drawable/dlg_btn_blue_bg"
             android:text="@string/gprs_undisable"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="fill_parent"
-            android:layout_height="39dip"
-            android:layout_marginLeft="10dip"
-            android:layout_weight="1"
-            android:background="@drawable/dlg_btn_bg"
-            android:text="@string/gprs_cancel"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+        
     </LinearLayout>
 
 </LinearLayout>

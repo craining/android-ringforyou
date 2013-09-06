@@ -25,7 +25,9 @@
 
         <RelativeLayout
             android:id="@+id/layout_sethidestyle_call_no_answer"
-            style="@style/layout_set_item" >
+            style="@style/layout_set_item"
+            android:background="@drawable/bg_list_item"
+            android:clickable="true" >
 
             <LinearLayout style="@style/layout_set_item_content_left" >
 
@@ -49,7 +51,9 @@
 
         <RelativeLayout
             android:id="@+id/layout_sethidestyle_call_null"
-            style="@style/layout_set_item" >
+            style="@style/layout_set_item"
+            android:background="@drawable/bg_list_item"
+            android:clickable="true" >
 
             <LinearLayout style="@style/layout_set_item_content_left" >
 
@@ -73,7 +77,9 @@
 
         <RelativeLayout
             android:id="@+id/layout_sethidestyle_call_shutdown"
-            style="@style/layout_set_item" >
+            style="@style/layout_set_item"
+            android:background="@drawable/bg_list_item"
+            android:clickable="true" >
 
             <LinearLayout style="@style/layout_set_item_content_left" >
 
@@ -96,7 +102,9 @@
 
         <RelativeLayout
             android:id="@+id/layout_sethidestyle_call_receive_shutdown"
-            style="@style/layout_set_item" >
+            style="@style/layout_set_item"
+            android:background="@drawable/bg_list_item"
+            android:clickable="true" >
 
             <LinearLayout style="@style/layout_set_item_content_left" >
 

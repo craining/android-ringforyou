@@ -35,6 +35,7 @@ import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.bean.ContactInfo;
 import com.zgy.ringforu.config.MainConfig;
+import com.zgy.ringforu.util.ActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
@@ -77,6 +78,8 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_contacts);
+
+		ActivityManager.push(this);
 
 		Bundle b = getIntent().getExtras();
 		if (b != null) {
@@ -256,7 +259,8 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 			if (listContacts != null && listContacts.size() > 0) {
 				for (ContactInfo info : listContacts) {
 					HashMap<String, String> map = new HashMap<String, String>();
-					if (info.match && (getAllNumsImportant == null || !getAllNumsImportant.contains(info.num)) && (getAllNumsCall == null || !getAllNumsCall.contains(info.num)) && (getAllNumsSms == null || !getAllNumsSms.contains(info.num))) {
+					if (info.match && (getAllNumsImportant == null || !getAllNumsImportant.contains(info.num)) && (getAllNumsCall == null || !getAllNumsCall.contains(info.num))
+							&& (getAllNumsSms == null || !getAllNumsSms.contains(info.num))) {
 						map.put("name", info.name);
 						map.put("number", info.num);
 						listItem.add(map);
@@ -343,6 +347,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 			vb.cancel();
 			vb = null;
 		}
+		ActivityManager.pop(this);
 	}
 
 	@Override

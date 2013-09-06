@@ -9,9 +9,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo.State;
+import android.widget.Toast;
 
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.config.MainConfig;
+import com.zgy.ringforu.view.MyToast;
 
 public class DisableGprsUtil {
 
@@ -24,7 +26,19 @@ public class DisableGprsUtil {
 	private static final int PENDINGINTENT_ID_DISABLEGPRS = 100;
 
 	/**
-	 * 开启服务与否
+	 * 开关Gprs
+	 * 
+	 * @param context
+	 */
+	public static void ctrlNetWorkConnection(Context context) {
+		if (DisableGprsUtil.isMobileNetworkEnabled(context) && DisableGprsUtil.isDisableGprsOn()) {
+			DisableGprsUtil.gprsEnabled(false, context);
+			MyToast.makeText(context, R.string.disable_gprs_on_tip_toast, Toast.LENGTH_LONG, true).show();
+		}
+	}
+
+	/**
+	 * 开启与否
 	 * 
 	 * @Description:
 	 * @param context
@@ -37,6 +51,7 @@ public class DisableGprsUtil {
 		if (DisableGprsUtil.isDisableGprsOn()) {
 			// DisableGprsUtil.ctrlDisableGprsBackService(context, true);
 			showNotify(true, context);
+			DisableGprsUtil.ctrlNetWorkConnection(context);
 		} else {
 			// DisableGprsUtil.ctrlDisableGprsBackService(context, false);
 			showNotify(false, context);
@@ -65,7 +80,8 @@ public class DisableGprsUtil {
 	// /**
 	// * 后台监听服务开关
 	// */
-	// public static void ctrlDisableGprsBackService(Context context, boolean open) {
+	// public static void ctrlDisableGprsBackService(Context context, boolean
+	// open) {
 	// if (open) {
 	// // if (!MainUtil.isServiceStarted(context, SERVICE_NAME_DISABLESCREEN)) {
 	// Intent i = new Intent(context, DisableGprsService.class);
@@ -94,9 +110,11 @@ public class DisableGprsUtil {
 	// public static boolean isMobileNetworkEnabled(Context context) {
 	// ConnectivityManager conMan = (ConnectivityManager)
 	// context.getSystemService(Context.CONNECTIVITY_SERVICE);
-	// // State wifi = conMan.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+	// // State wifi =
+	// conMan.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
 	// // if (wifi != State.CONNECTED) {
-	// State mobile = conMan.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+	// State mobile =
+	// conMan.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
 	// if (mobile == State.CONNECTED) {
 	// return true;
 	// }

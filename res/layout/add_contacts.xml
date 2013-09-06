@@ -33,7 +33,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_alignParentLeft="true"
-            android:background="@drawable/edit_bg_ios"
+            android:background="@drawable/shape_rounded_edittext"
             android:hint="@string/search_hint"
             android:paddingLeft="30dip"
             android:paddingRight="40dip"
@@ -45,7 +45,7 @@
             android:layout_height="18dip"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="3dip"
+            android:layout_marginLeft="5dip"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_search" />
 

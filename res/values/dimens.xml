@@ -39,6 +39,7 @@
     <dimen name="img_set_item_switch_width">55dip</dimen>
     <dimen name="img_set_item_check_wh">20dip</dimen>
     <dimen name="img_set_item_switch_margin_right">10dip</dimen>
+    <dimen name="img_set_item_check_margin_right">15dip</dimen>
     <dimen name="img_set_item_switch_padding_tb">13dip</dimen>
     
     

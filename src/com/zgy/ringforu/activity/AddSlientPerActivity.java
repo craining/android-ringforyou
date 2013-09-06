@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.util.ActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.TimeUtil;
@@ -40,6 +41,8 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.addslientper);
 
+		ActivityManager.push(this);
+		
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		hoursPickStart = (WheelView) findViewById(R.id.wheel_alarmaddhour_start);
@@ -53,19 +56,19 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 
 		hoursPickStart.setAdapter(new NumericWheelAdapter(0, 23));
 		hoursPickStart.setCyclic(false);
-		hoursPickStart.setVisibleItems(5);
+		hoursPickStart.setVisibleItems(7);
 
 		hoursPickEnd.setAdapter(new NumericWheelAdapter(0, 23));
 		hoursPickEnd.setCyclic(false);
-		hoursPickEnd.setVisibleItems(5);
+		hoursPickEnd.setVisibleItems(7);
 
 		minutesPickStart.setAdapter(new NumericWheelAdapter(0, 59, "%02d"));
 		minutesPickStart.setCyclic(true);
-		minutesPickStart.setVisibleItems(5);
+		minutesPickStart.setVisibleItems(7);
 
 		minutesPickEnd.setAdapter(new NumericWheelAdapter(0, 59, "%02d"));
 		minutesPickEnd.setCyclic(true);
-		minutesPickEnd.setVisibleItems(5);
+		minutesPickEnd.setVisibleItems(7);
 
 		hoursPickStart.setCurrentItem(22);
 		addChangingListener(hoursPickStart);
@@ -159,4 +162,11 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 		}
 
 	}
+	
+	@Override
+	protected void onDestroy() {
+		ActivityManager.pop(this);
+		super.onDestroy();
+	}
+
 }

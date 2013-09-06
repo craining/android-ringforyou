@@ -157,11 +157,12 @@
     <string name="signalreconnect_success">开启成功！</string>
     <string name="signalreconnect_not_support">您的系统过于强大，暂不支持此功能！</string>
     <string name="busymode_title">忙碌模式</string>
-    <string name="busymode_info">自动拒接电话，并短信告知。</string>
+    <string name="busymode_info">自动拒接电话，并回复短信告知。</string>
+    <string name="busymode_info_notreply">自动拒接电话。</string>
     <string name="busymode_tip_open_toast">忙碌模式已经开启！</string>
     <string name="busymode_tip_close_toast">忙碌模式已经关闭！</string>
     <string name="busymode_set_title">自动回复</string>
-    <string name="busymode_set_hint">(短信内容为空，表示只拒接不回复短信)</string>
+    <string name="busymode_set_hint">(短信内容为空，表示拒接来电后不回复短信)</string>
     <string name="busymode_rule_tip">忙碌模式下对重要联系人和来电屏蔽不起作用。</string>
     <string name="str_open">开启</string>
     <string name="str_close">关闭</string>
@@ -179,7 +180,7 @@
     <string name="busymode_title_7">学习</string>
     <string name="busymode_title_8">酒吧</string>
     <string name="busymode_title_9">度假</string>
-    <string name="busymode_title_10">不回复</string>
+    <string name="busymode_title_10">不回复短信</string>
     <string name="busymode_title_11">开会</string>
     <string name="busymode_title_12">通话中</string>
     <string name="busymode_info_1">对不起，我现在正忙，现在不方便接听您的电话。【XXX自动回复】</string>
@@ -206,8 +207,8 @@
     <string name="tab_more">更多</string>
     <string name="gprs_msg">禁用移动网络可防止产生高额的数据流量费用！</string>
     <string name="gprs_disable">禁用</string>
-    <string name="gprs_undisable">取消禁用</string>
-    <string name="gprs_cancel">返回</string>
+    <string name="gprs_undisable">不再禁用</string>
+    <string name="gprs_cancel">取消</string>
     <string name="busymode_refused_tel">"  电话："</string>
     <string name="busymode_refused_unknown">未知来电</string>
     <string name="busymode_refused_title">来电已拒绝</string>

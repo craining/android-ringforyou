@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.adapter.AccountAutoCompleteAdapter;
+import com.zgy.ringforu.util.ActivityManager;
 import com.zgy.ringforu.util.NetWorkUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.SendEmailUtil;
@@ -43,6 +44,8 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.feedback);
 
+		ActivityManager.push(this);
+		
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		btnBack = (Button) findViewById(R.id.btn_feedback_return);
@@ -139,4 +142,11 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 			return "\r\naddr: " + editEmail.getText().toString();
 		}
 	}
+	
+	@Override
+	protected void onDestroy() {
+		ActivityManager.pop(this);
+		super.onDestroy();
+	}
+
 }

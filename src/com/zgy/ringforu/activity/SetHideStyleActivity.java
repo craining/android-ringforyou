@@ -15,6 +15,7 @@ import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
+import com.zgy.ringforu.util.ActivityManager;
 import com.zgy.ringforu.util.PhoneUtil;
 
 public class SetHideStyleActivity extends Activity implements OnClickListener {
@@ -48,6 +49,8 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+		ActivityManager.push(this);
+		
 		Bundle b = getIntent().getExtras();
 		if (b != null) {
 			tag = b.getInt("style");
@@ -120,12 +123,11 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 			break;
 
 		case R.id.layout_sethidestyle_sms_disreceive:
-			MainConfig.getInstance().setInterceptSmsStyle(ConfigCanstants.STYLE_INTERCEPT_SMS_SLIENT);
-
+			MainConfig.getInstance().setInterceptSmsStyle(ConfigCanstants.STYLE_INTERCEPT_SMS_DISRECEIVE);
 			refreshSmsSelected();
 			break;
 		case R.id.layout_sethidestyle_sms_slient:
-			MainConfig.getInstance().setInterceptSmsStyle(ConfigCanstants.STYLE_INTERCEPT_SMS_DISRECEIVE);
+			MainConfig.getInstance().setInterceptSmsStyle(ConfigCanstants.STYLE_INTERCEPT_SMS_SLIENT);
 			refreshSmsSelected();
 			break;
 		case R.id.btn_sethidestyle_return_sms:
@@ -188,8 +190,9 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
+		ActivityManager.pop(this);
 		super.onDestroy();
 	}
+
 
 }

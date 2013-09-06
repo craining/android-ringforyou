@@ -10,9 +10,8 @@ import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.widget.LinearLayout;
 
-import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.util.MainUtil;
+import com.zgy.ringforu.util.ActivityManager;
 import com.zgy.ringforu.util.PhoneUtil;
 
 public class AboutActivity extends Activity {
@@ -25,6 +24,9 @@ public class AboutActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.about);
+		
+		ActivityManager.push(this);
+		
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 		main = (LinearLayout) findViewById(R.id.layout_about);
 
@@ -39,4 +41,11 @@ public class AboutActivity extends Activity {
 		});
 	}
 
+	@Override
+	protected void onDestroy() {
+		ActivityManager.pop(this);
+		super.onDestroy();
+	}
+
+	
 }

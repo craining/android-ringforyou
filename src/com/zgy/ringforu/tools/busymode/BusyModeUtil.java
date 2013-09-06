@@ -141,12 +141,10 @@ public class BusyModeUtil {
 
 		String content = getBusyModeMsgContent(con);
 
-		// if (isAutoSendMsg()) {
-		// content = FileUtil.load(FILENAME_BUSYMODE_MESSAGE, con, false);
-		// }
-
-		String result = con.getString(R.string.busymode_title_0);// 若不存在既定忙碌模式中，则为自定义模式
-
+		String result = titles[9];
+		if (!StringUtil.isNull(content)) {
+			result = con.getString(R.string.busymode_title_0);// 若不存在既定忙碌模式中，则为自定义模式;
+		}
 		int count = contents.length;
 		for (int a = 0; a < count; a++) {
 			if (contents[a].equals(content)) {
@@ -237,7 +235,7 @@ public class BusyModeUtil {
 		NOTIFICATION_ID_BUSYMODE_REFUSED = NOTIFICATION_ID_BUSYMODE_REFUSED + 1;// 动态创建id
 		// 3.0以下不支持通知栏里的按钮响应
 		// if (PhoneUtil.isUpAPI10(context)) {
-		//if (RingForU.DEBUG)
+		// if (RingForU.DEBUG)
 		// LogRingForu.e("", "  3.0 以上");
 		// Notification notification = new
 		// Notification(R.drawable.ic_notification_busymode_refused,

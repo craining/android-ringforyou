@@ -135,7 +135,7 @@
     <style name="text_set_item_content_left_bottom">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/grey</item>
         <item name="android:textSize">@dimen/textsize_set_item_bottom</item>
     </style>
 
@@ -179,7 +179,7 @@
         <item name="android:layout_height">@dimen/img_set_item_check_wh</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_marginRight">@dimen/img_set_item_switch_margin_right</item>
+        <item name="android:layout_marginRight">@dimen/img_set_item_check_margin_right</item>
         <item name="android:button">@null</item>
         <item name="android:clickable">false</item>
         <item name="android:background">@drawable/selector_checkbox_setting</item>

@@ -63,6 +63,7 @@
                     android:text="@string/busymode_title" />
 
                 <TextView
+                    android:id="@+id/text_tools_busymode_info"
                     style="@style/text_set_item_content_left_bottom"
                     android:text="@string/busymode_info" />
             </LinearLayout>

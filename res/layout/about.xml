@@ -2,9 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_about"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/light_blue_bg"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_light"
     android:orientation="vertical" >
+
+    <RelativeLayout style="@style/layout_top_title" >
+
+        <Button
+            android:id="@+id/btn_about_return"
+            style="@style/btn_left_top_back" />
+
+        <TextView
+            style="@style/text_top_title"
+            android:text="@string/help" />
+    </RelativeLayout>
 
     <TextView
         android:layout_width="fill_parent"

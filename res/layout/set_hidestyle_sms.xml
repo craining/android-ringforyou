@@ -23,7 +23,9 @@
 
         <RelativeLayout
             android:id="@+id/layout_sethidestyle_sms_disreceive"
-            style="@style/layout_set_item" >
+            style="@style/layout_set_item"
+            android:background="@drawable/bg_list_item"
+            android:clickable="true" >
 
             <LinearLayout style="@style/layout_set_item_content_left" >
 
@@ -46,7 +48,9 @@
 
         <RelativeLayout
             android:id="@+id/layout_sethidestyle_sms_slient"
-            style="@style/layout_set_item" >
+            style="@style/layout_set_item"
+            android:background="@drawable/bg_list_item"
+            android:clickable="true" >
 
             <LinearLayout style="@style/layout_set_item_content_left" >
 
