@@ -25,7 +25,6 @@
             android:id="@+id/btn_watermark_title_close"
             android:layout_width="@dimen/btn_width_top"
             android:layout_height="@dimen/btn_height_top"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/btn_margin_right_second"
             android:background="@drawable/bg_btn_red"

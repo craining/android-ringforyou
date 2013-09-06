@@ -45,7 +45,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	private static final String TAG = "WaterMarkActivity";
 
 	// private Uri picUri;
-	private String picPath;
+	// private String picPath;
 	// private int picAlpha;
 	private ImageView imgShow;
 	private Button btnOk;
@@ -66,12 +66,6 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	private static final int REQUEST_CUTPIC = 101;
 	private static final int REQUEST_PICKPIC_CAMERA = 102;
 	private static final int REQUEST_PICKPIC_GALLERY = 103;
-
-	// private File FILE_MARK = WaterMarkUtil.FILEPATH_WATERMARK;
-	// private File FILE_MARK_TEMP = new
-	// File(WaterMarkUtil.FILEPATH_WATERMARK_TEMP);
-	// private File FILE_ALPHA = new
-	// File(WaterMarkUtil.FILEPATH_WATERMARK_ALPHA);
 
 	private Vibrator vb = null;
 	private String[] arrayBbColors;
@@ -115,8 +109,6 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		textChangeTip = (TextView) findViewById(R.id.text_watermark_changetip);
 		setBgAndTextColor();
 		seekbarAlpha.setOnSeekBarChangeListener(this);
-		// seekbarAlpha.setBackgroundResource(R.drawable.seekbar_line_back);
-		// seekbarAlpha.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_line_top));
 		btnOk.setOnClickListener(this);
 		btnCancel.setOnClickListener(this);
 		btnCut.setOnClickListener(this);

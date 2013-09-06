@@ -12,21 +12,30 @@ import com.zgy.ringforu.tools.busymode.BusyModeUtil;
 import com.zgy.ringforu.tools.disablegprs.DisableGprsActivity;
 import com.zgy.ringforu.tools.watermark.WaterMarkActivity;
 
+/**
+ * é€šçŸ¥æ util
+ * @Description:
+ * @author: zhuanggy
+ * @see:   
+ * @since:      
+ * @copyright Â© 35.com
+ * @Date:2013-9-6
+ */
 public class NotificationUtil {
 
 	private static final int NOTIFICATION_ID_DISABLEGPRS_ON = 1;
 	private static final int PENDINGINTENT_ID_DISABLEGPRS = 1;
 
-	private static final int NOTIFICATION_ID_BUSYMODE_ON = 2;// ×´Ì¬À¸Í¨ÖªµÄid
+	private static final int NOTIFICATION_ID_BUSYMODE_ON = 2;// çŠ¶æ€æ é€šçŸ¥çš„id
 	private static final int PENDINGINTENT_ID_BUSYMODE = 2;
 
-	private static int NOTIFICATION_ID_BUSYMODE_REFUSED = 3;// ×´Ì¬À¸Í¨ÖªµÄid
+	private static int NOTIFICATION_ID_BUSYMODE_REFUSED = 3;// çŠ¶æ€æ é€šçŸ¥çš„id
 
 	/**
 	 * intent action
 	 */
-	public static final String BUSYMODE_ACTION_CALL = "com.zgy.ringforu.ACTION_NOTIFICATION_CALL";// Í¨ÖªÀ¸²¦´òµç»°
-	public static final String BUSYMODE_ACTION_CLEAR = "com.zgy.ringforu.ACTION_NOTIFICATION_CLEAR";// Í¨ÖªÀ¸Çå³ı
+	public static final String BUSYMODE_ACTION_CALL = "com.zgy.ringforu.ACTION_NOTIFICATION_CALL";// é€šçŸ¥æ æ‹¨æ‰“ç”µè¯
+	public static final String BUSYMODE_ACTION_CLEAR = "com.zgy.ringforu.ACTION_NOTIFICATION_CLEAR";// é€šçŸ¥æ æ¸…é™¤
 	public static final String INTENT_ACTION_KEY_CALL = "notification_refused_number";
 	public static final String INTENT_ACTION_KEY_CLEAR = "notification_refused_clear";
 
@@ -34,94 +43,94 @@ public class NotificationUtil {
 	private static final int NOTIFICATION_ID_WATERMARK_ON = 0;
 
 	/**
-	 * ÏÔÊ¾gprsÒÑ¾­½ûÓÃµÄÍ¨Öª
+	 * æ˜¾ç¤ºgprså·²ç»ç¦ç”¨çš„é€šçŸ¥
 	 * 
 	 * @param con
 	 */
-	public static void showDisableGprsNotify(boolean show, Context context) {
+	public static void showHideDisableGprsNotify(boolean show, Context context) {
 
 		if (show) {
-			// ÏÔÊ¾
-			// ´´½¨Ò»¸öNotificationManagerµÄÒıÓÃ
+			// æ˜¾ç¤º
+			// åˆ›å»ºä¸€ä¸ªNotificationManagerçš„å¼•ç”¨
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			Notification notification = new Notification(R.drawable.ic_notification_disablegprs_on, context.getString(R.string.disable_gprs_on_tip), System.currentTimeMillis());
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			notification.flags |= Notification.FLAG_NO_CLEAR;
-			CharSequence contentText = context.getString(R.string.disable_gprs_notify_msg); // »ñµÃ»Ø¸´µÄ¶ÌĞÅÄÚÈİ
-			CharSequence contentTitle = context.getString(R.string.disable_gprs_on_tip);// ¸ù¾İ¶ÌĞÅÄÚÈİ»ñµÃ±êÌâ
+			CharSequence contentText = context.getString(R.string.disable_gprs_notify_msg); // è·å¾—å›å¤çš„çŸ­ä¿¡å†…å®¹
+			CharSequence contentTitle = context.getString(R.string.disable_gprs_on_tip);// æ ¹æ®çŸ­ä¿¡å†…å®¹è·å¾—æ ‡é¢˜
 
 			Intent notificationIntent = new Intent(context, DisableGprsActivity.class);
-			// µã»÷¸ÃÍ¨ÖªºóÒªÌø×ªµÄActivity
+			// ç‚¹å‡»è¯¥é€šçŸ¥åè¦è·³è½¬çš„Activity
 			PendingIntent contentItent = PendingIntent.getActivity(context, PENDINGINTENT_ID_DISABLEGPRS, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			// PendingIntent contentItent = PendingIntent.getBroadcast(context, requestCode, intent, flags)
 			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
-			// °ÑNotification´«µİ¸øNotificationManager
-			notificationManager.notify(NOTIFICATION_ID_DISABLEGPRS_ON, notification);// ×¢ÒâIDºÅ£¬²»ÄÜÓë´Ë³ÌĞòÖĞµÄÆäËûÍ¨ÖªÀ¸Í¼±êÏàÍ¬
+			// æŠŠNotificationä¼ é€’ç»™NotificationManager
+			notificationManager.notify(NOTIFICATION_ID_DISABLEGPRS_ON, notification);// æ³¨æ„IDå·ï¼Œä¸èƒ½ä¸æ­¤ç¨‹åºä¸­çš„å…¶ä»–é€šçŸ¥æ å›¾æ ‡ç›¸åŒ
 		} else {
-			// Æô¶¯ºóÉ¾³ıÖ®Ç°ÎÒÃÇ¶¨ÒåµÄÍ¨Öª
+			// å¯åŠ¨ååˆ é™¤ä¹‹å‰æˆ‘ä»¬å®šä¹‰çš„é€šçŸ¥
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-			notificationManager.cancel(NOTIFICATION_ID_DISABLEGPRS_ON);// ×¢ÒâIDºÅ£¬²»ÄÜÓë´Ë³ÌĞòÖĞµÄÆäËûÍ¨ÖªÀ¸Í¼±êÏàÍ¬
+			notificationManager.cancel(NOTIFICATION_ID_DISABLEGPRS_ON);// æ³¨æ„IDå·ï¼Œä¸èƒ½ä¸æ­¤ç¨‹åºä¸­çš„å…¶ä»–é€šçŸ¥æ å›¾æ ‡ç›¸åŒ
 		}
 	}
 
 	/**
-	 * ÈôÒÑ¾­¿ªÆô£¬ÔòÏÔÊ¾×´Ì¬À¸Í¼±ê
+	 * è‹¥å·²ç»å¼€å¯ï¼Œåˆ™æ˜¾ç¤ºçŠ¶æ€æ å›¾æ ‡
 	 * 
 	 * @param con
 	 */
-	public static void checkBusyModeState(Context context, boolean on) {
+	public static void showHideBusyModeNotify(Context context, boolean on) {
 
 		if (on) {
-			// ´´½¨Ò»¸öNotificationManagerµÄÒıÓÃ
+			// åˆ›å»ºä¸€ä¸ªNotificationManagerçš„å¼•ç”¨
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-			// ¶¨ÒåNotificationµÄ¸÷ÖÖÊôĞÔ
+			// å®šä¹‰Notificationçš„å„ç§å±æ€§
 			Notification notification = new Notification(R.drawable.ic_notification_busymode_on, context.getString(R.string.busymode_tip_open_toast), System.currentTimeMillis());
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
-			// ½«´ËÍ¨Öª·Åµ½Í¨ÖªÀ¸µÄ"Ongoing"¼´"ÕıÔÚÔËĞĞ"×éÖĞ
+			// å°†æ­¤é€šçŸ¥æ”¾åˆ°é€šçŸ¥æ çš„"Ongoing"å³"æ­£åœ¨è¿è¡Œ"ç»„ä¸­
 			notification.flags |= Notification.FLAG_NO_CLEAR;
-			// ±íÃ÷ÔÚµã»÷ÁËÍ¨ÖªÀ¸ÖĞµÄ"Çå³ıÍ¨Öª"ºó£¬´ËÍ¨Öª²»Çå³ı£¬¾­³£ÓëFLAG_ONGOING_EVENTÒ»ÆğÊ¹ÓÃ
+			// è¡¨æ˜åœ¨ç‚¹å‡»äº†é€šçŸ¥æ ä¸­çš„"æ¸…é™¤é€šçŸ¥"åï¼Œæ­¤é€šçŸ¥ä¸æ¸…é™¤ï¼Œç»å¸¸ä¸FLAG_ONGOING_EVENTä¸€èµ·ä½¿ç”¨
 			// notification.flags |=
 			// Notification.FLAG_SHOW_LIGHTS;
 			// notification.defaults = Notification.DEFAULT_LIGHTS;
 			// notification.ledARGB = Color.YELLOW;
-			// notification.ledOnMS = 5000; // ÉèÖÃÍ¨ÖªµÄÊÂ¼şÏûÏ¢
+			// notification.ledOnMS = 5000; // è®¾ç½®é€šçŸ¥çš„äº‹ä»¶æ¶ˆæ¯
 
-			CharSequence contentText = BusyModeUtil.getBusyModeMsgContent(context);// »ñµÃ»Ø¸´µÄ¶ÌĞÅÄÚÈİ
-			CharSequence contentTitle = context.getString(R.string.busymode_title) + " - " + BusyModeUtil.getMessageTitleFromContent(context, contentText.toString());// ¸ù¾İ¶ÌĞÅÄÚÈİ»ñµÃ±êÌâ
+			CharSequence contentText = BusyModeUtil.getBusyModeMsgContent(context);// è·å¾—å›å¤çš„çŸ­ä¿¡å†…å®¹
+			CharSequence contentTitle = context.getString(R.string.busymode_title) + " - " + BusyModeUtil.getMessageTitleFromContent(context, contentText.toString());// æ ¹æ®çŸ­ä¿¡å†…å®¹è·å¾—æ ‡é¢˜
 
 			if (contentText != null && contentText.length() > 0) {
-				contentText = context.getString(R.string.str_busymode_notification_msg) + contentText; // Í¨ÖªÀ¸ÄÚÈİ
+				contentText = context.getString(R.string.str_busymode_notification_msg) + contentText; // é€šçŸ¥æ å†…å®¹
 			} else {
 				contentText = context.getString(R.string.str_busymode_notification_nomsg);
 			}
 
 			Intent notificationIntent = new Intent(context, BusyModeActivity.class);
 			notificationIntent.putExtra("fromnotifybar", true);
-			// µã»÷¸ÃÍ¨ÖªºóÒªÌø×ªµÄActivity
+			// ç‚¹å‡»è¯¥é€šçŸ¥åè¦è·³è½¬çš„Activity
 			PendingIntent contentItent = PendingIntent.getActivity(context, PENDINGINTENT_ID_BUSYMODE, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
-			// °ÑNotification´«µİ¸øNotificationManager
-			notificationManager.notify(NOTIFICATION_ID_BUSYMODE_ON, notification);// ×¢ÒâIDºÅ£¬²»ÄÜÓë´Ë³ÌĞòÖĞµÄÆäËûÍ¨ÖªÀ¸Í¼±êÏàÍ¬
+			// æŠŠNotificationä¼ é€’ç»™NotificationManager
+			notificationManager.notify(NOTIFICATION_ID_BUSYMODE_ON, notification);// æ³¨æ„IDå·ï¼Œä¸èƒ½ä¸æ­¤ç¨‹åºä¸­çš„å…¶ä»–é€šçŸ¥æ å›¾æ ‡ç›¸åŒ
 		} else {
-			// Æô¶¯ºóÉ¾³ıÖ®Ç°ÎÒÃÇ¶¨ÒåµÄÍ¨Öª
+			// å¯åŠ¨ååˆ é™¤ä¹‹å‰æˆ‘ä»¬å®šä¹‰çš„é€šçŸ¥
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-			notificationManager.cancel(NOTIFICATION_ID_BUSYMODE_ON);// ×¢ÒâIDºÅ£¬²»ÄÜÓë´Ë³ÌĞòÖĞµÄÆäËûÍ¨ÖªÀ¸Í¼±êÏàÍ¬
+			notificationManager.cancel(NOTIFICATION_ID_BUSYMODE_ON);// æ³¨æ„IDå·ï¼Œä¸èƒ½ä¸æ­¤ç¨‹åºä¸­çš„å…¶ä»–é€šçŸ¥æ å›¾æ ‡ç›¸åŒ
 		}
 
 	}
 
 	/**
-	 * ÏÔÊ¾À¹½Øµç»°µÄÍ¨Öª
+	 * æ˜¾ç¤ºæ‹¦æˆªç”µè¯çš„é€šçŸ¥
 	 * 
 	 * @param context
 	 */
 	public static void showRefusedNumberNotification(Context context, String number) {
 
-		NOTIFICATION_ID_BUSYMODE_REFUSED = NOTIFICATION_ID_BUSYMODE_REFUSED + 1;// ¶¯Ì¬´´½¨id
-		// 3.0ÒÔÏÂ²»Ö§³ÖÍ¨ÖªÀ¸ÀïµÄ°´Å¥ÏìÓ¦
+		NOTIFICATION_ID_BUSYMODE_REFUSED = NOTIFICATION_ID_BUSYMODE_REFUSED + 1;// åŠ¨æ€åˆ›å»ºid
+		// 3.0ä»¥ä¸‹ä¸æ”¯æŒé€šçŸ¥æ é‡Œçš„æŒ‰é’®å“åº”
 		// if (PhoneUtil.isUpAPI10(context)) {
 		// if (RingForU.DEBUG)
-		// LogRingForu.e("", "  3.0 ÒÔÉÏ");
+		// LogRingForu.e("", "  3.0 ä»¥ä¸Š");
 		// Notification notification = new
 		// Notification(R.drawable.ic_notification_busymode_refused,
 		// context.getString(R.string.str_busymode_notification_refused_notify),
@@ -154,7 +163,7 @@ public class NotificationUtil {
 		//
 		// notification.contentView = contentView;
 		//
-		// // // ½«´ËÍ¨Öª·Åµ½Í¨ÖªÀ¸µÄ"Ongoing"¼´"ÕıÔÚÔËĞĞ"×éÖĞ
+		// // // å°†æ­¤é€šçŸ¥æ”¾åˆ°é€šçŸ¥æ çš„"Ongoing"å³"æ­£åœ¨è¿è¡Œ"ç»„ä¸­
 		// // notification.flags |= Notification.FLAG_NO_CLEAR;
 		// notification.flags |= Notification.FLAG_AUTO_CANCEL;
 		//
@@ -172,18 +181,18 @@ public class NotificationUtil {
 		// LogRingForu.v("", " create notification id = " +
 		// NOTIFICATION_ID_BUSYMODE_REFUSED);
 		// } else {
-		// LogRingForu.e("", "  3.0 ÒÔÏÂ");
-		// // ¶¨ÒåNotificationµÄ¸÷ÖÖÊôĞÔ
+		// LogRingForu.e("", "  3.0 ä»¥ä¸‹");
+		// // å®šä¹‰Notificationçš„å„ç§å±æ€§
 		NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-		// ¶¨ÒåNotificationµÄ¸÷ÖÖÊôĞÔ
+		// å®šä¹‰Notificationçš„å„ç§å±æ€§
 		Notification notification = new Notification(R.drawable.ic_notification_busymode_refused, context.getString(R.string.str_busymode_notification_refused_notify), System.currentTimeMillis());
-		// ½«´ËÍ¨Öª·Åµ½Í¨ÖªÀ¸µÄ"Ongoing"¼´"ÕıÔÚÔËĞĞ"×éÖĞ
+		// å°†æ­¤é€šçŸ¥æ”¾åˆ°é€šçŸ¥æ çš„"Ongoing"å³"æ­£åœ¨è¿è¡Œ"ç»„ä¸­
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
-		// ±íÃ÷ÔÚµã»÷ÁËÍ¨ÖªÀ¸ÖĞµÄ"Çå³ıÍ¨Öª"ºó£¬´ËÍ¨Öª²»Çå³ı£¬¾­³£ÓëFLAG_ONGOING_EVENTÒ»ÆğÊ¹ÓÃ
+		// è¡¨æ˜åœ¨ç‚¹å‡»äº†é€šçŸ¥æ ä¸­çš„"æ¸…é™¤é€šçŸ¥"åï¼Œæ­¤é€šçŸ¥ä¸æ¸…é™¤ï¼Œç»å¸¸ä¸FLAG_ONGOING_EVENTä¸€èµ·ä½¿ç”¨
 		// notification.flags |=
 		// Notification.FLAG_SHOW_LIGHTS;
 
-		CharSequence contentTitle = context.getString(R.string.str_busymode_notification_refused_title);// Í¨ÖªÀ¸±êÌâ
+		CharSequence contentTitle = context.getString(R.string.str_busymode_notification_refused_title);// é€šçŸ¥æ æ ‡é¢˜
 
 		String name = ContactsUtil.getNameFromContactsByNumber(context, number);
 
@@ -196,53 +205,53 @@ public class NotificationUtil {
 		Intent i = new Intent(BUSYMODE_ACTION_CALL);
 		i.putExtra(INTENT_ACTION_KEY_CALL, number);
 
-		// µã»÷¸ÃÍ¨ÖªºóÒªÌø×ªµÄActivity
+		// ç‚¹å‡»è¯¥é€šçŸ¥åè¦è·³è½¬çš„Activity
 		PendingIntent contentItent = PendingIntent.getBroadcast(context, PENDINGINTENT_ID_BUSYMODE, i, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
-		// °ÑNotification´«µİ¸øNotificationManager
-		notificationManager.notify(NOTIFICATION_ID_BUSYMODE_REFUSED, notification);// ×¢ÒâIDºÅ£¬²»ÄÜÓë´Ë³ÌĞòÖĞµÄÆäËûÍ¨ÖªÀ¸Í¼±êÏàÍ¬
+		// æŠŠNotificationä¼ é€’ç»™NotificationManager
+		notificationManager.notify(NOTIFICATION_ID_BUSYMODE_REFUSED, notification);// æ³¨æ„IDå·ï¼Œä¸èƒ½ä¸æ­¤ç¨‹åºä¸­çš„å…¶ä»–é€šçŸ¥æ å›¾æ ‡ç›¸åŒ
 		// }
 
 	}
 
 	/**
-	 * ÏÔÊ¾gprsÒÑ¾­½ûÓÃµÄÍ¨Öª
+	 * æ˜¾ç¤ºgprså·²ç»ç¦ç”¨çš„é€šçŸ¥
 	 * 
 	 * @param con
 	 */
 	public static void showHideWaterMarkNotify(boolean show, Context context) {
 
 		if (show) {
-			// ÏÔÊ¾
-			// ´´½¨Ò»¸öNotificationManagerµÄÒıÓÃ
+			// æ˜¾ç¤º
+			// åˆ›å»ºä¸€ä¸ªNotificationManagerçš„å¼•ç”¨
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-			// ¶¨ÒåNotificationµÄ¸÷ÖÖÊôĞÔ
+			// å®šä¹‰Notificationçš„å„ç§å±æ€§
 			Notification notification = new Notification(R.drawable.ic_notification_watermark_on, context.getString(R.string.watermark_on), System.currentTimeMillis());
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
-			// ½«´ËÍ¨Öª·Åµ½Í¨ÖªÀ¸µÄ"Ongoing"¼´"ÕıÔÚÔËĞĞ"×éÖĞ
+			// å°†æ­¤é€šçŸ¥æ”¾åˆ°é€šçŸ¥æ çš„"Ongoing"å³"æ­£åœ¨è¿è¡Œ"ç»„ä¸­
 			notification.flags |= Notification.FLAG_NO_CLEAR;
-			// ±íÃ÷ÔÚµã»÷ÁËÍ¨ÖªÀ¸ÖĞµÄ"Çå³ıÍ¨Öª"ºó£¬´ËÍ¨Öª²»Çå³ı£¬¾­³£ÓëFLAG_ONGOING_EVENTÒ»ÆğÊ¹ÓÃ
+			// è¡¨æ˜åœ¨ç‚¹å‡»äº†é€šçŸ¥æ ä¸­çš„"æ¸…é™¤é€šçŸ¥"åï¼Œæ­¤é€šçŸ¥ä¸æ¸…é™¤ï¼Œç»å¸¸ä¸FLAG_ONGOING_EVENTä¸€èµ·ä½¿ç”¨
 			// notification.flags |=
 			// Notification.FLAG_SHOW_LIGHTS;
 			// notification.defaults = Notification.DEFAULT_LIGHTS;
 			// notification.ledARGB = Color.YELLOW;
-			// notification.ledOnMS = 5000; // ÉèÖÃÍ¨ÖªµÄÊÂ¼şÏûÏ¢
+			// notification.ledOnMS = 5000; // è®¾ç½®é€šçŸ¥çš„äº‹ä»¶æ¶ˆæ¯
 
 			CharSequence contentText = context.getString(R.string.watermark_set_tip);
 			CharSequence contentTitle = context.getString(R.string.watermark_on);
 
 			Intent notificationIntent = new Intent(context, WaterMarkActivity.class);
 			notificationIntent.putExtra("fromnotifybar", true);
-			// µã»÷¸ÃÍ¨ÖªºóÒªÌø×ªµÄActivity
+			// ç‚¹å‡»è¯¥é€šçŸ¥åè¦è·³è½¬çš„Activity
 			PendingIntent contentItent = PendingIntent.getActivity(context, PENDINGINTENT_ID_WATERMARK_ON, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
-			// °ÑNotification´«µİ¸øNotificationManager
-			notificationManager.notify(NOTIFICATION_ID_WATERMARK_ON, notification);// ×¢ÒâIDºÅ£¬²»ÄÜÓë´Ë³ÌĞòÖĞµÄÆäËûÍ¨ÖªÀ¸Í¼±êÏàÍ¬
+			// æŠŠNotificationä¼ é€’ç»™NotificationManager
+			notificationManager.notify(NOTIFICATION_ID_WATERMARK_ON, notification);// æ³¨æ„IDå·ï¼Œä¸èƒ½ä¸æ­¤ç¨‹åºä¸­çš„å…¶ä»–é€šçŸ¥æ å›¾æ ‡ç›¸åŒ
 		} else {
-			// Æô¶¯ºóÉ¾³ıÖ®Ç°ÎÒÃÇ¶¨ÒåµÄÍ¨Öª
+			// å¯åŠ¨ååˆ é™¤ä¹‹å‰æˆ‘ä»¬å®šä¹‰çš„é€šçŸ¥
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-			notificationManager.cancel(NOTIFICATION_ID_WATERMARK_ON);// ×¢ÒâIDºÅ£¬²»ÄÜÓë´Ë³ÌĞòÖĞµÄÆäËûÍ¨ÖªÀ¸Í¼±êÏàÍ¬
+			notificationManager.cancel(NOTIFICATION_ID_WATERMARK_ON);// æ³¨æ„IDå·ï¼Œä¸èƒ½ä¸æ­¤ç¨‹åºä¸­çš„å…¶ä»–é€šçŸ¥æ å›¾æ ‡ç›¸åŒ
 		}
 
 	}
