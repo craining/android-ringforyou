@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_sethidestyle_call"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_light" >
 
     <RelativeLayout
         android:id="@+id/layout_sethidestyle_title_call"

@@ -10,7 +10,7 @@
     <dimen name="layout_top_height">45dip</dimen>
     
     
-    <dimen name="btn_margin_right_second">58dip</dimen>
+    <dimen name="btn_margin_right_second">15dip</dimen>
     <dimen name="img_right_top_set_wh">25dip</dimen>
     
     
@@ -62,7 +62,10 @@
     <dimen name="textsize_tab_bottom">12sp</dimen>
     
     
-    <dimen name="btn_main_add_height">30dip</dimen>
+    <dimen name="btn_main_add_height">28dip</dimen>
+    
+    
+    <dimen name="btn_watermark_bottom_height">28dip</dimen>
     
     
     

@@ -14,6 +14,7 @@ import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.tools.busymode.BusyModeUtil;
 import com.zgy.ringforu.util.MainUtil;
+import com.zgy.ringforu.util.NotificationUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
 
@@ -115,7 +116,7 @@ public class CallReceiver extends BroadcastReceiver {
 					// 正常，判断是否为忙碌模式
 					if (BusyModeUtil.isBusyModeOn()) {
 						PhoneUtil.doActionAboutCall(con, PhoneUtil.HANG_UP_CALL);
-						BusyModeUtil.showRefusedNumberNotification(con, incomingNumber);
+						NotificationUtil.showRefusedNumberNotification(con, incomingNumber);
 						if (RingForU.DEBUG)
 							LogRingForu.e(TAG, "BUSY MODE, offhook incoming call!");
 						String msg = BusyModeUtil.getBusyModeMsgContent(con);

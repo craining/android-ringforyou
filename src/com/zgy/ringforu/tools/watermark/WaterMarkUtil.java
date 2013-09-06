@@ -13,6 +13,7 @@ import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.MainUtil;
+import com.zgy.ringforu.util.NotificationUtil;
 
 /**
  * 水印相关
@@ -36,9 +37,6 @@ public class WaterMarkUtil {
 	private static final String TAG = "WaterMarkUtil";
 
 	public static final int WATER_MARK_ALPHA_DEF = 50;
-
-	private static final int PENDINGINTENT_ID_WATERMARK_ON = 102;
-	private static final int NOTIFICATION_ID_DISABLEGPRS_ON = 102;
 
 	// TODO getstate , check ,
 
@@ -93,10 +91,10 @@ public class WaterMarkUtil {
 		if (isWaterMarkSeted()) {
 			WaterMarkService.show = true;
 			ctrlWaterMarkBackService(context, true);
-			showNotify(true, context);
+			NotificationUtil.showHideWaterMarkNotify(true, context);
 		} else {
 			ctrlWaterMarkBackService(context, false);
-			showNotify(false, context);
+			NotificationUtil.showHideWaterMarkNotify(false, context);
 		}
 	}
 
@@ -130,44 +128,5 @@ public class WaterMarkUtil {
 
 	}
 
-	/**
-	 * 显示gprs已经禁用的通知
-	 * 
-	 * @param con
-	 */
-	private static void showNotify(boolean show, Context context) {
-
-		if (show) {
-			// 显示
-			// 创建一个NotificationManager的引用
-			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-			// 定义Notification的各种属性
-			Notification notification = new Notification(R.drawable.ic_notification_watermark_on, "屏幕水印已开启！", System.currentTimeMillis());
-			notification.flags |= Notification.FLAG_ONGOING_EVENT;
-			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
-			notification.flags |= Notification.FLAG_NO_CLEAR;
-			// 表明在点击了通知栏中的"清除通知"后，此通知不清除，经常与FLAG_ONGOING_EVENT一起使用
-			// notification.flags |=
-			// Notification.FLAG_SHOW_LIGHTS;
-			// notification.defaults = Notification.DEFAULT_LIGHTS;
-			// notification.ledARGB = Color.YELLOW;
-			// notification.ledOnMS = 5000; // 设置通知的事件消息
-
-			CharSequence contentText = "点击进入水印设置页";// 获得回复的短信内容
-			CharSequence contentTitle = "屏幕水印已开启";// 根据短信内容获得标题
-
-			Intent notificationIntent = new Intent(context, WaterMarkActivity.class);
-			notificationIntent.putExtra("fromnotifybar", true);
-			// 点击该通知后要跳转的Activity
-			PendingIntent contentItent = PendingIntent.getActivity(context, PENDINGINTENT_ID_WATERMARK_ON, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
-			// 把Notification传递给NotificationManager
-			notificationManager.notify(NOTIFICATION_ID_DISABLEGPRS_ON, notification);// 注意ID号，不能与此程序中的其他通知栏图标相同
-		} else {
-			// 启动后删除之前我们定义的通知
-			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-			notificationManager.cancel(NOTIFICATION_ID_DISABLEGPRS_ON);// 注意ID号，不能与此程序中的其他通知栏图标相同
-		}
-
-	}
+	
 }

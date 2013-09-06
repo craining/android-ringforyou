@@ -86,6 +86,10 @@
     <string name="watermark_show_fail">Set the watermark failed!</string>
     <string name="watermark_ori_tip">You may need to recut the image to show a normal ratio watermark!</string>
 
+    
+    <string name="watermark_on">屏幕水印已开启</string>
+    <string name="watermark_set_tip">点击进入水印设置页</string>
+    
     <!-- new -->
     <!-- The important contact has not yet been added, please add. -->
     <string name="none_addnull_important_title">尚未添加重要联系人</string>
@@ -221,5 +225,9 @@
     <string name="about_programer_name">庄广钰</string>
     <string name="about_qa">测试：</string>
     <string name="about_qa_name">徐欣莹</string>
+    
+    <string name="finish">完成</string>
+    
+    
 
 </resources>

@@ -4,9 +4,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/bg_grey" >
-
-    <!-- android:background="@android:color/transparent" -->
-
     <RelativeLayout
         android:id="@+id/layout_watermark_top"
 		style="@style/layout_top_title">
@@ -22,7 +19,7 @@
         <Button
             android:id="@+id/btn_watermark_ok"
 			style="@style/btn_right_top"
-            android:text="@string/watermark_set" />
+            android:text="@string/finish" />
 
         <Button
             android:id="@+id/btn_watermark_title_close"
@@ -35,6 +32,7 @@
             android:text="@string/watermark_close"
             android:textColor="@color/white"
             android:textSize="@dimen/btn_textsize_top_title"
+            android:layout_toLeftOf="@id/btn_watermark_ok"
             android:visibility="gone" />
     </RelativeLayout>
 
@@ -79,8 +77,8 @@
 
             <Button
                 android:id="@+id/btn_watermark_orientation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/btn_watermark_bottom_height"
                 android:layout_marginRight="10dip"
                 android:layout_weight="1"
                 android:background="@drawable/bg_btn_blue"
@@ -90,8 +88,8 @@
 
             <Button
                 android:id="@+id/btn_watermark_cut"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/btn_watermark_bottom_height"
                 android:layout_weight="1"
                 android:background="@drawable/bg_btn_blue"
                 android:text="@string/watermark_cut"
@@ -100,8 +98,8 @@
 
             <Button
                 android:id="@+id/btn_watermark_change"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/btn_watermark_bottom_height"
                 android:layout_marginLeft="10dip"
                 android:layout_marginRight="10dip"
                 android:layout_weight="1"
@@ -112,8 +110,8 @@
 
             <Button
                 android:id="@+id/btn_watermark_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/btn_watermark_bottom_height"
                 android:layout_weight="1"
                 android:background="@drawable/bg_btn_red"
                 android:text="@string/watermark_del"

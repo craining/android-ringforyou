@@ -1,10 +1,13 @@
 package com.zgy.ringforu.util;
 
+import java.lang.reflect.Method;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.NetworkInfo.State;
 import android.os.Vibrator;
 import android.provider.Settings;
 
@@ -60,4 +63,67 @@ public class NetWorkUtil {
 		}).create().show();
 	}
 
+	
+	/**
+	 * 判断打开或关闭 GPRS是否连接
+	 */
+	public static boolean isMobileNetworkEnabled(Context context) {
+		ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		State wifi = conMan.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+		if (wifi != State.CONNECTED) {
+			State mobile = conMan.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+			if (mobile == State.CONNECTED) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+	
+	
+	/**
+	 * 打开或关闭 GPRS
+	 */
+	public static void setGprsEnabled(boolean bEnable, Context context) {
+
+		ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		// Object[] argObjects = null;
+		// boolean isOpen = gprsIsOpenMethod("getMobileDataEnabled", conMan);
+		// if (isOpen == !bEnable) {
+		setGprsEnabled("setMobileDataEnabled", conMan, bEnable);
+		// }
+
+	}
+
+	// 检测GPRS是否打开
+	private static boolean gprsIsOpenMethod(String methodName, ConnectivityManager conMan) {
+
+		Class cmClass = conMan.getClass();
+		Class[] argClasses = null;
+		Object[] argObject = null;
+
+		Boolean isOpen = false;
+		try {
+			Method method = cmClass.getMethod(methodName, argClasses);
+			isOpen = (Boolean) method.invoke(conMan, argObject);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return isOpen;
+	}
+
+	// 开启/关闭GPRS
+	private static void setGprsEnabled(String methodName, ConnectivityManager conMan, boolean isEnable) {
+		Class cmClass = conMan.getClass();
+		Class[] argClasses = new Class[1];
+		argClasses[0] = boolean.class;
+		try {
+			Method method = cmClass.getMethod(methodName, argClasses);
+			method.invoke(conMan, isEnable);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
