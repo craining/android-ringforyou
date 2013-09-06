@@ -12,7 +12,7 @@ import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.tools.busymode.BusyModeUtil;
+import com.zgy.ringforu.util.BusyModeUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.NotificationUtil;
 import com.zgy.ringforu.util.PhoneUtil;

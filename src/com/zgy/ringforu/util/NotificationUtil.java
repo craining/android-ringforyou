@@ -7,10 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.tools.busymode.BusyModeActivity;
-import com.zgy.ringforu.tools.busymode.BusyModeUtil;
-import com.zgy.ringforu.tools.disablegprs.DisableGprsActivity;
-import com.zgy.ringforu.tools.watermark.WaterMarkActivity;
+import com.zgy.ringforu.activity.BusyModeActivity;
+import com.zgy.ringforu.activity.DisableGprsActivity;
+import com.zgy.ringforu.activity.WaterMarkActivity;
 
 /**
  * 通知栏util

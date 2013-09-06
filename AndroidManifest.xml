@@ -111,7 +111,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".tools.watermark.WaterMarkActivity"
+            android:name="com.zgy.ringforu.activity.WaterMarkActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/share_label_watermark"
             android:launchMode="singleTask"
@@ -137,25 +137,25 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".tools.disablegprs.DisableGprsActivity"
+            android:name="com.zgy.ringforu.activity.DisableGprsActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/dialog" />
         <activity
-            android:name=".tools.busymode.BusyModeActivity"
+            android:name="com.zgy.ringforu.activity.BusyModeActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <service
-            android:name=".tools.watermark.WaterMarkService"
+            android:name="com.zgy.ringforu.service.WaterMarkService"
             android:label="@string/app_name" />
         <service
             android:name=".tools.disablegprs.DisableGprsService"
             android:label="@string/app_name" />
         <service
-            android:name=".tools.signalreconnect.SignalReconnectService"
+            android:name="com.zgy.ringforu.service.SignalReconnectService"
             android:label="@string/app_name" />
 
         <receiver
@@ -173,7 +173,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.zgy.ringforu.tools.disablegprs.DisableGprsRecerver"
+            android:name="com.zgy.ringforu.receiver.DisableGprsRecerver"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -199,7 +199,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".tools.busymode.NotificationBusyModeRefusedReceiver"
+            android:name="com.zgy.ringforu.receiver.NotificationBusyModeRefusedReceiver"
             android:exported="true" >
             <intent-filter>
                 <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_CALL" />

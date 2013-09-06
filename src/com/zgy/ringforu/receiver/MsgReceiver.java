@@ -10,9 +10,9 @@ import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.tools.smslightscreen.SmsLightScreenUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.SmsLightScreenUtil;
 import com.zgy.ringforu.util.StringUtil;
 
 public class MsgReceiver extends BroadcastReceiver {

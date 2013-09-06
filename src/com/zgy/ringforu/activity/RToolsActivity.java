@@ -19,16 +19,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.tools.busymode.BusyModeActivity;
-import com.zgy.ringforu.tools.busymode.BusyModeUtil;
-import com.zgy.ringforu.tools.disablegprs.DisableGprsUtil;
-import com.zgy.ringforu.tools.signalreconnect.SignalReconnectUtil;
-import com.zgy.ringforu.tools.smslightscreen.SmsLightScreenUtil;
-import com.zgy.ringforu.tools.watermark.WaterMarkActivity;
-import com.zgy.ringforu.tools.watermark.WaterMarkUtil;
 import com.zgy.ringforu.util.ActivityManager;
+import com.zgy.ringforu.util.BusyModeUtil;
+import com.zgy.ringforu.util.DisableGprsUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.SignalReconnectUtil;
+import com.zgy.ringforu.util.SmsLightScreenUtil;
 import com.zgy.ringforu.util.StringUtil;
+import com.zgy.ringforu.util.WaterMarkUtil;
 import com.zgy.ringforu.view.MyToast;
 
 public class RToolsActivity extends Activity implements OnClickListener {

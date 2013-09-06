@@ -3,8 +3,8 @@ package com.zgy.ringforu.config;
 import android.content.Context;
 
 import com.zgy.ringforu.RingForU;
-import com.zgy.ringforu.tools.watermark.WaterMarkUtil;
 import com.zgy.ringforu.util.PreferenceUtil;
+import com.zgy.ringforu.util.WaterMarkUtil;
 
 public class MainConfig extends PreferenceUtil {
 
