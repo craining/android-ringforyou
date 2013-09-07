@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_set"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     android:background="@drawable/bg_light" >
 
     <RelativeLayout
@@ -14,6 +14,7 @@
             style="@style/btn_left_top_back" />
 
         <TextView
+            android:id="@+id/set_title_of"
             style="@style/text_top_title"
             android:text="@string/set_str" />
     </RelativeLayout>

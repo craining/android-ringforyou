@@ -8,68 +8,62 @@
     <dimen name="btn_textsize_top_title">14sp</dimen>
     <dimen name="text_textsize_top_title">18sp</dimen>
     <dimen name="layout_top_height">45dip</dimen>
-    
-    
     <dimen name="btn_margin_right_second">15dip</dimen>
     <dimen name="img_right_top_set_wh">25dip</dimen>
-    
-    
     <dimen name="layout_margin_left_right">30dip</dimen>
     <dimen name="layout_margin_top_title">20dip</dimen>
-    
-    
     <dimen name="layout_set_item_height">50dip</dimen>
-    
-    
     <dimen name="layout_set_item_margin_left">10dip</dimen>
     <dimen name="layout_set_item_margin_right">30dip</dimen>
-    
-    
     <dimen name="textsize_set_item_top">15sp</dimen>
     <dimen name="textsize_set_item_bottom">12sp</dimen>
-    
-    
     <dimen name="line_set_item_div_height">2dip</dimen>
     <dimen name="line_set_child_item_div_height">1dip</dimen>
-    
-    
     <dimen name="img_set_item_selected_wh">15dip</dimen>
     <dimen name="img_set_item_selected_margin_right">15dip</dimen>
-    
     <dimen name="img_set_item_switch_width">55dip</dimen>
     <dimen name="img_set_item_check_wh">20dip</dimen>
     <dimen name="img_set_item_switch_margin_right">10dip</dimen>
     <dimen name="img_set_item_check_margin_right">15dip</dimen>
     <dimen name="img_set_item_switch_padding_tb">13dip</dimen>
-    
-    
     <dimen name="img_set_item_arrow_height">15dip</dimen>
     <dimen name="img_set_item_arrow_margin_right">18dip</dimen>
-    
-    
     <dimen name="img_set_calm_item_right_wh">30dip</dimen>
     <dimen name="img_set_calm_item_right_margin_right">15dip</dimen>
-    
-    
     <dimen name="text_set_calm_item_left_margin_left">40dip</dimen>
-    
-    
-    
     <dimen name="img_tab_w">32dip</dimen>
     <dimen name="img_tab_h">30dip</dimen>
     <dimen name="img_tab_margin_top">4dip</dimen>
-    
     <dimen name="textsize_tab_bottom">12sp</dimen>
-    
-    
     <dimen name="btn_main_add_height">28dip</dimen>
-    
-    
     <dimen name="btn_watermark_bottom_height">28dip</dimen>
-    
-    
-    
-    
-	
-    
+    <dimen name="btn_textsize_main_add">14sp</dimen>
+    <!-- add_contacts -->
+    <dimen name="btn_textsize_big">18sp</dimen>
+    <dimen name="search_layout_height">50dip</dimen>
+    <dimen name="search_layout_padding_tb">10dip</dimen>
+    <dimen name="search_edit_padding_left">30dip</dimen>
+    <dimen name="search_edit_padding_right">40dip</dimen>
+    <dimen name="layout_height_row">45dip</dimen>
+    <dimen name="search_edit_textsize">12sp</dimen>
+    <dimen name="search_edit_imgheight">18dip</dimen>
+    <dimen name="search_edit_img_margin_l">5dip</dimen>
+    <dimen name="search_edit_img_margin_r">3dip</dimen>
+    <dimen name="textsize_content">14sp</dimen>
+    <dimen name="img_loading_hw">40dip</dimen>
+    <dimen name="textsize_tip">15sp</dimen>
+    <dimen name="layout_little_margin">10dip</dimen>
+    <dimen name="layout_margin_title">20dip</dimen>
+    <dimen name="layout_margin_title_little">8dip</dimen>
+    <dimen name="layout_margin_title_more">25dip</dimen>
+    <dimen name="layout_margin_title_less">15dip</dimen>
+    <dimen name="layout_big">150dip</dimen>
+    <dimen name="layout_big_less_less">80dip</dimen>
+    <dimen name="layout_big_less_less_less">50dip</dimen>
+    <dimen name="layout_big_less">130dip</dimen>
+    <dimen name="layout_height_double">2dip</dimen>
+    <dimen name="layout_height_five">5dip</dimen>
+    <dimen name="img_wh_red_note">18dip</dimen>
+    <dimen name="text_size_little">8sp</dimen>
+
 </resources>

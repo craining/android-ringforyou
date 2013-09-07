@@ -33,7 +33,7 @@ public class DisableGprsUtil {
 	 * @author: zhuanggy
 	 * @date:2013-1-31
 	 */
-	public static void checkDisableGprsState(Context context) {
+	public static void checkState(Context context) {
 		NotificationUtil.showHideDisableGprsNotify(DisableGprsUtil.isDisableGprsOn(), context);
 		if (DisableGprsUtil.isDisableGprsOn()) {
 			DisableGprsUtil.ctrlNetWorkConnection(context);
@@ -56,7 +56,7 @@ public class DisableGprsUtil {
 	 */
 	public static void ctrlDisableGprsSwitch(Context context, boolean open) {
 		MainConfig.getInstance().setDisableGprsOnOff(open);
-		checkDisableGprsState(context);
+		checkState(context);
 	}
 
 }

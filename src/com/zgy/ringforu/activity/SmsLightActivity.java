@@ -14,12 +14,14 @@ import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.util.DisableGprsUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.SignalReconnectUtil;
+import com.zgy.ringforu.util.SmsLightScreenUtil;
 import com.zgy.ringforu.view.MyToast;
 
-public class DisableGprsActivity extends Activity implements OnClickListener {
+public class SmsLightActivity extends Activity implements OnClickListener {
 
 	private Button btnCtrl;
-	private TextView textShowState, textShowContent;
+	private TextView textShowContent, textTitle;
 	private Button btnBack;
 
 	private Vibrator vb = null;
@@ -29,24 +31,23 @@ public class DisableGprsActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tools_dlg_ctrl);
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
-		DisableGprsUtil.checkState(DisableGprsActivity.this);
+		DisableGprsUtil.checkState(SmsLightActivity.this);
 
 		btnCtrl = (Button) findViewById(R.id.btn_ctrl);
 		btnBack = (Button) findViewById(R.id.btn_back);
-		textShowState = (TextView) findViewById(R.id.text_showstate);
 		textShowContent = (TextView) findViewById(R.id.text_showcontent);
+		textTitle = (TextView) findViewById(R.id.text_showstate);
 
 		btnCtrl.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
 		btnBack.getBackground().setAlpha(MainCanstants.DLG_BTN_ALPHA);
+		textShowContent.setText(R.string.smslight_msg);
 
-		textShowContent.setText(R.string.gprs_msg);
-
-		if (DisableGprsUtil.isDisableGprsOn()) {
-			textShowState.setText(R.string.disable_gprs_on);
-			btnCtrl.setText(R.string.gprs_undisable);
+		if (SmsLightScreenUtil.isSmsLightScreenOn()) {
+			textTitle.setText(R.string.title_state_on);
+			btnCtrl.setText(R.string.btn_close_state);
 		} else {
-			textShowState.setText(R.string.disable_gprs_off);
-			btnCtrl.setText(R.string.gprs_disable);
+			textTitle.setText(R.string.title_state_off);
+			btnCtrl.setText(R.string.btn_open_state);
 		}
 
 		btnCtrl.setOnClickListener(this);
@@ -55,7 +56,6 @@ public class DisableGprsActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
@@ -69,12 +69,14 @@ public class DisableGprsActivity extends Activity implements OnClickListener {
 		PhoneUtil.doVibraterNormal(vb);
 		switch (v.getId()) {
 		case R.id.btn_ctrl:
-			if (DisableGprsUtil.isDisableGprsOn()) {
-				DisableGprsUtil.ctrlDisableGprsSwitch(DisableGprsActivity.this, false);
-				MyToast.makeText(DisableGprsActivity.this, R.string.disable_gprs_off_tip, Toast.LENGTH_LONG, false).show();
+			if (SmsLightScreenUtil.isSmsLightScreenOn()) {
+				SmsLightScreenUtil.ctrlSmsLightScreenSwitch(false, SmsLightActivity.this);
+				MyToast.makeText(SmsLightActivity.this, R.string.toast_close_ok, Toast.LENGTH_LONG, false).show();
+
 			} else {
-				DisableGprsUtil.ctrlDisableGprsSwitch(DisableGprsActivity.this, true);
-				MyToast.makeText(DisableGprsActivity.this, R.string.disable_gprs_on_tip, Toast.LENGTH_LONG, false).show();
+				SmsLightScreenUtil.ctrlSmsLightScreenSwitch(true, SmsLightActivity.this);
+				MyToast.makeText(SmsLightActivity.this, R.string.toast_open_ok, Toast.LENGTH_LONG, false).show();
+
 			}
 			finish();
 			break;

@@ -4,22 +4,6 @@
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw600dp devices (e.g. 7" tablets) here.
     -->
-
-
-  <!-- 顶部标题栏相关 
-  
-      <dimen name="btn_width_left_top_back">60dip</dimen>
-    <dimen name="btn_height_left_top_back">45dip</dimen>
-    <dimen name="btn_margin_left_top_back">25dip</dimen>
-    <dimen name="btn_padding_right_top_back">5dip</dimen>
-    <dimen name="btn_textsize_top_back">18sp</dimen>
-    <dimen name="text_textsize_top_title">20sp</dimen>
-    <dimen name="layout_top_height">60dip</dimen>
-  -->
-
-    
-    
-    
     <dimen name="btn_width_top">68dip</dimen>
     <dimen name="btn_height_top">45dip</dimen>
     <dimen name="btn_margin_left_right_top">8dip</dimen>
@@ -27,7 +11,62 @@
     <dimen name="btn_textsize_top_title">21sp</dimen>
     <dimen name="text_textsize_top_title">27sp</dimen>
     <dimen name="layout_top_height">68dip</dimen>
-    
+    <dimen name="btn_margin_right_second">23dip</dimen>
+    <dimen name="img_right_top_set_wh">38dip</dimen>
+    <dimen name="layout_margin_left_right">45dip</dimen>
+    <dimen name="layout_margin_top_title">30dip</dimen>
+    <dimen name="layout_set_item_height">75dip</dimen>
+    <dimen name="layout_set_item_margin_left">15dip</dimen>
+    <dimen name="layout_set_item_margin_right">45dip</dimen>
+    <dimen name="textsize_set_item_top">23sp</dimen>
+    <dimen name="textsize_set_item_bottom">18sp</dimen>
+    <dimen name="line_set_item_div_height">3dip</dimen>
+    <dimen name="line_set_child_item_div_height">2dip</dimen>
+    <dimen name="img_set_item_selected_wh">23dip</dimen>
+    <dimen name="img_set_item_selected_margin_right">23dip</dimen>
+    <dimen name="img_set_item_switch_width">83dip</dimen>
+    <dimen name="img_set_item_check_wh">30dip</dimen>
+    <dimen name="img_set_item_switch_margin_right">15dip</dimen>
+    <dimen name="img_set_item_check_margin_right">23dip</dimen>
+    <dimen name="img_set_item_switch_padding_tb">20dip</dimen>
+    <dimen name="img_set_item_arrow_height">23dip</dimen>
+    <dimen name="img_set_item_arrow_margin_right">27dip</dimen>
+    <dimen name="img_set_calm_item_right_wh">45dip</dimen>
+    <dimen name="img_set_calm_item_right_margin_right">23dip</dimen>
+    <dimen name="text_set_calm_item_left_margin_left">60dip</dimen>
+    <dimen name="img_tab_w">48dip</dimen>
+    <dimen name="img_tab_h">45dip</dimen>
+    <dimen name="img_tab_margin_top">6dip</dimen>
+    <dimen name="textsize_tab_bottom">18sp</dimen>
+    <dimen name="btn_main_add_height">42dip</dimen>
+    <dimen name="btn_watermark_bottom_height">42dip</dimen>
+    <dimen name="btn_textsize_main_add">20sp</dimen>
+    <!-- add_contacts -->
+    <dimen name="btn_textsize_big">27sp</dimen>
+    <dimen name="search_layout_height">75dip</dimen>
+    <dimen name="search_layout_padding_tb">15dip</dimen>
+    <dimen name="search_edit_padding_left">45dip</dimen>
+    <dimen name="search_edit_padding_right">60dip</dimen>
+    <dimen name="layout_height_row">68dip</dimen>
+    <dimen name="search_edit_textsize">18sp</dimen>
+    <dimen name="search_edit_imgheight">27dip</dimen>
+    <dimen name="search_edit_img_margin_l">8dip</dimen>
+    <dimen name="search_edit_img_margin_r">5dip</dimen>
+    <dimen name="textsize_content">21sp</dimen>
+    <dimen name="img_loading_hw">60dip</dimen>
+    <dimen name="textsize_tip">23sp</dimen>
+    <dimen name="layout_little_margin">15dip</dimen>
+    <dimen name="layout_margin_title">30dip</dimen>
+    <dimen name="layout_margin_title_little">12dip</dimen>
+    <dimen name="layout_margin_title_more">38dip</dimen>
+    <dimen name="layout_big">225dip</dimen>
+    <dimen name="layout_big_less_less">120dip</dimen>
+    <dimen name="layout_big_less_less_less">75dip</dimen>
+    <dimen name="layout_big_less">195dip</dimen>
+    <dimen name="layout_height_double">3dip</dimen>
+    <dimen name="layout_height_five">8dip</dimen>
+    <dimen name="img_wh_red_note">27dip</dimen>
+    <dimen name="text_size_little">12sp</dimen>
     
     
 </resources>

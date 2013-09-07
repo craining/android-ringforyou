@@ -27,30 +27,30 @@
         android:id="@+id/edit_feedback_content"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:layout_marginTop="20dip"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:layout_marginRight="@dimen/layout_margin_left_right"
+        android:layout_marginTop="@dimen/layout_margin_top_title"
         android:background="@drawable/edit_bg"
         android:gravity="top"
         android:hint="@string/feedback_content"
         android:lines="6"
-        android:textSize="15sp" />
+        android:textSize="@dimen/textsize_tip" />
 
     <AutoCompleteTextView
         android:id="@+id/edit_feedback_email"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:layout_marginTop="30dip"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:layout_marginRight="@dimen/layout_margin_left_right"
+        android:layout_marginTop="@dimen/layout_margin_left_right"
         android:background="@drawable/edit_bg"
         android:completionThreshold="1"
-        android:dropDownHeight="160dip"
-        android:dropDownVerticalOffset="10dip"
+        android:dropDownHeight="@dimen/layout_big"
+        android:dropDownVerticalOffset="@dimen/layout_little_margin"
         android:hint="@string/feedback_hint_1"
         android:inputType="textEmailAddress"
         android:maxLength="128"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="@dimen/textsize_tip" />
 
 </LinearLayout>

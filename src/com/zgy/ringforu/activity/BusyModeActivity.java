@@ -166,7 +166,7 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub// …Ë÷√◊¥Ã¨¿∏Õº±Í
-		BusyModeUtil.checkBusyModeState(BusyModeActivity.this);
+		BusyModeUtil.checkState(BusyModeActivity.this);
 		super.onDestroy();
 	}
 

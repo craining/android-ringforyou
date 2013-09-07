@@ -173,14 +173,14 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			if (WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
 				WaterMarkUtil.FILE_WATERMARK_IMG.delete();
 			}
-			WaterMarkUtil.checkWaterMarkState(WaterMarkActivity.this);
+			WaterMarkUtil.checkState(WaterMarkActivity.this);
 			MyToast.makeText(WaterMarkActivity.this, R.string.watermark_del_success, MyToast.LENGTH_SHORT, false).show();
 			finish();
 			break;
 		case R.id.btn_watermark_title_close:
 			// ¹Ø±Õ
 			WaterMarkUtil.setSwitchOnOff(false);
-			WaterMarkUtil.checkWaterMarkState(WaterMarkActivity.this);
+			WaterMarkUtil.checkState(WaterMarkActivity.this);
 			MyToast.makeText(WaterMarkActivity.this, R.string.watermark_close_finish, MyToast.LENGTH_SHORT, false).show();
 			finish();
 			break;
@@ -517,7 +517,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	protected void onDestroy() {
 		// WaterMarkService.show = true;
 		// WaterMarkUtil.ctrlWaterMarkBackService(WaterMarkActivity.this, true);
-		WaterMarkUtil.checkWaterMarkState(WaterMarkActivity.this);
+		WaterMarkUtil.checkState(WaterMarkActivity.this);
 		// if (WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.exists()) {
 		// WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.delete();
 		// }

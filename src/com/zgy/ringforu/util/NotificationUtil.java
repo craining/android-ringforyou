@@ -10,6 +10,7 @@ import com.zgy.ringforu.R;
 import com.zgy.ringforu.activity.BusyModeActivity;
 import com.zgy.ringforu.activity.DisableGprsActivity;
 import com.zgy.ringforu.activity.WaterMarkActivity;
+import com.zgy.ringforu.receiver.NotificationReceiver;
 
 /**
  * 通知栏util
@@ -24,18 +25,28 @@ public class NotificationUtil {
 
 	private static final int NOTIFICATION_ID_DISABLEGPRS_ON = 1;
 	private static final int PENDINGINTENT_ID_DISABLEGPRS = 1;
-
 	private static final int NOTIFICATION_ID_BUSYMODE_ON = 2;// 状态栏通知的id
 	private static final int PENDINGINTENT_ID_BUSYMODE = 2;
-
-	private static int NOTIFICATION_ID_BUSYMODE_REFUSED = 3;// 状态栏通知的id
+	private static final int NOTIFICATION_ID_SMSLIGHT_ON = 3;// 状态栏通知的id
+	private static final int PENDINGINTENT_ID_SMSLIGHT = 3;
+	private static final int NOTIFICATION_ID_SIGNALRECONNECT_ON = 5;// 状态栏通知的id
+	private static final int PENDINGINTENT_ID_SIGNALRECONNECT = 5;
+	
+	private static int NOTIFICATION_ID_BUSYMODE_REFUSED = 20;// 状态栏通知的id
 
 	/**
 	 * intent action
 	 */
-	public static final String BUSYMODE_ACTION_CALL = "com.zgy.ringforu.ACTION_NOTIFICATION_CALL";// 通知栏拨打电话
-	public static final String BUSYMODE_ACTION_CLEAR = "com.zgy.ringforu.ACTION_NOTIFICATION_CLEAR";// 通知栏清除
+	public static final String ACTION_REFUSED_CALL = "com.zgy.ringforu.ACTION_NOTIFICATION_REFUSED_CALL";// 通知栏拨打电话
+	public static final String ACTION_BUSYMODE = "com.zgy.ringforu.ACTION_NOTIFICATION_BUSYMODE";
+	public static final String ACTION_WATERMARK = "com.zgy.ringforu.ACTION_NOTIFICATION_WATERMARK";
+	public static final String ACTION_DISABLEGPRS = "com.zgy.ringforu.ACTION_NOTIFICATION_DISABLEGPRS";
+	public static final String ACTION_SMSLIGHT= "com.zgy.ringforu.ACTION_NOTIFICATION_SMSLIGHT";
+	public static final String ACTION_SIGNALRECONNECT = "com.zgy.ringforu.ACTION_NOTIFICATION_SIGNALRECONNECT";
+	
 	public static final String INTENT_ACTION_KEY_CALL = "notification_refused_number";
+	
+	public static final String BUSYMODE_ACTION_CLEAR = "com.zgy.ringforu.ACTION_NOTIFICATION_CLEAR";// 通知栏清除
 	public static final String INTENT_ACTION_KEY_CLEAR = "notification_refused_clear";
 
 	private static final int PENDINGINTENT_ID_WATERMARK_ON = 0;
@@ -58,10 +69,8 @@ public class NotificationUtil {
 			CharSequence contentText = context.getString(R.string.disable_gprs_notify_msg); // 获得回复的短信内容
 			CharSequence contentTitle = context.getString(R.string.disable_gprs_on_tip);// 根据短信内容获得标题
 
-			Intent notificationIntent = new Intent(context, DisableGprsActivity.class);
-			// 点击该通知后要跳转的Activity
-			PendingIntent contentItent = PendingIntent.getActivity(context, PENDINGINTENT_ID_DISABLEGPRS, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-			// PendingIntent contentItent = PendingIntent.getBroadcast(context, requestCode, intent, flags)
+			Intent notificationIntent = new Intent(ACTION_DISABLEGPRS);
+			PendingIntent contentItent = PendingIntent.getBroadcast(context, PENDINGINTENT_ID_DISABLEGPRS, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
 			// 把Notification传递给NotificationManager
 			notificationManager.notify(NOTIFICATION_ID_DISABLEGPRS_ON, notification);// 注意ID号，不能与此程序中的其他通知栏图标相同
@@ -103,10 +112,8 @@ public class NotificationUtil {
 				contentText = context.getString(R.string.str_busymode_notification_nomsg);
 			}
 
-			Intent notificationIntent = new Intent(context, BusyModeActivity.class);
-			notificationIntent.putExtra("fromnotifybar", true);
-			// 点击该通知后要跳转的Activity
-			PendingIntent contentItent = PendingIntent.getActivity(context, PENDINGINTENT_ID_BUSYMODE, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+			Intent notificationIntent = new Intent(ACTION_BUSYMODE);
+			PendingIntent contentItent = PendingIntent.getBroadcast(context, PENDINGINTENT_ID_BUSYMODE, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
 			// 把Notification传递给NotificationManager
 			notificationManager.notify(NOTIFICATION_ID_BUSYMODE_ON, notification);// 注意ID号，不能与此程序中的其他通知栏图标相同
@@ -201,12 +208,11 @@ public class NotificationUtil {
 
 		CharSequence contentText = name + context.getString(R.string.busymode_refused_tel) + number;
 
-		Intent i = new Intent(BUSYMODE_ACTION_CALL);
+		Intent i = new Intent(ACTION_REFUSED_CALL);
 		i.putExtra(INTENT_ACTION_KEY_CALL, number);
 
 		// 点击该通知后要跳转的Activity
 		PendingIntent contentItent = PendingIntent.getBroadcast(context, PENDINGINTENT_ID_BUSYMODE, i, PendingIntent.FLAG_UPDATE_CURRENT);
-
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
 		// 把Notification传递给NotificationManager
 		notificationManager.notify(NOTIFICATION_ID_BUSYMODE_REFUSED, notification);// 注意ID号，不能与此程序中的其他通知栏图标相同
@@ -240,10 +246,8 @@ public class NotificationUtil {
 			CharSequence contentText = context.getString(R.string.watermark_set_tip);
 			CharSequence contentTitle = context.getString(R.string.watermark_on);
 
-			Intent notificationIntent = new Intent(context, WaterMarkActivity.class);
-			notificationIntent.putExtra("fromnotifybar", true);
-			// 点击该通知后要跳转的Activity
-			PendingIntent contentItent = PendingIntent.getActivity(context, PENDINGINTENT_ID_WATERMARK_ON, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+			Intent notificationIntent = new Intent(ACTION_WATERMARK);
+			PendingIntent contentItent = PendingIntent.getBroadcast(context, PENDINGINTENT_ID_WATERMARK_ON, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
 			// 把Notification传递给NotificationManager
 			notificationManager.notify(NOTIFICATION_ID_WATERMARK_ON, notification);// 注意ID号，不能与此程序中的其他通知栏图标相同
@@ -252,6 +256,81 @@ public class NotificationUtil {
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			notificationManager.cancel(NOTIFICATION_ID_WATERMARK_ON);// 注意ID号，不能与此程序中的其他通知栏图标相同
 		}
+	}
+	
+	/**
+	 * 显示gprs已经禁用的通知
+	 * 
+	 * @param con
+	 */
+	public static void showHideSmsLightNotify(boolean show, Context context) {
 
+		if (show) {
+			// 显示
+			// 创建一个NotificationManager的引用
+			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+			// 定义Notification的各种属性
+			Notification notification = new Notification(R.drawable.ic_notification_smslight_on, context.getString(R.string.smslight_on), System.currentTimeMillis());
+			notification.flags |= Notification.FLAG_ONGOING_EVENT;
+			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
+			notification.flags |= Notification.FLAG_NO_CLEAR;
+			// 表明在点击了通知栏中的"清除通知"后，此通知不清除，经常与FLAG_ONGOING_EVENT一起使用
+			// notification.flags |=
+			// Notification.FLAG_SHOW_LIGHTS;
+			// notification.defaults = Notification.DEFAULT_LIGHTS;
+			// notification.ledARGB = Color.YELLOW;
+			// notification.ledOnMS = 5000; // 设置通知的事件消息
+
+			CharSequence contentText = context.getString(R.string.smslight_set_tip);
+			CharSequence contentTitle = context.getString(R.string.smslight_on);
+			
+			Intent notificationIntent = new Intent(ACTION_SMSLIGHT);
+			PendingIntent contentItent = PendingIntent.getBroadcast(context, PENDINGINTENT_ID_SMSLIGHT, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
+			// 把Notification传递给NotificationManager
+			notificationManager.notify(NOTIFICATION_ID_SMSLIGHT_ON, notification);// 注意ID号，不能与此程序中的其他通知栏图标相同
+		} else {
+			// 启动后删除之前我们定义的通知
+			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+			notificationManager.cancel(NOTIFICATION_ID_SMSLIGHT_ON);// 注意ID号，不能与此程序中的其他通知栏图标相同
+		}
+	}
+	
+	/**
+	 * 显示gprs已经禁用的通知
+	 * 
+	 * @param con
+	 */
+	public static void showHideSignalReconnectNotify(boolean show, Context context) {
+
+		if (show) {
+			// 显示
+			// 创建一个NotificationManager的引用
+			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+			// 定义Notification的各种属性
+			Notification notification = new Notification(R.drawable.ic_notification_signalreconnect_on, context.getString(R.string.signalreconnect_on), System.currentTimeMillis());
+			notification.flags |= Notification.FLAG_ONGOING_EVENT;
+			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
+			notification.flags |= Notification.FLAG_NO_CLEAR;
+			// 表明在点击了通知栏中的"清除通知"后，此通知不清除，经常与FLAG_ONGOING_EVENT一起使用
+			// notification.flags |=
+			// Notification.FLAG_SHOW_LIGHTS;
+			// notification.defaults = Notification.DEFAULT_LIGHTS;
+			// notification.ledARGB = Color.YELLOW;
+			// notification.ledOnMS = 5000; // 设置通知的事件消息
+
+			CharSequence contentText = context.getString(R.string.signalreconnect_set_tip);
+			CharSequence contentTitle = context.getString(R.string.signalreconnect_on);
+
+			Intent notificationIntent = new Intent(ACTION_SIGNALRECONNECT);
+			PendingIntent contentItent = PendingIntent.getBroadcast(context, PENDINGINTENT_ID_SIGNALRECONNECT, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
+			// 把Notification传递给NotificationManager
+			notificationManager.notify(NOTIFICATION_ID_SIGNALRECONNECT_ON, notification);// 注意ID号，不能与此程序中的其他通知栏图标相同
+		} else {
+			// 启动后删除之前我们定义的通知
+			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+			notificationManager.cancel(NOTIFICATION_ID_SIGNALRECONNECT_ON);// 注意ID号，不能与此程序中的其他通知栏图标相同
+		}
 	}
 }

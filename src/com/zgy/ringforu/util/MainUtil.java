@@ -394,11 +394,13 @@ public class MainUtil {
 	 * 
 	 * @param context
 	 */
-	public static void checkAllService(Context context) {
-		DisableGprsUtil.checkDisableGprsState(context);
-		SignalReconnectUtil.checkSignalReconnectState(context);
-		WaterMarkUtil.checkWaterMarkState(context);
-		BusyModeUtil.checkBusyModeState(context);
+	public static void checkAllState(Context context) {
+		DisableGprsUtil.checkState(context);
+		SignalReconnectUtil.checkState(context);
+		WaterMarkUtil.checkState(context);
+		BusyModeUtil.checkState(context);
+		SmsLightScreenUtil.checkState(context);
+		SignalReconnectUtil.checkState(context);
 	}
 
 	/**
@@ -423,7 +425,7 @@ public class MainUtil {
 				f.mkdirs();
 			}
 		}
-		checkAllService(context);
+		checkAllState(context);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 	private Context context;
 	private ArrayFilter mFilter;
 	private ArrayList<String> mOriginalValues;// 所有的Item
-	private List<String> mObjects;// 过滤后的item
+	private ArrayList<String> mObjects = new ArrayList<String>();// 过滤后的item
 	private final Object mLock = new Object();
 	// 注意是有序的
 	private static final String[] normalDomains = { "126.com", "139.com", "163.com", "188.com", "189.com", "21cn.com", "263.net", "35.cn", "eyou.com", "foxmail.com", "gamail.com", "googlemail.com", "hotmail.com", "live.cn", "msn.com", "qq.com", "sina.com", "sohu.com", "tom.com", "vip.163.com", "vip.188.com", "vip.qq.com", "wo.com.cn", "yahoo.cn", "yahoo.com", "yahoo.com.cn", "yeah.net" };
@@ -40,8 +41,7 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 
 	@Override
 	public Filter getFilter() {
-		// if(RingForU.DEBUG)
-		// LogRingForu.e(TAG, "getFilter");
+		 Log.e(TAG, "getFilter");
 		if (mFilter == null) {
 			mFilter = new ArrayFilter();
 		}
@@ -64,9 +64,11 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 			// }
 
 			if (prefix == null || prefix.length() == 0) {
+				
+				Log.e(TAG, "prefix == null");
 				synchronized (mLock) {
-					// ArrayList<String> list = new ArrayList<String>(mOriginalValues);
-					ArrayList<String> list = new ArrayList<String>();
+					 ArrayList<String> list = new ArrayList<String>(mOriginalValues);
+//					ArrayList<String> list = new ArrayList<String>();
 					results.values = list;
 					results.count = list.size();
 					return results;
@@ -155,14 +157,16 @@ public class AccountAutoCompleteAdapter extends BaseAdapter implements Filterabl
 				results.count = newValues.size();
 			}
 
+			Log.e(TAG, "return results");
+			
 			return results;
 		}
 
 		@Override
 		protected void publishResults(CharSequence constraint, FilterResults results) {
 			// if(RingForU.DEBUG)
-			// LogRingForu.e(TAG, "publishResults");
-			mObjects = (List<String>) results.values;
+			 Log.e(TAG, "publishResults");
+			mObjects = (ArrayList<String>) results.values;
 			if (results.count > 0) {
 				notifyDataSetChanged();
 			} else {

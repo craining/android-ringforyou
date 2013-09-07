@@ -27,34 +27,34 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:layout_marginTop="30dip"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:layout_marginRight="@dimen/layout_margin_left_right"
+        android:layout_marginTop="@dimen/layout_margin_top_title"
         android:background="@drawable/bg_bolder"
         android:orientation="vertical" >
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="150dip" >
+            android:layout_height="@dimen/layout_big" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
+                android:layout_marginLeft="@dimen/layout_little_margin"
                 android:text="@string/addslient_start"
                 android:textColor="@color/login_edit_focused"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textsize_tip" />
 
             <LinearLayout
                 android:id="@+id/wheellayout_slientadd_start"
-                android:layout_width="150dip"
-                android:layout_height="130dip"
+                android:layout_width="@dimen/layout_big"
+                android:layout_height="@dimen/layout_big_less"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="10dip" >
+                android:layout_marginRight="@dimen/layout_little_margin" >
 
                 <com.zgy.ringforu.view.WheelView
                     android:id="@+id/wheel_alarmaddhour_start"
@@ -72,12 +72,12 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="2dip"
+            android:layout_height="@dimen/layout_height_double"
             android:background="@color/light_blue_bg" />
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="150dip" >
+            android:layout_height="@dimen/layout_big" >
 
             <TextView
                 android:id="@+id/text_addslient_end"
@@ -85,19 +85,19 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
+                android:layout_marginLeft="@dimen/layout_little_margin"
                 android:text="@string/addslient_end"
                 android:textColor="@color/login_edit_focused"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textsize_tip" />
 
             <LinearLayout
                 android:id="@+id/wheellayout_slientadd_end"
-                android:layout_width="150dip"
-                android:layout_height="130dip"
+                android:layout_width="@dimen/layout_big"
+                android:layout_height="@dimen/layout_big_less"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="10dip" >
+                android:layout_marginRight="@dimen/layout_little_margin" >
 
                 <com.zgy.ringforu.view.WheelView
                     android:id="@+id/wheel_alarmaddhour_end"

@@ -15,7 +15,7 @@ import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.util.ActivityManager;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.PhoneUtil;
 
 public class SetHideStyleActivity extends Activity implements OnClickListener {
@@ -49,7 +49,7 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-		ActivityManager.push(this);
+		RingForUActivityManager.push(this);
 		
 		Bundle b = getIntent().getExtras();
 		if (b != null) {
@@ -190,7 +190,7 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		ActivityManager.pop(this);
+		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 

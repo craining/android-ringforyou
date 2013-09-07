@@ -19,7 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.util.ActivityManager;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.BusyModeUtil;
 import com.zgy.ringforu.util.DisableGprsUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -50,7 +50,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-		ActivityManager.push(this);
+		RingForUActivityManager.push(this);
 
 		setContentView(R.layout.toolsview);
 
@@ -110,13 +110,13 @@ public class RToolsActivity extends Activity implements OnClickListener {
 			if (WaterMarkUtil.isWaterMarkShowing(RToolsActivity.this)) {
 				// 关闭水印
 				WaterMarkUtil.setSwitchOnOff(false);
-				WaterMarkUtil.checkWaterMarkState(RToolsActivity.this);
+				WaterMarkUtil.checkState(RToolsActivity.this);
 				refreshSwitch();
 			} else {
 				// 开启
 				WaterMarkUtil.setSwitchOnOff(true);
 				if (WaterMarkUtil.isWaterMarkSeted()) {
-					WaterMarkUtil.checkWaterMarkState(RToolsActivity.this);
+					WaterMarkUtil.checkState(RToolsActivity.this);
 					refreshSwitch();
 				} else {
 					startActivity(new Intent(RToolsActivity.this, WaterMarkActivity.class));
@@ -137,9 +137,9 @@ public class RToolsActivity extends Activity implements OnClickListener {
 		case R.id.layout_tool_smslightscreen:
 			// 短信点亮屏幕操作
 			if (SmsLightScreenUtil.isSmsLightScreenOn()) {
-				SmsLightScreenUtil.ctrlSmsLightScreenSwitch(false);
+				SmsLightScreenUtil.ctrlSmsLightScreenSwitch(false, RToolsActivity.this);
 			} else {
-				SmsLightScreenUtil.ctrlSmsLightScreenSwitch(true);
+				SmsLightScreenUtil.ctrlSmsLightScreenSwitch(true, RToolsActivity.this);
 				// MyToast.makeText(RToolsActivity.this,
 				// R.string.sms_lightscreen_toast_on, Toast.LENGTH_LONG,
 				// false).show();
@@ -218,7 +218,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 		
 		// 忙碌模式是否开启
 		checkBusyModeSwitch.setChecked(BusyModeUtil.isBusyModeOn());
-		BusyModeUtil.checkBusyModeState(RToolsActivity.this);
+		BusyModeUtil.checkState(RToolsActivity.this);
 	}
 
 	private class ToolsReceiver extends BroadcastReceiver {
@@ -238,7 +238,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 		if (mReceiver != null) {
 			unregisterReceiver(mReceiver);
 		}
-		ActivityManager.pop(this);
+		RingForUActivityManager.pop(this);
 	}
 
 }

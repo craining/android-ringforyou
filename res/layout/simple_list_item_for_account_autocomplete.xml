@@ -9,16 +9,16 @@
         android:id="@+id/autocomplete_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="5dip"
-        android:paddingLeft="5dip"
-        android:paddingTop="5dip"
+        android:paddingBottom="@dimen/layout_height_five"
+        android:paddingLeft="@dimen/layout_height_five"
+        android:paddingTop="@dimen/layout_height_five"
         android:gravity="center_vertical"
         android:textColor="@color/black" />
 
     <View
         android:id="@+id/autocomplete_diver"
         android:layout_width="fill_parent"
-        android:layout_height="2dip"
+        android:layout_height="@dimen/layout_height_double"
         android:background="@color/black" />
 
 </LinearLayout>

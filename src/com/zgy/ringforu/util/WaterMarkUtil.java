@@ -25,13 +25,8 @@ public class WaterMarkUtil {
 	public static final File FILE_WATERMARK_IMG = new File("/data/data/com.zgy.ringforu/files/watermark.jpg");
 	public static final String FILE_WATERMARK_IMG_TEMP_CUT = MainUtil.FILE_IN_SDCARD + "cut";
 	public static final String FILE_WATERMARK_IMG_TEMP_SRC = MainUtil.FILE_IN_SDCARD + "src";
-	// public static final String FILE_WATERMARK_ALPHA = "alpah.cfg";
-	// public static final File FILEPATH_WATERMARK_ALPHA = new
-	// File("/data/data/com.zgy.ringforu/files/alpah.cfg");
-	// public static final File FILE_WATERMARK_SWITCH = new
-	// File("/data/data/com.zgy.ringforu/watermark");
 
-	private static final String SERVICE_NAME_WATERMARK = "com.zgy.ringforu.tools.watermark.WaterMarkService";
+	private static final String SERVICE_NAME_WATERMARK = "com.zgy.ringforu.service.WaterMarkService";
 
 	private static final String TAG = "WaterMarkUtil";
 
@@ -86,7 +81,7 @@ public class WaterMarkUtil {
 	 * 
 	 * @param context
 	 */
-	public static void checkWaterMarkState(Context context) {
+	public static void checkState(Context context) {
 		if (isWaterMarkSeted()) {
 			WaterMarkService.show = true;
 			ctrlWaterMarkBackService(context, true);

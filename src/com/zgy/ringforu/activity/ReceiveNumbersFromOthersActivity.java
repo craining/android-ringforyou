@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
-import com.zgy.ringforu.util.ActivityManager;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
@@ -34,7 +34,7 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		ActivityManager.push(this);
+		RingForUActivityManager.push(this);
 		
 		Intent intent = getIntent();
 		String action = intent.getAction();
@@ -145,7 +145,7 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 	
 	@Override
 	protected void onDestroy() {
-		ActivityManager.pop(this);
+		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 

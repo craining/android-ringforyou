@@ -13,7 +13,7 @@ public class SignalReconnectUtil {
 
 	// public static final File FILE_SIGNAL_RECONNECT_SWITCH = new
 	// File("/data/data/com.zgy.ringforu/signalreconnect");// 是否掉线重连的开关
-	private static final String SERVICE_NAME_SIGNAL_RECONNECT = "com.zgy.ringforu.tools.signalreconnect.SignalReconnectService";
+	private static final String SERVICE_NAME_SIGNAL_RECONNECT = "com.zgy.ringforu.service.SignalReconnectService";
 
 	private static final String TAG = "SignalReconnectUtil";
 
@@ -39,7 +39,7 @@ public class SignalReconnectUtil {
 	 */
 	public static void ctrlSignalReconnect(Context context, boolean open) {
 		MainConfig.getInstance().setSignalReconnectOnOff(open);
-		checkSignalReconnectState(context);
+		checkState(context);
 	}
 
 	/**
@@ -100,11 +100,13 @@ public class SignalReconnectUtil {
 	 * @author: zhuanggy
 	 * @date:2013-1-31
 	 */
-	public static void checkSignalReconnectState(Context context) {
+	public static void checkState(Context context) {
 		if (isSignalReconnectOn()) {
 			ctrlSignalReconnectBackService(context, true);
+			NotificationUtil.showHideSignalReconnectNotify(true, context);
 		} else {
 			ctrlSignalReconnectBackService(context, false);
+			NotificationUtil.showHideSignalReconnectNotify(false, context);
 		}
 	}
 

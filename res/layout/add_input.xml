@@ -27,34 +27,34 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_add_input_title"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:layout_marginTop="30dip"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:layout_marginRight="@dimen/layout_margin_left_right"
+        android:layout_marginTop="@dimen/layout_margin_top_title"
         android:background="@drawable/edit_bg"
         android:hint="@string/name"
-        android:textSize="18sp" />
+        android:textSize="@dimen/text_textsize_top_title" />
 
     <EditText
         android:id="@+id/edit_num"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_name"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:layout_marginTop="30dip"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:layout_marginRight="@dimen/layout_margin_left_right"
+        android:layout_marginTop="@dimen/layout_margin_left_right"
         android:background="@drawable/edit_bg"
         android:hint="@string/phonenumber"
         android:inputType="number"
-        android:textSize="18sp" />
+        android:textSize="@dimen/text_textsize_top_title" />
 
     <TextView
         android:id="@+id/text_addinput_tip"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_num"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:layout_marginTop="30dip"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:layout_marginRight="@dimen/layout_margin_left_right"
+        android:layout_marginTop="@dimen/layout_margin_left_right"
         android:text="@string/add_help"
         android:visibility="gone" />
 

@@ -48,10 +48,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
+            android:layout_marginLeft="@dimen/layout_margin_left_right"
+            android:layout_marginRight="@dimen/layout_margin_left_right"
             android:text="@string/watermark_change_tip"
-            android:textSize="13sp"
+            android:textSize="@dimen/btn_textsize_main_add"
             android:textStyle="bold|italic" />
     </LinearLayout>
 
@@ -63,27 +63,27 @@
         android:background="@drawable/bg_translation_light"
         android:clickable="true"
         android:orientation="vertical"
-        android:paddingBottom="20dip" >
+        android:paddingBottom="@dimen/layout_margin_title" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dip"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:layout_marginTop="20dip"
+            android:layout_marginBottom="@dimen/layout_margin_left_right"
+            android:layout_marginLeft="@dimen/layout_little_margin"
+            android:layout_marginRight="@dimen/layout_little_margin"
+            android:layout_marginTop="@dimen/layout_margin_top_title"
             android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/btn_watermark_orientation"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/btn_watermark_bottom_height"
-                android:layout_marginRight="10dip"
+                android:layout_marginRight="@dimen/layout_little_margin"
                 android:layout_weight="1"
                 android:background="@drawable/bg_btn_blue"
                 android:text="@string/watermark_orientation_landscape"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/btn_textsize_main_add" />
 
             <Button
                 android:id="@+id/btn_watermark_cut"
@@ -93,19 +93,19 @@
                 android:background="@drawable/bg_btn_blue"
                 android:text="@string/watermark_cut"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/btn_textsize_main_add" />
 
             <Button
                 android:id="@+id/btn_watermark_change"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/btn_watermark_bottom_height"
-                android:layout_marginLeft="10dip"
-                android:layout_marginRight="10dip"
+                android:layout_marginLeft="@dimen/layout_little_margin"
+                android:layout_marginRight="@dimen/layout_little_margin"
                 android:layout_weight="1"
                 android:background="@drawable/bg_btn_blue"
                 android:text="@string/watermark_change"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/btn_textsize_main_add" />
 
             <Button
                 android:id="@+id/btn_watermark_delete"
@@ -115,23 +115,23 @@
                 android:background="@drawable/bg_btn_red"
                 android:text="@string/watermark_del"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/btn_textsize_main_add" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dip"
-            android:layout_marginRight="30dip"
+            android:layout_marginLeft="@dimen/layout_margin_left_right"
+            android:layout_marginRight="@dimen/layout_margin_left_right"
             android:orientation="horizontal" >
 
             <TextView
                 android:id="@+id/text_watermark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dip"
+                android:layout_marginRight="@dimen/layout_little_margin"
                 android:text="@string/watermark_text"
-                android:textSize="15sp"
+                android:textSize="@dimen/textsize_tip"
                 android:textStyle="bold" />
 
             <SeekBar

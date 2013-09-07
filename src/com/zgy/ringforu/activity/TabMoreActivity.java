@@ -23,7 +23,7 @@ import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.util.ActivityManager;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.NetWorkUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -51,7 +51,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tab_activity_more);
 		
-		ActivityManager.push(this);
+		RingForUActivityManager.push(this);
 		
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
@@ -94,7 +94,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		ActivityManager.pop(this);
+		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 

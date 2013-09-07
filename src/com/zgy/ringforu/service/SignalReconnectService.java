@@ -50,7 +50,6 @@ public class SignalReconnectService extends Service {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -58,7 +57,6 @@ public class SignalReconnectService extends Service {
 
 		@Override
 		public void onSignalStrengthChanged(int asu) {
-			// TODO Auto-generated method stub
 			super.onSignalStrengthChanged(asu);
 			if (asu < 10) {
 				SignalReconnectUtil.doSignalReconnect(SignalReconnectService.this);

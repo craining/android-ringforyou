@@ -40,21 +40,21 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/layout_busymodeset_title"
-        android:layout_marginBottom="40dip"
-        android:layout_marginTop="20dip"
+        android:layout_marginBottom="@dimen/search_edit_padding_right"
+        android:layout_marginTop="@dimen/layout_margin_top_title"
         android:orientation="vertical" >
 
         <EditText
             android:id="@+id/edit_busymode_msgcontent"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
+            android:layout_marginLeft="@dimen/layout_margin_left_right"
+            android:layout_marginRight="@dimen/layout_margin_left_right"
             android:layout_weight="4"
             android:background="@drawable/edit_bg"
             android:gravity="top"
             android:hint="@string/busymode_set_hint"
-            android:textSize="16sp" />
+            android:textSize="@dimen/textsize_tip" />
 
         <com.zgy.ringforu.view.WordsFlowView
             android:id="@+id/busymode_flow"
@@ -68,7 +68,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dip"
+        android:layout_marginBottom="@dimen/layout_margin_title"
         android:gravity="center_horizontal"
         android:text="@string/busymode_rule_tip"
         android:textColor="@color/black" />

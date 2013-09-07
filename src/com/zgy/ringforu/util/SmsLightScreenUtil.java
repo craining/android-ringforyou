@@ -59,7 +59,12 @@ public class SmsLightScreenUtil {
 	 * @param open
 	 * @return true为已开启，false为已关闭
 	 */
-	public static void ctrlSmsLightScreenSwitch(boolean open) {
+	public static void ctrlSmsLightScreenSwitch(boolean open, Context context) {
 		MainConfig.getInstance().setSmsLightScreenOnOff(open);
+		checkState(context);
+	}
+	
+	public static void checkState(Context context) {
+		NotificationUtil.showHideSmsLightNotify(isSmsLightScreenOn(), context);
 	}
 }

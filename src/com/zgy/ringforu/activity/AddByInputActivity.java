@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.util.ActivityManager;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
@@ -41,7 +41,7 @@ public class AddByInputActivity extends Activity implements OnClickListener {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.add_input);
 
-		ActivityManager.push(this);
+		RingForUActivityManager.push(this);
 		
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
@@ -143,7 +143,7 @@ public class AddByInputActivity extends Activity implements OnClickListener {
 	
 	@Override
 	protected void onDestroy() {
-		ActivityManager.pop(this);
+		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 

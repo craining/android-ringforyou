@@ -12,14 +12,14 @@ import android.widget.Toast;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.util.ActivityManager;
+import com.zgy.ringforu.interfaces.OnWheelChangedListener;
+import com.zgy.ringforu.interfaces.OnWheelScrollListener;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.TimeUtil;
 import com.zgy.ringforu.view.MyToast;
 import com.zgy.ringforu.view.NumericWheelAdapter;
-import com.zgy.ringforu.view.OnWheelChangedListener;
-import com.zgy.ringforu.view.OnWheelScrollListener;
 import com.zgy.ringforu.view.WheelView;
 
 public class AddSlientPerActivity extends Activity implements OnClickListener {
@@ -36,12 +36,11 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.addslientper);
 
-		ActivityManager.push(this);
+		RingForUActivityManager.push(this);
 		
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
@@ -165,7 +164,7 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 	
 	@Override
 	protected void onDestroy() {
-		ActivityManager.pop(this);
+		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 

@@ -24,6 +24,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:name="com.zgy.ringforu.RingForU"
@@ -31,7 +32,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.zgy.ringforu.activity.MainActivityGroup"
+            android:name=".activity.MainActivityGroup"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -70,7 +71,7 @@
         <activity
             android:name=".activity.ReceiveNumbersFromOthersActivity"
             android:label="@string/share_label_number"
-            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             android:theme="@style/dialog" >
             <intent-filter>
 
@@ -81,8 +82,7 @@
                 <action android:name="android.intent.action.PICK_ACTIVITY" />
                 <action android:name="android.intent.action.SET_WALLPAPER" />
                 <action android:name="android.intent.action.DIAL"/>
-                <action android:name="android.intent.action.SENDTO"/>
-                -->
+                <action android:name="android.intent.action.SENDTO"/>                -->
                 <action android:name="android.intent.action.SEND" />
                 <!-- 分享到 -->
                 <category android:name="android.intent.category.DEFAULT" />
@@ -111,18 +111,12 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.zgy.ringforu.activity.WaterMarkActivity"
+            android:name=".activity.WaterMarkActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/share_label_watermark"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
             <intent-filter>
-
-                <!--
-                <action android:name="android.intent.action.CHOOSER" />
-                <action android:name="android.intent.action.PICK" />
-                <action android:name="android.intent.action.SENDTO" />
-                -->
                 <action android:name="android.intent.action.SEND" />
                 <!-- 分享到 -->
                 <category android:name="android.intent.category.DEFAULT" />
@@ -137,29 +131,35 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.zgy.ringforu.activity.DisableGprsActivity"
+            android:name=".activity.DisableGprsActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
             android:theme="@style/dialog" />
         <activity
-            android:name="com.zgy.ringforu.activity.BusyModeActivity"
+            android:name=".activity.SmsLightActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/dialog" />
+        <activity
+            android:name=".activity.SignalReconnectActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/dialog" />
+        <activity
+            android:name=".activity.BusyModeActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <service
-            android:name="com.zgy.ringforu.service.WaterMarkService"
+            android:name=".service.WaterMarkService"
             android:label="@string/app_name" />
         <service
-            android:name=".tools.disablegprs.DisableGprsService"
-            android:label="@string/app_name" />
-        <service
-            android:name="com.zgy.ringforu.service.SignalReconnectService"
+            android:name=".service.SignalReconnectService"
             android:label="@string/app_name" />
 
         <receiver
-            android:name="com.zgy.ringforu.receiver.MainReciever"
+            android:name=".receiver.MainReciever"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -173,7 +173,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.zgy.ringforu.receiver.DisableGprsRecerver"
+            android:name=".receiver.DisableGprsRecerver"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -199,11 +199,16 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.zgy.ringforu.receiver.NotificationBusyModeRefusedReceiver"
-            android:exported="true" >
+            android:name=".receiver.NotificationReceiver"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_CALL" />
                 <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_CLEAR" />
+                <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_BUSYMODE" />
+                <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_WATERMARK" />
+                <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_DISABLEGPRS" />
+                <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_SMSLIGHT" />
+                <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_SIGNALRECONNECT" />
             </intent-filter>
         </receiver>
     </application>

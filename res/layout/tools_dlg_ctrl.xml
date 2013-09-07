@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/dlg_bg"
-    android:paddingBottom="@dimen/layout_margin_title"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/layout_margin_left_right" >
 
     <TextView
+        android:id="@+id/text_showstate"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/layout_margin_title_less"
+        android:layout_marginTop="@dimen/layout_margin_title_little"
         android:gravity="center"
         android:singleLine="true"
-        android:text="@string/receivedata_title"
-        android:textColor="@color/white"
+        android:textColor="@color/green"
+        android:text="@string/title_state_on"
         android:textSize="@dimen/btn_textsize_big" />
 
     <TextView
-        android:id="@+id/text_receivedata_content"
+        android:id="@+id/text_showcontent"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/layout_margin_title"
         android:layout_marginRight="@dimen/layout_margin_title"
-        android:layout_marginTop="@dimen/layout_margin_title"
-        android:gravity="center"
+        android:layout_marginTop="@dimen/layout_margin_title_more"
         android:textColor="@color/white"
-        android:textSize="@dimen/textsize_tip" />
+        android:textSize="@dimen/btn_textsize_main_add" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -33,38 +33,30 @@
         android:layout_marginLeft="@dimen/layout_margin_title"
         android:layout_marginRight="@dimen/layout_margin_title"
         android:layout_marginTop="@dimen/layout_margin_title_more"
+        android:gravity="bottom"
         android:orientation="horizontal" >
 
+        
         <Button
-            android:id="@+id/btn_receivedata_sms"
+            android:id="@+id/btn_back"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/search_edit_padding_right"
             android:layout_marginRight="@dimen/layout_little_margin"
             android:layout_weight="1"
             android:background="@drawable/dlg_btn_bg"
-            android:text="@string/receivedata_sms"
+            android:text="@string/gprs_cancel"
             android:textColor="@color/white"
             android:textSize="@dimen/btn_textsize_main_add" />
-
+        
         <Button
-            android:id="@+id/btn_receivedata_call"
+            android:id="@+id/btn_ctrl"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/search_edit_padding_right"
-            android:layout_marginRight="@dimen/layout_little_margin"
-            android:layout_weight="1"
-            android:background="@drawable/dlg_btn_bg"
-            android:text="@string/receivedata_call"
-            android:textColor="@color/white"
-            android:textSize="@dimen/btn_textsize_main_add" />
-
-        <Button
-            android:id="@+id/btn_receivedata_important"
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/search_edit_padding_right"
+            android:layout_marginLeft="@dimen/layout_little_margin"
             android:layout_weight="1"
             android:background="@drawable/dlg_btn_blue_bg"
-            android:text="@string/receivedata_important"
             android:textColor="@color/white"
+            android:text="@string/btn_close_state"
             android:textSize="@dimen/btn_textsize_main_add" />
     </LinearLayout>
 

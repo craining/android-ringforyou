@@ -15,6 +15,8 @@ public class MainCanstants {
 	// 最多可添加10个
 	public static final int MAX_NUMS = 10;
 
+	
+	
 	public static final String FEEDBACK_EMAIL_TO = "craining@163.com";
 	public static final String FEEDBACK_TITLE = "RingForYou反馈";
 	public static final String FEEDBACK_VERSION = "\r\n-------------------\r\nAPP VERSION: v2.0";

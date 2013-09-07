@@ -151,7 +151,7 @@ public class BusyModeUtil {
 	}
 
 	
-	public static void checkBusyModeState(Context con) {
+	public static void checkState(Context con) {
 		NotificationUtil.showHideBusyModeNotify(con, isBusyModeOn());
 	}
 	

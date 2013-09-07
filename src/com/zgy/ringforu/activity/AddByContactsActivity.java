@@ -35,7 +35,7 @@ import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.bean.ContactInfo;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.util.ActivityManager;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
@@ -79,7 +79,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_contacts);
 
-		ActivityManager.push(this);
+		RingForUActivityManager.push(this);
 
 		Bundle b = getIntent().getExtras();
 		if (b != null) {
@@ -347,7 +347,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 			vb.cancel();
 			vb = null;
 		}
-		ActivityManager.pop(this);
+		RingForUActivityManager.pop(this);
 	}
 
 	@Override

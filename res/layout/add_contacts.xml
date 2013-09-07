@@ -20,13 +20,13 @@
     <RelativeLayout
         android:id="@+id/layout_addcontat_search"
         android:layout_width="fill_parent"
-        android:layout_height="50dip"
+        android:layout_height="@dimen/search_layout_height"
         android:layout_below="@id/layout_add_contact_title"
         android:background="@drawable/bg_search"
-        android:paddingBottom="10dip"
-        android:paddingLeft="30dip"
-        android:paddingRight="30dip"
-        android:paddingTop="10dip" >
+        android:paddingBottom="@dimen/search_layout_padding_tb"
+        android:paddingLeft="@dimen/layout_margin_left_right"
+        android:paddingRight="@dimen/layout_margin_left_right"
+        android:paddingTop="@dimen/search_layout_padding_tb" >
 
         <com.zgy.ringforu.view.TextEditor
             android:id="@+id/edit_addcontact_search"
@@ -35,27 +35,27 @@
             android:layout_alignParentLeft="true"
             android:background="@drawable/shape_rounded_edittext"
             android:hint="@string/search_hint"
-            android:paddingLeft="30dip"
-            android:paddingRight="40dip"
+            android:paddingLeft="@dimen/search_edit_padding_left"
+            android:paddingRight="@dimen/search_edit_padding_right"
             android:singleLine="true"
-            android:textSize="12sp" />
+            android:textSize="@dimen/search_edit_textsize" />
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="18dip"
+            android:layout_height="@dimen/search_edit_imgheight"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dip"
+            android:layout_marginLeft="@dimen/search_edit_img_margin_l"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_search" />
 
         <ImageView
             android:id="@+id/img_addcontacts_clear"
             android:layout_width="wrap_content"
-            android:layout_height="20dip"
+            android:layout_height="@dimen/search_edit_imgheight"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="3dip"
+            android:layout_marginRight="@dimen/search_edit_img_margin_r"
             android:clickable="true"
             android:contentDescription="@string/app_name"
             android:src="@drawable/edit_clear"
@@ -67,9 +67,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_addcontat_search"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:layout_marginTop="10dip"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:layout_marginRight="@dimen/layout_margin_left_right"
+        android:layout_marginTop="@dimen/search_layout_padding_tb"
         android:orientation="horizontal"
         android:visibility="gone" >
 
@@ -78,17 +78,16 @@
             android:layout_height="wrap_content"
             android:text="@string/how_additem"
             android:textColor="@color/textblue"
-            android:textSize="14sp" />
+            android:textSize="@dimen/textsize_content" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/img_add_contact_animation"
-        android:layout_width="40dip"
-        android:layout_height="40dip"
+        android:layout_width="@dimen/img_loading_hw"
+        android:layout_height="@dimen/img_loading_hw"
         android:layout_below="@id/layout_add_contact_tip"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dip"
-        android:padding="5dip"
+        android:layout_marginTop="@dimen/search_layout_padding_tb"
         android:scaleType="fitCenter"
         android:src="@anim/loading" />
 
@@ -97,10 +96,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/img_add_contact_animation"
-        android:layout_marginBottom="30dip"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:layout_marginTop="10dip"
+        android:layout_marginBottom="@dimen/layout_margin_left_right"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:layout_marginRight="@dimen/layout_margin_left_right"
+        android:layout_marginTop="@dimen/search_layout_padding_tb"
         android:background="@drawable/bg_bolder"
         android:cacheColorHint="#00000000"
         android:dividerHeight="1dip"
@@ -114,13 +113,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_add_contact_tip"
-        android:layout_marginBottom="30dip"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
-        android:layout_marginTop="30dip"
+        android:layout_marginBottom="@dimen/layout_margin_left_right"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:layout_marginRight="@dimen/layout_margin_left_right"
+        android:layout_marginTop="@dimen/layout_margin_left_right"
         android:text="@string/none_contact"
         android:textColor="@color/textblue"
-        android:textSize="14sp"
+        android:textSize="@dimen/textsize_content"
         android:visibility="gone" />
 
 </RelativeLayout>

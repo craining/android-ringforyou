@@ -44,6 +44,9 @@ import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.adapter.WheelAdapter;
+import com.zgy.ringforu.interfaces.OnWheelChangedListener;
+import com.zgy.ringforu.interfaces.OnWheelScrollListener;
 
 /**
  * Numeric wheel view.

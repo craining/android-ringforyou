@@ -22,7 +22,7 @@ import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.util.ActivityManager;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -35,6 +35,7 @@ public class SetActivity extends Activity implements OnClickListener {
 	private static final String TAG = "SetActivity";
 
 	private Button btnBack;
+	private TextView textTitle;
 
 	// Important
 	private LinearLayout layoutImportant;
@@ -68,13 +69,12 @@ public class SetActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.setview);
 
-		ActivityManager.push(this);
-		
+		RingForUActivityManager.push(this);
+
 		Bundle b = getIntent().getExtras();
 		if (b != null) {
 			tag = b.getInt("tag");
@@ -85,44 +85,58 @@ public class SetActivity extends Activity implements OnClickListener {
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		btnBack = (Button) findViewById(R.id.btn_set_return);
-
-		// Important
+		textTitle = (TextView) findViewById(R.id.set_title_of);
 		layoutImportant = (LinearLayout) findViewById(R.id.layout_set_important);
-		imgImportantAddClam = (ImageView) findViewById(R.id.img_add_calm_important);
-		textImportantClam1 = (TextView) findViewById(R.id.text_calmper_1);
-		textImportantClam2 = (TextView) findViewById(R.id.text_calmper_2);
-		imgImportantDeleteClam1 = (ImageView) findViewById(R.id.img_del_calm_1_important);
-		imgIMportantDeleteClam2 = (ImageView) findViewById(R.id.img_del_calm_2_important);
-		layoutImportantClam1 = (RelativeLayout) findViewById(R.id.layout_clam_1_important);
-		layoutImportantClam2 = (RelativeLayout) findViewById(R.id.layout_clam_2_important);
-		layoutImportantBackup = (RelativeLayout) findViewById(R.id.layout_set_backup_important);
-
-		// call
 		layoutCall = (LinearLayout) findViewById(R.id.layout_set_call);
-		layoutCallBackup = (RelativeLayout) findViewById(R.id.layout_set_backup_call);
-		layoutCallHideStyle = (RelativeLayout) findViewById(R.id.layout_set_hidestyle_call);
-		textCallHideStyleTitle = (TextView) findViewById(R.id.text_set_hidestyle_calltitle);
-		textCallHideStyleInfo = (TextView) findViewById(R.id.text_set_hidestyle_callinfo);
-
-		// sms
 		layoutSms = (LinearLayout) findViewById(R.id.layout_set_sms);
-		layoutSmsBackup = (RelativeLayout) findViewById(R.id.layout_set_backup_sms);
-		layoutSmsHideStyle = (RelativeLayout) findViewById(R.id.layout_set_hidestyle_sms);
-		textSmsHideStyleTitle = (TextView) findViewById(R.id.text_set_hidestyle_smstitle);
-		textSmsHideStyleInfo = (TextView) findViewById(R.id.text_set_hidestyle_smsinfo);
-
 		btnBack.setOnClickListener(this);
 
-		imgImportantAddClam.setOnClickListener(this);
-		imgImportantDeleteClam1.setOnClickListener(this);
-		imgIMportantDeleteClam2.setOnClickListener(this);
+		// 根据不同的设置
+		switch (tag) {
+		case MainCanstants.TYPE_IMPORTANT:
 
-		layoutImportantBackup.setOnClickListener(this);
-		layoutCallBackup.setOnClickListener(this);
-		layoutSmsBackup.setOnClickListener(this);
+			// Important
+			imgImportantAddClam = (ImageView) findViewById(R.id.img_add_calm_important);
+			textImportantClam1 = (TextView) findViewById(R.id.text_calmper_1);
+			textImportantClam2 = (TextView) findViewById(R.id.text_calmper_2);
+			imgImportantDeleteClam1 = (ImageView) findViewById(R.id.img_del_calm_1_important);
+			imgIMportantDeleteClam2 = (ImageView) findViewById(R.id.img_del_calm_2_important);
+			layoutImportantClam1 = (RelativeLayout) findViewById(R.id.layout_clam_1_important);
+			layoutImportantClam2 = (RelativeLayout) findViewById(R.id.layout_clam_2_important);
+			layoutImportantBackup = (RelativeLayout) findViewById(R.id.layout_set_backup_important);
 
-		layoutCallHideStyle.setOnClickListener(this);
-		layoutSmsHideStyle.setOnClickListener(this);
+			imgImportantAddClam.setOnClickListener(this);
+			imgImportantDeleteClam1.setOnClickListener(this);
+			imgIMportantDeleteClam2.setOnClickListener(this);
+
+			layoutImportantBackup.setOnClickListener(this);
+
+			break;
+		case MainCanstants.TYPE_INTECEPT_CALL:
+			// call
+			layoutCallBackup = (RelativeLayout) findViewById(R.id.layout_set_backup_call);
+			layoutCallHideStyle = (RelativeLayout) findViewById(R.id.layout_set_hidestyle_call);
+			textCallHideStyleTitle = (TextView) findViewById(R.id.text_set_hidestyle_calltitle);
+			textCallHideStyleInfo = (TextView) findViewById(R.id.text_set_hidestyle_callinfo);
+			layoutCallBackup.setOnClickListener(this);
+			layoutCallHideStyle.setOnClickListener(this);
+
+			break;
+		case MainCanstants.TYPE_INTECEPT_SMS:
+			// sms
+			layoutSmsBackup = (RelativeLayout) findViewById(R.id.layout_set_backup_sms);
+			layoutSmsHideStyle = (RelativeLayout) findViewById(R.id.layout_set_hidestyle_sms);
+			textSmsHideStyleTitle = (TextView) findViewById(R.id.text_set_hidestyle_smstitle);
+			textSmsHideStyleInfo = (TextView) findViewById(R.id.text_set_hidestyle_smsinfo);
+
+			layoutSmsBackup.setOnClickListener(this);
+			layoutSmsHideStyle.setOnClickListener(this);
+
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	/**
@@ -138,41 +152,42 @@ public class SetActivity extends Activity implements OnClickListener {
 		if (RingForU.DEBUG)
 			LogRingForu.v(TAG, "refresh set views");
 
-		String strSlient = mMainConfig.getSlientTime();
-		if (RingForU.DEBUG)
-			LogRingForu.v(TAG, "strSlient = " + strSlient);
-
-		// 刷新安静时段的显示
-		if (StringUtil.isNull(strSlient)) {
-			// 未添加安静时段
-			layoutImportantClam1.setVisibility(View.GONE);
-			layoutImportantClam2.setVisibility(View.GONE);
-			imgImportantAddClam.setVisibility(View.VISIBLE);
-		} else {
-			if (RingForU.DEBUG)
-				LogRingForu.v(TAG, strSlient + "<-- strSlientP");
-			String[] ps = strSlient.split(":::");
-			if (ps.length == 1) {
-				// 添加了一个安静时段
-				imgImportantAddClam.setVisibility(View.VISIBLE);
-				layoutImportantClam1.setVisibility(View.VISIBLE);
-				layoutImportantClam2.setVisibility(View.GONE);
-				textImportantClam1.setText(ps[0]);
-			} else if (ps.length == 2) {
-				// 添加了两个安静时段
-				imgImportantAddClam.setVisibility(View.GONE);
-				layoutImportantClam1.setVisibility(View.VISIBLE);
-				layoutImportantClam2.setVisibility(View.VISIBLE);
-				textImportantClam1.setText(ps[0]);
-				textImportantClam2.setText(ps[1]);
-			}
-		}
 		// 根据不同的设置
 		switch (tag) {
 		case MainCanstants.TYPE_IMPORTANT:
 			layoutImportant.setVisibility(View.VISIBLE);
 			layoutCall.setVisibility(View.GONE);
 			layoutSms.setVisibility(View.GONE);
+			textTitle.setText(R.string.title_setting_important);
+			String strSlient = mMainConfig.getSlientTime();
+			if (RingForU.DEBUG)
+				LogRingForu.v(TAG, "strSlient = " + strSlient);
+
+			// 刷新安静时段的显示
+			if (StringUtil.isNull(strSlient)) {
+				// 未添加安静时段
+				layoutImportantClam1.setVisibility(View.GONE);
+				layoutImportantClam2.setVisibility(View.GONE);
+				imgImportantAddClam.setVisibility(View.VISIBLE);
+			} else {
+				if (RingForU.DEBUG)
+					LogRingForu.v(TAG, strSlient + "<-- strSlientP");
+				String[] ps = strSlient.split(":::");
+				if (ps.length == 1) {
+					// 添加了一个安静时段
+					imgImportantAddClam.setVisibility(View.VISIBLE);
+					layoutImportantClam1.setVisibility(View.VISIBLE);
+					layoutImportantClam2.setVisibility(View.GONE);
+					textImportantClam1.setText(ps[0]);
+				} else if (ps.length == 2) {
+					// 添加了两个安静时段
+					imgImportantAddClam.setVisibility(View.GONE);
+					layoutImportantClam1.setVisibility(View.VISIBLE);
+					layoutImportantClam2.setVisibility(View.VISIBLE);
+					textImportantClam1.setText(ps[0]);
+					textImportantClam2.setText(ps[1]);
+				}
+			}
 			break;
 		case MainCanstants.TYPE_INTECEPT_CALL:
 			layoutImportant.setVisibility(View.GONE);
@@ -180,12 +195,14 @@ public class SetActivity extends Activity implements OnClickListener {
 			layoutSms.setVisibility(View.GONE);
 
 			textCallHideStyleInfo.setText(getInterceptCallStyle());
+			textTitle.setText(R.string.title_setting_call);
 			break;
 		case MainCanstants.TYPE_INTECEPT_SMS:
 			layoutImportant.setVisibility(View.GONE);
 			layoutCall.setVisibility(View.GONE);
 			layoutSms.setVisibility(View.VISIBLE);
 			textSmsHideStyleInfo.setText(getInterceptSmsStyle());
+			textTitle.setText(R.string.title_setting_sms);
 			break;
 
 		default:
@@ -348,7 +365,8 @@ public class SetActivity extends Activity implements OnClickListener {
 				return;
 			}
 			try {
-				if (FileUtil.save(MainUtil.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath(), mMainConfig.getImporantNames(), SetActivity.this) && FileUtil.save(MainUtil.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath(), mMainConfig.getImporantNumbers(), SetActivity.this)) {
+				if (FileUtil.save(MainUtil.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath(), mMainConfig.getImporantNames(), SetActivity.this)
+						&& FileUtil.save(MainUtil.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath(), mMainConfig.getImporantNumbers(), SetActivity.this)) {
 					MyToast.makeText(SetActivity.this, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
@@ -367,7 +385,8 @@ public class SetActivity extends Activity implements OnClickListener {
 			}
 			// 备份通话拦截数据
 			try {
-				if (FileUtil.save(MainUtil.FILE_SDCARD_CALL_NAME.getAbsolutePath(), mMainConfig.getInterceptCallNames(), SetActivity.this) && FileUtil.save(MainUtil.FILE_SDCARD_CALL_NUM.getAbsolutePath(), mMainConfig.getInterceptCallNumbers(), SetActivity.this)) {
+				if (FileUtil.save(MainUtil.FILE_SDCARD_CALL_NAME.getAbsolutePath(), mMainConfig.getInterceptCallNames(), SetActivity.this)
+						&& FileUtil.save(MainUtil.FILE_SDCARD_CALL_NUM.getAbsolutePath(), mMainConfig.getInterceptCallNumbers(), SetActivity.this)) {
 					MyToast.makeText(SetActivity.this, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
@@ -386,7 +405,8 @@ public class SetActivity extends Activity implements OnClickListener {
 				return;
 			}
 			try {
-				if (FileUtil.save(MainUtil.FILE_SDCARD_SMS_NAME.getAbsolutePath(), mMainConfig.getInterceptSmsNames(), SetActivity.this) && FileUtil.save(MainUtil.FILE_SDCARD_SMS_NUM.getAbsolutePath(), mMainConfig.getInterceptSmsNumbers(), SetActivity.this)) {
+				if (FileUtil.save(MainUtil.FILE_SDCARD_SMS_NAME.getAbsolutePath(), mMainConfig.getInterceptSmsNames(), SetActivity.this)
+						&& FileUtil.save(MainUtil.FILE_SDCARD_SMS_NUM.getAbsolutePath(), mMainConfig.getInterceptSmsNumbers(), SetActivity.this)) {
 					MyToast.makeText(SetActivity.this, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
@@ -466,37 +486,42 @@ public class SetActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		ActivityManager.pop(this);
+		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 
-	
 	/***************************
-	 * if (new File(Globle.FILE_SDCARD_NAME).exists() && new File(Globle.FILE_SDCARD_NUM).exists()) {
-	 * btnImport.setEnabled(true); } else { btnImport.setEnabled(false); }
+	 * if (new File(Globle.FILE_SDCARD_NAME).exists() && new
+	 * File(Globle.FILE_SDCARD_NUM).exists()) { btnImport.setEnabled(true); }
+	 * else { btnImport.setEnabled(false); }
 	 * 
 	 * private BroadcastReceiver broadcastRec;
 	 * 
 	 * private void listenSdState() { IntentFilter intentFilter = new
-	 * IntentFilter(Intent.ACTION_MEDIA_MOUNTED); intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
+	 * IntentFilter(Intent.ACTION_MEDIA_MOUNTED);
+	 * intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
 	 * intentFilter.addAction(Intent.ACTION_MEDIA_BAD_REMOVAL);
 	 * intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
 	 * intentFilter.addAction(Intent.ACTION_MEDIA_UNMOUNTED);
-	 * intentFilter.addAction(Intent.ACTION_MEDIA_UNMOUNTABLE); intentFilter.addDataScheme("file");
+	 * intentFilter.addAction(Intent.ACTION_MEDIA_UNMOUNTABLE);
+	 * intentFilter.addDataScheme("file");
 	 * 
 	 * broadcastRec = new BroadcastReceiver() {
 	 * 
 	 * @Override public void onReceive(Context context, Intent intent) { if
-	 *           (intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED)) { LogRingForu.v(TAG, "SD card mounted!!!");
-	 *           refreshViews(); } else if (intent.getAction().equals(Intent.ACTION_MEDIA_BAD_REMOVAL) ||
+	 *           (intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED)) {
+	 *           LogRingForu.v(TAG, "SD card mounted!!!"); refreshViews(); }
+	 *           else if
+	 *           (intent.getAction().equals(Intent.ACTION_MEDIA_BAD_REMOVAL) ||
 	 *           intent.getAction().equals(Intent.ACTION_MEDIA_REMOVED) ||
 	 *           intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTED) ||
-	 *           intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTABLE)) { LogRingForu.v(TAG,
-	 *           "SD card UNmounted!!!"); btnImport.setEnabled(false); btnExport.setEnabled(false); } } };
-	 *           registerReceiver(broadcastRec, intentFilter);// 注册监听函数 }
+	 *           intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTABLE)) {
+	 *           LogRingForu.v(TAG, "SD card UNmounted!!!");
+	 *           btnImport.setEnabled(false); btnExport.setEnabled(false); } }
+	 *           }; registerReceiver(broadcastRec, intentFilter);// 注册监听函数 }
 	 * 
-	 *           //onDestroy if (broadcastRec != null) { unregisterReceiver(broadcastRec); broadcastRec =
-	 *           null; }
+	 *           //onDestroy if (broadcastRec != null) {
+	 *           unregisterReceiver(broadcastRec); broadcastRec = null; }
 	 * 
 	 ****/
 }

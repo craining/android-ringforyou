@@ -16,6 +16,8 @@
 
 package com.zgy.ringforu.view;
 
+import com.zgy.ringforu.adapter.WheelAdapter;
+
 
 /**
  * Numeric Wheel adapter.
