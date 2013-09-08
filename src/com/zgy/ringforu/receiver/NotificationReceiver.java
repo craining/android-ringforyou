@@ -2,11 +2,11 @@ package com.zgy.ringforu.receiver;
 
 import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.RingForU;
-import com.zgy.ringforu.activity.BusyModeActivity;
-import com.zgy.ringforu.activity.DisableGprsActivity;
-import com.zgy.ringforu.activity.SignalReconnectActivity;
-import com.zgy.ringforu.activity.SmsLightActivity;
-import com.zgy.ringforu.activity.WaterMarkActivity;
+import com.zgy.ringforu.activity.ToolsBusyModeActivity;
+import com.zgy.ringforu.activity.ToolsDisableGprsActivity;
+import com.zgy.ringforu.activity.ToolsSignalReconnectActivity;
+import com.zgy.ringforu.activity.ToolsSmsLightActivity;
+import com.zgy.ringforu.activity.ToolsWaterMarkActivity;
 import com.zgy.ringforu.util.NotificationUtil;
 import com.zgy.ringforu.util.PopActivityUtil;
 
@@ -49,25 +49,25 @@ public class NotificationReceiver extends BroadcastReceiver {
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			notificationManager.cancel(id);
 		} else if (intent.getAction().equals(NotificationUtil.ACTION_WATERMARK)) {
-			i = new Intent(context, WaterMarkActivity.class);
+			i = new Intent(context, ToolsWaterMarkActivity.class);
 			i.putExtra("fromnotifybar", true);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
 		} else if (intent.getAction().equals(NotificationUtil.ACTION_BUSYMODE)) {
-			i = new Intent(context, BusyModeActivity.class);
+			i = new Intent(context, ToolsBusyModeActivity.class);
 			i.putExtra("fromnotifybar", true);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
 		} else if (intent.getAction().equals(NotificationUtil.ACTION_DISABLEGPRS)) {
-			i = new Intent(context, DisableGprsActivity.class);
+			i = new Intent(context, ToolsDisableGprsActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
 		} else if (intent.getAction().equals(NotificationUtil.ACTION_SMSLIGHT)) {
-			i = new Intent(context, SmsLightActivity.class);
+			i = new Intent(context, ToolsSmsLightActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
 		} else if (intent.getAction().equals(NotificationUtil.ACTION_SIGNALRECONNECT)) {
-			i = new Intent(context, SignalReconnectActivity.class);
+			i = new Intent(context, ToolsSignalReconnectActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
 		}

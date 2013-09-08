@@ -127,7 +127,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 			startActivity(new Intent(TabMoreActivity.this, AddSlientPerActivity.class));
 			break;
 		case R.id.layout_more_tools:
-			startActivity(new Intent(TabMoreActivity.this, RToolsActivity.class));
+			startActivity(new Intent(TabMoreActivity.this, ToolsListActivity.class));
 			break;
 
 		case R.id.layout_more_clear:

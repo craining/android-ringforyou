@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
-import com.zgy.ringforu.activity.RToolsActivity;
+import com.zgy.ringforu.activity.ToolsListActivity;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.BitmapUtil;
 import com.zgy.ringforu.util.WaterMarkUtil;
@@ -43,7 +43,7 @@ public class WaterMarkService extends Service {
 				if (wm == null && view == null) {
 					try {
 						createView();
-						Intent i = new Intent(RToolsActivity.ACTION_WATERMARK_ON);
+						Intent i = new Intent(ToolsListActivity.ACTION_WATERMARK_ON);
 						sendBroadcast(i);
 					} catch (Exception e) {
 						MyToast.makeText(WaterMarkService.this, R.string.watermark_show_fail, Toast.LENGTH_SHORT, true).show();

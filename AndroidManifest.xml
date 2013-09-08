@@ -118,12 +118,12 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RToolsActivity"
+            android:name=".activity.ToolsListActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WaterMarkActivity"
+            android:name=".activity.ToolsWaterMarkActivity"
             android:label="@string/share_label_watermark"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
@@ -142,22 +142,22 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DisableGprsActivity"
+            android:name=".activity.ToolsDisableGprsActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/dialog" />
         <activity
-            android:name=".activity.SmsLightActivity"
+            android:name=".activity.ToolsSmsLightActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/dialog" />
         <activity
-            android:name=".activity.SignalReconnectActivity"
+            android:name=".activity.ToolsSignalReconnectActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/dialog" />
         <activity
-            android:name=".activity.BusyModeActivity"
+            android:name=".activity.ToolsBusyModeActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:launchMode="singleTask"
