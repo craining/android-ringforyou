@@ -3,7 +3,7 @@
     <string name="app_name">Waiter</string>
     <string name="back">Back</string>
     <string name="clear_all">Clear</string>
-    <string name="main_title">Waiter</string>
+    <string name="main_title">Waiter For Android</string>
     <string name="add_fromcontacts">From Contacts</string>
     <string name="add_byhand">By Input</string>
     <string name="how_additem">Long click the contact to add.</string>
@@ -95,7 +95,7 @@
     <!-- new -->
     <!-- The important contact has not yet been added, please add. -->
     <string name="none_addnull_important_title">尚未添加重要联系人</string>
-    <string name="none_addnull_important_text">即使手机静音，在收到重要联系人的来电或短信时仍会响铃；\r\n\r\n点击右上角的设置按钮可进行相关设置。</string>
+    <string name="none_addnull_important_text">即便手机静音，在收到重要联系人的来电或短信时仍会响铃；\r\n\r\n点击右上角的设置按钮可进行相关设置。</string>
     <string name="none_addnull_call_title">尚未添加要屏蔽的来电</string>
     <string name="none_addnull_call_text">轻松地忽略不想接听的来电；\r\n\r\n点击右上角的设置按钮可进行相关设置。</string>
     <string name="none_addnull_sms_title">尚未添加要屏蔽的短信</string>

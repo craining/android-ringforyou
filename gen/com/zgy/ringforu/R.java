@@ -53,7 +53,7 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f070045;
+        public static final int activity_horizontal_margin=0x7f070048;
         public static final int btn_height_top=0x7f070001;
         public static final int btn_main_add_height=0x7f070022;
         public static final int btn_margin_left_right_top=0x7f070002;
@@ -119,6 +119,9 @@ public final class R {
         public static final int layout_top_height=0x7f070006;
         public static final int line_set_child_item_div_height=0x7f070011;
         public static final int line_set_item_div_height=0x7f070010;
+        /**  about 
+         */
+        public static final int logo_wh=0x7f070045;
         public static final int padding=0x7f070044;
         public static final int search_edit_img_margin_l=0x7f07002d;
         public static final int search_edit_img_margin_r=0x7f07002e;
@@ -131,6 +134,8 @@ public final class R {
         public static final int text_set_calm_item_left_margin_left=0x7f07001d;
         public static final int text_size_little=0x7f07003e;
         public static final int text_textsize_top_title=0x7f070005;
+        public static final int textsize_big=0x7f070046;
+        public static final int textsize_big_less=0x7f070047;
         public static final int textsize_content=0x7f07002f;
         public static final int textsize_set_item_bottom=0x7f07000f;
         public static final int textsize_set_item_top=0x7f07000e;

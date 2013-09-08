@@ -3,7 +3,7 @@
     <string name="app_name">Waiter</string>
     <string name="back">返回</string>
     <string name="clear_all">清空</string>
-    <string name="main_title">Waiter</string>
+    <string name="main_title">Waiter For Android</string>
     <string name="add_fromcontacts">从通讯录添加</string>
     <string name="add_byhand">手动添加</string>
     <string name="import_items">还原备份</string>

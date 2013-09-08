@@ -1,9 +1,9 @@
 <resources>
 
-    <string name="app_name">XXX</string>
+    <string name="app_name">Waiter</string>
     <string name="back">返回</string>
     <string name="clear_all">清空</string>
-    <string name="main_title">XXX </string>
+    <string name="main_title">Waiter For Android</string>
     <string name="add_fromcontacts">從通訊錄添加</string>
     <string name="add_byhand">手動添加</string>
     <string name="import_items">還原備份</string>
