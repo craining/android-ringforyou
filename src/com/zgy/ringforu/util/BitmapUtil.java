@@ -83,16 +83,18 @@ public class BitmapUtil {
 		if (w < width || h < height) {
 			Matrix matrix = new Matrix();
 			matrix.postScale((float) width / w, (float) height / h); // 长和宽放大缩小的比例
-			// bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix,
+			// bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+			// bitmap.getHeight(), matrix,
 			// false);
 			bitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
 		}
-		if (RingForU.DEBUG) {
+		{
 			LogRingForu.e("", "w = " + w + "  h=" + h + " (float) width / w" + (float) width / w + "   (float) height / h=" + (float) height / h);
 			LogRingForu.e("", "bitmap.w=" + bitmap.getWidth() + " h=" + bitmap.getHeight());
 		}
 
-		// // GoOutDebug.e(TAG, "w = " + output.getWidth() + "   h = " + output.getHeight());
+		// // GoOutDebug.e(TAG, "w = " + output.getWidth() + "   h = " +
+		// output.getHeight());
 		// // 创建一个新的bitmap，然后在bitmap里创建一个圆角画布，将之前的图片画在里面。
 		// Bitmap output = Bitmap.createBitmap(width, height, Config.ARGB_8888);
 		// Canvas canvas = new Canvas(output);

@@ -24,8 +24,8 @@ public class SignalReconnectService extends Service {
 
 	@Override
 	public void onStart(Intent intent, int startId) {
-		if (RingForU.DEBUG)
-			LogRingForu.e(TAG, "SignalReconnectService is start!");
+
+		LogRingForu.e(TAG, "SignalReconnectService is start!");
 		if (SignalReconnectUtil.isSignalReconnectOn()) {
 			mTelephonyMgr = (TelephonyManager) getSystemService(SignalReconnectService.TELEPHONY_SERVICE);
 			myListenter = new SignalStrengthListener();
@@ -38,8 +38,8 @@ public class SignalReconnectService extends Service {
 
 	@Override
 	public void onDestroy() {
-		if (RingForU.DEBUG)
-			LogRingForu.e(TAG, "SignalReconnectService is destroy!");
+
+		LogRingForu.e(TAG, "SignalReconnectService is destroy!");
 		if (mTelephonyMgr != null && myListenter != null) {
 			mTelephonyMgr.listen(myListenter, PhoneStateListener.LISTEN_NONE);
 			mTelephonyMgr = null;
@@ -61,8 +61,8 @@ public class SignalReconnectService extends Service {
 			if (asu < 10) {
 				SignalReconnectUtil.doSignalReconnect(SignalReconnectService.this);
 			}
-			if (RingForU.DEBUG)
-				LogRingForu.e(TAG, "asu = " + asu);
+
+			LogRingForu.e(TAG, "asu = " + asu);
 		}
 
 	}

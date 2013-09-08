@@ -14,7 +14,7 @@ import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.util.DisableGprsUtil;
 import com.zgy.ringforu.util.PhoneUtil;
-import com.zgy.ringforu.util.SignalReconnectUtil;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.SmsLightScreenUtil;
 import com.zgy.ringforu.view.MyToast;
 
@@ -30,6 +30,9 @@ public class SmsLightActivity extends Activity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tools_dlg_ctrl);
+		
+		RingForUActivityManager.push(this);
+		
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 		DisableGprsUtil.checkState(SmsLightActivity.this);
 
@@ -78,10 +81,10 @@ public class SmsLightActivity extends Activity implements OnClickListener {
 				MyToast.makeText(SmsLightActivity.this, R.string.toast_open_ok, Toast.LENGTH_LONG, false).show();
 
 			}
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 		case R.id.btn_back:
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 
 		default:

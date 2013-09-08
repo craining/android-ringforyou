@@ -66,4 +66,11 @@
     <dimen name="img_wh_red_note">18dip</dimen>
     <dimen name="text_size_little">8sp</dimen>
 
+    <!-- 轮子 -->
+<dimen name="items_height">10dip</dimen>
+<dimen name="item_text_size">16sp</dimen>
+<dimen name="items_offset">3dip</dimen>
+<dimen name="item_space">6.5dip</dimen>
+<dimen name="label_offset">5dip</dimen>
+<dimen name="padding">6.5dip</dimen>
 </resources>

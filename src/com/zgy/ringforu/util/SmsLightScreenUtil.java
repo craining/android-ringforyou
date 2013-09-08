@@ -36,14 +36,14 @@ public class SmsLightScreenUtil {
 				PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
 				final WakeLock wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "tag");
 				wakeLock.acquire();
-				if (RingForU.DEBUG)
-					LogRingForu.e(TAG, "acquire wakeLock");
+
+				LogRingForu.e(TAG, "acquire wakeLock");
 				new Handler().postDelayed(new Runnable() {
 
 					public void run() {
 						wakeLock.release();
-						if (RingForU.DEBUG)
-							LogRingForu.e(TAG, "release wakeLock");
+
+						LogRingForu.e(TAG, "release wakeLock");
 					}
 				}, 5000);
 
@@ -63,7 +63,7 @@ public class SmsLightScreenUtil {
 		MainConfig.getInstance().setSmsLightScreenOnOff(open);
 		checkState(context);
 	}
-	
+
 	public static void checkState(Context context) {
 		NotificationUtil.showHideSmsLightNotify(isSmsLightScreenOn(), context);
 	}

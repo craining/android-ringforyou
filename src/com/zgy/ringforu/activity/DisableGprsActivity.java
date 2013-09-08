@@ -14,6 +14,7 @@ import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.util.DisableGprsUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.view.MyToast;
 
 public class DisableGprsActivity extends Activity implements OnClickListener {
@@ -28,6 +29,9 @@ public class DisableGprsActivity extends Activity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tools_dlg_ctrl);
+		
+		RingForUActivityManager.push(this);
+		
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 		DisableGprsUtil.checkState(DisableGprsActivity.this);
 
@@ -76,10 +80,10 @@ public class DisableGprsActivity extends Activity implements OnClickListener {
 				DisableGprsUtil.ctrlDisableGprsSwitch(DisableGprsActivity.this, true);
 				MyToast.makeText(DisableGprsActivity.this, R.string.disable_gprs_on_tip, Toast.LENGTH_LONG, false).show();
 			}
-			finish();
+			RingForUActivityManager.pop(DisableGprsActivity.this);
 			break;
 		case R.id.btn_back:
-			finish();
+			RingForUActivityManager.pop(DisableGprsActivity.this);
 			break;
 
 		default:

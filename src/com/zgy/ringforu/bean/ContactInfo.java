@@ -44,15 +44,13 @@ public class ContactInfo {
 
 	@Override
 	public int hashCode() {
-		if (RingForU.DEBUG)
-			LogRingForu.e("", "hashCode");
+		// LogRingForu.e("", "hashCode");
 		return this.name.hashCode() + this.num.hashCode() + this.storeKey.hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (RingForU.DEBUG)
-			LogRingForu.e("", "equals");
+		// LogRingForu.e("", "equals");
 		if (this == obj) {
 			return true;
 		}

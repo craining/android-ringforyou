@@ -184,7 +184,6 @@ public class MainActivityGroup extends ActivityGroup implements OnClickListener 
 	
 	@Override
 	protected void onDestroy() {
-		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 

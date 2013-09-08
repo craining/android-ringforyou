@@ -213,8 +213,8 @@ public class MainUtil {
 			String numbersImportant = mainConfig.getImporantNumbers();
 			if (!StringUtil.isNull(numbersImportant)) {
 				String[] arry = numbersImportant.split(":::");
-				if (RingForU.DEBUG)
-					LogRingForu.v(TAG, " arry.length" + arry.length);
+
+				LogRingForu.v(TAG, " arry.length" + arry.length);
 				result = MainCanstants.MAX_NUMS - arry.length;
 			}
 			break;
@@ -222,8 +222,8 @@ public class MainUtil {
 			String numbersCall = mainConfig.getInterceptCallNumbers();
 			if (!StringUtil.isNull(numbersCall)) {
 				String[] arry = numbersCall.split(":::");
-				if (RingForU.DEBUG)
-					LogRingForu.v(TAG, " arry.length" + arry.length);
+
+				LogRingForu.v(TAG, " arry.length" + arry.length);
 				result = MainCanstants.MAX_NUMS - arry.length;
 			}
 			break;
@@ -231,8 +231,8 @@ public class MainUtil {
 			String numbersSms = mainConfig.getInterceptSmsNumbers();
 			if (!StringUtil.isNull(numbersSms)) {
 				String[] arry = numbersSms.split(":::");
-				if (RingForU.DEBUG)
-					LogRingForu.v(TAG, " arry.length" + arry.length);
+
+				LogRingForu.v(TAG, " arry.length" + arry.length);
 				result = MainCanstants.MAX_NUMS - arry.length;
 			}
 			break;
@@ -264,8 +264,8 @@ public class MainUtil {
 			if (preTimePer.contains(per)) {
 				return -1;// ÷ÿ∏¥
 			} else {
-				String[] a = preTimePer.split(":::");
-				String[] pretimes = a[0].split("-");
+//				String[] a = preTimePer.split(":::");
+				String[] pretimes = preTimePer.split("-");
 				String[] newtimes = per.split("-");
 
 				if (pretimes[0].equals(newtimes[0])) {
@@ -306,8 +306,8 @@ public class MainUtil {
 		}
 
 		if (result == 3) {
-			if (RingForU.DEBUG)
-				LogRingForu.v(TAG, "contains the pre periord");
+
+			LogRingForu.v(TAG, "contains the pre periord");
 			MainConfig.getInstance().setSlientTime(per);
 		}
 		if (result == 2) {

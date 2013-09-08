@@ -53,7 +53,7 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f07003f;
+        public static final int activity_horizontal_margin=0x7f070045;
         public static final int btn_height_top=0x7f070001;
         public static final int btn_main_add_height=0x7f070022;
         public static final int btn_margin_left_right_top=0x7f070002;
@@ -70,6 +70,7 @@ public final class R {
 
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw600dp devices (e.g. 7" tablets) here.
+
     
          */
         public static final int btn_width_top=0x7f070000;
@@ -90,6 +91,14 @@ public final class R {
         public static final int img_tab_margin_top=0x7f070020;
         public static final int img_tab_w=0x7f07001e;
         public static final int img_wh_red_note=0x7f07003d;
+        public static final int item_space=0x7f070042;
+        public static final int item_text_size=0x7f070040;
+        /**  轮子 
+ 轮子 
+         */
+        public static final int items_height=0x7f07003f;
+        public static final int items_offset=0x7f070041;
+        public static final int label_offset=0x7f070043;
         public static final int layout_big=0x7f070037;
         public static final int layout_big_less=0x7f07003a;
         public static final int layout_big_less_less=0x7f070038;
@@ -110,6 +119,7 @@ public final class R {
         public static final int layout_top_height=0x7f070006;
         public static final int line_set_child_item_div_height=0x7f070011;
         public static final int line_set_item_div_height=0x7f070010;
+        public static final int padding=0x7f070044;
         public static final int search_edit_img_margin_l=0x7f07002d;
         public static final int search_edit_img_margin_r=0x7f07002e;
         public static final int search_edit_imgheight=0x7f07002c;

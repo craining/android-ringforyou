@@ -11,8 +11,8 @@ import android.view.Window;
 import android.widget.LinearLayout;
 
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.RingForUActivityManager;
 
 public class AboutActivity extends Activity {
 
@@ -35,7 +35,7 @@ public class AboutActivity extends Activity {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				PhoneUtil.doVibraterNormal(vb);
-				finish();
+				RingForUActivityManager.pop(AboutActivity.this);
 				return false;
 			}
 		});
@@ -43,7 +43,6 @@ public class AboutActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 

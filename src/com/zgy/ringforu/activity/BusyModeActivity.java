@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.util.BusyModeUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.view.MyToast;
 import com.zgy.ringforu.view.WordsFlowView;
 
@@ -41,6 +42,9 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.busymode);
+		
+		RingForUActivityManager.push(this);
+		
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		btnBack = (Button) findViewById(R.id.btn_busymodeset_back);
@@ -107,12 +111,12 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 		if (v instanceof Button) {
 			switch (v.getId()) {
 			case R.id.btn_busymodeset_back:
-				finish();
+				RingForUActivityManager.pop(this);
 				break;
 			case R.id.btn_busymode_title_close:
 				BusyModeUtil.setBusyModeOnOff(BusyModeActivity.this, false, null);
 				MyToast.makeText(BusyModeActivity.this, R.string.busymode_tip_close_toast, MyToast.LENGTH_LONG, false).show();
-				finish();
+				RingForUActivityManager.pop(this);
 				break;
 
 			case R.id.btn_busymodeset_ok:
@@ -124,7 +128,7 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 				}
 
 				MyToast.makeText(BusyModeActivity.this, R.string.busymode_tip_open_toast, MyToast.LENGTH_LONG, false).show();
-				finish();
+				RingForUActivityManager.pop(this);
 				break;
 
 			default:
@@ -164,8 +168,7 @@ public class BusyModeActivity extends Activity implements OnClickListener {
 	}
 
 	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub// …Ë÷√◊¥Ã¨¿∏Õº±Í
+	protected void onDestroy() {// …Ë÷√◊¥Ã¨¿∏Õº±Í
 		BusyModeUtil.checkState(BusyModeActivity.this);
 		super.onDestroy();
 	}

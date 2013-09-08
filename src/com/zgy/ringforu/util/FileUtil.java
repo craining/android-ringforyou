@@ -6,7 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.http.util.EncodingUtils;
+
 import android.content.Context;
+import android.util.Log;
 
 import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.RingForU;
@@ -15,52 +18,119 @@ public class FileUtil {
 
 	private static final String TAG = "FileUtil";
 
-	/**
-	 * 向 file 中写数据
-	 * 
-	 * @param fileName
-	 * @param toSave
-	 * @return
-	 * @throws Exception
-	 */
-	public static boolean save(String fileName, String toSave, Context con) throws Exception {
-		Properties properties = new Properties();
+	private static final String TEXT_ENCODING = "utf-8";
 
-		properties.put("string", toSave);
-		// try {
-		FileOutputStream stream = con.openFileOutput(fileName, Context.MODE_WORLD_WRITEABLE);
-		properties.store(stream, "string");
-		// } catch (FileNotFoundException e) {
-		// throw e;
-		// } catch (IOException e) {
-		// throw e;
-		// }
+	// /**
+	// * 向 file 中写数据
+	// *
+	// * @param fileName
+	// * @param toSave
+	// * @return
+	// * @throws Exception
+	// */
+	// public static boolean save(String fileName, String toSave, Context con)
+	// throws Exception {
+	// Properties properties = new Properties();
+	//
+	// properties.put("string", toSave);
+	// // try {
+	// FileOutputStream stream = con.openFileOutput(fileName,
+	// Context.MODE_WORLD_WRITEABLE);
+	// properties.store(stream, "string");
+	// // } catch (FileNotFoundException e) {
+	// // throw e;
+	// // } catch (IOException e) {
+	// // throw e;
+	// // }
+	//
+	// return true;
+	// }
+	//
+	// /**
+	// * 读取 file 中的数据
+	// *
+	// * @param fileName
+	// * @return
+	// */
+	// public static String load(String fileName, Context con) throws Exception
+	// {
+	// Properties properties = new Properties();
+	// // try {
+	// FileInputStream stream = con.openFileInput(fileName);
+	// properties.load(stream);
+	// // } catch (FileNotFoundException e) {
+	// // return null;
+	// // } catch (IOException e) {
+	// // return null;
+	// // }
+	//
+	// String result = null;
+	// result = properties.get("string").toString();
+	//
+	// LogRingForu.v(TAG, "读取内容" + result);
+	// return result;
+	// }
+
+	/**
+	 * 写入文件
+	 * 
+	 * @param str
+	 *            写入的字符串
+	 * @param file
+	 *            文件路径
+	 * @param add
+	 *            追加与否
+	 * @return
+	 */
+	public static boolean write(String str, File file, boolean add) {
+		Log.e("writeFile", str);
+		FileOutputStream out;
+		try {
+			if (!file.exists()) {
+				// 创建文件
+				file.createNewFile();
+			}
+
+			// 打开文件file的OutputStream
+			out = new FileOutputStream(file, add);
+			String infoToWrite = str;
+			// 将字符串转换成byte数组写入文件
+			out.write(infoToWrite.getBytes(TEXT_ENCODING));
+			// 关闭文件file的OutputStream
+			out.close();
+
+		} catch (IOException e) {
+			return false;
+		}
 
 		return true;
 	}
 
 	/**
-	 * 读取 file 中的数据
+	 * 以utf-8编码读取文件
 	 * 
-	 * @param fileName
+	 * @param file
 	 * @return
 	 */
-	public static String load(String fileName, Context con) throws Exception {
-		Properties properties = new Properties();
-		// try {
-		FileInputStream stream = con.openFileInput(fileName);
-		properties.load(stream);
-		// } catch (FileNotFoundException e) {
-		// return null;
-		// } catch (IOException e) {
-		// return null;
-		// }
+	public static String read(File file) {
+		String str = "";
+		FileInputStream in;
+		try {
+			// 打开文件file的InputStream
+			in = new FileInputStream(file);
+			// 将文件内容全部读入到byte数组
+			int length = (int) file.length();
+			byte[] temp = new byte[length];
+			in.read(temp, 0, length);
+			// 将byte数组用UTF-8编码并存入display字符串中
+			str = EncodingUtils.getString(temp, TEXT_ENCODING);
+			// 关闭文件file的InputStream
 
-		String result = null;
-		result = properties.get("string").toString();
-		if (RingForU.DEBUG)
-		LogRingForu.v(TAG, "读取内容" + result);
-		return result;
+			in.close();
+		} catch (IOException e) {
+		}
+
+		return str;
 	}
 
 	/**
@@ -120,7 +190,7 @@ public class FileUtil {
 
 		return true;
 	}
-	
+
 	/**
 	 * 递归删除某目录及其所有子文件和子目录
 	 * 

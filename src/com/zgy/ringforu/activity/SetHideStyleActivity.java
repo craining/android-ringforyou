@@ -15,8 +15,8 @@ import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.RingForUActivityManager;
 
 public class SetHideStyleActivity extends Activity implements OnClickListener {
 
@@ -119,7 +119,7 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 			break;
 
 		case R.id.btn_sethidestyle_return_call:
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 
 		case R.id.layout_sethidestyle_sms_disreceive:
@@ -131,7 +131,7 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 			refreshSmsSelected();
 			break;
 		case R.id.btn_sethidestyle_return_sms:
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 		default:
 			break;
@@ -190,7 +190,6 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 

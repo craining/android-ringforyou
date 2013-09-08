@@ -46,15 +46,15 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 					getNumber = StringUtil.getNumbersFromString(text.toString());
 					if (getNumber == null || getNumber.length() <= 0) {
 						MyToast.makeText(ReceiveNumbersFromOthersActivity.this, R.string.receive_numbers_null, Toast.LENGTH_LONG, true).show();
-						finish();
+						RingForUActivityManager.pop(this);
 					}
 				} else {
 					MyToast.makeText(ReceiveNumbersFromOthersActivity.this, R.string.receive_numbers_null, Toast.LENGTH_LONG, true).show();
-					finish();
+					RingForUActivityManager.pop(this);
 				}
 			} else {
 				MyToast.makeText(ReceiveNumbersFromOthersActivity.this, R.string.receive_numbers_null, Toast.LENGTH_LONG, true).show();
-				finish();
+				RingForUActivityManager.pop(this);
 			}
 
 		}
@@ -116,7 +116,7 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 		i.putExtra("tag", 1);
 		i.putExtra("number", getNumber);
 		startActivity(i);
-		finish();
+		RingForUActivityManager.pop(this);
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 		i.putExtra("tag", 2);
 		i.putExtra("number", getNumber);
 		startActivity(i);
-		finish();
+		RingForUActivityManager.pop(this);
 	}
 
 	/**
@@ -140,12 +140,11 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 		i.putExtra("tag", 0);
 		i.putExtra("number", getNumber);
 		startActivity(i);
-		finish();
+		RingForUActivityManager.pop(this);
 	}
 	
 	@Override
 	protected void onDestroy() {
-		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 

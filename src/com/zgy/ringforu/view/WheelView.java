@@ -23,6 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -70,22 +71,22 @@ public class WheelView extends View {
 	private static final int[] SHADOWS_COLORS = new int[] { 0xFF111111, 0x00AAAAAA, 0x00AAAAAA };
 
 	/** Additional items height (is added to standard text item height) */
-	private static final int ADDITIONAL_ITEM_HEIGHT = 15;
+	private static int ADDITIONAL_ITEM_HEIGHT = 15;//每一个item的高度
 
 	/** Text size */
-	private static final int TEXT_SIZE = 24;
+	private static int TEXT_SIZE = 24;//字的大小 
 
 	/** Top and bottom items offset (to hide that) */
-	private static final int ITEM_OFFSET = TEXT_SIZE / 5;
+	private static int ITEM_OFFSET = 5;//最顶和最底item的边距
 
 	/** Additional width for items layout */
-	private static final int ADDITIONAL_ITEMS_SPACE = 10;
+	private static int ADDITIONAL_ITEMS_SPACE = 10;
 
 	/** Label offset */
-	private static final int LABEL_OFFSET = 8;
+	private static int LABEL_OFFSET = 8;
 
 	/** Left and right padding value */
-	private static final int PADDING = 10;
+	private static int PADDING = 10;
 
 	/** Default count of visible items */
 	private static final int DEF_VISIBLE_ITEMS = 5;
@@ -168,6 +169,23 @@ public class WheelView extends View {
 	 *            the context
 	 */
 	private void initData(Context context) {
+		
+		Resources res = context.getResources();
+		
+		ADDITIONAL_ITEM_HEIGHT = res.getDimensionPixelOffset(R.dimen.items_height);
+		TEXT_SIZE = res.getDimensionPixelSize(R.dimen.item_text_size);
+
+		ITEM_OFFSET = res.getDimensionPixelOffset(R.dimen.items_offset); 
+
+		/** Additional width for items layout */
+		ADDITIONAL_ITEMS_SPACE = res.getDimensionPixelOffset(R.dimen.item_space);
+
+		/** Label offset */
+		LABEL_OFFSET =  res.getDimensionPixelOffset(R.dimen.label_offset);
+
+		/** Left and right padding value */
+		 PADDING = res.getDimensionPixelOffset(R.dimen.padding);
+		
 		gestureDetector = new GestureDetector(context, gestureListener);
 		gestureDetector.setIsLongpressEnabled(false);
 

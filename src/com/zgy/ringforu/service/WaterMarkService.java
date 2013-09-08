@@ -36,8 +36,7 @@ public class WaterMarkService extends Service {
 		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
 
-		if (RingForU.DEBUG)
-			LogRingForu.e(TAG, "WaterMarkService is start!");
+		LogRingForu.e(TAG, "WaterMarkService is start!");
 		if (show) {
 
 			if (WaterMarkUtil.isWaterMarkSeted()) {
@@ -74,7 +73,8 @@ public class WaterMarkService extends Service {
 		wm = (WindowManager) getApplicationContext().getSystemService("window");
 		wmParams = RingForU.getMywmParams();
 		wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;// 该类型提供与用户交互，置于所有应用程序上方，但是在状态栏后面
-		wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;// 不接受任何按键事件
+		wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+				| WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;// 不接受任何按键事件
 		// wmParams.gravity = Gravity.LEFT | Gravity.TOP; //
 		// 调整悬浮窗口至左上角WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES |
 		// WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
@@ -112,7 +112,8 @@ public class WaterMarkService extends Service {
 		// }
 		wm.addView(view, wmParams);
 
-		// LogRingForu.v(TAG, "imgShow h=" + imgShow.getMeasuredHeight() + "  w=" + imgShow.getMeasuredWidth());
+		// LogRingForu.v(TAG, "imgShow h=" + imgShow.getMeasuredHeight() +
+		// "  w=" + imgShow.getMeasuredWidth());
 	}
 
 	// private void updateViewPosition() {
@@ -130,8 +131,8 @@ public class WaterMarkService extends Service {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		if (RingForU.DEBUG)
-			LogRingForu.e(TAG, "WaterMarkService is destroyed!");
+
+		LogRingForu.e(TAG, "WaterMarkService is destroyed!");
 
 		if (wm != null && view != null) {
 			if (view.isShown())

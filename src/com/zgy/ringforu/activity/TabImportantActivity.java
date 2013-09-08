@@ -61,7 +61,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tab_activity_important);
 		
-		RingForUActivityManager.push(this);
+//		RingForUActivityManager.push(this);
 		
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
@@ -85,7 +85,6 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				if (RingForU.DEBUG)
 					LogRingForu.v(TAG, "delete: " + position);
 				PhoneUtil.doVibraterNormal(vb);
 				listItem.remove(position);
@@ -149,14 +148,12 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 
 
 	@Override
 	protected void onResume() {
-		if (RingForU.DEBUG)
 			LogRingForu.e(TAG, "onResume");
 		initListView();
 		super.onResume();

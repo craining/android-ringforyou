@@ -60,9 +60,9 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tab_activity_sms);
-		
-		RingForUActivityManager.push(this);
-		
+
+//		RingForUActivityManager.push(this);
+
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		// layoutMain = (RelativeLayout) findViewById(R.id.layout_tab_sms_main);
@@ -85,8 +85,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				if (RingForU.DEBUG)
-					LogRingForu.v(TAG, "delete: " + position);
+				LogRingForu.v(TAG, "delete: " + position);
 				PhoneUtil.doVibraterNormal(vb);
 				listItem.remove(position);
 				listItemAdapter.notifyDataSetChanged();
@@ -145,14 +144,12 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 
 	@Override
 	protected void onResume() {
-		if (RingForU.DEBUG)
-			LogRingForu.e(TAG, "onResume");
+		LogRingForu.e(TAG, "onResume");
 		initListView();
 		super.onResume();
 	}

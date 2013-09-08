@@ -30,13 +30,14 @@ import android.widget.TextView;
 
 import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.service.WaterMarkService;
 import com.zgy.ringforu.util.BitmapUtil;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.RingForUActivityManager;
+import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.util.TimeUtil;
 import com.zgy.ringforu.util.WaterMarkUtil;
 import com.zgy.ringforu.view.MyDialog;
@@ -86,6 +87,8 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tools_watermark);
 		mMainConfig = MainConfig.getInstance();
+
+		RingForUActivityManager.push(this);
 
 		// DisplayMetrics metric = getResources().getDisplayMetrics();
 		// screenWidth = metric.widthPixels;
@@ -163,7 +166,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		switch (v.getId()) {
 		case R.id.btn_watermark_ok:
 			open();
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 
 		case R.id.btn_watermark_delete:
@@ -175,20 +178,20 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 			}
 			WaterMarkUtil.checkState(WaterMarkActivity.this);
 			MyToast.makeText(WaterMarkActivity.this, R.string.watermark_del_success, MyToast.LENGTH_SHORT, false).show();
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 		case R.id.btn_watermark_title_close:
 			// 关闭
 			WaterMarkUtil.setSwitchOnOff(false);
 			WaterMarkUtil.checkState(WaterMarkActivity.this);
 			MyToast.makeText(WaterMarkActivity.this, R.string.watermark_close_finish, MyToast.LENGTH_SHORT, false).show();
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 		case R.id.btn_watermark_change:
 			pickPic();
 			break;
 		case R.id.btn_watermark_cancel:
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 		case R.id.btn_watermark_cut:
 
@@ -282,8 +285,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 
 					Uri tempTakePicUri = Uri.fromFile(tempFileSrc);
 					// 留意一下这个文件路径是按照怎样的规则转换为一个uri的
-					if (RingForU.DEBUG)
-						LogRingForu.v(TAG, "根据路径转换的uri为：" + tempTakePicUri.toString());
+					LogRingForu.v(TAG, "根据路径转换的uri为：" + tempTakePicUri.toString());
 					intent.putExtra(MediaStore.EXTRA_OUTPUT, tempTakePicUri);
 
 					startActivityForResult(intent, REQUEST_PICKPIC_CAMERA);
@@ -322,8 +324,7 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 		tempFileCutted = new File(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CUT + TimeUtil.getCurrentTimeMillis());
 
 		Uri uriTemp = Uri.fromFile(tempFileCutted);
-		if (RingForU.DEBUG)
-			LogRingForu.e(TAG, "after cut uriTemp =" + uriTemp.toString() + "  src uri = " + cutFileUri.toString());
+		LogRingForu.e(TAG, "after cut uriTemp =" + uriTemp.toString() + "  src uri = " + cutFileUri.toString());
 
 		//
 		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT, cutFileUri);
@@ -412,27 +413,30 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 				startPhotoZoom(Uri.fromFile(tempFileSrc));
 			} else {
 				MyToast.makeText(WaterMarkActivity.this, "获取图片失败！", MyToast.LENGTH_SHORT, true).show();
+				refreshViews();
 			}
-			refreshViews();
 			break;
 
 		case REQUEST_PICKPIC_GALLERY:
 			if (data != null) {
 				Uri picPath = data.getData();
-				if (RingForU.DEBUG)
-					LogRingForu.e(TAG, "PIC uri=" + picPath);
+				LogRingForu.e(TAG, "PIC uri=" + picPath);
 				if (picPath != null) {
-					File getFileSrc = new File(getImageAbsolutePath(picPath));
-
-					try {
-						tempFileSrc = new File(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
-						FileUtil.copyFileTo(getFileSrc, tempFileSrc);
-						startPhotoZoom(Uri.fromFile(tempFileSrc));
-						// cropImageUri(Uri.fromFile(tempFileSrc), 2000, 500);
-						break;
-					} catch (Exception e) {
-						e.printStackTrace();
+					String abPath = getImageAbsolutePath(picPath);
+					if (!StringUtil.isNull(abPath)) {
+						File getFileSrc = new File(abPath);
+						try {
+							tempFileSrc = new File(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
+							FileUtil.copyFileTo(getFileSrc, tempFileSrc);
+							startPhotoZoom(Uri.fromFile(tempFileSrc));
+							// cropImageUri(Uri.fromFile(tempFileSrc), 2000,
+							// 500);
+							break;
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 					}
+
 				}
 
 			}
@@ -453,12 +457,17 @@ public class WaterMarkActivity extends Activity implements OnSeekBarChangeListen
 	 * @return
 	 */
 	private String getImageAbsolutePath(Uri uri) {
-		String[] proj = { MediaStore.Images.Media.DATA };
-		Cursor cursor = managedQuery(uri, proj, null, null, null);
-		int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-		cursor.moveToFirst();
-
-		return cursor.getString(column_index);
+		String result = null;
+		try {
+			String[] proj = { MediaStore.Images.Media.DATA };
+			Cursor cursor = managedQuery(uri, proj, null, null, null);
+			int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			cursor.moveToFirst();
+			result = cursor.getString(column_index);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	/**

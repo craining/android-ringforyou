@@ -101,26 +101,25 @@ public class WaterMarkUtil {
 				Intent i = new Intent(context, WaterMarkService.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startService(i);
-				if (RingForU.DEBUG)
-					LogRingForu.v(TAG, "service is not running, need to start service!");
+
+				LogRingForu.v(TAG, "service is not running, need to start service!");
 			} else {
-				if (RingForU.DEBUG)
-					LogRingForu.v(TAG, "service is running, no need to start service!");
+
+				LogRingForu.v(TAG, "service is running, no need to start service!");
 			}
 		} else {
 			if (MainUtil.isServiceStarted(context, SERVICE_NAME_WATERMARK)) {
 				Intent i = new Intent(context, WaterMarkService.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.stopService(i);
-				if (RingForU.DEBUG)
-					LogRingForu.v(TAG, "service is running, need to stop service!");
+
+				LogRingForu.v(TAG, "service is running, need to stop service!");
 			} else {
-				if (RingForU.DEBUG)
-					LogRingForu.v(TAG, "service is not running, no need to stop service!");
+
+				LogRingForu.v(TAG, "service is not running, no need to stop service!");
 			}
 		}
 
 	}
 
-	
 }

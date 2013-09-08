@@ -50,9 +50,9 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tab_activity_more);
-		
-		RingForUActivityManager.push(this);
-		
+
+		// RingForUActivityManager.push(this);
+
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		layoutFeedback = (RelativeLayout) findViewById(R.id.layout_more_feedback);
@@ -94,15 +94,13 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 
 	@Override
 	protected void onResume() {
 		refreshViews();
-		if (RingForU.DEBUG)
-			LogRingForu.e(TAG, "onResume");
+		LogRingForu.e(TAG, "onResume");
 		super.onResume();
 	}
 
@@ -113,7 +111,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.btn_set_return:
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 		case R.id.layout_more_feedback:
 			if (NetWorkUtil.isConnectInternet(TabMoreActivity.this)) {
@@ -150,13 +148,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 		if (PhoneUtil.existSDcard()) {
 			// 清空重要联系人
 			MyDialog.Builder builder = new MyDialog.Builder(TabMoreActivity.this);
-			builder.setTitle(R.string.str_tip).setMessage(R.string.clear_alert).setPositiveButton(R.string.str_cancel, new DialogInterface.OnClickListener() {
-
-				public void onClick(DialogInterface dialog, int whichButton) {
-					dialog.dismiss();
-					PhoneUtil.doVibraterNormal(vb);
-				}
-			}).setNegativeButton(R.string.str_ok, new DialogInterface.OnClickListener() {
+			builder.setTitle(R.string.str_tip).setMessage(R.string.clear_alert).setPositiveButton(R.string.str_ok, new DialogInterface.OnClickListener() {
 
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
@@ -164,6 +156,12 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 					// 删除文件
 					MainUtil.clearData();
 					MyToast.makeText(TabMoreActivity.this, R.string.clear_data_over, Toast.LENGTH_LONG, false).show();
+				}
+			}).setNegativeButton(R.string.str_cancel, new DialogInterface.OnClickListener() {
+
+				public void onClick(DialogInterface dialog, int whichButton) {
+					dialog.dismiss();
+					PhoneUtil.doVibraterNormal(vb);
 				}
 			}).create().show();
 		} else {

@@ -2,7 +2,7 @@
 
     <!--
          Customize dimensions originally defined in res/values/dimens.xml (such as
-         screen margins) for sw600dp devices (e.g. 7" tablets) here.
+         screen margins) for sw600dp devices (e.g. 7" tablets) here.
     -->
     <dimen name="btn_width_top">68dip</dimen>
     <dimen name="btn_height_top">45dip</dimen>
@@ -67,6 +67,13 @@
     <dimen name="layout_height_five">8dip</dimen>
     <dimen name="img_wh_red_note">27dip</dimen>
     <dimen name="text_size_little">12sp</dimen>
-    
-    
+
+    <!-- 轮子 -->
+    <dimen name="items_height">15dip</dimen>
+    <dimen name="item_text_size">24sp</dimen>
+    <dimen name="items_offset">5dip</dimen>
+    <dimen name="item_space">10dip</dimen>
+    <dimen name="label_offset">8dip</dimen>
+    <dimen name="padding">10dip</dimen>
+
 </resources>

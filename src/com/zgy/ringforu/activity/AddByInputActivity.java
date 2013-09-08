@@ -127,13 +127,13 @@ public class AddByInputActivity extends Activity implements OnClickListener {
 				}
 
 				if (addOne) {
-					finish();
+					RingForUActivityManager.pop(this);
 				}
 			}
 
 			break;
 		case R.id.btn_add_input_return:
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 		default:
 			break;
@@ -143,7 +143,6 @@ public class AddByInputActivity extends Activity implements OnClickListener {
 	
 	@Override
 	protected void onDestroy() {
-		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 

@@ -90,7 +90,7 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 		PhoneUtil.doVibraterNormal(vb);
 		switch (v.getId()) {
 		case R.id.btn_feedback_return:
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 
 		case R.id.btn_feedback_ok:
@@ -117,7 +117,7 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 					}
 				}).start();
 				MyToast.makeText(FeedBackActivity.this, R.string.feedback_subminting, Toast.LENGTH_SHORT, false).show();
-				finish();
+				RingForUActivityManager.pop(this);
 			} else {
 				NetWorkUtil.setNetConnection(FeedBackActivity.this, vb);
 			}
@@ -145,7 +145,6 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 	
 	@Override
 	protected void onDestroy() {
-		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 

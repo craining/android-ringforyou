@@ -101,7 +101,7 @@ public class RToolsActivity extends Activity implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.btn_tools_return:
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 		case R.id.layout_tool_watermark:
 			startActivity(new Intent(RToolsActivity.this, WaterMarkActivity.class));
@@ -238,7 +238,6 @@ public class RToolsActivity extends Activity implements OnClickListener {
 		if (mReceiver != null) {
 			unregisterReceiver(mReceiver);
 		}
-		RingForUActivityManager.pop(this);
 	}
 
 }

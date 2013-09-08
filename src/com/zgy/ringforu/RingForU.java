@@ -9,7 +9,7 @@ import android.view.WindowManager;
 public class RingForU extends Application {
 
 	
-	public static boolean DEBUG = true;
+//	public static boolean DEBUG = true;
 	
 	
 	

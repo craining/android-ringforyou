@@ -223,8 +223,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 					info.num = StringUtil.getRidofSpeciall(cursor.getString(2));
 					info.storeKey = cursor.getString(3);
 
-					if (RingForU.DEBUG)
-						LogRingForu.v(TAG, "info.name=" + info.name + "   changed=" + StringUtil.getRidofSpecialOfFileName(info.name));
+					LogRingForu.v(TAG, "info.name=" + info.name + "   changed=" + StringUtil.getRidofSpecialOfFileName(info.name));
 
 					listContacts.add(info);
 				}
@@ -304,8 +303,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 		default:
 			break;
 		}
-		if (RingForU.DEBUG)
-			LogRingForu.v(TAG, "listItem " + listItem.size());
+		LogRingForu.v(TAG, "listItem " + listItem.size());
 		listItemAdapter = new SimpleAdapter(AddByContactsActivity.this, listItem, R.layout.listrow, new String[] { "name", "number" }, new int[] { R.id.name, R.id.number });
 		listviewContacts.setAdapter(listItemAdapter);
 		refreshViews();
@@ -347,7 +345,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 			vb.cancel();
 			vb = null;
 		}
-		RingForUActivityManager.pop(this);
+		 
 	}
 
 	@Override
@@ -356,7 +354,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 		PhoneUtil.doVibraterNormal(vb);
 		switch (v.getId()) {
 		case R.id.btn_add_contact_return:
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 		case R.id.img_addcontacts_clear:
 			editSearch.setText("");
@@ -385,8 +383,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 
 			switch (msg.what) {
 			case MSG_REFRESH_LISTVEW:
-				if (RingForU.DEBUG)
-					LogRingForu.v(TAG, "on fresh ");
+				LogRingForu.v(TAG, "on fresh ");
 				// imgLoading.setVisibility(View.GONE);
 				freshListView();
 				break;

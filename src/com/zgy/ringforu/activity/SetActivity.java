@@ -1,5 +1,7 @@
 package com.zgy.ringforu.activity;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.app.Service;
 import android.content.DialogInterface;
@@ -19,13 +21,12 @@ import android.widget.Toast;
 import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
@@ -149,8 +150,7 @@ public class SetActivity extends Activity implements OnClickListener {
 	 * @date:2012-12-4
 	 */
 	private void refreshView() {
-		if (RingForU.DEBUG)
-			LogRingForu.v(TAG, "refresh set views");
+		LogRingForu.v(TAG, "refresh set views");
 
 		// 根据不同的设置
 		switch (tag) {
@@ -160,8 +160,7 @@ public class SetActivity extends Activity implements OnClickListener {
 			layoutSms.setVisibility(View.GONE);
 			textTitle.setText(R.string.title_setting_important);
 			String strSlient = mMainConfig.getSlientTime();
-			if (RingForU.DEBUG)
-				LogRingForu.v(TAG, "strSlient = " + strSlient);
+			LogRingForu.v(TAG, "strSlient = " + strSlient);
 
 			// 刷新安静时段的显示
 			if (StringUtil.isNull(strSlient)) {
@@ -170,23 +169,24 @@ public class SetActivity extends Activity implements OnClickListener {
 				layoutImportantClam2.setVisibility(View.GONE);
 				imgImportantAddClam.setVisibility(View.VISIBLE);
 			} else {
-				if (RingForU.DEBUG)
-					LogRingForu.v(TAG, strSlient + "<-- strSlientP");
-				String[] ps = strSlient.split(":::");
-				if (ps.length == 1) {
-					// 添加了一个安静时段
-					imgImportantAddClam.setVisibility(View.VISIBLE);
-					layoutImportantClam1.setVisibility(View.VISIBLE);
-					layoutImportantClam2.setVisibility(View.GONE);
-					textImportantClam1.setText(ps[0]);
-				} else if (ps.length == 2) {
+				LogRingForu.v(TAG, strSlient + "<-- strSlientP");
+
+				if (strSlient.contains(":::")) {
+					String[] ps = strSlient.split(":::");
 					// 添加了两个安静时段
 					imgImportantAddClam.setVisibility(View.GONE);
 					layoutImportantClam1.setVisibility(View.VISIBLE);
 					layoutImportantClam2.setVisibility(View.VISIBLE);
 					textImportantClam1.setText(ps[0]);
 					textImportantClam2.setText(ps[1]);
+				} else {
+					// 添加了一个安静时段
+					imgImportantAddClam.setVisibility(View.VISIBLE);
+					layoutImportantClam1.setVisibility(View.VISIBLE);
+					layoutImportantClam2.setVisibility(View.GONE);
+					textImportantClam1.setText(strSlient);
 				}
+
 			}
 			break;
 		case MainCanstants.TYPE_INTECEPT_CALL:
@@ -259,7 +259,7 @@ public class SetActivity extends Activity implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.btn_set_return:
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 		case R.id.img_del_calm_1_important:
 			// 删除第一个安静时段
@@ -313,6 +313,7 @@ public class SetActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		LogRingForu.v(TAG, "onResume");
 		refreshView();
 	}
 
@@ -365,8 +366,8 @@ public class SetActivity extends Activity implements OnClickListener {
 				return;
 			}
 			try {
-				if (FileUtil.save(MainUtil.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath(), mMainConfig.getImporantNames(), SetActivity.this)
-						&& FileUtil.save(MainUtil.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath(), mMainConfig.getImporantNumbers(), SetActivity.this)) {
+				if (FileUtil.write(mMainConfig.getImporantNames(), new File(MainUtil.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath()), false)
+						&& FileUtil.write(mMainConfig.getImporantNumbers(), new File(MainUtil.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath()), false)) {
 					MyToast.makeText(SetActivity.this, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
@@ -385,8 +386,8 @@ public class SetActivity extends Activity implements OnClickListener {
 			}
 			// 备份通话拦截数据
 			try {
-				if (FileUtil.save(MainUtil.FILE_SDCARD_CALL_NAME.getAbsolutePath(), mMainConfig.getInterceptCallNames(), SetActivity.this)
-						&& FileUtil.save(MainUtil.FILE_SDCARD_CALL_NUM.getAbsolutePath(), mMainConfig.getInterceptCallNumbers(), SetActivity.this)) {
+				if (FileUtil.write(mMainConfig.getInterceptCallNames(), new File(MainUtil.FILE_SDCARD_CALL_NAME.getAbsolutePath()), false)
+						&& FileUtil.write(mMainConfig.getInterceptCallNumbers(), new File(MainUtil.FILE_SDCARD_CALL_NUM.getAbsolutePath()), false)) {
 					MyToast.makeText(SetActivity.this, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
@@ -405,8 +406,8 @@ public class SetActivity extends Activity implements OnClickListener {
 				return;
 			}
 			try {
-				if (FileUtil.save(MainUtil.FILE_SDCARD_SMS_NAME.getAbsolutePath(), mMainConfig.getInterceptSmsNames(), SetActivity.this)
-						&& FileUtil.save(MainUtil.FILE_SDCARD_SMS_NUM.getAbsolutePath(), mMainConfig.getInterceptSmsNumbers(), SetActivity.this)) {
+				if (FileUtil.write(mMainConfig.getInterceptSmsNames(), new File(MainUtil.FILE_SDCARD_SMS_NAME.getAbsolutePath()), false)
+						&& FileUtil.write(mMainConfig.getInterceptSmsNumbers(), new File(MainUtil.FILE_SDCARD_SMS_NUM.getAbsolutePath()), false)) {
 					MyToast.makeText(SetActivity.this, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
@@ -433,8 +434,8 @@ public class SetActivity extends Activity implements OnClickListener {
 				return;
 			}
 			try {
-				mMainConfig.setImportantNames(FileUtil.load(MainUtil.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath(), SetActivity.this));
-				mMainConfig.setImportantNumbers(FileUtil.load(MainUtil.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath(), SetActivity.this));
+				mMainConfig.setImportantNames(FileUtil.read(new File(MainUtil.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath())));
+				mMainConfig.setImportantNumbers(FileUtil.read(new File(MainUtil.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath())));
 				MyToast.makeText(SetActivity.this, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
 				// MyToast.makeText(SetActivity.this, R.string.import_fail,
 				// Toast.LENGTH_SHORT, true).show();
@@ -450,8 +451,8 @@ public class SetActivity extends Activity implements OnClickListener {
 			}
 			// 导入备份
 			try {
-				mMainConfig.setInterceptCallNames(FileUtil.load(MainUtil.FILE_SDCARD_CALL_NAME.getAbsolutePath(), SetActivity.this));
-				mMainConfig.setInterceptCallNumbers(FileUtil.load(MainUtil.FILE_SDCARD_CALL_NUM.getAbsolutePath(), SetActivity.this));
+				mMainConfig.setInterceptCallNames(FileUtil.read(new File(MainUtil.FILE_SDCARD_CALL_NAME.getAbsolutePath())));
+				mMainConfig.setInterceptCallNumbers(FileUtil.read(new File(MainUtil.FILE_SDCARD_CALL_NUM.getAbsolutePath())));
 				MyToast.makeText(SetActivity.this, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
 				// MyToast.makeText(SetActivity.this, R.string.import_fail,
 				// Toast.LENGTH_SHORT, true).show();
@@ -468,8 +469,8 @@ public class SetActivity extends Activity implements OnClickListener {
 			// 导入备份
 			try {
 
-				mMainConfig.setInterceptSmsNames(FileUtil.load(MainUtil.FILE_SDCARD_SMS_NAME.getAbsolutePath(), SetActivity.this));
-				mMainConfig.setInterceptSmsNumbers(FileUtil.load(MainUtil.FILE_SDCARD_SMS_NUM.getAbsolutePath(), SetActivity.this));
+				mMainConfig.setInterceptSmsNames(FileUtil.read(new File(MainUtil.FILE_SDCARD_SMS_NAME.getAbsolutePath())));
+				mMainConfig.setInterceptSmsNumbers(FileUtil.read(new File(MainUtil.FILE_SDCARD_SMS_NUM.getAbsolutePath())));
 				MyToast.makeText(SetActivity.this, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
 				// MyToast.makeText(SetActivity.this, R.string.import_fail,
 				// Toast.LENGTH_SHORT, true).show();
@@ -486,7 +487,6 @@ public class SetActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 

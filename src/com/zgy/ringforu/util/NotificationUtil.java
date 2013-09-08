@@ -64,6 +64,7 @@ public class NotificationUtil {
 			// 创建一个NotificationManager的引用
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			Notification notification = new Notification(R.drawable.ic_notification_disablegprs_on, context.getString(R.string.disable_gprs_on_tip), System.currentTimeMillis());
+			notification.icon = R.drawable.ic_notification_disablegprs_on;
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			notification.flags |= Notification.FLAG_NO_CLEAR;
 			CharSequence contentText = context.getString(R.string.disable_gprs_notify_msg); // 获得回复的短信内容
@@ -93,6 +94,10 @@ public class NotificationUtil {
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			// 定义Notification的各种属性
 			Notification notification = new Notification(R.drawable.ic_notification_busymode_on, context.getString(R.string.busymode_tip_open_toast), System.currentTimeMillis());
+			
+//			notification.internalApp = 1;    //加上这句就ok了. 只适用于魅族的sdk
+			notification.icon = R.drawable.ic_notification_busymode_on;
+			
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 			notification.flags |= Notification.FLAG_NO_CLEAR;
@@ -193,6 +198,7 @@ public class NotificationUtil {
 		// 定义Notification的各种属性
 		Notification notification = new Notification(R.drawable.ic_notification_busymode_refused, context.getString(R.string.str_busymode_notification_refused_notify), System.currentTimeMillis());
 		// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
+		notification.icon = R.drawable.ic_notification_busymode_refused;
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
 		// 表明在点击了通知栏中的"清除通知"后，此通知不清除，经常与FLAG_ONGOING_EVENT一起使用
 		// notification.flags |=
@@ -233,6 +239,7 @@ public class NotificationUtil {
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			// 定义Notification的各种属性
 			Notification notification = new Notification(R.drawable.ic_notification_watermark_on, context.getString(R.string.watermark_on), System.currentTimeMillis());
+			notification.icon = R.drawable.ic_notification_watermark_on;
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 			notification.flags |= Notification.FLAG_NO_CLEAR;
@@ -271,6 +278,7 @@ public class NotificationUtil {
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			// 定义Notification的各种属性
 			Notification notification = new Notification(R.drawable.ic_notification_smslight_on, context.getString(R.string.smslight_on), System.currentTimeMillis());
+			notification.icon = R.drawable.ic_notification_smslight_on;
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 			notification.flags |= Notification.FLAG_NO_CLEAR;
@@ -309,6 +317,7 @@ public class NotificationUtil {
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			// 定义Notification的各种属性
 			Notification notification = new Notification(R.drawable.ic_notification_signalreconnect_on, context.getString(R.string.signalreconnect_on), System.currentTimeMillis());
+			notification.icon = R.drawable.ic_notification_signalreconnect_on;
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 			notification.flags |= Notification.FLAG_NO_CLEAR;

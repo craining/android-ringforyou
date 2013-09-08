@@ -78,8 +78,8 @@ public class PhoneUtil {
 	 * @date:2012-11-22
 	 */
 	public static void turnUpMost(Context context) {
-		if (RingForU.DEBUG)
-			LogRingForu.v(TAG, "turnUpMost");
+
+		LogRingForu.v(TAG, "turnUpMost");
 		AudioManager audioMgr = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		audioMgr.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_ON);
 		audioMgr.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
@@ -98,11 +98,12 @@ public class PhoneUtil {
 	 * @date:2012-11-22
 	 */
 	public static void turnDown(Context context) {
-		if (RingForU.DEBUG)
-			LogRingForu.v(TAG, "turnDown");
+
+		LogRingForu.v(TAG, "turnDown");
 		AudioManager audioMgr = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		audioMgr.setRingerMode(AudioManager.RINGER_MODE_SILENT);// 静音模式、不震动
-		// audioMgr.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_OFF);
+		// audioMgr.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER,
+		// AudioManager.VIBRATE_SETTING_OFF);
 	}
 
 	/**
@@ -165,8 +166,8 @@ public class PhoneUtil {
 	 * @date:2012-11-22
 	 */
 	public static void turnPre(Context context) {
-		if (RingForU.DEBUG)
-			LogRingForu.v(TAG, "turnPre");
+
+		LogRingForu.v(TAG, "turnPre");
 		AudioManager audioMgr = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		audioMgr.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 	}
@@ -240,8 +241,8 @@ public class PhoneUtil {
 		// sb.append("\r\nSimState = " + tm.getSimState());
 		sb.append("\r\nSubscriberId(IMSI) = " + tm.getSubscriberId());
 		// sb.append("\r\nVoiceMailNumber = " + tm.getVoiceMailNumber());
-		if (RingForU.DEBUG)
-			LogRingForu.i("info", sb.toString());
+
+		LogRingForu.i("info", sb.toString());
 		return sb.toString();
 	}
 
@@ -291,8 +292,8 @@ public class PhoneUtil {
 		List<String> divideContents = smsManager.divideMessage(content);
 		for (String text : divideContents) {
 			smsManager.sendTextMessage(tonumber, null, text, null, null);
-			if (RingForU.DEBUG)
-				LogRingForu.e(TAG, "send msg, to:" + tonumber + "  content: " + content);
+
+			LogRingForu.e(TAG, "send msg, to:" + tonumber + "  content: " + content);
 		}
 	}
 
@@ -314,8 +315,8 @@ public class PhoneUtil {
 			java.lang.reflect.Field field;
 			field = build_version_class.getField("SDK_INT");
 			version = (Integer) field.get(new android.os.Build.VERSION());
-			if (RingForU.DEBUG)
-				LogRingForu.v(TAG, "isUpAPI10 ? api = " + version);
+
+			LogRingForu.v(TAG, "isUpAPI10 ? api = " + version);
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {

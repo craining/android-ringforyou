@@ -48,31 +48,31 @@ public class MsgReceiver extends BroadcastReceiver {
 			for (SmsMessage currMsg : msg) {
 				getFromNum = currMsg.getDisplayOriginatingAddress();
 			}
-			if (RingForU.DEBUG)
-				LogRingForu.v(TAG, getFromNum);
+
+			LogRingForu.v(TAG, getFromNum);
 			getFromNum = StringUtil.getRidofSpeciall(getFromNum);
 			if (strAllNumsImportant != null && strAllNumsImportant.contains(getFromNum)) {
-				if (RingForU.DEBUG)
-					LogRingForu.e(TAG, "check screen light");
+
+				LogRingForu.e(TAG, "check screen light");
 				SmsLightScreenUtil.checkSmsLightScreenOn(context);// µ„¡¡∆¡ƒª”Î∑Ò
 				if (MainUtil.isEffective(context)) {
 					PhoneUtil.turnUpMost(context);
 				} else {
-					if (RingForU.DEBUG)
-						LogRingForu.v(TAG, "not effective!");
+
+					LogRingForu.v(TAG, "not effective!");
 				}
 			} else if (strAllNumsSms != null && strAllNumsSms.contains(getFromNum)) {
 				// ∆¡±Œ∂Ã–≈£¨
 				switch (MainConfig.getInstance().getInterceptSmsStyle()) {
 				case ConfigCanstants.STYLE_INTERCEPT_SMS_SLIENT:
-					if (RingForU.DEBUG)
-						LogRingForu.e(TAG, "hide sms slient!");
+
+					LogRingForu.e(TAG, "hide sms slient!");
 					// ±£¡Ù∂Ã–≈
 					PhoneUtil.turnDownThenUp(context);
 					break;
 				case ConfigCanstants.STYLE_INTERCEPT_SMS_DISRECEIVE:
-					if (RingForU.DEBUG)
-						LogRingForu.e(TAG, "hide sms abort broadcast!");
+
+					LogRingForu.e(TAG, "hide sms abort broadcast!");
 					// ≤ª¥Ê¥¢∂Ã–≈
 					abortBroadcast();
 					setResultData(null);
@@ -81,8 +81,8 @@ public class MsgReceiver extends BroadcastReceiver {
 					break;
 				}
 			} else {
-				if (RingForU.DEBUG)
-					LogRingForu.e(TAG, "check screen light");
+
+				LogRingForu.e(TAG, "check screen light");
 				SmsLightScreenUtil.checkSmsLightScreenOn(context);// µ„¡¡∆¡ƒª”Î∑Ò
 			}
 		}

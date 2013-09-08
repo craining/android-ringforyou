@@ -14,8 +14,8 @@ public class DisableGprsRecerver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		if (RingForU.DEBUG)
-			LogRingForu.v(TAG, "changed");
+
+		LogRingForu.v(TAG, "changed");
 		DisableGprsUtil.ctrlNetWorkConnection(context);
 
 	}

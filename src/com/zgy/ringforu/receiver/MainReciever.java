@@ -12,8 +12,8 @@ public class MainReciever extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		if (RingForU.DEBUG)
-			LogRingForu.e("MainReciever", "recive action = " + intent.getAction());
+
+		LogRingForu.e("MainReciever", "recive action = " + intent.getAction());
 		MainUtil.checkAllState(context);
 	}
 

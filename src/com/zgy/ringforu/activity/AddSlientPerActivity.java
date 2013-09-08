@@ -55,19 +55,19 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 
 		hoursPickStart.setAdapter(new NumericWheelAdapter(0, 23));
 		hoursPickStart.setCyclic(false);
-		hoursPickStart.setVisibleItems(7);
+		hoursPickStart.setVisibleItems(5);
 
 		hoursPickEnd.setAdapter(new NumericWheelAdapter(0, 23));
 		hoursPickEnd.setCyclic(false);
-		hoursPickEnd.setVisibleItems(7);
+		hoursPickEnd.setVisibleItems(5);
 
 		minutesPickStart.setAdapter(new NumericWheelAdapter(0, 59, "%02d"));
 		minutesPickStart.setCyclic(true);
-		minutesPickStart.setVisibleItems(7);
+		minutesPickStart.setVisibleItems(5);
 
 		minutesPickEnd.setAdapter(new NumericWheelAdapter(0, 59, "%02d"));
 		minutesPickEnd.setCyclic(true);
-		minutesPickEnd.setVisibleItems(7);
+		minutesPickEnd.setVisibleItems(5);
 
 		hoursPickStart.setCurrentItem(22);
 		addChangingListener(hoursPickStart);
@@ -118,7 +118,7 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 		PhoneUtil.doVibraterNormal(vb);
 		switch (v.getId()) {
 		case R.id.btn_add_slient_return:
-			finish();
+			RingForUActivityManager.pop(this);
 			break;
 		case R.id.btn_add_slient_add:
 			// 添加静音时段
@@ -130,7 +130,7 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 				case 2:
 					// 成功
 					MyToast.makeText(AddSlientPerActivity.this, R.string.add_success, Toast.LENGTH_SHORT, false).show();
-					finish();
+					RingForUActivityManager.pop(this);
 					break;
 				case -1:
 					// 重复
@@ -147,7 +147,7 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 				case 3:
 					// 包含
 					MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_contain, Toast.LENGTH_SHORT, false).show();
-					finish();
+					RingForUActivityManager.pop(this);
 					break;
 
 				default:
@@ -164,7 +164,6 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 	
 	@Override
 	protected void onDestroy() {
-		RingForUActivityManager.pop(this);
 		super.onDestroy();
 	}
 
