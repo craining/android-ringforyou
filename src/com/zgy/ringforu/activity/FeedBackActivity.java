@@ -137,9 +137,9 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 	 */
 	private String getAddr() {
 		if (TextUtils.isEmpty(editEmail.getText())) {
-			return "\r\nno addr";
+			return "\r\n\r\nNo Email";
 		} else {
-			return "\r\naddr: " + editEmail.getText().toString();
+			return "\r\n\r\nEmail:  " + editEmail.getText().toString();
 		}
 	}
 	
