@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="@dimen/layout_height_row"
+    android:background="@drawable/bg_list_item"
     android:paddingLeft="@dimen/layout_margin_title_little"
-    android:paddingRight="@dimen/layout_margin_title_little"
-    android:background="@drawable/bg_list_item">
+    android:paddingRight="@dimen/layout_margin_title_little" >
 
-    <TextView
+     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,18 +14,23 @@
         android:layout_centerVertical="true"
         android:layout_marginBottom="@dimen/layout_little_margin"
         android:layout_marginTop="@dimen/layout_little_margin"
+        android:singleLine="true"
+        android:layout_marginRight="@dimen/layout_margin_right_listrow"
         android:textSize="@dimen/btn_textsize_big" />
-
+     
     <TextView
         android:id="@+id/number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="@dimen/layout_margin_right_listrow"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_gravity="right"
         android:layout_marginBottom="@dimen/layout_little_margin"
         android:layout_marginLeft="@dimen/search_edit_padding_left"
         android:layout_marginTop="@dimen/layout_little_margin"
+        android:singleLine="true"
         android:textSize="@dimen/btn_textsize_main_add" />
+
 
 </RelativeLayout>

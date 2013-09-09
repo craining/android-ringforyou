@@ -80,5 +80,8 @@
 <dimen name="textsize_big">35sp</dimen>
 <dimen name="textsize_big_less">20sp</dimen>
 
+<dimen name="layout_margin_right_listrow">90dip</dimen>
+<dimen name="layout_right_width_listrow">110dip</dimen>
+
 
 </resources>

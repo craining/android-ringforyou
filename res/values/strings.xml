@@ -221,7 +221,7 @@
     <string name="watermark_close">关闭</string>
     <string name="watermark_close_finish">屏幕水印已关闭！</string>
     <string name="watermark_cannot_pick">操作无法进行，请检查存储卡是否可用</string>
-    <string name="about_maker">制作人：</string>
+    <string name="about_maker">制作：</string>
     <string name="about_maker_name">庄广钰</string>
     <string name="about_programer">开发：</string>
     <string name="about_programer_name">庄广钰</string>
