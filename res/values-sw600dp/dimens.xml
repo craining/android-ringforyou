@@ -80,7 +80,7 @@
     <dimen name="logo_wh">150dip</dimen>
     <dimen name="textsize_big">53sp</dimen>
     <dimen name="textsize_big_less">30sp</dimen>
-    <dimen name="layout_margin_right_listrow">135dip</dimen>
+    <dimen name="layout_margin_right_listrow">150dip</dimen>
     <dimen name="layout_right_width_listrow">165dip</dimen>
 
     <!-- top menu -->

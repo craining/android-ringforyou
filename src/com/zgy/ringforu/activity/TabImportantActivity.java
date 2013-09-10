@@ -54,7 +54,6 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 	private ListView listMain;
 	private SimpleAdapter listItemAdapter;
 
-	private Button btnClsList;
 	private ImageView imgSet;
 
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
@@ -83,7 +82,6 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 
 		btnAddFromContacts = (Button) findViewById(R.id.btn_important_addfrom);
 		btnAddByInput = (Button) findViewById(R.id.btn_important_addby);
-		btnClsList = (Button) findViewById(R.id.btn_important_clslist);
 		listMain = (ListView) findViewById(R.id.list_important);
 		imgSet = (ImageView) findViewById(R.id.img_important_set);
 
@@ -91,7 +89,6 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 
 		btnAddFromContacts.setOnClickListener(TabImportantActivity.this);
 		btnAddByInput.setOnClickListener(TabImportantActivity.this);
-		btnClsList.setOnClickListener(TabImportantActivity.this);
 		imgSet.setOnClickListener(TabImportantActivity.this);
 
 		listMain.setOnItemLongClickListener(new OnItemLongClickListener() {

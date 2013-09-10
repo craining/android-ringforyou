@@ -21,10 +21,12 @@ public class BaseGestureActivity extends Activity implements OnGestureListener {
 
 	public void onSlideToRight() {
 		mGetResult = true;
+		LogRingForu.e("", "--------onSlideToRight-------------");
 	}
 
 	public void onSlideToLeft() {
 		mGetResult = true;
+		LogRingForu.e("", "--------onSlideToLeft-------------");
 	}
 
 	@Override
@@ -37,13 +39,16 @@ public class BaseGestureActivity extends Activity implements OnGestureListener {
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 
-		if (ev.getAction() == MotionEvent.ACTION_UP) {
-			mGetResult = false;
-		}
+		if(MainCanstants.bIsGestureOn) {
+			if (ev.getAction() == MotionEvent.ACTION_UP) {
+				mGetResult = false;
+			}
 
-		if (!mGetResult && MainCanstants.bIsGestureOn) {
-			mGestureDetector.onTouchEvent(ev);
+			if (!mGetResult) {
+				mGestureDetector.onTouchEvent(ev);
+			}
 		}
+		
 
 		return super.dispatchTouchEvent(ev);
 	}
@@ -68,7 +73,7 @@ public class BaseGestureActivity extends Activity implements OnGestureListener {
 	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
 		LogRingForu.v("", "e1.getY() - e2.getY()=" + (e1.getY() - e2.getY()));
 		LogRingForu.v("", "e1.getx() - e2.getx()=" + (e1.getX() - e2.getX()));
-		if ((e1.getY() - e2.getY() - MainCanstants.INT_ONFLING_LEN[1]) < 0) {
+		if ((Math.abs(e1.getY() - e2.getY()) - MainCanstants.INT_ONFLING_LEN[1]) < 0) {
 
 			if (e1.getX() - e2.getX() - MainCanstants.INT_ONFLING_LEN[0] > 0) {
 				// ×ó»¬

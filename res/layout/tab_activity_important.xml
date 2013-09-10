@@ -13,11 +13,6 @@
             android:id="@+id/view_important_anchor"
             style="@style/view_anchor" />
 
-        <Button
-            android:id="@+id/btn_important_clslist"
-            style="@style/btn_left_top_clear"
-            android:visibility="gone" />
-
         <TextView
             android:id="@+id/text_important_title"
             style="@style/text_top_title"

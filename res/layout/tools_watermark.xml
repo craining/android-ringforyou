@@ -4,9 +4,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/bg_grey" >
+
     <RelativeLayout
         android:id="@+id/layout_watermark_top"
-		style="@style/layout_top_title">
+        style="@style/layout_top_title" >
 
         <Button
             android:id="@+id/btn_watermark_cancel"
@@ -18,7 +19,7 @@
 
         <Button
             android:id="@+id/btn_watermark_ok"
-			style="@style/btn_right_top"
+            style="@style/btn_right_top"
             android:text="@string/finish" />
 
         <Button
@@ -27,33 +28,13 @@
             android:layout_height="@dimen/btn_height_top"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/btn_margin_right_second"
+            android:layout_toLeftOf="@id/btn_watermark_ok"
             android:background="@drawable/bg_btn_red"
             android:text="@string/watermark_close"
             android:textColor="@color/white"
             android:textSize="@dimen/btn_textsize_top_title"
-            android:layout_toLeftOf="@id/btn_watermark_ok"
             android:visibility="gone" />
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_watermark_changebg"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/layout_watermark_top"
-        android:background="@android:color/transparent"
-        android:clickable="true" >
-
-        <TextView
-            android:id="@+id/text_watermark_changetip"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/layout_margin_left_right"
-            android:layout_marginRight="@dimen/layout_margin_left_right"
-            android:text="@string/watermark_change_tip"
-            android:textSize="@dimen/btn_textsize_main_add"
-            android:textStyle="bold|italic" />
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_watermark_operas"
@@ -144,6 +125,17 @@
                 android:thumbOffset="0dip" />
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_watermark_changebg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_watermark_operas"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/bg_translation_dark"
+        android:padding="@dimen/layout_margin_title"
+        android:text="@string/str_change_bg_color"
+        android:textColor="@color/white" />
 
     <ImageView
         android:id="@+id/img_watermark"

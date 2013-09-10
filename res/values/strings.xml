@@ -247,7 +247,10 @@
     <string name="menu_title_sms">短信屏蔽相关操作</string>
     <string name="menu_title_call">来电屏蔽相关操作</string>
     <string name="gesture_label">手势识别</string>
-    <string name="gesture_info">向右滑动，相当于点击标题栏上左侧按钮，向左滑动相当于点击标题栏上右侧按钮</string>
+    <!-- 向右滑动触发标题栏上最左侧按钮，向左滑动触发标题栏最上右侧按钮 -->
+    <string name="gesture_info">在页面上向左、向右滑动分别触发标题栏上最右侧、最左侧按钮</string>
+    <string name="str_change_bg_color">"切换背景\r\n查看效果"</string>
+    
     
 
 </resources>

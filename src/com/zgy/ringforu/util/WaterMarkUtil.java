@@ -97,16 +97,16 @@ public class WaterMarkUtil {
 	 */
 	public static void ctrlWaterMarkBackService(Context context, boolean open) {
 		if (open) {
-			if (!MainUtil.isServiceStarted(context, SERVICE_NAME_WATERMARK)) {
+//			if (!MainUtil.isServiceStarted(context, SERVICE_NAME_WATERMARK)) {
 				Intent i = new Intent(context, WaterMarkService.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startService(i);
 
-				LogRingForu.v(TAG, "service is not running, need to start service!");
-			} else {
+//				LogRingForu.v(TAG, "service is not running, need to start service!");
+//			} else {
 
-				LogRingForu.v(TAG, "service is running, no need to start service!");
-			}
+//				LogRingForu.v(TAG, "service is running, no need to start service!");
+//			}
 		} else {
 			if (MainUtil.isServiceStarted(context, SERVICE_NAME_WATERMARK)) {
 				Intent i = new Intent(context, WaterMarkService.class);

@@ -43,8 +43,7 @@ import com.zgy.ringforu.util.WaterMarkUtil;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
 
-public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSeekBarChangeListener,
-		OnClickListener {
+public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSeekBarChangeListener, OnClickListener {
 
 	private static final String TAG = "WaterMarkActivity";
 
@@ -61,9 +60,8 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	private Button btnOrientation;
 	private TextView textSeekbar;
 	private LinearLayout layoutOperas;
-	private LinearLayout layoutChangeBg;
+	private TextView mTextChangeBg;
 	private RelativeLayout layoutMain;
-	private TextView textChangeTip;
 
 	private SeekBar seekbarAlpha;
 
@@ -80,6 +78,10 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 
 	private MainConfig mMainConfig;
 
+	private boolean mSeekBarOnTouchMove;
+
+	private boolean mJumpOutFromPick;// 若从选择图片或剪裁图片时跳转，则无需check service
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -87,6 +89,10 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tools_watermark);
 		mMainConfig = MainConfig.getInstance();
+
+		clearWaterMark();
+
+		mSeekBarOnTouchMove = false;
 
 		RingForUActivityManager.push(this);
 
@@ -108,19 +114,20 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		btnOrientation = (Button) findViewById(R.id.btn_watermark_orientation);
 		textSeekbar = (TextView) findViewById(R.id.text_watermark);
 		layoutOperas = (LinearLayout) findViewById(R.id.layout_watermark_operas);
-		layoutChangeBg = (LinearLayout) findViewById(R.id.layout_watermark_changebg);
 		layoutMain = (RelativeLayout) findViewById(R.id.layout_watermark_main);
-		textChangeTip = (TextView) findViewById(R.id.text_watermark_changetip);
+		mTextChangeBg = (TextView) findViewById(R.id.text_watermark_changebg);
+
 		setBgAndTextColor();
+
 		seekbarAlpha.setOnSeekBarChangeListener(this);
 		btnOk.setOnClickListener(this);
 		btnCancel.setOnClickListener(this);
 		btnCut.setOnClickListener(this);
+		mTextChangeBg.setOnClickListener(this);
 		btnChange.setOnClickListener(this);
 		btnDel.setOnClickListener(this);
 		btnTitleClose.setOnClickListener(this);
 		btnOrientation.setOnClickListener(this);
-		layoutChangeBg.setOnClickListener(this);
 
 		refreshViews();
 
@@ -144,19 +151,26 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		// btnOk.setVisibility(View.GONE);
 		// }
 		// }
+
 	}
 
 	@Override
 	public void onProgressChanged(SeekBar arg0, int arg1, boolean arg2) {
 		imgShow.setAlpha(arg1);
+		// mSeekBarOnTouchMove = true;
+		LogRingForu.e(TAG, "onProgressChanged");
 	}
 
 	@Override
 	public void onStartTrackingTouch(SeekBar arg0) {
+		mSeekBarOnTouchMove = true;
+		LogRingForu.e(TAG, "onProgressChanged");
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar arg0) {
+		mSeekBarOnTouchMove = false;
+		LogRingForu.e(TAG, "onStopTrackingTouch");
 	}
 
 	@Override
@@ -224,7 +238,10 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			}
 			break;
 
-		case R.id.layout_watermark_changebg:
+		// case R.id.layout_watermark_changebg:
+		//
+		// break;
+		case R.id.text_watermark_changebg:
 			setBgAndTextColor();
 			break;
 		default:
@@ -246,7 +263,6 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		// layoutMain.setAnimation(AnimationUtils.loadAnimation(getBaseContext(),
 		// R.anim.alpha_in_long));
 		layoutMain.setBackgroundColor(Color.parseColor(arrayBbColors[currentBgColor]));
-		textChangeTip.setTextColor(Color.parseColor(arrayTextColors[currentBgColor]));
 		textSeekbar.setTextColor(Color.parseColor(arrayTextColors[currentBgColor]));
 		currentBgColor++;
 	}
@@ -263,7 +279,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			public void onClick(DialogInterface dialog, int whichButton) {
 				dialog.dismiss();
 				PhoneUtil.doVibraterNormal(ToolsWaterMarkActivity.super.mVb);
-				clearWaterMark();
+				mJumpOutFromPick = true;
 				Intent intent = new Intent(Intent.ACTION_PICK, null);
 				intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
 				startActivityForResult(intent, REQUEST_PICKPIC_GALLERY);
@@ -274,7 +290,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 				PhoneUtil.doVibraterNormal(ToolsWaterMarkActivity.super.mVb);
 				if (PhoneUtil.existSDcard()) {
 					dialog.dismiss();
-					clearWaterMark();
+					mJumpOutFromPick = true;
 					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 					tempFileSrc = new File(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
 					File mediaDir = tempFileSrc.getParentFile();
@@ -319,6 +335,8 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	 * @param uri
 	 */
 	public void startPhotoZoom(Uri cutFileUri) {
+
+		mJumpOutFromPick = true;
 
 		tempFileCutted = new File(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CUT + TimeUtil.getCurrentTimeMillis());
 
@@ -481,9 +499,9 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	 * 刷新当前界面
 	 */
 	private void refreshViews() {
+		mJumpOutFromPick = false;
 		// 显示水印到view
 		if (WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
-			WaterMarkUtil.ctrlWaterMarkBackService(ToolsWaterMarkActivity.this, false);
 			DisplayMetrics metric = getResources().getDisplayMetrics();
 			imgShow.setImageBitmap(BitmapUtil.readBitmapAutoSize(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath(), metric.widthPixels, metric.heightPixels));
 			imgShow.setScaleType(ScaleType.FIT_XY);
@@ -495,7 +513,8 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			textSeekbar.setVisibility(View.VISIBLE);
 			btnChange.setText(R.string.watermark_change);
 			// textChangeTip.setVisibility(View.VISIBLE);
-			layoutChangeBg.setVisibility(View.VISIBLE);
+			// layoutChangeBg.setVisibility(View.VISIBLE);
+			mTextChangeBg.setVisibility(View.VISIBLE);
 		} else {
 			btnOk.setVisibility(View.GONE);
 			btnCut.setVisibility(View.GONE);
@@ -505,7 +524,8 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			textSeekbar.setVisibility(View.GONE);
 			btnChange.setText(R.string.watermark_select_tip);
 			// textChangeTip.setVisibility(View.GONE);
-			layoutChangeBg.setVisibility(View.GONE);
+			// layoutChangeBg.setVisibility(View.GONE);
+			mTextChangeBg.setVisibility(View.GONE);
 			pickPic();
 		}
 		// 控制透明度
@@ -525,7 +545,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	protected void onDestroy() {
 		// WaterMarkService.show = true;
 		// WaterMarkUtil.ctrlWaterMarkBackService(WaterMarkActivity.this, true);
-		WaterMarkUtil.checkState(ToolsWaterMarkActivity.this);
+		// WaterMarkUtil.checkState(ToolsWaterMarkActivity.this);
 		// if (WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.exists()) {
 		// WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.delete();
 		// }
@@ -534,6 +554,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 
 	@Override
 	protected void onResume() {
+		LogRingForu.e(TAG, "onResume");
 		if (PhoneUtil.existSDcard()) {
 			File f = new File(MainUtil.FILE_IN_SDCARD);
 			if (!f.exists()) {
@@ -545,22 +566,35 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 
 	@Override
 	protected void onPause() {
-		WaterMarkService.show = true;
-		WaterMarkUtil.ctrlWaterMarkBackService(ToolsWaterMarkActivity.this, true);
+		LogRingForu.e(TAG, "onPause");
 		super.onPause();
+	}
+
+	@Override
+	protected void onStop() {
+		LogRingForu.e(TAG, "onStop");
+		if (!mJumpOutFromPick) {
+			LogRingForu.e(TAG, "!mJumpOutFromPick");
+			WaterMarkService.show = true;
+			WaterMarkUtil.ctrlWaterMarkBackService(ToolsWaterMarkActivity.this, true);
+		}
+		super.onStop();
 	}
 
 	@Override
 	public void onSlideToRight() {
 		super.onSlideToRight();
-		PhoneUtil.doVibraterNormal(super.mVb);
-		RingForUActivityManager.pop(this);
+		if (!mSeekBarOnTouchMove) {
+			PhoneUtil.doVibraterNormal(super.mVb);
+			RingForUActivityManager.pop(this);
+		}
+
 	}
 
 	@Override
 	public void onSlideToLeft() {
 		super.onSlideToLeft();
-		if (btnOk.getVisibility() == View.VISIBLE) {
+		if (btnOk.getVisibility() == View.VISIBLE && !mSeekBarOnTouchMove) {
 			PhoneUtil.doVibraterNormal(super.mVb);
 			open();
 			RingForUActivityManager.pop(this);

@@ -56,7 +56,6 @@ public class TabCallActivity extends Activity implements OnClickListener {
 	private ListView listMain;
 	private SimpleAdapter listItemAdapter;
 
-	private Button btnClsList;
 	private ImageView imgSet;
 
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
@@ -85,7 +84,6 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 		btnAddFromContacts = (Button) findViewById(R.id.btn_call_addfrom);
 		btnAddByInput = (Button) findViewById(R.id.btn_call_addby);
-		btnClsList = (Button) findViewById(R.id.btn_call_clslist);
 		listMain = (ListView) findViewById(R.id.list_call);
 		imgSet = (ImageView) findViewById(R.id.img_call_set);
 
@@ -93,7 +91,6 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 		btnAddFromContacts.setOnClickListener(TabCallActivity.this);
 		btnAddByInput.setOnClickListener(TabCallActivity.this);
-		btnClsList.setOnClickListener(TabCallActivity.this);
 		imgSet.setOnClickListener(TabCallActivity.this);
 
 		listMain.setOnItemLongClickListener(new OnItemLongClickListener() {
@@ -149,14 +146,12 @@ public class TabCallActivity extends Activity implements OnClickListener {
 			textShowdelTip.setVisibility(View.VISIBLE);
 			layoutShowNull.setVisibility(View.GONE);
 			// layoutMain.setBackgroundResource(R.drawable.bg_light);
-			btnClsList.setVisibility(View.VISIBLE);
 		} else {
 			// btnExport.setEnabled(false);
 			listMain.setVisibility(View.GONE);
 			textShowdelTip.setVisibility(View.GONE);
 			layoutShowNull.setVisibility(View.VISIBLE);
 			// layoutMain.setBackgroundColor(getResources().getColor(R.color.light_blue_bg));
-			btnClsList.setVisibility(View.GONE);
 		}
 	}
 

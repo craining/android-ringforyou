@@ -54,7 +54,6 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 	private ListView listMain;
 	private SimpleAdapter listItemAdapter;
 
-	private Button btnClsList;
 	private ImageView imgSet;
 
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
@@ -82,7 +81,6 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 
 		btnAddFromContacts = (Button) findViewById(R.id.btn_sms_addfrom);
 		btnAddByInput = (Button) findViewById(R.id.btn_sms_addby);
-		btnClsList = (Button) findViewById(R.id.btn_sms_clslist);
 		listMain = (ListView) findViewById(R.id.list_sms);
 		imgSet = (ImageView) findViewById(R.id.img_sms_set);
 
@@ -90,7 +88,6 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 
 		btnAddFromContacts.setOnClickListener(TabSmsActivity.this);
 		btnAddByInput.setOnClickListener(TabSmsActivity.this);
-		btnClsList.setOnClickListener(TabSmsActivity.this);
 		imgSet.setOnClickListener(TabSmsActivity.this);
 
 		listMain.setOnItemLongClickListener(new OnItemLongClickListener() {
@@ -143,13 +140,11 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 			textShowdelTip.setVisibility(View.VISIBLE);
 			layoutShowNull.setVisibility(View.GONE);
 			// layoutMain.setBackgroundResource(R.drawable.bg_light);
-			btnClsList.setVisibility(View.VISIBLE);
 		} else {
 			listMain.setVisibility(View.GONE);
 			textShowdelTip.setVisibility(View.GONE);
 			layoutShowNull.setVisibility(View.VISIBLE);
 			// layoutMain.setBackgroundColor(getResources().getColor(R.color.light_blue_bg));
-			btnClsList.setVisibility(View.GONE);
 		}
 
 	}
