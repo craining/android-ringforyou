@@ -155,9 +155,13 @@ public class FCMenu extends FCPopupWindow implements OnItemClickListener {
 			FCMenuItem item = (FCMenuItem) getItem(position);
 			if (item.getIconRes() != -1) {
 				holder.iconView.setImageResource(item.getIconRes());
+			} else {
+				holder.iconView.setVisibility(View.GONE);
 			}
 			if (item.getTextRes() != -1) {
 				holder.textView.setText(item.getTextRes());
+			} else {
+				holder.textView.setVisibility(View.GONE);
 			}
 
 			return convertView;

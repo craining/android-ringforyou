@@ -53,7 +53,7 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f07004d;
+        public static final int activity_horizontal_margin=0x7f07004c;
         public static final int btn_height_top=0x7f070001;
         public static final int btn_main_add_height=0x7f070022;
         public static final int btn_margin_left_right_top=0x7f070002;
@@ -76,6 +76,8 @@ public final class R {
          */
         public static final int btn_width_top=0x7f070000;
         /**  top menu 
+ top_menu 
+ top menu 
          */
         public static final int icon_w_h=0x7f07004a;
         public static final int img_loading_hw=0x7f070030;
@@ -149,7 +151,6 @@ public final class R {
         public static final int textsize_set_item_top=0x7f07000e;
         public static final int textsize_tab_bottom=0x7f070021;
         public static final int textsize_tip=0x7f070031;
-        public static final int top_menu_height=0x7f07004c;
     }
     public static final class drawable {
         public static final int bg_account_autocomplete_listitem=0x7f020000;
