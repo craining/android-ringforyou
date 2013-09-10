@@ -1,9 +1,6 @@
 package com.zgy.ringforu.activity;
 
-import android.app.Activity;
-import android.app.Service;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -13,9 +10,8 @@ import com.zgy.ringforu.R;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
 
-public class AboutActivity extends Activity implements OnClickListener {
+public class AboutActivity extends BaseGestureActivity implements OnClickListener {
 
-	private Vibrator vb = null;
 
 	private Button btnBack;
 
@@ -27,7 +23,6 @@ public class AboutActivity extends Activity implements OnClickListener {
 
 		RingForUActivityManager.push(this);
 
-		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 		btnBack = (Button) findViewById(R.id.btn_about_return);
 
 		btnBack.setOnClickListener(this);
@@ -40,7 +35,7 @@ public class AboutActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		PhoneUtil.doVibraterNormal(vb);
+		PhoneUtil.doVibraterNormal(super.mVb);
 		switch (v.getId()) {
 		case R.id.btn_about_return:
 
@@ -52,5 +47,21 @@ public class AboutActivity extends Activity implements OnClickListener {
 		}
 
 	}
+
+	@Override
+	public void onSlideToRight() {
+		super.onSlideToRight();
+		PhoneUtil.doVibraterNormal(super.mVb);
+		RingForUActivityManager.pop(AboutActivity.this);
+	}
+
+	@Override
+	public void onSlideToLeft() {
+		super.onSlideToLeft();
+	}
+
+ 
+	
+	
 
 }

@@ -22,7 +22,7 @@ import com.zgy.ringforu.view.MyToast;
 import com.zgy.ringforu.view.NumericWheelAdapter;
 import com.zgy.ringforu.view.WheelView;
 
-public class AddSlientPerActivity extends Activity implements OnClickListener {
+public class AddSlientPerActivity extends BaseGestureActivity implements OnClickListener {
 
 	private static final String TAG = "AddSlientPerActivity";
 	private WheelView hoursPickStart;
@@ -32,7 +32,6 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 
 	private Button btnBack;
 	private Button btnAdd;
-	private Vibrator vb = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +40,6 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.addslientper);
 
 		RingForUActivityManager.push(this);
-		
-		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		hoursPickStart = (WheelView) findViewById(R.id.wheel_alarmaddhour_start);
 		hoursPickEnd = (WheelView) findViewById(R.id.wheel_alarmaddhour_end);
@@ -113,58 +110,75 @@ public class AddSlientPerActivity extends Activity implements OnClickListener {
 		});
 	}
 
+	private void addSlientTime() {
+		// 添加静音时段
+		// -1：重复； 0：被包含； 1：冲突； 2：成功; 3:包含
+		if ((hoursPickStart.getCurrentItem() == hoursPickEnd.getCurrentItem()) && (minutesPickStart.getCurrentItem() == minutesPickEnd.getCurrentItem())) {
+			MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_fail_same, Toast.LENGTH_SHORT, true).show();
+		} else {
+			switch (MainUtil.insertSlientP(AddSlientPerActivity.this, TimeUtil.getTimeformatString(hoursPickStart.getCurrentItem()) + ":" + TimeUtil.getTimeformatString(minutesPickStart.getCurrentItem()) + "-" + TimeUtil.getTimeformatString(hoursPickEnd.getCurrentItem()) + ":" + TimeUtil.getTimeformatString(minutesPickEnd.getCurrentItem()))) {
+			case 2:
+				// 成功
+				MyToast.makeText(AddSlientPerActivity.this, R.string.add_success, Toast.LENGTH_SHORT, false).show();
+				RingForUActivityManager.pop(this);
+				break;
+			case -1:
+				// 重复
+				MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_fail_repeat, Toast.LENGTH_SHORT, true).show();
+				break;
+			case 0:
+				// 被包含
+				MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_fail_contained, Toast.LENGTH_SHORT, true).show();
+				break;
+			case 1:
+				// 冲突
+				MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_fail_conflict, Toast.LENGTH_SHORT, true).show();
+				break;
+			case 3:
+				// 包含
+				MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_contain, Toast.LENGTH_SHORT, false).show();
+				RingForUActivityManager.pop(this);
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+
 	@Override
 	public void onClick(View v) {
-		PhoneUtil.doVibraterNormal(vb);
+		PhoneUtil.doVibraterNormal(AddSlientPerActivity.super.mVb);
 		switch (v.getId()) {
 		case R.id.btn_add_slient_return:
 			RingForUActivityManager.pop(this);
 			break;
 		case R.id.btn_add_slient_add:
-			// 添加静音时段
-			// -1：重复； 0：被包含； 1：冲突； 2：成功; 3:包含
-			if ((hoursPickStart.getCurrentItem() == hoursPickEnd.getCurrentItem()) && (minutesPickStart.getCurrentItem() == minutesPickEnd.getCurrentItem())) {
-				MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_fail_same, Toast.LENGTH_SHORT, true).show();
-			} else {
-				switch (MainUtil.insertSlientP(AddSlientPerActivity.this, TimeUtil.getTimeformatString(hoursPickStart.getCurrentItem()) + ":" + TimeUtil.getTimeformatString(minutesPickStart.getCurrentItem()) + "-" + TimeUtil.getTimeformatString(hoursPickEnd.getCurrentItem()) + ":" + TimeUtil.getTimeformatString(minutesPickEnd.getCurrentItem()))) {
-				case 2:
-					// 成功
-					MyToast.makeText(AddSlientPerActivity.this, R.string.add_success, Toast.LENGTH_SHORT, false).show();
-					RingForUActivityManager.pop(this);
-					break;
-				case -1:
-					// 重复
-					MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_fail_repeat, Toast.LENGTH_SHORT, true).show();
-					break;
-				case 0:
-					// 被包含
-					MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_fail_contained, Toast.LENGTH_SHORT, true).show();
-					break;
-				case 1:
-					// 冲突
-					MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_fail_conflict, Toast.LENGTH_SHORT, true).show();
-					break;
-				case 3:
-					// 包含
-					MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_contain, Toast.LENGTH_SHORT, false).show();
-					RingForUActivityManager.pop(this);
-					break;
-
-				default:
-					break;
-				}
-			}
-
+			addSlientTime();
 			break;
 		default:
 			break;
 		}
 
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+	}
+
+	@Override
+	public void onSlideToRight() {
+		super.onSlideToRight();
+		PhoneUtil.doVibraterNormal(super.mVb);
+		RingForUActivityManager.pop(this);
+	}
+
+	@Override
+	public void onSlideToLeft() {
+		super.onSlideToLeft();
+		PhoneUtil.doVibraterNormal(super.mVb);
+		addSlientTime();
 	}
 
 }

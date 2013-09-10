@@ -15,9 +15,9 @@ import android.widget.Toast;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
-import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.view.MyToast;
 
@@ -33,9 +33,9 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		RingForUActivityManager.push(this);
-		
+
 		Intent intent = getIntent();
 		String action = intent.getAction();
 
@@ -58,9 +58,9 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 			}
 
 		}
-		
+
 		MainUtil.mainInitData(RingForU.getInstance());
-		
+
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.receivenumbers);
 
@@ -142,7 +142,7 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 		startActivity(i);
 		RingForUActivityManager.pop(this);
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();

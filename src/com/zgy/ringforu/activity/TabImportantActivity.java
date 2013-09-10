@@ -12,9 +12,8 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -30,6 +29,7 @@ import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.config.MainConfig;
+import com.zgy.ringforu.interfaces.OnGestureChangedListener;
 import com.zgy.ringforu.util.ImportExportUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -59,7 +59,6 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 
-	private Vibrator vb = null;
 
 	private FCMenu mTopMenu;
 	private OnTopMenuItemClickedListener mTopMenuListener;
@@ -77,9 +76,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.tab_activity_important);
 
 		// RingForUActivityManager.push(this);
-
-		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
-
+		
 		// layoutMain = (RelativeLayout) findViewById(R.id.layout_tab_important_main);
 		layoutShowNull = (LinearLayout) findViewById(R.id.layout_important_null);
 		textShowdelTip = (TextView) findViewById(R.id.text_important_top_deletetip);
@@ -102,7 +99,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 				LogRingForu.v(TAG, "delete: " + position);
-				PhoneUtil.doVibraterNormal(vb);
+				PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 				listItem.remove(position);
 				listItemAdapter.notifyDataSetChanged();
 				refreshViews();
@@ -169,7 +166,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 		// widthHeight[1] = dMetrics.heightPixels / 2;
 		widthHeight[1] = ViewGroup.LayoutParams.FILL_PARENT;
 
-		mTopMenu = new FCMenu(TabImportantActivity.this, widthHeight);
+		mTopMenu = new FCMenu(TabImportantActivity.this, widthHeight, findViewById(R.id.view_important_anchor));
 		mTopMenuListener = new OnTopMenuItemClickedListener();
 		mTopMenu.setMenuItemOnclickListener(mTopMenuListener);
 
@@ -188,7 +185,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 
 		@Override
 		public void onItemClicked(FCMenuItem item) {
-			PhoneUtil.doVibraterNormal(vb);
+			PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 			switch (item.getOpID()) {
 			case ID_MENU_ADD_CONTACTS:
 				Intent i = new Intent(TabImportantActivity.this, AddByContactsActivity.class);
@@ -234,7 +231,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 
 			public void onClick(DialogInterface dialog, int whichButton) {
 				dialog.dismiss();
-				PhoneUtil.doVibraterNormal(vb);
+				PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 				listItem = new ArrayList<HashMap<String, String>>();
 				listItemAdapter.notifyDataSetChanged();
 				refreshViews();
@@ -245,7 +242,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 
 			public void onClick(DialogInterface dialog, int whichButton) {
 				dialog.dismiss();
-				PhoneUtil.doVibraterNormal(vb);
+				PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 			}
 		}).create().show();
 	}
@@ -258,13 +255,14 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		LogRingForu.e(TAG, "onResume");
+		((MainActivityGroup) getParent()).setOnGestureChangedListener(mGuesterListener);
 		initListView();
 		super.onResume();
 	}
 
 	@Override
 	public void onClick(View v) {
-		PhoneUtil.doVibraterNormal(vb);
+		PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 
 		switch (v.getId()) {
 		case R.id.img_important_set:
@@ -275,7 +273,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 			if (mTopMenu.isShowing()) {
 				mTopMenu.closeMenu();
 			} else {
-				mTopMenu.showMenuAsDropDown(imgSet);
+				mTopMenu.showMenu();
 			}
 
 			break;
@@ -284,4 +282,24 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 		}
 
 	}
+
+	/**
+	 * 手势监听，从ActivityGroup传递过来的
+	 */
+	private OnGestureChangedListener mGuesterListener = new OnGestureChangedListener() {
+		
+		@Override
+		public void onSlideToRight() {
+			
+		}
+		
+		@Override
+		public void onSlideToLeft() {
+			if(!mTopMenu.isShowing()) {
+				PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
+				mTopMenu.showMenu();
+			}
+		}
+	};
+
 }

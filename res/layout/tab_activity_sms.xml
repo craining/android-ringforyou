@@ -9,10 +9,14 @@
         android:id="@+id/layout_sms_title"
         style="@style/layout_top_title" >
 
+        <View
+            android:id="@+id/view_sms_anchor"
+            style="@style/view_anchor" />
+
         <Button
             android:id="@+id/btn_sms_clslist"
-            style="@style/btn_left_top_clear" 
-            android:visibility="gone"/>
+            style="@style/btn_left_top_clear"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_sms_title"
@@ -39,8 +43,8 @@
             android:layout_marginLeft="@dimen/layout_margin_left_right"
             android:layout_marginRight="@dimen/layout_margin_left_right"
             android:layout_marginTop="@dimen/layout_margin_top_title"
-            android:orientation="horizontal" 
-            android:visibility="gone">
+            android:orientation="horizontal"
+            android:visibility="gone" >
 
             <Button
                 android:id="@+id/btn_sms_addfrom"
@@ -73,7 +77,7 @@
             android:id="@+id/layout_sms_null"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-           android:layout_marginLeft="@dimen/layout_margin_left_right"
+            android:layout_marginLeft="@dimen/layout_margin_left_right"
             android:layout_marginRight="@dimen/layout_margin_left_right"
             android:layout_marginTop="@dimen/layout_big_less_less_less"
             android:background="@drawable/bg_bolder"

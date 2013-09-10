@@ -164,6 +164,14 @@ public class MainConfig extends PreferenceUtil {
 		putBool(ConfigCanstants.SWITCH_OPERA_VIRBRATE, on);
 	}
 
+	public synchronized boolean isGestureOn() {
+		return getBool(ConfigCanstants.SWITCH_OPERA_GESTURE, true);
+	}
+
+	public synchronized void setGestureOnOff(boolean on) {
+		putBool(ConfigCanstants.SWITCH_OPERA_GESTURE, on);
+	}
+
 	public synchronized boolean isNotificationOn() {
 		return getBool(ConfigCanstants.NOTIFICATION_SWITCH, true);
 	}

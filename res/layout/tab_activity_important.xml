@@ -9,6 +9,10 @@
         android:id="@+id/layout_important_title"
         style="@style/layout_top_title" >
 
+        <View
+            android:id="@+id/view_important_anchor"
+            style="@style/view_anchor" />
+
         <Button
             android:id="@+id/btn_important_clslist"
             style="@style/btn_left_top_clear"

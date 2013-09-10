@@ -42,7 +42,7 @@ import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.view.MyToast;
 import com.zgy.ringforu.view.TextEditor;
 
-public class AddByContactsActivity extends Activity implements OnClickListener {
+public class AddByContactsActivity extends BaseGestureActivity implements OnClickListener {
 
 	private static final String TAG = "AddByContactsActivity";
 	private AsyncQueryHandler asyncQuery;
@@ -60,9 +60,6 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 	private ImageView imgLoading;
 	private LinearLayout layoutTip;
 	private Button btnBack;
-
-	private Vibrator vb = null;
-	private Handler myHandler;
 
 	private static final int MSG_REFRESH_LISTVEW = 0x188;
 
@@ -86,9 +83,6 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 		}
 
 		asyncQuery = new MyAsyncQueryHandler(getContentResolver());
-		myHandler = new MyHandler();
-
-		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		layoutTitle = (RelativeLayout) findViewById(R.id.layout_add_contact_title);
 		editSearch = (TextEditor) findViewById(R.id.edit_addcontact_search);
@@ -104,13 +98,13 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 		imgLoading.setImageResource(R.anim.loading);
 		animationDrawable = (AnimationDrawable) imgLoading.getDrawable();
 		animationDrawable.start();
-//		imgLoading.post(new Runnable() {
-//
-//			@Override
-//			public void run() {
-//				animationDrawable.start();
-//			}
-//		});
+		// imgLoading.post(new Runnable() {
+		//
+		// @Override
+		// public void run() {
+		// animationDrawable.start();
+		// }
+		// });
 
 		btnBack.setOnClickListener(this);
 		imgClearEdit.setOnClickListener(this);
@@ -134,16 +128,16 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 					listItem.remove(position);
 					listItemAdapter.notifyDataSetChanged();
 					MyToast.makeText(AddByContactsActivity.this, R.string.add_success, Toast.LENGTH_SHORT, false).show();
-					PhoneUtil.doVibraterNormal(vb);
+					PhoneUtil.doVibraterNormal(AddByContactsActivity.super.mVb);
 					refreshViews();
 					break;
 				case -1:
 					MyToast.makeText(AddByContactsActivity.this, R.string.add_cannot_more, Toast.LENGTH_SHORT, true).show();
-					PhoneUtil.doVibraterNormal(vb);
+					PhoneUtil.doVibraterNormal(AddByContactsActivity.super.mVb);
 					break;
 				case 0:
 					MyToast.makeText(AddByContactsActivity.this, R.string.add_fail, Toast.LENGTH_SHORT, true).show();
-					PhoneUtil.doVibraterNormal(vb);
+					PhoneUtil.doVibraterNormal(AddByContactsActivity.super.mVb);
 					break;
 				default:
 					break;
@@ -173,26 +167,6 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 			}
 		});
 	}
-
-	// private void loadDataInThread() {
-	//
-	// new Thread(new Runnable() {
-	//
-	// @Override
-	// public void run() {
-	//
-	// try {
-	// listContacts = ContactsUtil.getContactList(AddByContactsActivity.this);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// } finally {
-	// myHandler.sendEmptyMessage(MSG_REFRESH_LISTVEW);
-	// }
-	// }
-	//
-	// }).start();
-	//
-	// }
 
 	private class MyAsyncQueryHandler extends AsyncQueryHandler {
 
@@ -258,8 +232,7 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 			if (listContacts != null && listContacts.size() > 0) {
 				for (ContactInfo info : listContacts) {
 					HashMap<String, String> map = new HashMap<String, String>();
-					if (info.match && (getAllNumsImportant == null || !getAllNumsImportant.contains(info.num)) && (getAllNumsCall == null || !getAllNumsCall.contains(info.num))
-							&& (getAllNumsSms == null || !getAllNumsSms.contains(info.num))) {
+					if (info.match && (getAllNumsImportant == null || !getAllNumsImportant.contains(info.num)) && (getAllNumsCall == null || !getAllNumsCall.contains(info.num)) && (getAllNumsSms == null || !getAllNumsSms.contains(info.num))) {
 						map.put("name", info.name);
 						map.put("number", info.num);
 						listItem.add(map);
@@ -341,17 +314,12 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		if (vb != null) {
-			vb.cancel();
-			vb = null;
-		}
-		 
 	}
 
 	@Override
 	public void onClick(View v) {
 
-		PhoneUtil.doVibraterNormal(vb);
+		PhoneUtil.doVibraterNormal(AddByContactsActivity.super.mVb);
 		switch (v.getId()) {
 		case R.id.btn_add_contact_return:
 			RingForUActivityManager.pop(this);
@@ -446,4 +414,17 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 		}
 		return false;
 	}
+
+	@Override
+	public void onSlideToRight() {
+		super.onSlideToRight();
+		PhoneUtil.doVibraterNormal(super.mVb);
+		RingForUActivityManager.pop(this);
+	}
+
+	@Override
+	public void onSlideToLeft() {
+		super.onSlideToLeft();
+	}
+
 }

@@ -28,14 +28,13 @@ import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.SendEmailUtil;
 import com.zgy.ringforu.view.MyToast;
 
-public class FeedBackActivity extends Activity implements OnClickListener {
+public class FeedBackActivity extends BaseGestureActivity implements OnClickListener {
 
 	private static final String TAG = "FeedBackActivity";
 	private Button btnBack;
 	private Button btnSubmit;
 	private EditText editContent;
 	private AutoCompleteTextView editEmail;
-	private Vibrator vb = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +44,12 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.feedback);
 
 		RingForUActivityManager.push(this);
-		
-		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		btnBack = (Button) findViewById(R.id.btn_feedback_return);
 		btnSubmit = (Button) findViewById(R.id.btn_feedback_ok);
 		editContent = (EditText) findViewById(R.id.edit_feedback_content);
 		editEmail = (AutoCompleteTextView) findViewById(R.id.edit_feedback_email);
-		btnSubmit.setEnabled(false);
+//		btnSubmit.setEnabled(false);
 		btnBack.setOnClickListener(this);
 		btnSubmit.setOnClickListener(this);
 
@@ -63,65 +60,73 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 
 		editEmail.setDropDownBackgroundResource(R.drawable.edit_bg_normal_nopadding);
 
-		editContent.addTextChangedListener(new TextWatcher() {
+//		editContent.addTextChangedListener(new TextWatcher() {
+//
+//			@Override
+//			public void onTextChanged(CharSequence s, int start, int before, int count) {
+//			}
+//
+//			@Override
+//			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//			}
+//
+//			@Override
+//			public void afterTextChanged(Editable s) {
+//				if (!TextUtils.isEmpty(editContent.getText())) {
+//					btnSubmit.setEnabled(true);
+//				} else {
+//					btnSubmit.setEnabled(false);
+//				}
+//			}
+//		});
 
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
+	}
+
+	private void doFeedBack() {
+		
+		if (NetWorkUtil.isConnectInternet(FeedBackActivity.this)) {
+			
+			if(TextUtils.isEmpty(editContent.getText())) {
+				MyToast.makeText(FeedBackActivity.this, R.string.feedback_contentnull, Toast.LENGTH_SHORT, false).show();
+				return;
 			}
+			new Thread(new Runnable() {
 
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-				if (!TextUtils.isEmpty(editContent.getText())) {
-					btnSubmit.setEnabled(true);
-				} else {
-					btnSubmit.setEnabled(false);
+				@Override
+				public void run() {
+					SendEmailUtil send = new SendEmailUtil();
+					try {
+						StringBuilder sb = new StringBuilder();
+						sb.append(editContent.getText().toString()).append(getAddr()).append(MainCanstants.FEEDBACK_VERSION).append(PhoneUtil.getHandsetInfo(FeedBackActivity.this));
+						send.sendMail(MainCanstants.FEEDBACK_TITLE, sb.toString(), MainCanstants.FEEDBACK_EMAIL_TO);
+					} catch (AddressException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						MyToast.makeText(FeedBackActivity.this, R.string.feedback_contentfail, Toast.LENGTH_SHORT, true).show();
+					} catch (MessagingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						MyToast.makeText(FeedBackActivity.this, R.string.feedback_contentfail, Toast.LENGTH_SHORT, true).show();
+					}
 				}
-			}
-		});
-
+			}).start();
+			MyToast.makeText(FeedBackActivity.this, R.string.feedback_subminting, Toast.LENGTH_SHORT, false).show();
+			RingForUActivityManager.pop(this);
+		} else {
+			NetWorkUtil.setNetConnection(FeedBackActivity.this, FeedBackActivity.super.mVb);
+		}
 	}
 
 	@Override
 	public void onClick(View v) {
-		PhoneUtil.doVibraterNormal(vb);
+		PhoneUtil.doVibraterNormal(FeedBackActivity.super.mVb);
 		switch (v.getId()) {
 		case R.id.btn_feedback_return:
 			RingForUActivityManager.pop(this);
 			break;
 
 		case R.id.btn_feedback_ok:
-
-			if (NetWorkUtil.isConnectInternet(FeedBackActivity.this)) {
-				new Thread(new Runnable() {
-
-					@Override
-					public void run() {
-						SendEmailUtil send = new SendEmailUtil();
-						try {
-							StringBuilder sb = new StringBuilder();
-							sb.append(editContent.getText().toString()).append(getAddr()).append(MainCanstants.FEEDBACK_VERSION).append(PhoneUtil.getHandsetInfo(FeedBackActivity.this));
-							send.sendMail(MainCanstants.FEEDBACK_TITLE, sb.toString(), MainCanstants.FEEDBACK_EMAIL_TO);
-						} catch (AddressException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							MyToast.makeText(FeedBackActivity.this, R.string.feedback_contentfail, Toast.LENGTH_SHORT, true).show();
-						} catch (MessagingException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							MyToast.makeText(FeedBackActivity.this, R.string.feedback_contentfail, Toast.LENGTH_SHORT, true).show();
-						}
-					}
-				}).start();
-				MyToast.makeText(FeedBackActivity.this, R.string.feedback_subminting, Toast.LENGTH_SHORT, false).show();
-				RingForUActivityManager.pop(this);
-			} else {
-				NetWorkUtil.setNetConnection(FeedBackActivity.this, vb);
-			}
-
+			doFeedBack();
 			break;
 
 		default:
@@ -137,15 +142,29 @@ public class FeedBackActivity extends Activity implements OnClickListener {
 	 */
 	private String getAddr() {
 		if (TextUtils.isEmpty(editEmail.getText())) {
-			return "\r\n\r\nNo Email";
+			return MainCanstants.FEEDBACK_NO_EMAIL_LABEL;
 		} else {
-			return "\r\n\r\nEmail:  " + editEmail.getText().toString();
+			return MainCanstants.FEEDBACK_EMAIL_LABEL + editEmail.getText().toString();
 		}
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+	}
+
+	@Override
+	public void onSlideToRight() {
+		super.onSlideToRight();
+		PhoneUtil.doVibraterNormal(super.mVb);
+		RingForUActivityManager.pop(this);
+	}
+
+	@Override
+	public void onSlideToLeft() {
+		super.onSlideToLeft();
+		PhoneUtil.doVibraterNormal(super.mVb);
+		doFeedBack();
 	}
 
 }

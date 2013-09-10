@@ -1,10 +1,10 @@
 package com.zgy.ringforu.activity;
 
-import android.app.ActivityGroup;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -13,11 +13,11 @@ import android.widget.LinearLayout;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.util.RingForUActivityManager;
-import com.zgy.ringforu.util.MainUtil;
+import com.zgy.ringforu.interfaces.OnGestureChangedListener;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.RingForUActivityManager;
 
-public class MainActivityGroup extends ActivityGroup implements OnClickListener {
+public class MainActivityGroup extends BaseGestureActivityGroup implements OnClickListener {
 
 	private LinearLayout bodyView;
 	private LinearLayout tabImportant;
@@ -32,6 +32,8 @@ public class MainActivityGroup extends ActivityGroup implements OnClickListener 
 	private int flag = 0; // 通过标记跳转不同的页面，显示不同的菜单项
 	public int[] mWidthHeightTopMenu;
 
+	private OnGestureChangedListener mListener;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class MainActivityGroup extends ActivityGroup implements OnClickListener 
 		setContentView(R.layout.main_group);
 
 		RingForUActivityManager.push(this);
-		
+
 		initMainView();
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 		// 主界面开始接收参数
@@ -68,6 +70,12 @@ public class MainActivityGroup extends ActivityGroup implements OnClickListener 
 		// }
 		// }).start();
 
+	}
+
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent ev) {
+		// TODO Auto-generated method stub
+		return super.dispatchTouchEvent(ev);
 	}
 
 	/*
@@ -182,10 +190,31 @@ public class MainActivityGroup extends ActivityGroup implements OnClickListener 
 			break;
 		}
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+	}
+
+	public void setOnGestureChangedListener(OnGestureChangedListener listener) {
+		this.mListener = listener;
+	}
+
+	@Override
+	public void onSlideToRight() {
+		super.onSlideToRight();
+		if (mListener != null) {
+			mListener.onSlideToRight();
+		}
+
+	}
+
+	@Override
+	public void onSlideToLeft() {
+		super.onSlideToLeft();
+		if (mListener != null) {
+			mListener.onSlideToLeft();
+		}
 	}
 
 }

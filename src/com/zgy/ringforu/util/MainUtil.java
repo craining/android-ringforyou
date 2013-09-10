@@ -410,11 +410,8 @@ public class MainUtil {
 	 */
 	public static void mainInitData(Context context) {
 		// 得到振动的开关状态
-		if (MainConfig.getInstance().isVibrateOn()) {
-			MainCanstants.bIsVerbOn = true;
-		} else {
-			MainCanstants.bIsVerbOn = false;
-		}
+			MainCanstants.bIsVerbOn = MainConfig.getInstance().isVibrateOn();
+			MainCanstants.bIsGestureOn = MainConfig.getInstance().isGestureOn();
 		if (!(new File(MainUtil.FILE_INNER).exists())) {
 			new File(MainUtil.FILE_INNER).mkdirs();
 		}

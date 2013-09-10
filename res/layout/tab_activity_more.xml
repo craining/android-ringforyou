@@ -55,6 +55,35 @@
                         style="@style/checkbox_set_item_check" />
                 </RelativeLayout>
 
+                <View style="@style/line_set_item_diver" />
+                <!-- 手势 -->
+
+                <RelativeLayout
+                    android:id="@+id/layout_more_gesture"
+                    style="@style/layout_set_item"
+                    android:background="@drawable/bg_list_item"
+                    android:clickable="true" >
+
+                    <LinearLayout style="@style/layout_set_item_content_left"
+                        >
+
+                        <TextView
+                            style="@style/text_set_item_content_left_top"
+                            android:text="@string/gesture_label" />
+
+                        <com.zgy.ringforu.view.MarqueeTextView
+                            style="@style/text_set_item_content_left_bottom"
+                            android:ellipsize="marquee"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:singleLine="true"
+                            android:text="@string/gesture_info" />
+                    </LinearLayout>
+
+                    <CheckBox
+                        android:id="@+id/check_more_gesture"
+                        style="@style/checkbox_set_item_check" />
+                </RelativeLayout>
+
                 <!-- 特色功能 -->
 
                 <View style="@style/line_set_item_diver" />

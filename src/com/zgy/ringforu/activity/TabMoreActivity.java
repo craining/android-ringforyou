@@ -34,16 +34,15 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 	private static final String TAG = "TabCallActivity";
 
-	private CheckBox checkV;
+	private CheckBox checkV, checkGesture;
 	private RelativeLayout layoutFeedback;
 	private RelativeLayout layoutHelp;
 	private RelativeLayout layoutTools;
 	private RelativeLayout layoutClear;
 	private RelativeLayout layoutV;
+	private RelativeLayout layoutGesture;
 
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
-
-	private Vibrator vb = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,19 +52,20 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 		// RingForUActivityManager.push(this);
 
-		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
-
 		layoutFeedback = (RelativeLayout) findViewById(R.id.layout_more_feedback);
 		layoutHelp = (RelativeLayout) findViewById(R.id.layout_more_help);
 		layoutTools = (RelativeLayout) findViewById(R.id.layout_more_tools);
+		layoutGesture = (RelativeLayout) findViewById(R.id.layout_more_gesture);
 		layoutClear = (RelativeLayout) findViewById(R.id.layout_more_clear);
 		layoutV = (RelativeLayout) findViewById(R.id.layout_more_v);
 		checkV = (CheckBox) findViewById(R.id.check_more_checkv);
+		checkGesture = (CheckBox) findViewById(R.id.check_more_gesture);
 
 		layoutFeedback.setOnClickListener(this);
 		layoutHelp.setOnClickListener(this);
 		layoutTools.setOnClickListener(this);
 		layoutClear.setOnClickListener(this);
+		layoutGesture.setOnClickListener(this);
 
 		// 震动的开关需单独处理
 		layoutV.setOnClickListener(new View.OnClickListener() {
@@ -74,13 +74,10 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 			public void onClick(View v) {
 				// 震动的开启关闭
 				if (!MainCanstants.bIsVerbOn) {
-					vb.vibrate(MainCanstants.VIBRATE_STREGTH_NORMAL);
-					MainConfig.getInstance().setVibrateOnOff(true);
-				} else {
-					MainConfig.getInstance().setVibrateOnOff(false);
+					((MainActivityGroup) getParent()).mVb.vibrate(MainCanstants.VIBRATE_STREGTH_NORMAL);
 				}
-
 				MainCanstants.bIsVerbOn = !MainCanstants.bIsVerbOn;
+				MainConfig.getInstance().setVibrateOnOff(MainCanstants.bIsVerbOn);
 				refreshViews();
 
 			}
@@ -90,6 +87,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 	private void refreshViews() {
 		// 刷新震动开关的显示
 		checkV.setChecked(MainCanstants.bIsVerbOn);
+		checkGesture.setChecked(MainCanstants.bIsGestureOn);
 	}
 
 	@Override
@@ -99,6 +97,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
+		((MainActivityGroup) getParent()).setOnGestureChangedListener(null);
 		refreshViews();
 		LogRingForu.e(TAG, "onResume");
 		super.onResume();
@@ -107,7 +106,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 
-		PhoneUtil.doVibraterNormal(vb);
+		PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 
 		switch (v.getId()) {
 		case R.id.btn_set_return:
@@ -117,7 +116,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 			if (NetWorkUtil.isConnectInternet(TabMoreActivity.this)) {
 				startActivity(new Intent(TabMoreActivity.this, FeedBackActivity.class));
 			} else {
-				NetWorkUtil.setNetConnection(TabMoreActivity.this, vb);
+				NetWorkUtil.setNetConnection(TabMoreActivity.this, ((MainActivityGroup) getParent()).mVb);
 			}
 			break;
 		case R.id.layout_more_help:
@@ -135,6 +134,12 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 			clearData();
 			break;
 
+		case R.id.layout_more_gesture:
+			// 手势开关
+			MainCanstants.bIsGestureOn = !MainCanstants.bIsGestureOn;
+			MainConfig.getInstance().setGestureOnOff(MainCanstants.bIsGestureOn);
+			refreshViews();
+			break;
 		default:
 			break;
 		}
@@ -152,7 +157,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
-					PhoneUtil.doVibraterNormal(vb);
+					PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 					// 删除文件
 					MainUtil.clearData();
 					MyToast.makeText(TabMoreActivity.this, R.string.clear_data_over, Toast.LENGTH_LONG, false).show();
@@ -161,7 +166,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 				public void onClick(DialogInterface dialog, int whichButton) {
 					dialog.dismiss();
-					PhoneUtil.doVibraterNormal(vb);
+					PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 				}
 			}).create().show();
 		} else {

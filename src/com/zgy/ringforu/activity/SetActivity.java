@@ -31,7 +31,7 @@ import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
 
-public class SetActivity extends Activity implements OnClickListener {
+public class SetActivity extends BaseGestureActivity implements OnClickListener {
 
 	private static final String TAG = "SetActivity";
 
@@ -63,7 +63,6 @@ public class SetActivity extends Activity implements OnClickListener {
 	private TextView textSmsHideStyleTitle;
 	private TextView textSmsHideStyleInfo;
 
-	private Vibrator vb = null;
 	private int tag = 0;// 默认为重要联系人的添加 1:屏蔽电话 2:屏蔽短信
 
 	private MainConfig mMainConfig;
@@ -82,8 +81,6 @@ public class SetActivity extends Activity implements OnClickListener {
 		}
 
 		mMainConfig = MainConfig.getInstance();
-
-		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		btnBack = (Button) findViewById(R.id.btn_set_return);
 		textTitle = (TextView) findViewById(R.id.set_title_of);
@@ -255,7 +252,7 @@ public class SetActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		PhoneUtil.doVibraterNormal(vb);
+		PhoneUtil.doVibraterNormal(SetActivity.super.mVb);
 
 		switch (v.getId()) {
 		case R.id.btn_set_return:
@@ -282,17 +279,17 @@ public class SetActivity extends Activity implements OnClickListener {
 		case R.id.img_add_calm_important:
 			startActivity(new Intent(SetActivity.this, AddSlientPerActivity.class));
 			break;
-//		case R.id.layout_set_backup_important:
-//			doBackup();
-//			break;
-//
-//		case R.id.layout_set_backup_call:
-//			doBackup();
-//			break;
-//
-//		case R.id.layout_set_backup_sms:
-//			doBackup();
-//			break;
+		// case R.id.layout_set_backup_important:
+		// doBackup();
+		// break;
+		//
+		// case R.id.layout_set_backup_call:
+		// doBackup();
+		// break;
+		//
+		// case R.id.layout_set_backup_sms:
+		// doBackup();
+		// break;
 
 		case R.id.layout_set_hidestyle_sms:
 			Intent iSms = new Intent(SetActivity.this, SetHideStyleActivity.class);
@@ -327,72 +324,79 @@ public class SetActivity extends Activity implements OnClickListener {
 	// }
 	// }
 
-//	private void doBackup() {
-//
-//		if (PhoneUtil.existSDcard()) {
-//			// 存储卡已经挂载
-//			MyDialog.Builder builder = new MyDialog.Builder(SetActivity.this);
-//			builder.setTitle(R.string.set_backup_select).setMessage(R.string.set_backup_select_text).setPositiveButton(R.string.export_items, new DialogInterface.OnClickListener() {
-//
-//				public void onClick(DialogInterface dialog, int whichButton) {
-//					dialog.dismiss();
-//					PhoneUtil.doVibraterNormal(vb);
-//					// 导出备份
-//					exportData();
-//				}
-//			}).setNegativeButton(R.string.import_items, new DialogInterface.OnClickListener() {
-//
-//				public void onClick(DialogInterface dialog, int whichButton) {
-//					dialog.dismiss();
-//					PhoneUtil.doVibraterNormal(vb);
-//					// 导入备份
-//					importData();
-//				}
-//			}).create().show();
-//		} else {
-//			MyToast.makeText(SetActivity.this, R.string.set_backup_nosdcard, Toast.LENGTH_SHORT, true).show();
-//		}
-//
-//	}
-
+	// private void doBackup() {
+	//
+	// if (PhoneUtil.existSDcard()) {
+	// // 存储卡已经挂载
+	// MyDialog.Builder builder = new MyDialog.Builder(SetActivity.this);
+	// builder.setTitle(R.string.set_backup_select).setMessage(R.string.set_backup_select_text).setPositiveButton(R.string.export_items,
+	// new DialogInterface.OnClickListener() {
+	//
+	// public void onClick(DialogInterface dialog, int whichButton) {
+	// dialog.dismiss();
+	// PhoneUtil.doVibraterNormal(vb);
+	// // 导出备份
+	// exportData();
+	// }
+	// }).setNegativeButton(R.string.import_items, new DialogInterface.OnClickListener() {
+	//
+	// public void onClick(DialogInterface dialog, int whichButton) {
+	// dialog.dismiss();
+	// PhoneUtil.doVibraterNormal(vb);
+	// // 导入备份
+	// importData();
+	// }
+	// }).create().show();
+	// } else {
+	// MyToast.makeText(SetActivity.this, R.string.set_backup_nosdcard, Toast.LENGTH_SHORT, true).show();
+	// }
+	//
+	// }
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 	}
 
+	@Override
+	public void onSlideToRight() {
+		super.onSlideToRight();
+		PhoneUtil.doVibraterNormal(super.mVb);
+		RingForUActivityManager.pop(this);
+	}
+
+	@Override
+	public void onSlideToLeft() {
+		super.onSlideToLeft();
+	}
+
 	/***************************
-	 * if (new File(Globle.FILE_SDCARD_NAME).exists() && new
-	 * File(Globle.FILE_SDCARD_NUM).exists()) { btnImport.setEnabled(true); }
-	 * else { btnImport.setEnabled(false); }
+	 * if (new File(Globle.FILE_SDCARD_NAME).exists() && new File(Globle.FILE_SDCARD_NUM).exists()) {
+	 * btnImport.setEnabled(true); } else { btnImport.setEnabled(false); }
 	 * 
 	 * private BroadcastReceiver broadcastRec;
 	 * 
 	 * private void listenSdState() { IntentFilter intentFilter = new
-	 * IntentFilter(Intent.ACTION_MEDIA_MOUNTED);
-	 * intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
+	 * IntentFilter(Intent.ACTION_MEDIA_MOUNTED); intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
 	 * intentFilter.addAction(Intent.ACTION_MEDIA_BAD_REMOVAL);
 	 * intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
 	 * intentFilter.addAction(Intent.ACTION_MEDIA_UNMOUNTED);
-	 * intentFilter.addAction(Intent.ACTION_MEDIA_UNMOUNTABLE);
-	 * intentFilter.addDataScheme("file");
+	 * intentFilter.addAction(Intent.ACTION_MEDIA_UNMOUNTABLE); intentFilter.addDataScheme("file");
 	 * 
 	 * broadcastRec = new BroadcastReceiver() {
 	 * 
 	 * @Override public void onReceive(Context context, Intent intent) { if
-	 *           (intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED)) {
-	 *           LogRingForu.v(TAG, "SD card mounted!!!"); refreshViews(); }
-	 *           else if
+	 *           (intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED)) { LogRingForu.v(TAG,
+	 *           "SD card mounted!!!"); refreshViews(); } else if
 	 *           (intent.getAction().equals(Intent.ACTION_MEDIA_BAD_REMOVAL) ||
 	 *           intent.getAction().equals(Intent.ACTION_MEDIA_REMOVED) ||
 	 *           intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTED) ||
-	 *           intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTABLE)) {
-	 *           LogRingForu.v(TAG, "SD card UNmounted!!!");
-	 *           btnImport.setEnabled(false); btnExport.setEnabled(false); } }
-	 *           }; registerReceiver(broadcastRec, intentFilter);// 注册监听函数 }
+	 *           intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTABLE)) { LogRingForu.v(TAG,
+	 *           "SD card UNmounted!!!"); btnImport.setEnabled(false); btnExport.setEnabled(false); } } };
+	 *           registerReceiver(broadcastRec, intentFilter);// 注册监听函数 }
 	 * 
-	 *           //onDestroy if (broadcastRec != null) {
-	 *           unregisterReceiver(broadcastRec); broadcastRec = null; }
+	 *           //onDestroy if (broadcastRec != null) { unregisterReceiver(broadcastRec); broadcastRec =
+	 *           null; }
 	 * 
 	 ****/
 }

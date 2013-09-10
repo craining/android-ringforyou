@@ -18,7 +18,7 @@ import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
 
-public class SetHideStyleActivity extends Activity implements OnClickListener {
+public class SetHideStyleActivity extends BaseGestureActivity implements OnClickListener {
 
 	private int tag = 1;// 1为通话的拦截方式； 2为短信的拦截方式
 
@@ -42,21 +42,17 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 
 	private Button btnBack;
 
-	private Vibrator vb = null;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		RingForUActivityManager.push(this);
-		
+
 		Bundle b = getIntent().getExtras();
 		if (b != null) {
 			tag = b.getInt("style");
 		}
-
-		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		switch (tag) {
 		case MainCanstants.TYPE_INTECEPT_CALL:
@@ -98,7 +94,7 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		PhoneUtil.doVibraterNormal(vb);
+		PhoneUtil.doVibraterNormal(SetHideStyleActivity.super.mVb);
 		switch (v.getId()) {
 		case R.id.layout_sethidestyle_call_null:
 			MainConfig.getInstance().setInterceptCallStyle(ConfigCanstants.STYLE_INTERCEPT_CALL_NULL);
@@ -193,5 +189,16 @@ public class SetHideStyleActivity extends Activity implements OnClickListener {
 		super.onDestroy();
 	}
 
+	@Override
+	public void onSlideToRight() {
+		super.onSlideToRight();
+		PhoneUtil.doVibraterNormal(super.mVb);
+		RingForUActivityManager.pop(this);
+	}
+
+	@Override
+	public void onSlideToLeft() {
+		super.onSlideToLeft();
+	}
 
 }

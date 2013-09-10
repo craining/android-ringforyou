@@ -32,19 +32,22 @@ public class FCMenu extends FCPopupWindow implements OnItemClickListener {
 	private TextView mTextTitle;
 
 	private int[] mWidthHeight;
+	private View mViewAnchor;
 
-	public FCMenu(Context context, int[] widthHeight) {
+	public FCMenu(Context context, int[] widthHeight, View anchor) {
 		super(context);
 		this.mContext = context;
 		this.mWidthHeight = widthHeight;
+		this.mViewAnchor = anchor;
 		init();
 	}
 
-	public FCMenu(Context context, MenuItemOnClickListener callback, int[] widthHeight) {
+	public FCMenu(Context context, MenuItemOnClickListener callback, int[] widthHeight, View anchor) {
 		super(context);
 		this.mContext = context;
 		this.callback = callback;
 		this.mWidthHeight = widthHeight;
+		this.mViewAnchor = anchor;
 		init();
 	}
 
@@ -103,16 +106,16 @@ public class FCMenu extends FCPopupWindow implements OnItemClickListener {
 		mListView.setOnItemClickListener(this);
 	}
 
-	public void showMenuAsDropDown(View anchor) {
+	public void showMenu() {
 		// this.showAtBottom(container);
 
 		// this.showAsDropDown(container, anchor, ViewGroup.LayoutParams.WRAP_CONTENT,
 		// ViewGroup.LayoutParams.WRAP_CONTENT);
 
 		if (mWidthHeight == null) {
-			this.showAsDropDown(container, anchor, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			this.showAsDropDown(container, mViewAnchor, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		} else {
-			this.showAsDropDown(container, anchor, mWidthHeight[0], mWidthHeight[1]);
+			this.showAsDropDown(container, mViewAnchor, mWidthHeight[0], mWidthHeight[1]);
 		}
 	}
 

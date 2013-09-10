@@ -17,7 +17,7 @@ import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.view.MyToast;
 
-public class ToolsDisableGprsActivity extends Activity implements OnClickListener {
+public class ToolsDisableGprsActivity extends BaseGestureActivity implements OnClickListener {
 
 	private Button btnCtrl;
 	private TextView textShowState, textShowContent;

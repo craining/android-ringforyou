@@ -246,5 +246,8 @@
     <string name="menu_title_important">重要联系人相关操作</string>
     <string name="menu_title_sms">短信屏蔽相关操作</string>
     <string name="menu_title_call">来电屏蔽相关操作</string>
+    <string name="gesture_label">手势识别</string>
+    <string name="gesture_info">向右滑动，相当于点击标题栏上左侧按钮，向左滑动相当于点击标题栏上右侧按钮</string>
+    
 
 </resources>

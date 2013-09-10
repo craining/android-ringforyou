@@ -14,7 +14,7 @@
     <dimen name="layout_margin_top_title">20dip</dimen>
     <dimen name="layout_set_item_height">50dip</dimen>
     <dimen name="layout_set_item_margin_left">10dip</dimen>
-    <dimen name="layout_set_item_margin_right">30dip</dimen>
+    <dimen name="layout_set_item_margin_right">45dip</dimen>
     <dimen name="textsize_set_item_top">15sp</dimen>
     <dimen name="textsize_set_item_bottom">12sp</dimen>
     <dimen name="line_set_item_div_height">2dip</dimen>
@@ -59,7 +59,7 @@
     <dimen name="layout_margin_title_less">15dip</dimen>
     <dimen name="layout_big">150dip</dimen>
     <dimen name="layout_big_less_less">80dip</dimen>
-    <dimen name="layout_big_less_less_less">50dip</dimen>
+    <dimen name="layout_big_less_less_less">40dip</dimen>
     <dimen name="layout_big_less">130dip</dimen>
     <dimen name="layout_height_double">2dip</dimen>
     <dimen name="layout_height_five">5dip</dimen>

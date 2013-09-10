@@ -9,6 +9,10 @@
         android:id="@+id/layout_call_title"
         style="@style/layout_top_title" >
 
+        <View
+            android:id="@+id/view_call_anchor"
+            style="@style/view_anchor" />
+
         <Button
             android:id="@+id/btn_call_clslist"
             style="@style/btn_left_top_clear"
@@ -18,6 +22,7 @@
             android:id="@+id/text_call_title"
             style="@style/text_top_title"
             android:text="@string/tab_call" />
+
         <ImageView
             android:id="@+id/img_call_set"
             style="@style/img_right_top_set" />
@@ -38,8 +43,8 @@
             android:layout_marginLeft="@dimen/layout_margin_left_right"
             android:layout_marginRight="@dimen/layout_margin_left_right"
             android:layout_marginTop="@dimen/layout_margin_top_title"
-            android:orientation="horizontal" 
-            android:visibility="gone">
+            android:orientation="horizontal"
+            android:visibility="gone" >
 
             <Button
                 android:id="@+id/btn_call_addfrom"

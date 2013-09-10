@@ -19,7 +19,7 @@ import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.view.MyToast;
 import com.zgy.ringforu.view.WordsFlowView;
 
-public class ToolsBusyModeActivity extends Activity implements OnClickListener {
+public class ToolsBusyModeActivity extends BaseGestureActivity implements OnClickListener {
 
 	private static final String TAG = "BusyModeActivity";
 
@@ -28,8 +28,6 @@ public class ToolsBusyModeActivity extends Activity implements OnClickListener {
 	private Button btnClose;
 	private EditText editMsgContent;
 	private WordsFlowView wordsFlow;
-
-	private Vibrator vb = null;
 
 	public static String[] busyModesTitle;
 	public static String[] busyModeInfo;
@@ -45,8 +43,6 @@ public class ToolsBusyModeActivity extends Activity implements OnClickListener {
 		
 		RingForUActivityManager.push(this);
 		
-		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
-
 		btnBack = (Button) findViewById(R.id.btn_busymodeset_back);
 		btnClose = (Button) findViewById(R.id.btn_busymode_title_close);
 		btnOk = (Button) findViewById(R.id.btn_busymodeset_ok);
@@ -103,11 +99,23 @@ public class ToolsBusyModeActivity extends Activity implements OnClickListener {
 	// // keywordsFlow.feedKeyword(tmp);
 	// // }
 	// }
+	
+	private void setOk() {
+		// 设置自动回复的开关，以及短信回复的文字
+		if (TextUtils.isEmpty(editMsgContent.getText())) {
+			BusyModeUtil.setBusyModeOnOff(ToolsBusyModeActivity.this, true, null);
+		} else {
+			BusyModeUtil.setBusyModeOnOff(ToolsBusyModeActivity.this, true, editMsgContent.getText().toString());
+		}
+
+		MyToast.makeText(ToolsBusyModeActivity.this, R.string.busymode_tip_open_toast, MyToast.LENGTH_LONG, false).show();
+		RingForUActivityManager.pop(this);
+	}
 
 	@Override
 	public void onClick(View v) {
 
-		PhoneUtil.doVibraterNormal(vb);
+		PhoneUtil.doVibraterNormal(ToolsBusyModeActivity.super.mVb);
 		if (v instanceof Button) {
 			switch (v.getId()) {
 			case R.id.btn_busymodeset_back:
@@ -120,15 +128,7 @@ public class ToolsBusyModeActivity extends Activity implements OnClickListener {
 				break;
 
 			case R.id.btn_busymodeset_ok:
-				// 设置自动回复的开关，以及短信回复的文字
-				if (TextUtils.isEmpty(editMsgContent.getText())) {
-					BusyModeUtil.setBusyModeOnOff(ToolsBusyModeActivity.this, true, null);
-				} else {
-					BusyModeUtil.setBusyModeOnOff(ToolsBusyModeActivity.this, true, editMsgContent.getText().toString());
-				}
-
-				MyToast.makeText(ToolsBusyModeActivity.this, R.string.busymode_tip_open_toast, MyToast.LENGTH_LONG, false).show();
-				RingForUActivityManager.pop(this);
+				setOk();
 				break;
 
 			default:
@@ -172,5 +172,21 @@ public class ToolsBusyModeActivity extends Activity implements OnClickListener {
 		BusyModeUtil.checkState(ToolsBusyModeActivity.this);
 		super.onDestroy();
 	}
+
+	@Override
+	public void onSlideToRight() {
+		super.onSlideToRight();
+		PhoneUtil.doVibraterNormal(super.mVb);
+		RingForUActivityManager.pop(this);
+	}
+
+	@Override
+	public void onSlideToLeft() {
+		super.onSlideToLeft();
+		PhoneUtil.doVibraterNormal(super.mVb);
+		setOk();
+	}
+	
+	
 
 }

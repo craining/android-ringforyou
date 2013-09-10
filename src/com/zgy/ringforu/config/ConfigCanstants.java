@@ -20,6 +20,7 @@ public class ConfigCanstants {
 	public static final String SWITCH_SCREEN_WATERMARK = "SWITCH_SCREEN_WATERMARK";// TRUE为on
 	public static final String SCREEN_WATERMARK_ALPHA = "SCREEN_WATERMARK_ALPHA";// 透明度
 	public static final String SWITCH_OPERA_VIRBRATE = "SWITCH_OPERA_VIRBRATE";
+	public static final String SWITCH_OPERA_GESTURE = "SWITCH_OPERA_GESTURE";
 
 	public static final String SLIENT_TIME = "SLIENT_TIME";// 安静时段
 	// TODO

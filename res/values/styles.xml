@@ -83,6 +83,13 @@
         <item name="android:src">@drawable/bg_btn_set</item>
     </style>
 
+    <style name="view_anchor">
+        <item name="android:layout_width">1dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
     <!-- 设置区块 -->
 
     <style name="layout_set_block">

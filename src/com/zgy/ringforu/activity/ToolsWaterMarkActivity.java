@@ -43,7 +43,8 @@ import com.zgy.ringforu.util.WaterMarkUtil;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
 
-public class ToolsWaterMarkActivity extends Activity implements OnSeekBarChangeListener, OnClickListener {
+public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSeekBarChangeListener,
+		OnClickListener {
 
 	private static final String TAG = "WaterMarkActivity";
 
@@ -70,7 +71,6 @@ public class ToolsWaterMarkActivity extends Activity implements OnSeekBarChangeL
 	private static final int REQUEST_PICKPIC_CAMERA = 102;
 	private static final int REQUEST_PICKPIC_GALLERY = 103;
 
-	private Vibrator vb = null;
 	private String[] arrayBbColors;
 	private String[] arrayTextColors;
 	private int currentBgColor = 0;
@@ -94,7 +94,6 @@ public class ToolsWaterMarkActivity extends Activity implements OnSeekBarChangeL
 		// screenWidth = metric.widthPixels;
 		// screenHeight = metric.heightPixels;
 		// LogRingForu.v(TAG, "get screen " + screenWidth + "x" + screenHeight);
-		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 		arrayBbColors = getResources().getStringArray(R.array.bg_markwater);
 		arrayTextColors = getResources().getStringArray(R.array.color_markwater_text);
 		imgShow = (ImageView) findViewById(R.id.img_watermark);
@@ -162,7 +161,7 @@ public class ToolsWaterMarkActivity extends Activity implements OnSeekBarChangeL
 
 	@Override
 	public void onClick(View v) {
-		PhoneUtil.doVibraterNormal(vb);
+		PhoneUtil.doVibraterNormal(ToolsWaterMarkActivity.super.mVb);
 		switch (v.getId()) {
 		case R.id.btn_watermark_ok:
 			open();
@@ -263,7 +262,7 @@ public class ToolsWaterMarkActivity extends Activity implements OnSeekBarChangeL
 
 			public void onClick(DialogInterface dialog, int whichButton) {
 				dialog.dismiss();
-				PhoneUtil.doVibraterNormal(vb);
+				PhoneUtil.doVibraterNormal(ToolsWaterMarkActivity.super.mVb);
 				clearWaterMark();
 				Intent intent = new Intent(Intent.ACTION_PICK, null);
 				intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
@@ -272,7 +271,7 @@ public class ToolsWaterMarkActivity extends Activity implements OnSeekBarChangeL
 		}).setNegativeButton(R.string.watermark_camera, new DialogInterface.OnClickListener() {
 
 			public void onClick(DialogInterface dialog, int whichButton) {
-				PhoneUtil.doVibraterNormal(vb);
+				PhoneUtil.doVibraterNormal(ToolsWaterMarkActivity.super.mVb);
 				if (PhoneUtil.existSDcard()) {
 					dialog.dismiss();
 					clearWaterMark();
@@ -549,6 +548,23 @@ public class ToolsWaterMarkActivity extends Activity implements OnSeekBarChangeL
 		WaterMarkService.show = true;
 		WaterMarkUtil.ctrlWaterMarkBackService(ToolsWaterMarkActivity.this, true);
 		super.onPause();
+	}
+
+	@Override
+	public void onSlideToRight() {
+		super.onSlideToRight();
+		PhoneUtil.doVibraterNormal(super.mVb);
+		RingForUActivityManager.pop(this);
+	}
+
+	@Override
+	public void onSlideToLeft() {
+		super.onSlideToLeft();
+		if (btnOk.getVisibility() == View.VISIBLE) {
+			PhoneUtil.doVibraterNormal(super.mVb);
+			open();
+			RingForUActivityManager.pop(this);
+		}
 	}
 
 }

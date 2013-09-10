@@ -29,7 +29,7 @@ import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.util.WaterMarkUtil;
 import com.zgy.ringforu.view.MyToast;
 
-public class ToolsListActivity extends Activity implements OnClickListener {
+public class ToolsListActivity extends BaseGestureActivity implements OnClickListener {
 
 	private static final String TAG = "RToolsActivity";
 	private Button btnBack;
@@ -39,8 +39,6 @@ public class ToolsListActivity extends Activity implements OnClickListener {
 	private TextView textBusyModeInfo;
 
 	private String mStrBusyModeTitle = "";
-
-	private Vibrator vb = null;
 
 	public static final String ACTION_WATERMARK_ON = "com.zgy.ringforu.ACTION_WATERMARK_ON";
 	private ToolsReceiver mReceiver;
@@ -55,8 +53,6 @@ public class ToolsListActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.toolsview);
 
 		mStrBusyModeTitle = getString(R.string.busymode_title);
-
-		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		btnBack = (Button) findViewById(R.id.btn_tools_return);
 		layoutWatermark = (RelativeLayout) findViewById(R.id.layout_tool_watermark);
@@ -97,7 +93,7 @@ public class ToolsListActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 
-		PhoneUtil.doVibraterNormal(vb);
+		PhoneUtil.doVibraterNormal(ToolsListActivity.super.mVb);
 
 		switch (v.getId()) {
 		case R.id.btn_tools_return:
@@ -239,5 +235,19 @@ public class ToolsListActivity extends Activity implements OnClickListener {
 			unregisterReceiver(mReceiver);
 		}
 	}
+
+	@Override
+	public void onSlideToRight() {
+		super.onSlideToRight();
+		PhoneUtil.doVibraterNormal(super.mVb);
+		RingForUActivityManager.pop(this);
+	}
+
+	@Override
+	public void onSlideToLeft() {
+		super.onSlideToLeft();
+	}
+	
+	
 
 }
