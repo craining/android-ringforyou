@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -58,7 +59,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 
 	private Vibrator vb = null;
-	
+
 	private FCMenu mTopMenu;
 	private OnTopMenuItemClickedListener mTopMenuListener;
 	private static final int ID_MENU_ADD_CONTACTS = 1;
@@ -74,7 +75,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tab_activity_sms);
 
-//		RingForUActivityManager.push(this);
+		// RingForUActivityManager.push(this);
 
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
@@ -89,12 +90,12 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 		imgSet = (ImageView) findViewById(R.id.img_sms_set);
 
 		initTopMenu();
-		
+
 		btnAddFromContacts.setOnClickListener(TabSmsActivity.this);
 		btnAddByInput.setOnClickListener(TabSmsActivity.this);
 		btnClsList.setOnClickListener(TabSmsActivity.this);
 		imgSet.setOnClickListener(TabSmsActivity.this);
-		
+
 		listMain.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
@@ -173,10 +174,10 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 		PhoneUtil.doVibraterNormal(vb);
 
 		switch (v.getId()) {
-		 
+
 		case R.id.img_sms_set:
-		
-			if(mTopMenu.isShowing()) {
+
+			if (mTopMenu.isShowing()) {
 				mTopMenu.closeMenu();
 			} else {
 				mTopMenu.showMenuAsDropDown(imgSet);
@@ -187,18 +188,14 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 		}
 
 	}
-	
-	
-	
-	
-	
 
 	private void initTopMenu() {
 		DisplayMetrics dMetrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dMetrics);
 		int[] widthHeight = new int[2];
 		widthHeight[0] = dMetrics.widthPixels / 2;
-		widthHeight[1] = dMetrics.heightPixels / 2;
+		// widthHeight[1] = dMetrics.heightPixels / 2;
+		widthHeight[1] = ViewGroup.LayoutParams.FILL_PARENT;
 
 		mTopMenu = new FCMenu(TabSmsActivity.this, widthHeight);
 		mTopMenuListener = new OnTopMenuItemClickedListener();
@@ -207,11 +204,11 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 		List<FCMenuItem> items = new ArrayList<FCMenuItem>();
 		items.add(new FCMenuItem(ID_MENU_ADD_CONTACTS, -1, R.string.add_fromcontacts));
 		items.add(new FCMenuItem(ID_MENU_ADD_INPUT, -1, R.string.add_byhand));
-		items.add(new FCMenuItem(ID_MENU_EXPORT, -1, R.string.export_sms));
+		items.add(new FCMenuItem(ID_MENU_EXPORT, -1, R.string.export_data));
 		items.add(new FCMenuItem(ID_MENU_IMPORT, -1, R.string.import_data));
 		items.add(new FCMenuItem(ID_MENU_CLEAR, -1, R.string.clear_all));
-		items.add(new FCMenuItem(ID_MENU_MORE, -1, R.string.set_sms));
-		mTopMenu.setDatas(items);
+		items.add(new FCMenuItem(ID_MENU_MORE, -1, R.string.set_str));
+		mTopMenu.setDatas(items, R.string.menu_title_sms);
 
 	}
 
@@ -238,7 +235,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 				ImportExportUtil.exportData(TabSmsActivity.this, MainCanstants.TYPE_INTECEPT_SMS);
 				break;
 			case ID_MENU_CLEAR:
-				if(listItem != null && listItem.size() > 0) {
+				if (listItem != null && listItem.size() > 0) {
 					showClearDlg();
 				} else {
 					MyToast.makeText(TabSmsActivity.this, R.string.clear_null, Toast.LENGTH_LONG, true).show();

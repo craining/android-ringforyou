@@ -15,4 +15,5 @@
     <color name="login_edit_focused">#FFA500</color>
     <color name="login_edit_unfocused">#00BFFF</color>
 
+    <color name="bg_grey">#98989C</color>
 </resources>

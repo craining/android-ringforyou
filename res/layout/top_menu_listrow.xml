@@ -10,14 +10,14 @@
         android:layout_height="@dimen/icon_w_h"
         android:layout_marginBottom="@dimen/layout_little_margin"
         android:layout_marginLeft="@dimen/layout_little_margin"
-        android:layout_marginRight="@dimen/layout_margin_title"
         android:layout_marginTop="@dimen/layout_little_margin" />
 
     <TextView
         android:id="@+id/text_top_menu_item"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:layout_height="@dimen/height_text"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/layout_margin_title"
         android:textSize="@dimen/text_size_menu" />
 
 </LinearLayout>

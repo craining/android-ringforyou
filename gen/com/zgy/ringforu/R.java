@@ -32,6 +32,7 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int bg_grey=0x7f06000c;
         public static final int black=0x7f060000;
         public static final int blue=0x7f060004;
         public static final int green=0x7f060008;
@@ -53,7 +54,7 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f07004c;
+        public static final int activity_horizontal_margin=0x7f07004e;
         public static final int btn_height_top=0x7f070001;
         public static final int btn_main_add_height=0x7f070022;
         public static final int btn_margin_left_right_top=0x7f070002;
@@ -72,11 +73,13 @@ public final class R {
          screen margins) for sw600dp devices (e.g. 7" tablets) here.
 
 
+
     
          */
         public static final int btn_width_top=0x7f070000;
+        public static final int height_text=0x7f07004b;
+        public static final int height_title=0x7f07004d;
         /**  top menu 
- top_menu 
  top menu 
          */
         public static final int icon_w_h=0x7f07004a;
@@ -142,7 +145,10 @@ public final class R {
         public static final int search_layout_padding_tb=0x7f070027;
         public static final int text_set_calm_item_left_margin_left=0x7f07001d;
         public static final int text_size_little=0x7f07003e;
-        public static final int text_size_menu=0x7f07004b;
+        /**  26+10+10 
+ 39+15+15 
+         */
+        public static final int text_size_menu=0x7f07004c;
         public static final int text_textsize_top_title=0x7f070005;
         public static final int textsize_big=0x7f070046;
         public static final int textsize_big_less=0x7f070047;
@@ -164,89 +170,88 @@ public final class R {
         public static final int bg_btn_set=0x7f020008;
         public static final int bg_count=0x7f020009;
         public static final int bg_flowword=0x7f02000a;
-        public static final int bg_grey=0x7f02000b;
-        public static final int bg_light=0x7f02000c;
-        public static final int bg_list_item=0x7f02000d;
-        public static final int bg_list_item_n=0x7f02000e;
-        public static final int bg_list_item_p=0x7f02000f;
-        public static final int bg_search=0x7f020010;
-        public static final int bg_translation=0x7f020011;
-        public static final int bg_translation_dark=0x7f020012;
-        public static final int bg_translation_light=0x7f020013;
-        public static final int btn_back_n=0x7f020014;
-        public static final int btn_back_p=0x7f020015;
-        public static final int btn_blue_d=0x7f020016;
-        public static final int btn_blue_n=0x7f020017;
-        public static final int btn_blue_p=0x7f020018;
-        public static final int btn_red_n=0x7f020019;
-        public static final int btn_red_p=0x7f02001a;
-        public static final int dlg_bg=0x7f02001b;
-        public static final int dlg_btn_bg=0x7f02001c;
-        public static final int dlg_btn_blue_bg=0x7f02001d;
-        public static final int dlg_btn_blue_n=0x7f02001e;
-        public static final int dlg_btn_n=0x7f02001f;
-        public static final int dlg_btn_p=0x7f020020;
-        public static final int edit_bg=0x7f020021;
-        public static final int edit_bg_ios=0x7f020022;
-        public static final int edit_bg_n=0x7f020023;
-        public static final int edit_bg_normal_nopadding=0x7f020024;
-        public static final int edit_bg_p=0x7f020025;
-        public static final int edit_clear=0x7f020026;
-        public static final int ic_add=0x7f020027;
-        public static final int ic_add_n=0x7f020028;
-        public static final int ic_add_p=0x7f020029;
-        public static final int ic_customer_loading1=0x7f02002a;
-        public static final int ic_customer_loading10=0x7f02002b;
-        public static final int ic_customer_loading11=0x7f02002c;
-        public static final int ic_customer_loading12=0x7f02002d;
-        public static final int ic_customer_loading2=0x7f02002e;
-        public static final int ic_customer_loading3=0x7f02002f;
-        public static final int ic_customer_loading4=0x7f020030;
-        public static final int ic_customer_loading5=0x7f020031;
-        public static final int ic_customer_loading6=0x7f020032;
-        public static final int ic_customer_loading7=0x7f020033;
-        public static final int ic_customer_loading8=0x7f020034;
-        public static final int ic_customer_loading9=0x7f020035;
-        public static final int ic_delete=0x7f020036;
-        public static final int ic_delete_n=0x7f020037;
-        public static final int ic_delete_p=0x7f020038;
-        public static final int ic_launcher=0x7f020039;
-        public static final int ic_list_arrow=0x7f02003a;
-        public static final int ic_notification_busymode_on=0x7f02003b;
-        public static final int ic_notification_busymode_refused=0x7f02003c;
-        public static final int ic_notification_disablegprs_on=0x7f02003d;
-        public static final int ic_notification_signalreconnect_on=0x7f02003e;
-        public static final int ic_notification_smslight_on=0x7f02003f;
-        public static final int ic_notification_watermark_on=0x7f020040;
-        public static final int ic_off=0x7f020041;
-        public static final int ic_off_check=0x7f020042;
-        public static final int ic_on=0x7f020043;
-        public static final int ic_on_check=0x7f020044;
-        public static final int ic_search=0x7f020045;
-        public static final int ic_selected=0x7f020046;
-        public static final int ic_set_n=0x7f020047;
-        public static final int ic_set_p=0x7f020048;
-        public static final int ic_tab_call_normal=0x7f020049;
-        public static final int ic_tab_call_pressed=0x7f02004a;
-        public static final int ic_tab_important_normal=0x7f02004b;
-        public static final int ic_tab_important_pressed=0x7f02004c;
-        public static final int ic_tab_more_normal=0x7f02004d;
-        public static final int ic_tab_more_pressed=0x7f02004e;
-        public static final int ic_tab_sms_normal=0x7f02004f;
-        public static final int ic_tab_sms_pressed=0x7f020050;
-        public static final int seekbar_define_style=0x7f020051;
-        public static final int seekbar_line_back=0x7f020052;
-        public static final int seekbar_line_top=0x7f020053;
-        public static final int seekbar_point_back=0x7f020054;
-        public static final int seekbar_point_top=0x7f020055;
-        public static final int seekbar_thumb=0x7f020056;
-        public static final int selector_checkbox_setting=0x7f020057;
-        public static final int selector_checkbox_setting_check=0x7f020058;
-        public static final int shape_rounded_edittext=0x7f020059;
-        public static final int tab_bg=0x7f02005a;
-        public static final int tab_selected=0x7f02005b;
-        public static final int wheel_bg=0x7f02005c;
-        public static final int wheel_val=0x7f02005d;
+        public static final int bg_light=0x7f02000b;
+        public static final int bg_list_item=0x7f02000c;
+        public static final int bg_list_item_n=0x7f02000d;
+        public static final int bg_list_item_p=0x7f02000e;
+        public static final int bg_search=0x7f02000f;
+        public static final int bg_translation=0x7f020010;
+        public static final int bg_translation_dark=0x7f020011;
+        public static final int bg_translation_light=0x7f020012;
+        public static final int btn_back_n=0x7f020013;
+        public static final int btn_back_p=0x7f020014;
+        public static final int btn_blue_d=0x7f020015;
+        public static final int btn_blue_n=0x7f020016;
+        public static final int btn_blue_p=0x7f020017;
+        public static final int btn_red_n=0x7f020018;
+        public static final int btn_red_p=0x7f020019;
+        public static final int dlg_bg=0x7f02001a;
+        public static final int dlg_btn_bg=0x7f02001b;
+        public static final int dlg_btn_blue_bg=0x7f02001c;
+        public static final int dlg_btn_blue_n=0x7f02001d;
+        public static final int dlg_btn_n=0x7f02001e;
+        public static final int dlg_btn_p=0x7f02001f;
+        public static final int edit_bg=0x7f020020;
+        public static final int edit_bg_ios=0x7f020021;
+        public static final int edit_bg_n=0x7f020022;
+        public static final int edit_bg_normal_nopadding=0x7f020023;
+        public static final int edit_bg_p=0x7f020024;
+        public static final int edit_clear=0x7f020025;
+        public static final int ic_add=0x7f020026;
+        public static final int ic_add_n=0x7f020027;
+        public static final int ic_add_p=0x7f020028;
+        public static final int ic_customer_loading1=0x7f020029;
+        public static final int ic_customer_loading10=0x7f02002a;
+        public static final int ic_customer_loading11=0x7f02002b;
+        public static final int ic_customer_loading12=0x7f02002c;
+        public static final int ic_customer_loading2=0x7f02002d;
+        public static final int ic_customer_loading3=0x7f02002e;
+        public static final int ic_customer_loading4=0x7f02002f;
+        public static final int ic_customer_loading5=0x7f020030;
+        public static final int ic_customer_loading6=0x7f020031;
+        public static final int ic_customer_loading7=0x7f020032;
+        public static final int ic_customer_loading8=0x7f020033;
+        public static final int ic_customer_loading9=0x7f020034;
+        public static final int ic_delete=0x7f020035;
+        public static final int ic_delete_n=0x7f020036;
+        public static final int ic_delete_p=0x7f020037;
+        public static final int ic_launcher=0x7f020038;
+        public static final int ic_list_arrow=0x7f020039;
+        public static final int ic_notification_busymode_on=0x7f02003a;
+        public static final int ic_notification_busymode_refused=0x7f02003b;
+        public static final int ic_notification_disablegprs_on=0x7f02003c;
+        public static final int ic_notification_signalreconnect_on=0x7f02003d;
+        public static final int ic_notification_smslight_on=0x7f02003e;
+        public static final int ic_notification_watermark_on=0x7f02003f;
+        public static final int ic_off=0x7f020040;
+        public static final int ic_off_check=0x7f020041;
+        public static final int ic_on=0x7f020042;
+        public static final int ic_on_check=0x7f020043;
+        public static final int ic_search=0x7f020044;
+        public static final int ic_selected=0x7f020045;
+        public static final int ic_set_n=0x7f020046;
+        public static final int ic_set_p=0x7f020047;
+        public static final int ic_tab_call_normal=0x7f020048;
+        public static final int ic_tab_call_pressed=0x7f020049;
+        public static final int ic_tab_important_normal=0x7f02004a;
+        public static final int ic_tab_important_pressed=0x7f02004b;
+        public static final int ic_tab_more_normal=0x7f02004c;
+        public static final int ic_tab_more_pressed=0x7f02004d;
+        public static final int ic_tab_sms_normal=0x7f02004e;
+        public static final int ic_tab_sms_pressed=0x7f02004f;
+        public static final int seekbar_define_style=0x7f020050;
+        public static final int seekbar_line_back=0x7f020051;
+        public static final int seekbar_line_top=0x7f020052;
+        public static final int seekbar_point_back=0x7f020053;
+        public static final int seekbar_point_top=0x7f020054;
+        public static final int seekbar_thumb=0x7f020055;
+        public static final int selector_checkbox_setting=0x7f020056;
+        public static final int selector_checkbox_setting_check=0x7f020057;
+        public static final int shape_rounded_edittext=0x7f020058;
+        public static final int tab_bg=0x7f020059;
+        public static final int tab_selected=0x7f02005a;
+        public static final int wheel_bg=0x7f02005b;
+        public static final int wheel_val=0x7f02005c;
     }
     public static final class id {
         public static final int autocomplete_diver=0x7f0a0074;
@@ -324,7 +329,7 @@ public final class R {
         public static final int img_tab_important=0x7f0a0034;
         public static final int img_tab_more=0x7f0a003a;
         public static final int img_tab_sms=0x7f0a0038;
-        public static final int img_top_menu_icon=0x7f0a00cb;
+        public static final int img_top_menu_icon=0x7f0a00cc;
         public static final int img_watermark=0x7f0a00ba;
         public static final int layout_about=0x7f0a0000;
         public static final int layout_add_contact_tip=0x7f0a0008;
@@ -398,7 +403,7 @@ public final class R {
         public static final int list_contacts=0x7f0a000a;
         public static final int list_important=0x7f0a008e;
         public static final int list_sms=0x7f0a00a5;
-        public static final int list_top_menu=0x7f0a00ca;
+        public static final int list_top_menu=0x7f0a00cb;
         public static final int moreList=0x7f0a0013;
         public static final int name=0x7f0a002f;
         public static final int number=0x7f0a0030;
@@ -445,10 +450,11 @@ public final class R {
         public static final int text_sms_top_deletetip=0x7f0a00a1;
         public static final int text_tools_busymode_info=0x7f0a00c2;
         public static final int text_tools_busymode_title=0x7f0a00c1;
-        public static final int text_top_menu_item=0x7f0a00cc;
+        public static final int text_top_menu_item=0x7f0a00cd;
+        public static final int text_top_menu_title=0x7f0a00ca;
         public static final int text_watermark=0x7f0a00b8;
         public static final int text_watermark_changetip=0x7f0a00b2;
-        public static final int watermark_image=0x7f0a00cd;
+        public static final int watermark_image=0x7f0a00ce;
         public static final int wheel_alarmaddhour_end=0x7f0a001d;
         public static final int wheel_alarmaddhour_start=0x7f0a0019;
         public static final int wheel_alarmaddmins_end=0x7f0a001e;
@@ -573,11 +579,9 @@ public final class R {
         public static final int disable_gprs_on_tip=0x7f08008a;
         public static final int disable_gprs_on_tip_toast=0x7f08008b;
         public static final int disable_gprs_title=0x7f080084;
-        public static final int export_call=0x7f0800e3;
+        public static final int export_data=0x7f0800e1;
         public static final int export_fail=0x7f080026;
-        public static final int export_important=0x7f0800e1;
         public static final int export_items=0x7f08000a;
-        public static final int export_sms=0x7f0800e2;
         public static final int export_success=0x7f080025;
         public static final int feedback=0x7f080015;
         public static final int feedback_content=0x7f08007f;
@@ -603,13 +607,16 @@ public final class R {
         public static final int help_verb_info=0x7f080012;
         public static final int how_additem=0x7f080006;
         public static final int how_deleteitem=0x7f080007;
-        public static final int import_data=0x7f0800e4;
+        public static final int import_data=0x7f0800e2;
         public static final int import_fail=0x7f080028;
         public static final int import_items=0x7f080009;
         public static final int import_sueccess=0x7f080027;
         public static final int left_bottom=0x7f080024;
         public static final int left_top=0x7f080023;
         public static final int main_title=0x7f080003;
+        public static final int menu_title_call=0x7f0800e5;
+        public static final int menu_title_important=0x7f0800e3;
+        public static final int menu_title_sms=0x7f0800e4;
         public static final int name=0x7f08000b;
         public static final int name_null=0x7f080021;
         public static final int none_addnull_call_text=0x7f080059;
@@ -644,7 +651,6 @@ public final class R {
         public static final int set_backup_select=0x7f080063;
         public static final int set_backup_select_text=0x7f080064;
         public static final int set_backup_sms_info=0x7f080062;
-        public static final int set_call=0x7f0800e7;
         public static final int set_hidestyle_call=0x7f08006b;
         public static final int set_hidestyle_call_no_answer=0x7f08006c;
         public static final int set_hidestyle_call_no_answer_info=0x7f08006d;
@@ -659,8 +665,6 @@ public final class R {
         public static final int set_hidestyle_sms_disreceive_info=0x7f080075;
         public static final int set_hidestyle_sms_slient=0x7f080076;
         public static final int set_hidestyle_sms_slient_info=0x7f080077;
-        public static final int set_important=0x7f0800e5;
-        public static final int set_sms=0x7f0800e6;
         public static final int set_str=0x7f080010;
         public static final int share_label_number=0x7f0800bf;
         public static final int share_label_watermark=0x7f0800c0;

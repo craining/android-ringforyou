@@ -8,6 +8,7 @@ import android.content.Context;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -15,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,6 +29,7 @@ public class FCMenu extends FCPopupWindow implements OnItemClickListener {
 
 	private BaseAdapter mAdapter;
 	private ListView mListView;
+	private TextView mTextTitle;
 
 	private int[] mWidthHeight;
 
@@ -52,12 +53,22 @@ public class FCMenu extends FCPopupWindow implements OnItemClickListener {
 	}
 
 	private void init() {
-		
+
 		LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
 		this.container = (ViewGroup) inflater.inflate(R.layout.top_menu_layout, null);
-		
-		this.mListView = (ListView) this.container.findViewById(R.id.list_top_menu);
 
+		this.mListView = (ListView) this.container.findViewById(R.id.list_top_menu);
+		this.mTextTitle = (TextView) this.container.findViewById(R.id.text_top_menu_title);
+
+		this.container.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (FCMenu.this.isShowing()) {
+					FCMenu.this.close();
+				}
+			}
+		});
 		this.container.setOnKeyListener(new OnKeyListener() {
 
 			@Override
@@ -85,17 +96,19 @@ public class FCMenu extends FCPopupWindow implements OnItemClickListener {
 	 * @author: zhuanggy
 	 * @date:2013-9-10
 	 */
-	public void setDatas(List<FCMenuItem> items) {
+	public void setDatas(List<FCMenuItem> items, int titleSrcId) {
+		mTextTitle.setText(titleSrcId);
 		mAdapter = new MenuAdapter(items);
 		mListView.setAdapter(mAdapter);
 		mListView.setOnItemClickListener(this);
 	}
 
 	public void showMenuAsDropDown(View anchor) {
-//		 this.showAtBottom(container);
-		
-//		this.showAsDropDown(container, anchor, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-		
+		// this.showAtBottom(container);
+
+		// this.showAsDropDown(container, anchor, ViewGroup.LayoutParams.WRAP_CONTENT,
+		// ViewGroup.LayoutParams.WRAP_CONTENT);
+
 		if (mWidthHeight == null) {
 			this.showAsDropDown(container, anchor, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		} else {

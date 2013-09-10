@@ -84,6 +84,9 @@
 
     <!-- top menu -->
     <dimen name="icon_w_h">26dip</dimen>
+    <dimen name="height_text">46dip</dimen>
+ <!-- 26+10+10 -->
     <dimen name="text_size_menu">14sp</dimen>
+    <dimen name="height_title">40dip</dimen>
 
 </resources>

@@ -95,11 +95,11 @@
     <!-- new -->
     <!-- The important contact has not yet been added, please add. -->
     <string name="none_addnull_important_title">尚未添加重要联系人</string>
-    <string name="none_addnull_important_text">即便手机静音，在收到重要联系人的来电或短信时仍会响铃；\r\n\r\n点击右上角的设置按钮可进行相关设置。</string>
+    <string name="none_addnull_important_text">即便手机静音，在收到重要联系人的来电或短信时仍会响铃；\r\n\r\n\r\n点击右上角的按钮可进行相关操作。</string>
     <string name="none_addnull_call_title">尚未添加要屏蔽的来电</string>
-    <string name="none_addnull_call_text">轻松地忽略不想接听的来电；\r\n\r\n点击右上角的设置按钮可进行相关设置。</string>
+    <string name="none_addnull_call_text">轻松地忽略不想接听的来电；\r\n\r\n\r\n点击右上角的按钮可进行相关操作。</string>
     <string name="none_addnull_sms_title">尚未添加要屏蔽的短信</string>
-    <string name="none_addnull_sms_text">轻松地忽略不想接收的短信；\r\n\r\n点击右上角的设置按钮可进行相关设置。</string>
+    <string name="none_addnull_sms_text">轻松地忽略不想接收的短信；\r\n\r\n\r\n点击右上角的按钮可进行相关操作。</string>
     <string name="tab_sms">短信屏蔽</string>
     <string name="tab_call">来电屏蔽</string>
     <string name="tab_important">重要联系人</string>
@@ -241,12 +241,10 @@
     <string name="title_setting_call">来电屏蔽设置</string>
     
     <string name="clear_null">没有数据</string>
-    <string name="export_important">备份重要联系人</string>
-    <string name="export_sms">备份屏蔽短信联系人</string>
-    <string name="export_call">备份来电屏蔽联系人</string>
+    <string name="export_data">创建备份</string>
     <string name="import_data">还原备份</string>
-    <string name="set_important">重要联系人设置</string>
-    <string name="set_sms">短信屏蔽设置</string>
-    <string name="set_call">来电屏蔽设置</string>
+    <string name="menu_title_important">重要联系人相关操作</string>
+    <string name="menu_title_sms">短信屏蔽相关操作</string>
+    <string name="menu_title_call">来电屏蔽相关操作</string>
 
 </resources>

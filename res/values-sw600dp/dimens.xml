@@ -2,7 +2,7 @@
 
     <!--
          Customize dimensions originally defined in res/values/dimens.xml (such as
-         screen margins) for sw600dp devices (e.g. 7" tablets) here.
+         screen margins) for sw600dp devices (e.g. 7" tablets) here.
     -->
     <dimen name="btn_width_top">68dip</dimen>
     <dimen name="btn_height_top">45dip</dimen>
@@ -85,6 +85,9 @@
 
     <!-- top menu -->
     <dimen name="icon_w_h">39dip</dimen>
+    <dimen name="height_text">69dip</dimen>
+ <!-- 39+15+15 -->
     <dimen name="text_size_menu">21sp</dimen>
+    <dimen name="height_title">60dip</dimen>
 
 </resources>

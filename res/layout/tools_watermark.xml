@@ -3,7 +3,7 @@
     android:id="@+id/layout_watermark_main"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bg_grey" >
+    android:background="@color/bg_grey" >
     <RelativeLayout
         android:id="@+id/layout_watermark_top"
 		style="@style/layout_top_title">

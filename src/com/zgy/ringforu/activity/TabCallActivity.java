@@ -13,6 +13,7 @@ import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -90,7 +91,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		imgSet = (ImageView) findViewById(R.id.img_call_set);
 
 		initTopMenu();
-		
+
 		btnAddFromContacts.setOnClickListener(TabCallActivity.this);
 		btnAddByInput.setOnClickListener(TabCallActivity.this);
 		btnClsList.setOnClickListener(TabCallActivity.this);
@@ -197,7 +198,8 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		getWindowManager().getDefaultDisplay().getMetrics(dMetrics);
 		int[] widthHeight = new int[2];
 		widthHeight[0] = dMetrics.widthPixels / 2;
-		widthHeight[1] = dMetrics.heightPixels / 2;
+		// widthHeight[1] = dMetrics.heightPixels / 2;
+		widthHeight[1] = ViewGroup.LayoutParams.FILL_PARENT;
 
 		mTopMenu = new FCMenu(TabCallActivity.this, widthHeight);
 		mTopMenuListener = new OnTopMenuItemClickedListener();
@@ -206,11 +208,11 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		List<FCMenuItem> items = new ArrayList<FCMenuItem>();
 		items.add(new FCMenuItem(ID_MENU_ADD_CONTACTS, -1, R.string.add_fromcontacts));
 		items.add(new FCMenuItem(ID_MENU_ADD_INPUT, -1, R.string.add_byhand));
-		items.add(new FCMenuItem(ID_MENU_EXPORT, -1, R.string.export_call));
+		items.add(new FCMenuItem(ID_MENU_EXPORT, -1, R.string.export_data));
 		items.add(new FCMenuItem(ID_MENU_IMPORT, -1, R.string.import_data));
 		items.add(new FCMenuItem(ID_MENU_CLEAR, -1, R.string.clear_all));
-		items.add(new FCMenuItem(ID_MENU_MORE, -1, R.string.set_call));
-		mTopMenu.setDatas(items);
+		items.add(new FCMenuItem(ID_MENU_MORE, -1, R.string.set_str));
+		mTopMenu.setDatas(items, R.string.menu_title_call);
 
 	}
 

@@ -5,12 +5,22 @@
     android:background="@android:color/transparent"
     android:orientation="vertical" >
 
+    <TextView
+        android:id="@+id/text_top_menu_title"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/height_title"
+        android:background="@drawable/bg_bar_top"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_menu" />
+
     <ListView
-        android:background="@drawable/bg_grey"
         android:id="@+id/list_top_menu"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@color/bg_grey"
         android:cacheColorHint="@android:color/transparent"
-        android:listSelector="@drawable/bg_list_item" />
+        android:listSelector="@drawable/bg_list_item"
+        android:scrollbars="none" />
 
 </LinearLayout>
