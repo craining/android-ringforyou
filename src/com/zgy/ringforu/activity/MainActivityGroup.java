@@ -30,6 +30,7 @@ public class MainActivityGroup extends ActivityGroup implements OnClickListener 
 	private ImageView imgMore;
 	private Vibrator vb = null;
 	private int flag = 0; // 通过标记跳转不同的页面，显示不同的菜单项
+	public int[] mWidthHeightTopMenu;
 
 	/** Called when the activity is first created. */
 	@Override

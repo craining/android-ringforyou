@@ -53,7 +53,7 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f07004a;
+        public static final int activity_horizontal_margin=0x7f07004d;
         public static final int btn_height_top=0x7f070001;
         public static final int btn_main_add_height=0x7f070022;
         public static final int btn_margin_left_right_top=0x7f070002;
@@ -75,6 +75,9 @@ public final class R {
     
          */
         public static final int btn_width_top=0x7f070000;
+        /**  top menu 
+         */
+        public static final int icon_w_h=0x7f07004a;
         public static final int img_loading_hw=0x7f070030;
         public static final int img_right_top_set_wh=0x7f070008;
         public static final int img_set_calm_item_right_margin_right=0x7f07001c;
@@ -137,6 +140,7 @@ public final class R {
         public static final int search_layout_padding_tb=0x7f070027;
         public static final int text_set_calm_item_left_margin_left=0x7f07001d;
         public static final int text_size_little=0x7f07003e;
+        public static final int text_size_menu=0x7f07004b;
         public static final int text_textsize_top_title=0x7f070005;
         public static final int textsize_big=0x7f070046;
         public static final int textsize_big_less=0x7f070047;
@@ -145,6 +149,7 @@ public final class R {
         public static final int textsize_set_item_top=0x7f07000e;
         public static final int textsize_tab_bottom=0x7f070021;
         public static final int textsize_tip=0x7f070031;
+        public static final int top_menu_height=0x7f07004c;
     }
     public static final class drawable {
         public static final int bg_account_autocomplete_listitem=0x7f020000;
@@ -311,13 +316,14 @@ public final class R {
         public static final int img_sethidestyle_call_null=0x7f0a004f;
         public static final int img_sethidestyle_call_receive_shutdown=0x7f0a0053;
         public static final int img_sethidestyle_call_shutdown=0x7f0a0051;
-        public static final int img_sethidestyle_sms_disreceive=0x7f0a0058;
-        public static final int img_sethidestyle_sms_slient=0x7f0a005a;
+        public static final int img_sethidestyle_sms_disreceive=0x7f0a005a;
+        public static final int img_sethidestyle_sms_slient=0x7f0a0058;
         public static final int img_sms_set=0x7f0a009c;
         public static final int img_tab_call=0x7f0a0036;
         public static final int img_tab_important=0x7f0a0034;
         public static final int img_tab_more=0x7f0a003a;
         public static final int img_tab_sms=0x7f0a0038;
+        public static final int img_top_menu_icon=0x7f0a00cb;
         public static final int img_watermark=0x7f0a00ba;
         public static final int layout_about=0x7f0a0000;
         public static final int layout_add_contact_tip=0x7f0a0008;
@@ -364,8 +370,8 @@ public final class R {
         public static final int layout_sethidestyle_call_receive_shutdown=0x7f0a0052;
         public static final int layout_sethidestyle_call_shutdown=0x7f0a0050;
         public static final int layout_sethidestyle_sms=0x7f0a0054;
-        public static final int layout_sethidestyle_sms_disreceive=0x7f0a0057;
-        public static final int layout_sethidestyle_sms_slient=0x7f0a0059;
+        public static final int layout_sethidestyle_sms_disreceive=0x7f0a0059;
+        public static final int layout_sethidestyle_sms_slient=0x7f0a0057;
         public static final int layout_sethidestyle_title_call=0x7f0a004a;
         public static final int layout_sethidestyle_title_sms=0x7f0a0055;
         public static final int layout_sms_add=0x7f0a009e;
@@ -391,6 +397,7 @@ public final class R {
         public static final int list_contacts=0x7f0a000a;
         public static final int list_important=0x7f0a008e;
         public static final int list_sms=0x7f0a00a5;
+        public static final int list_top_menu=0x7f0a00ca;
         public static final int moreList=0x7f0a0013;
         public static final int name=0x7f0a002f;
         public static final int number=0x7f0a0030;
@@ -437,9 +444,10 @@ public final class R {
         public static final int text_sms_top_deletetip=0x7f0a00a1;
         public static final int text_tools_busymode_info=0x7f0a00c2;
         public static final int text_tools_busymode_title=0x7f0a00c1;
+        public static final int text_top_menu_item=0x7f0a00cc;
         public static final int text_watermark=0x7f0a00b8;
         public static final int text_watermark_changetip=0x7f0a00b2;
-        public static final int watermark_image=0x7f0a00ca;
+        public static final int watermark_image=0x7f0a00cd;
         public static final int wheel_alarmaddhour_end=0x7f0a001d;
         public static final int wheel_alarmaddhour_start=0x7f0a0019;
         public static final int wheel_alarmaddmins_end=0x7f0a001e;
@@ -473,7 +481,9 @@ public final class R {
         public static final int tools_dlg_ctrl=0x7f030016;
         public static final int tools_watermark=0x7f030017;
         public static final int toolsview=0x7f030018;
-        public static final int watermark_floating=0x7f030019;
+        public static final int top_menu_layout=0x7f030019;
+        public static final int top_menu_listrow=0x7f03001a;
+        public static final int watermark_floating=0x7f03001b;
     }
     public static final class string {
         public static final int about_maker=0x7f0800ce;
@@ -544,6 +554,7 @@ public final class R {
         public static final int clear_alert=0x7f080092;
         public static final int clear_all=0x7f080002;
         public static final int clear_data_over=0x7f080093;
+        public static final int clear_null=0x7f0800e0;
         public static final int clear_str=0x7f080090;
         public static final int clear_str_info=0x7f080091;
         public static final int clear_success=0x7f08002a;
@@ -561,8 +572,11 @@ public final class R {
         public static final int disable_gprs_on_tip=0x7f08008a;
         public static final int disable_gprs_on_tip_toast=0x7f08008b;
         public static final int disable_gprs_title=0x7f080084;
+        public static final int export_call=0x7f0800e3;
         public static final int export_fail=0x7f080026;
+        public static final int export_important=0x7f0800e1;
         public static final int export_items=0x7f08000a;
+        public static final int export_sms=0x7f0800e2;
         public static final int export_success=0x7f080025;
         public static final int feedback=0x7f080015;
         public static final int feedback_content=0x7f08007f;
@@ -588,6 +602,7 @@ public final class R {
         public static final int help_verb_info=0x7f080012;
         public static final int how_additem=0x7f080006;
         public static final int how_deleteitem=0x7f080007;
+        public static final int import_data=0x7f0800e4;
         public static final int import_fail=0x7f080028;
         public static final int import_items=0x7f080009;
         public static final int import_sueccess=0x7f080027;
@@ -628,6 +643,7 @@ public final class R {
         public static final int set_backup_select=0x7f080063;
         public static final int set_backup_select_text=0x7f080064;
         public static final int set_backup_sms_info=0x7f080062;
+        public static final int set_call=0x7f0800e7;
         public static final int set_hidestyle_call=0x7f08006b;
         public static final int set_hidestyle_call_no_answer=0x7f08006c;
         public static final int set_hidestyle_call_no_answer_info=0x7f08006d;
@@ -642,6 +658,8 @@ public final class R {
         public static final int set_hidestyle_sms_disreceive_info=0x7f080075;
         public static final int set_hidestyle_sms_slient=0x7f080076;
         public static final int set_hidestyle_sms_slient_info=0x7f080077;
+        public static final int set_important=0x7f0800e5;
+        public static final int set_sms=0x7f0800e6;
         public static final int set_str=0x7f080010;
         public static final int share_label_number=0x7f0800bf;
         public static final int share_label_watermark=0x7f0800c0;

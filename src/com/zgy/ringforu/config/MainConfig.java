@@ -125,7 +125,7 @@ public class MainConfig extends PreferenceUtil {
 	}
 
 	public synchronized int getInterceptSmsStyle() {
-		return getInt(ConfigCanstants.STYLE_INTERCEPT_SMS, ConfigCanstants.STYLE_INTERCEPT_SMS_DISRECEIVE);
+		return getInt(ConfigCanstants.STYLE_INTERCEPT_SMS, ConfigCanstants.STYLE_INTERCEPT_SMS_SLIENT);
 	}
 
 	public synchronized void setInterceptSmsStyle(int style) {

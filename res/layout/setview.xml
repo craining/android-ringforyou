@@ -41,7 +41,8 @@
                     android:id="@+id/layout_set_backup_important"
                     style="@style/layout_set_item"
                     android:background="@drawable/bg_list_item"
-                    android:clickable="true" >
+                    android:clickable="true"
+                    android:visibility="gone" >
 
                     <LinearLayout style="@style/layout_set_item_content_left" >
 
@@ -55,7 +56,9 @@
                     </LinearLayout>
                 </RelativeLayout>
 
-                <View style="@style/line_set_item_diver" />
+                <View
+                    style="@style/line_set_item_diver"
+                    android:visibility="gone" />
 
                 <!-- 失效时段添加 -->
 
@@ -134,7 +137,8 @@
                     android:id="@+id/layout_set_backup_call"
                     style="@style/layout_set_item"
                     android:background="@drawable/bg_list_item"
-                    android:clickable="true" >
+                    android:clickable="true"
+                    android:visibility="gone" >
 
                     <LinearLayout style="@style/layout_set_item_content_left" >
 
@@ -149,7 +153,9 @@
                 </RelativeLayout>
                 <!-- 通话拦截方式 -->
 
-                <View style="@style/line_set_item_diver" />
+                <View
+                    style="@style/line_set_item_diver"
+                    android:visibility="gone" />
 
                 <RelativeLayout
                     android:id="@+id/layout_set_hidestyle_call"
@@ -190,7 +196,8 @@
                     android:id="@+id/layout_set_backup_sms"
                     style="@style/layout_set_item"
                     android:background="@drawable/bg_list_item"
-                    android:clickable="true" >
+                    android:clickable="true"
+                    android:visibility="gone" >
 
                     <LinearLayout style="@style/layout_set_item_content_left" >
 
@@ -204,7 +211,9 @@
                     </LinearLayout>
                 </RelativeLayout>
 
-                <View style="@style/line_set_item_diver" />
+                <View
+                    style="@style/line_set_item_diver"
+                    android:visibility="gone" />
                 <!-- 短信拦截方式 -->
 
                 <RelativeLayout

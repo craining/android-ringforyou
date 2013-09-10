@@ -11,7 +11,8 @@
 
         <Button
             android:id="@+id/btn_important_clslist"
-            style="@style/btn_left_top_clear" />
+            style="@style/btn_left_top_clear"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_important_title"
@@ -38,7 +39,8 @@
             android:layout_marginLeft="@dimen/layout_margin_left_right"
             android:layout_marginRight="@dimen/layout_margin_left_right"
             android:layout_marginTop="@dimen/layout_margin_top_title"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:visibility="gone" >
 
             <Button
                 android:id="@+id/btn_important_addfrom"
@@ -71,10 +73,10 @@
             android:id="@+id/layout_important_null"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layout_big_less_less_less"
-            android:background="@drawable/bg_bolder"
             android:layout_marginLeft="@dimen/layout_margin_left_right"
             android:layout_marginRight="@dimen/layout_margin_left_right"
+            android:layout_marginTop="@dimen/layout_big_less_less_less"
+            android:background="@drawable/bg_bolder"
             android:orientation="vertical"
             android:padding="@dimen/layout_margin_title"
             android:visibility="gone" >

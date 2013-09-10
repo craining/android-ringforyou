@@ -282,17 +282,17 @@ public class SetActivity extends Activity implements OnClickListener {
 		case R.id.img_add_calm_important:
 			startActivity(new Intent(SetActivity.this, AddSlientPerActivity.class));
 			break;
-		case R.id.layout_set_backup_important:
-			doBackup();
-			break;
-
-		case R.id.layout_set_backup_call:
-			doBackup();
-			break;
-
-		case R.id.layout_set_backup_sms:
-			doBackup();
-			break;
+//		case R.id.layout_set_backup_important:
+//			doBackup();
+//			break;
+//
+//		case R.id.layout_set_backup_call:
+//			doBackup();
+//			break;
+//
+//		case R.id.layout_set_backup_sms:
+//			doBackup();
+//			break;
 
 		case R.id.layout_set_hidestyle_sms:
 			Intent iSms = new Intent(SetActivity.this, SetHideStyleActivity.class);
@@ -327,163 +327,34 @@ public class SetActivity extends Activity implements OnClickListener {
 	// }
 	// }
 
-	private void doBackup() {
+//	private void doBackup() {
+//
+//		if (PhoneUtil.existSDcard()) {
+//			// 存储卡已经挂载
+//			MyDialog.Builder builder = new MyDialog.Builder(SetActivity.this);
+//			builder.setTitle(R.string.set_backup_select).setMessage(R.string.set_backup_select_text).setPositiveButton(R.string.export_items, new DialogInterface.OnClickListener() {
+//
+//				public void onClick(DialogInterface dialog, int whichButton) {
+//					dialog.dismiss();
+//					PhoneUtil.doVibraterNormal(vb);
+//					// 导出备份
+//					exportData();
+//				}
+//			}).setNegativeButton(R.string.import_items, new DialogInterface.OnClickListener() {
+//
+//				public void onClick(DialogInterface dialog, int whichButton) {
+//					dialog.dismiss();
+//					PhoneUtil.doVibraterNormal(vb);
+//					// 导入备份
+//					importData();
+//				}
+//			}).create().show();
+//		} else {
+//			MyToast.makeText(SetActivity.this, R.string.set_backup_nosdcard, Toast.LENGTH_SHORT, true).show();
+//		}
+//
+//	}
 
-		if (PhoneUtil.existSDcard()) {
-			// 存储卡已经挂载
-			MyDialog.Builder builder = new MyDialog.Builder(SetActivity.this);
-			builder.setTitle(R.string.set_backup_select).setMessage(R.string.set_backup_select_text).setPositiveButton(R.string.export_items, new DialogInterface.OnClickListener() {
-
-				public void onClick(DialogInterface dialog, int whichButton) {
-					dialog.dismiss();
-					PhoneUtil.doVibraterNormal(vb);
-					// 导出备份
-					exportData();
-				}
-			}).setNegativeButton(R.string.import_items, new DialogInterface.OnClickListener() {
-
-				public void onClick(DialogInterface dialog, int whichButton) {
-					dialog.dismiss();
-					PhoneUtil.doVibraterNormal(vb);
-					// 导入备份
-					importData();
-				}
-			}).create().show();
-		} else {
-			MyToast.makeText(SetActivity.this, R.string.set_backup_nosdcard, Toast.LENGTH_SHORT, true).show();
-		}
-
-	}
-
-	private void exportData() {
-
-		switch (tag) {
-		case MainCanstants.TYPE_IMPORTANT:
-			// 备份重要联系人
-			String importantNums = mMainConfig.getImporantNumbers();
-			if (StringUtil.isNull(importantNums)) {
-				MyToast.makeText(SetActivity.this, R.string.set_backup_noimportant, Toast.LENGTH_SHORT, true).show();
-				return;
-			}
-			try {
-				if (FileUtil.write(mMainConfig.getImporantNames(), new File(MainUtil.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath()), false)
-						&& FileUtil.write(mMainConfig.getImporantNumbers(), new File(MainUtil.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath()), false)) {
-					MyToast.makeText(SetActivity.this, R.string.export_success, Toast.LENGTH_SHORT, false).show();
-				} else {
-					MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
-			}
-
-			break;
-		case MainCanstants.TYPE_INTECEPT_CALL:
-			String callNums = mMainConfig.getInterceptCallNumbers();
-			if (StringUtil.isNull(callNums)) {
-				MyToast.makeText(SetActivity.this, R.string.set_backup_nocall, Toast.LENGTH_SHORT, true).show();
-				return;
-			}
-			// 备份通话拦截数据
-			try {
-				if (FileUtil.write(mMainConfig.getInterceptCallNames(), new File(MainUtil.FILE_SDCARD_CALL_NAME.getAbsolutePath()), false)
-						&& FileUtil.write(mMainConfig.getInterceptCallNumbers(), new File(MainUtil.FILE_SDCARD_CALL_NUM.getAbsolutePath()), false)) {
-					MyToast.makeText(SetActivity.this, R.string.export_success, Toast.LENGTH_SHORT, false).show();
-				} else {
-					MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
-			}
-
-			break;
-		case MainCanstants.TYPE_INTECEPT_SMS:
-			// 备份拦截短信
-			String smsNumbers = mMainConfig.getInterceptSmsNumbers();
-			if (StringUtil.isNull(smsNumbers)) {
-				MyToast.makeText(SetActivity.this, R.string.set_backup_nosms, Toast.LENGTH_SHORT, true).show();
-				return;
-			}
-			try {
-				if (FileUtil.write(mMainConfig.getInterceptSmsNames(), new File(MainUtil.FILE_SDCARD_SMS_NAME.getAbsolutePath()), false)
-						&& FileUtil.write(mMainConfig.getInterceptSmsNumbers(), new File(MainUtil.FILE_SDCARD_SMS_NUM.getAbsolutePath()), false)) {
-					MyToast.makeText(SetActivity.this, R.string.export_success, Toast.LENGTH_SHORT, false).show();
-				} else {
-					MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				MyToast.makeText(SetActivity.this, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
-			}
-
-			break;
-
-		default:
-			break;
-		}
-	}
-
-	private void importData() {
-
-		switch (tag) {
-		case MainCanstants.TYPE_IMPORTANT:
-			// 导入备份
-			if (!(MainUtil.FILE_SDCARD_IMPORTANT_NAME.exists())) {
-				MyToast.makeText(SetActivity.this, R.string.set_backup_nobackups, Toast.LENGTH_SHORT, true).show();
-				return;
-			}
-			try {
-				mMainConfig.setImportantNames(FileUtil.read(new File(MainUtil.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath())));
-				mMainConfig.setImportantNumbers(FileUtil.read(new File(MainUtil.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath())));
-				MyToast.makeText(SetActivity.this, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
-				// MyToast.makeText(SetActivity.this, R.string.import_fail,
-				// Toast.LENGTH_SHORT, true).show();
-			} catch (Exception e) {
-				e.printStackTrace();
-				MyToast.makeText(SetActivity.this, R.string.import_fail, Toast.LENGTH_SHORT, true).show();
-			}
-			break;
-		case MainCanstants.TYPE_INTECEPT_CALL:
-			if (!(MainUtil.FILE_SDCARD_CALL_NAME.exists())) {
-				MyToast.makeText(SetActivity.this, R.string.set_backup_nobackups, Toast.LENGTH_SHORT, true).show();
-				return;
-			}
-			// 导入备份
-			try {
-				mMainConfig.setInterceptCallNames(FileUtil.read(new File(MainUtil.FILE_SDCARD_CALL_NAME.getAbsolutePath())));
-				mMainConfig.setInterceptCallNumbers(FileUtil.read(new File(MainUtil.FILE_SDCARD_CALL_NUM.getAbsolutePath())));
-				MyToast.makeText(SetActivity.this, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
-				// MyToast.makeText(SetActivity.this, R.string.import_fail,
-				// Toast.LENGTH_SHORT, true).show();
-			} catch (Exception e) {
-				e.printStackTrace();
-				MyToast.makeText(SetActivity.this, R.string.import_fail, Toast.LENGTH_SHORT, true).show();
-			}
-			break;
-		case MainCanstants.TYPE_INTECEPT_SMS:
-			if (!MainUtil.FILE_SDCARD_SMS_NAME.exists()) {
-				MyToast.makeText(SetActivity.this, R.string.set_backup_nobackups, Toast.LENGTH_SHORT, true).show();
-				return;
-			}
-			// 导入备份
-			try {
-
-				mMainConfig.setInterceptSmsNames(FileUtil.read(new File(MainUtil.FILE_SDCARD_SMS_NAME.getAbsolutePath())));
-				mMainConfig.setInterceptSmsNumbers(FileUtil.read(new File(MainUtil.FILE_SDCARD_SMS_NUM.getAbsolutePath())));
-				MyToast.makeText(SetActivity.this, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
-				// MyToast.makeText(SetActivity.this, R.string.import_fail,
-				// Toast.LENGTH_SHORT, true).show();
-			} catch (Exception e) {
-				e.printStackTrace();
-				MyToast.makeText(SetActivity.this, R.string.import_fail, Toast.LENGTH_SHORT, true).show();
-			}
-			break;
-
-		default:
-			break;
-		}
-	}
 
 	@Override
 	protected void onDestroy() {

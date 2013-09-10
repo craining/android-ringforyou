@@ -75,7 +75,7 @@
 
     <style name="img_right_top_set">
         <item name="android:layout_width">@dimen/img_right_top_set_wh</item>
-        <item name="android:layout_height">@dimen/img_right_top_set_wh</item>
+        <item name="android:layout_height">fill_parent</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:clickable">true</item>

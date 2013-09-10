@@ -32,6 +32,7 @@
         android:layout_marginTop="@dimen/layout_margin_top_title"
         android:background="@drawable/edit_bg"
         android:hint="@string/name"
+        android:maxLength="128"
         android:textSize="@dimen/text_textsize_top_title" />
 
     <EditText
@@ -44,6 +45,7 @@
         android:layout_marginTop="@dimen/layout_margin_left_right"
         android:background="@drawable/edit_bg"
         android:hint="@string/phonenumber"
+        android:maxLength="15"
         android:inputType="number"
         android:textSize="@dimen/text_textsize_top_title" />
 

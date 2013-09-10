@@ -23,31 +23,6 @@
         android:layout_below="@id/layout_sethidestyle_title_sms" >
 
         <RelativeLayout
-            android:id="@+id/layout_sethidestyle_sms_disreceive"
-            style="@style/layout_set_item"
-            android:background="@drawable/bg_list_item"
-            android:clickable="true" >
-
-            <LinearLayout style="@style/layout_set_item_content_left" >
-
-                <TextView
-                    style="@style/text_set_item_content_left_top"
-                    android:text="@string/set_hidestyle_sms_disreceive" />
-
-                <TextView
-                    style="@style/text_set_item_content_left_bottom"
-                    android:text="@string/set_hidestyle_sms_disreceive_info" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/img_sethidestyle_sms_disreceive"
-                style="@style/img_set_item_selected"
-                android:contentDescription="@string/app_name" />
-        </RelativeLayout>
-
-        <View style="@style/line_set_item_diver" />
-
-        <RelativeLayout
             android:id="@+id/layout_sethidestyle_sms_slient"
             style="@style/layout_set_item"
             android:background="@drawable/bg_list_item"
@@ -66,6 +41,31 @@
 
             <ImageView
                 android:id="@+id/img_sethidestyle_sms_slient"
+                style="@style/img_set_item_selected"
+                android:contentDescription="@string/app_name" />
+        </RelativeLayout>
+
+        <View style="@style/line_set_item_diver" />
+
+        <RelativeLayout
+            android:id="@+id/layout_sethidestyle_sms_disreceive"
+            style="@style/layout_set_item"
+            android:background="@drawable/bg_list_item"
+            android:clickable="true" >
+
+            <LinearLayout style="@style/layout_set_item_content_left" >
+
+                <TextView
+                    style="@style/text_set_item_content_left_top"
+                    android:text="@string/set_hidestyle_sms_disreceive" />
+
+                <TextView
+                    style="@style/text_set_item_content_left_bottom"
+                    android:text="@string/set_hidestyle_sms_disreceive_info" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_sethidestyle_sms_disreceive"
                 style="@style/img_set_item_selected"
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>

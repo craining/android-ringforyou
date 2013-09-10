@@ -228,8 +228,6 @@
     <string name="about_qa">测试：</string>
     <string name="about_qa_name">徐欣莹</string>
     <string name="finish">完成</string>
-
-    
     <string name="smslight_msg">点亮屏幕可防止手机静音状态下错过普通短信，夜间效果更佳！</string>
     <string name="signalreconnect_msg">自动重连可防止某些手机无信号后无法自动获取信号的问题</string>
     <string name="title_state_on">当前状态：已开启</string>
@@ -238,10 +236,17 @@
     <string name="btn_open_state">开启</string>
     <string name="toast_close_ok">已关闭</string>
     <string name="toast_open_ok">已开启</string>
-    
     <string name="title_setting_important">重要联系人设置</string>
     <string name="title_setting_sms">短信屏蔽设置</string>
     <string name="title_setting_call">来电屏蔽设置</string>
     
-    
+    <string name="clear_null">没有数据</string>
+    <string name="export_important">备份重要联系人</string>
+    <string name="export_sms">备份屏蔽短信联系人</string>
+    <string name="export_call">备份来电屏蔽联系人</string>
+    <string name="import_data">还原备份</string>
+    <string name="set_important">重要联系人设置</string>
+    <string name="set_sms">短信屏蔽设置</string>
+    <string name="set_call">来电屏蔽设置</string>
+
 </resources>

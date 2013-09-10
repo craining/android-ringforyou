@@ -67,21 +67,24 @@
     <dimen name="text_size_little">8sp</dimen>
 
     <!-- 轮子 -->
-<dimen name="items_height">10dip</dimen>
-<dimen name="item_text_size">16sp</dimen>
-<dimen name="items_offset">3dip</dimen>
-<dimen name="item_space">6.5dip</dimen>
-<dimen name="label_offset">5dip</dimen>
-<dimen name="padding">6.5dip</dimen>
+    <dimen name="items_height">10dip</dimen>
+    <dimen name="item_text_size">16sp</dimen>
+    <dimen name="items_offset">3dip</dimen>
+    <dimen name="item_space">6.5dip</dimen>
+    <dimen name="label_offset">5dip</dimen>
+    <dimen name="padding">6.5dip</dimen>
 
-<!-- about -->
+    <!-- about -->
 
-<dimen name="logo_wh">100dip</dimen>
-<dimen name="textsize_big">35sp</dimen>
-<dimen name="textsize_big_less">20sp</dimen>
+    <dimen name="logo_wh">100dip</dimen>
+    <dimen name="textsize_big">35sp</dimen>
+    <dimen name="textsize_big_less">20sp</dimen>
+    <dimen name="layout_margin_right_listrow">90dip</dimen>
+    <dimen name="layout_right_width_listrow">110dip</dimen>
 
-<dimen name="layout_margin_right_listrow">90dip</dimen>
-<dimen name="layout_right_width_listrow">110dip</dimen>
-
+    <!-- top menu -->
+    <dimen name="icon_w_h">26dip</dimen>
+    <dimen name="text_size_menu">12sp</dimen>
+    <dimen name="top_menu_height">276dip</dimen>
 
 </resources>

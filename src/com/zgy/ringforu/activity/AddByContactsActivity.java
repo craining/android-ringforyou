@@ -74,7 +74,6 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_contacts);
@@ -104,13 +103,14 @@ public class AddByContactsActivity extends Activity implements OnClickListener {
 		// ²¥·Å¶¯»­
 		imgLoading.setImageResource(R.anim.loading);
 		animationDrawable = (AnimationDrawable) imgLoading.getDrawable();
-		imgLoading.post(new Runnable() {
-
-			@Override
-			public void run() {
-				animationDrawable.start();
-			}
-		});
+		animationDrawable.start();
+//		imgLoading.post(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				animationDrawable.start();
+//			}
+//		});
 
 		btnBack.setOnClickListener(this);
 		imgClearEdit.setOnClickListener(this);

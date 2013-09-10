@@ -2,6 +2,7 @@ package com.zgy.ringforu.activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.Service;
@@ -9,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -25,12 +27,14 @@ import android.widget.Toast;
 import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
-import com.zgy.ringforu.util.RingForUActivityManager;
+import com.zgy.ringforu.util.ImportExportUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
+import com.zgy.ringforu.view.FCMenu;
+import com.zgy.ringforu.view.FCMenu.MenuItemOnClickListener;
+import com.zgy.ringforu.view.FCMenuItem;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
 
@@ -55,14 +59,23 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 	private Vibrator vb = null;
 
+	private FCMenu mTopMenu;
+	private OnTopMenuItemClickedListener mTopMenuListener;
+	private static final int ID_MENU_ADD_CONTACTS = 1;
+	private static final int ID_MENU_ADD_INPUT = 2;
+	private static final int ID_MENU_IMPORT = 3;
+	private static final int ID_MENU_EXPORT = 4;
+	private static final int ID_MENU_CLEAR = 5;
+	private static final int ID_MENU_MORE = 6;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tab_activity_call);
-		
-//		RingForUActivityManager.push(this);
-		
+
+		// RingForUActivityManager.push(this);
+
 		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
 
 		// layoutMain = (RelativeLayout)
@@ -76,6 +89,8 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		listMain = (ListView) findViewById(R.id.list_call);
 		imgSet = (ImageView) findViewById(R.id.img_call_set);
 
+		initTopMenu();
+		
 		btnAddFromContacts.setOnClickListener(TabCallActivity.this);
 		btnAddByInput.setOnClickListener(TabCallActivity.this);
 		btnClsList.setOnClickListener(TabCallActivity.this);
@@ -85,7 +100,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-					LogRingForu.v(TAG, "delete: " + position);
+				LogRingForu.v(TAG, "delete: " + position);
 				PhoneUtil.doVibraterNormal(vb);
 				listItem.remove(position);
 				listItemAdapter.notifyDataSetChanged();
@@ -150,10 +165,9 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		super.onDestroy();
 	}
 
-
 	@Override
 	protected void onResume() {
-			LogRingForu.e(TAG, "onResume");
+		LogRingForu.e(TAG, "onResume");
 		initListView();
 		super.onResume();
 	}
@@ -164,48 +178,104 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		PhoneUtil.doVibraterNormal(vb);
 
 		switch (v.getId()) {
-		case R.id.btn_call_addfrom:
-			Intent i = new Intent(TabCallActivity.this, AddByContactsActivity.class);
-			i.putExtra("tag", MainCanstants.TYPE_INTECEPT_CALL);
-			startActivity(i);
-			break;
-		case R.id.btn_call_addby:
-			Intent i2 = new Intent(TabCallActivity.this, AddByInputActivity.class);
-			i2.putExtra("tag", MainCanstants.TYPE_INTECEPT_CALL);
-			startActivity(i2);
-			break;
 
-		case R.id.btn_call_clslist:
-			// Çå¿Õ¶ÌÐÅÆÁ±Î
-			MyDialog.Builder builder = new MyDialog.Builder(TabCallActivity.this);
-			builder.setTitle(R.string.str_tip).setMessage(R.string.sure_delete_call).setPositiveButton(R.string.str_ok, new DialogInterface.OnClickListener() {
-
-				public void onClick(DialogInterface dialog, int whichButton) {
-					dialog.dismiss();
-					PhoneUtil.doVibraterNormal(vb);
-					listItem = new ArrayList<HashMap<String, String>>();
-					listItemAdapter.notifyDataSetChanged();
-					refreshViews();
-					saveLastAll();
-					MyToast.makeText(TabCallActivity.this, R.string.clear_success, Toast.LENGTH_SHORT, false).show();
-				}
-			}).setNegativeButton(R.string.str_cancel, new DialogInterface.OnClickListener() {
-
-				public void onClick(DialogInterface dialog, int whichButton) {
-					dialog.dismiss();
-					PhoneUtil.doVibraterNormal(vb);
-				}
-			}).create().show();
-
-			break;
 		case R.id.img_call_set:
-			Intent i4 = new Intent(TabCallActivity.this, SetActivity.class);
-			i4.putExtra("tag", MainCanstants.TYPE_INTECEPT_CALL);
-			startActivity(i4);
+			if (mTopMenu.isShowing()) {
+				mTopMenu.closeMenu();
+			} else {
+				mTopMenu.showMenuAsDropDown(imgSet);
+			}
 			break;
 		default:
 			break;
 		}
 
+	}
+
+	private void initTopMenu() {
+		DisplayMetrics dMetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(dMetrics);
+		int[] widthHeight = new int[2];
+		widthHeight[0] = dMetrics.widthPixels / 2;
+		widthHeight[1] = dMetrics.heightPixels / 2;
+
+		mTopMenu = new FCMenu(TabCallActivity.this, widthHeight);
+		mTopMenuListener = new OnTopMenuItemClickedListener();
+		mTopMenu.setMenuItemOnclickListener(mTopMenuListener);
+
+		List<FCMenuItem> items = new ArrayList<FCMenuItem>();
+		items.add(new FCMenuItem(ID_MENU_ADD_CONTACTS, -1, R.string.add_fromcontacts));
+		items.add(new FCMenuItem(ID_MENU_ADD_INPUT, -1, R.string.add_byhand));
+		items.add(new FCMenuItem(ID_MENU_EXPORT, -1, R.string.export_call));
+		items.add(new FCMenuItem(ID_MENU_IMPORT, -1, R.string.import_data));
+		items.add(new FCMenuItem(ID_MENU_CLEAR, -1, R.string.clear_all));
+		items.add(new FCMenuItem(ID_MENU_MORE, -1, R.string.set_call));
+		mTopMenu.setDatas(items);
+
+	}
+
+	private class OnTopMenuItemClickedListener implements MenuItemOnClickListener {
+
+		@Override
+		public void onItemClicked(FCMenuItem item) {
+			PhoneUtil.doVibraterNormal(vb);
+			switch (item.getOpID()) {
+			case ID_MENU_ADD_CONTACTS:
+				Intent i = new Intent(TabCallActivity.this, AddByContactsActivity.class);
+				i.putExtra("tag", MainCanstants.TYPE_INTECEPT_CALL);
+				startActivity(i);
+				break;
+			case ID_MENU_ADD_INPUT:
+				Intent i2 = new Intent(TabCallActivity.this, AddByInputActivity.class);
+				i2.putExtra("tag", MainCanstants.TYPE_INTECEPT_CALL);
+				startActivity(i2);
+				break;
+			case ID_MENU_IMPORT:
+				ImportExportUtil.importData(TabCallActivity.this, MainCanstants.TYPE_INTECEPT_CALL);
+				break;
+			case ID_MENU_EXPORT:
+				ImportExportUtil.exportData(TabCallActivity.this, MainCanstants.TYPE_INTECEPT_CALL);
+				break;
+			case ID_MENU_CLEAR:
+				if (listItem != null && listItem.size() > 0) {
+					showClearDlg();
+				} else {
+					MyToast.makeText(TabCallActivity.this, R.string.clear_null, Toast.LENGTH_LONG, true).show();
+				}
+				break;
+			case ID_MENU_MORE:
+				Intent i4 = new Intent(TabCallActivity.this, SetActivity.class);
+				i4.putExtra("tag", MainCanstants.TYPE_INTECEPT_CALL);
+				startActivity(i4);
+				break;
+
+			default:
+				break;
+			}
+
+		}
+
+	}
+
+	private void showClearDlg() {
+		MyDialog.Builder builder = new MyDialog.Builder(TabCallActivity.this);
+		builder.setTitle(R.string.str_tip).setMessage(R.string.sure_delete_call).setPositiveButton(R.string.str_ok, new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface dialog, int whichButton) {
+				dialog.dismiss();
+				PhoneUtil.doVibraterNormal(vb);
+				listItem = new ArrayList<HashMap<String, String>>();
+				listItemAdapter.notifyDataSetChanged();
+				refreshViews();
+				saveLastAll();
+				MyToast.makeText(TabCallActivity.this, R.string.clear_success, Toast.LENGTH_SHORT, false).show();
+			}
+		}).setNegativeButton(R.string.str_cancel, new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface dialog, int whichButton) {
+				dialog.dismiss();
+				PhoneUtil.doVibraterNormal(vb);
+			}
+		}).create().show();
 	}
 }

@@ -11,7 +11,8 @@
 
         <Button
             android:id="@+id/btn_sms_clslist"
-            style="@style/btn_left_top_clear" />
+            style="@style/btn_left_top_clear" 
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/text_sms_title"
@@ -38,7 +39,8 @@
             android:layout_marginLeft="@dimen/layout_margin_left_right"
             android:layout_marginRight="@dimen/layout_margin_left_right"
             android:layout_marginTop="@dimen/layout_margin_top_title"
-            android:orientation="horizontal" >
+            android:orientation="horizontal" 
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/btn_sms_addfrom"
