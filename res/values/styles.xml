@@ -17,6 +17,12 @@
         <!-- 模糊 -->
 
     </style>
+
+    <style name="top_menu" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/top_menu_in</item>
+        <item name="android:windowExitAnimation">@anim/top_menu_out</item>
+    </style>
+
     <!-- 与顶部标题栏相关的style -->
     <style name="layout_top_title">
         <item name="android:layout_width">fill_parent</item>
@@ -51,7 +57,7 @@
         <item name="android:text">@string/clear_all</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/btn_textsize_top_title</item>
-    </style>
+    </style>
     -->
     <style name="text_top_title">
         <item name="android:layout_width">wrap_content</item>

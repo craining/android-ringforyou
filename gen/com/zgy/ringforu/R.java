@@ -9,15 +9,11 @@ package com.zgy.ringforu;
 
 public final class R {
     public static final class anim {
-        public static final int alpha_in=0x7f040000;
-        public static final int alpha_in_long=0x7f040001;
-        public static final int alpha_out=0x7f040002;
-        public static final int alpha_out_long=0x7f040003;
-        public static final int anim_l_r=0x7f040004;
-        public static final int layout_anim_l_r=0x7f040005;
-        public static final int loading=0x7f040006;
-        public static final int push_left_out=0x7f040007;
-        public static final int push_right_in=0x7f040008;
+        public static final int anim_l_r=0x7f040000;
+        public static final int layout_anim_l_r=0x7f040001;
+        public static final int loading=0x7f040002;
+        public static final int top_menu_in=0x7f040003;
+        public static final int top_menu_out=0x7f040004;
     }
     public static final class array {
         /**  Cyan1 亮青 
@@ -754,38 +750,38 @@ public final class R {
     }
     public static final class style {
         public static final int AppTheme=0x7f090000;
-        public static final int btn_left_top_back=0x7f090003;
-        public static final int btn_main_add=0x7f090018;
-        public static final int btn_right_top=0x7f090005;
-        public static final int checkbox_set_item_check=0x7f090011;
+        public static final int btn_left_top_back=0x7f090004;
+        public static final int btn_main_add=0x7f090019;
+        public static final int btn_right_top=0x7f090006;
+        public static final int checkbox_set_item_check=0x7f090012;
         /**  设置页，item右侧开关按钮 
          */
-        public static final int checkbox_set_item_switch=0x7f090010;
+        public static final int checkbox_set_item_switch=0x7f090011;
         /**  模糊 
          */
         public static final int dialog=0x7f090001;
-        public static final int img_right_top_set=0x7f090006;
-        public static final int img_set_calm_item_right=0x7f090013;
+        public static final int img_right_top_set=0x7f090007;
+        public static final int img_set_calm_item_right=0x7f090014;
         /**  设置页，右侧箭头 
          */
-        public static final int img_set_item_arrow=0x7f090012;
-        public static final int img_set_item_selected=0x7f09000f;
-        public static final int img_tab_bottom=0x7f090016;
+        public static final int img_set_item_arrow=0x7f090013;
+        public static final int img_set_item_selected=0x7f090010;
+        public static final int img_tab_bottom=0x7f090017;
         /**  设置区块 
          */
-        public static final int layout_set_block=0x7f090008;
-        public static final int layout_set_item=0x7f090009;
-        public static final int layout_set_item_content_left=0x7f09000a;
-        public static final int layout_tab_bottom=0x7f090017;
+        public static final int layout_set_block=0x7f090009;
+        public static final int layout_set_item=0x7f09000a;
+        public static final int layout_set_item_content_left=0x7f09000b;
+        public static final int layout_tab_bottom=0x7f090018;
         /**  与顶部标题栏相关的style 
          */
-        public static final int layout_top_title=0x7f090002;
-        public static final int line_set_child_item_diver=0x7f09000e;
-        public static final int line_set_item_diver=0x7f09000d;
-        public static final int text_set_calm_item_left=0x7f090014;
-        public static final int text_set_item_content_left_bottom=0x7f09000c;
-        public static final int text_set_item_content_left_top=0x7f09000b;
-        public static final int text_tab_bottom=0x7f090015;
+        public static final int layout_top_title=0x7f090003;
+        public static final int line_set_child_item_diver=0x7f09000f;
+        public static final int line_set_item_diver=0x7f09000e;
+        public static final int text_set_calm_item_left=0x7f090015;
+        public static final int text_set_item_content_left_bottom=0x7f09000d;
+        public static final int text_set_item_content_left_top=0x7f09000c;
+        public static final int text_tab_bottom=0x7f090016;
         /** 
     <style name="btn_left_top_clear">
         <item name="android:layout_width">@dimen/btn_width_top</item>
@@ -799,9 +795,11 @@ public final class R {
         <item name="android:textSize">@dimen/btn_textsize_top_title</item>
     </style>
 
+
     
          */
-        public static final int text_top_title=0x7f090004;
-        public static final int view_anchor=0x7f090007;
+        public static final int text_top_title=0x7f090005;
+        public static final int top_menu=0x7f090002;
+        public static final int view_anchor=0x7f090008;
     }
 }

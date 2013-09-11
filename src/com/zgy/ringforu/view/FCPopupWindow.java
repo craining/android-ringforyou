@@ -30,6 +30,7 @@ public class FCPopupWindow {
 		if (mPopupWindow == null) {
 			mPopupWindow = new PopupWindow(contentView, width, height, true);
 			mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+			mPopupWindow.setAnimationStyle(R.style.top_menu);
 			mPopupWindow.update();
 		}
 
@@ -47,7 +48,7 @@ public class FCPopupWindow {
 		if (mPopupWindow == null) {
 			mPopupWindow = new PopupWindow(contentView, widthLayoutParams, heightLayoutParams, isFocusable);
 			mPopupWindow.setBackgroundDrawable(bitmapDrawable);
-			// mPopupWindow.setAnimationStyle(R.style.menu_popupwindow_style);
+			mPopupWindow.setAnimationStyle(R.style.top_menu);
 			mPopupWindow.update();
 
 		}
@@ -63,6 +64,7 @@ public class FCPopupWindow {
 		if (mPopupWindow == null) {
 			mPopupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
 			mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+			mPopupWindow.setAnimationStyle(R.style.top_menu);
 			mPopupWindow.update();
 
 		}
