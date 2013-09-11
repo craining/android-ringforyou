@@ -9,6 +9,7 @@ import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -34,6 +35,7 @@ import com.zgy.ringforu.util.ImportExportUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
+import com.zgy.ringforu.util.ViewUtil;
 import com.zgy.ringforu.view.FCMenu;
 import com.zgy.ringforu.view.FCMenu.MenuItemOnClickListener;
 import com.zgy.ringforu.view.FCMenuItem;
@@ -54,7 +56,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 	private ListView listMain;
 	private SimpleAdapter listItemAdapter;
 
-	private ImageView imgSet;
+	private Button btnSet;
 
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 
@@ -82,13 +84,13 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 		btnAddFromContacts = (Button) findViewById(R.id.btn_sms_addfrom);
 		btnAddByInput = (Button) findViewById(R.id.btn_sms_addby);
 		listMain = (ListView) findViewById(R.id.list_sms);
-		imgSet = (ImageView) findViewById(R.id.img_sms_set);
+		btnSet = (Button) findViewById(R.id.btn_sms_set);
 
 		initTopMenu();
 
 		btnAddFromContacts.setOnClickListener(TabSmsActivity.this);
 		btnAddByInput.setOnClickListener(TabSmsActivity.this);
-		imgSet.setOnClickListener(TabSmsActivity.this);
+		btnSet.setOnClickListener(TabSmsActivity.this);
 
 		listMain.setOnItemLongClickListener(new OnItemLongClickListener() {
 
@@ -168,7 +170,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 
 		switch (v.getId()) {
 
-		case R.id.img_sms_set:
+		case R.id.btn_sms_set:
 
 			if (mTopMenu.isShowing()) {
 				mTopMenu.closeMenu();
@@ -287,6 +289,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 		@Override
 		public void onSlideToLeft() {
 			if(!mTopMenu.isShowing()) {
+				ViewUtil.onButtonPressedBlue(btnSet);
 				PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 				mTopMenu.showMenu();
 			}

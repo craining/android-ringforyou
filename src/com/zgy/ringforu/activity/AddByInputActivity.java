@@ -19,6 +19,7 @@ import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
+import com.zgy.ringforu.util.ViewUtil;
 import com.zgy.ringforu.view.MyToast;
 
 public class AddByInputActivity extends BaseGestureActivity implements OnClickListener {
@@ -155,6 +156,7 @@ public class AddByInputActivity extends BaseGestureActivity implements OnClickLi
 	@Override
 	public void onSlideToRight() {
 		super.onSlideToRight();
+		ViewUtil.onButtonPressedBack(btnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		RingForUActivityManager.pop(this);
 	}
@@ -162,6 +164,7 @@ public class AddByInputActivity extends BaseGestureActivity implements OnClickLi
 	@Override
 	public void onSlideToLeft() {
 		super.onSlideToLeft();
+		ViewUtil.onButtonPressedBlue(btnOk);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		addOper();
 	}

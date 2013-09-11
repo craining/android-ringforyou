@@ -18,9 +18,11 @@
             style="@style/text_top_title"
             android:text="@string/tab_call" />
 
-        <ImageView
-            android:id="@+id/img_call_set"
-            style="@style/img_right_top_set" />
+        <Button
+            android:id="@+id/btn_call_set"
+            style="@style/btn_right_top"
+            android:text="@string/str_opera" />
+        
     </RelativeLayout>
 
     <LinearLayout

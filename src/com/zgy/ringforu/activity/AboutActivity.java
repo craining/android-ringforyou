@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
+import com.zgy.ringforu.util.ViewUtil;
 
 public class AboutActivity extends BaseGestureActivity implements OnClickListener {
 
@@ -51,6 +52,7 @@ public class AboutActivity extends BaseGestureActivity implements OnClickListene
 	@Override
 	public void onSlideToRight() {
 		super.onSlideToRight();
+		ViewUtil.onButtonPressedBack(btnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		RingForUActivityManager.pop(AboutActivity.this);
 	}

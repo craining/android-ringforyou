@@ -26,6 +26,7 @@ import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.SignalReconnectUtil;
 import com.zgy.ringforu.util.SmsLightScreenUtil;
 import com.zgy.ringforu.util.StringUtil;
+import com.zgy.ringforu.util.ViewUtil;
 import com.zgy.ringforu.util.WaterMarkUtil;
 import com.zgy.ringforu.view.MyToast;
 
@@ -239,6 +240,7 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 	@Override
 	public void onSlideToRight() {
 		super.onSlideToRight();
+		ViewUtil.onButtonPressedBack(btnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		RingForUActivityManager.pop(this);
 	}

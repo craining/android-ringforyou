@@ -39,6 +39,7 @@ import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.util.TimeUtil;
+import com.zgy.ringforu.util.ViewUtil;
 import com.zgy.ringforu.util.WaterMarkUtil;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
@@ -415,7 +416,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 						tempFileSrc.delete();
 					}
 					FileUtil.copyFileTo(tempFileCutted, WaterMarkUtil.FILE_WATERMARK_IMG);
-					// tempFileCutted.delete();
+					tempFileCutted.delete();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -575,8 +576,10 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		LogRingForu.e(TAG, "onStop");
 		if (!mJumpOutFromPick) {
 			LogRingForu.e(TAG, "!mJumpOutFromPick");
-			WaterMarkService.show = true;
-			WaterMarkUtil.ctrlWaterMarkBackService(ToolsWaterMarkActivity.this, true);
+			WaterMarkUtil.checkState(ToolsWaterMarkActivity.this);
+			// WaterMarkService.show = true;
+			// WaterMarkUtil.ctrlWaterMarkBackService(ToolsWaterMarkActivity.this,
+			// true);
 		}
 		super.onStop();
 	}
@@ -585,6 +588,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	public void onSlideToRight() {
 		super.onSlideToRight();
 		if (!mSeekBarOnTouchMove) {
+			ViewUtil.onButtonPressedBack(btnCancel);
 			PhoneUtil.doVibraterNormal(super.mVb);
 			RingForUActivityManager.pop(this);
 		}
@@ -595,6 +599,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	public void onSlideToLeft() {
 		super.onSlideToLeft();
 		if (btnOk.getVisibility() == View.VISIBLE && !mSeekBarOnTouchMove) {
+			ViewUtil.onButtonPressedBlue(btnOk);
 			PhoneUtil.doVibraterNormal(super.mVb);
 			open();
 			RingForUActivityManager.pop(this);

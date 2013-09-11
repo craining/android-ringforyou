@@ -251,6 +251,7 @@
     <string name="gesture_info">在页面上向左、向右滑动分别触发标题栏上最右侧、最左侧按钮</string>
     <string name="str_change_bg_color">"切换背景\r\n查看效果"</string>
     
-    
+    <string name="str_opera">操作</string>
+    <string name="str_exit">退出</string>
 
 </resources>

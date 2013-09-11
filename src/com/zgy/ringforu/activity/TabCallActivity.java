@@ -36,6 +36,7 @@ import com.zgy.ringforu.util.ImportExportUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
+import com.zgy.ringforu.util.ViewUtil;
 import com.zgy.ringforu.view.FCMenu;
 import com.zgy.ringforu.view.FCMenu.MenuItemOnClickListener;
 import com.zgy.ringforu.view.FCMenuItem;
@@ -55,9 +56,8 @@ public class TabCallActivity extends Activity implements OnClickListener {
 	private TextView textShowdelTip;
 	private ListView listMain;
 	private SimpleAdapter listItemAdapter;
-
-	private ImageView imgSet;
-
+	private Button btnSet;
+	
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 
 	private FCMenu mTopMenu;
@@ -85,13 +85,13 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		btnAddFromContacts = (Button) findViewById(R.id.btn_call_addfrom);
 		btnAddByInput = (Button) findViewById(R.id.btn_call_addby);
 		listMain = (ListView) findViewById(R.id.list_call);
-		imgSet = (ImageView) findViewById(R.id.img_call_set);
+		btnSet = (Button) findViewById(R.id.btn_call_set);
 
 		initTopMenu();
 
 		btnAddFromContacts.setOnClickListener(TabCallActivity.this);
 		btnAddByInput.setOnClickListener(TabCallActivity.this);
-		imgSet.setOnClickListener(TabCallActivity.this);
+		btnSet.setOnClickListener(TabCallActivity.this);
 
 		listMain.setOnItemLongClickListener(new OnItemLongClickListener() {
 
@@ -175,7 +175,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 		switch (v.getId()) {
 
-		case R.id.img_call_set:
+		case R.id.btn_call_set:
 			if (mTopMenu.isShowing()) {
 				mTopMenu.closeMenu();
 			} else {
@@ -290,6 +290,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		@Override
 		public void onSlideToLeft() {
 			if(!mTopMenu.isShowing()) {
+				ViewUtil.onButtonPressedBlue(btnSet);
 				PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 				mTopMenu.showMenu();
 			}

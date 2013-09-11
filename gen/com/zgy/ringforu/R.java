@@ -270,6 +270,7 @@ public final class R {
         public static final int btn_busymodeset_ok=0x7f0a0021;
         public static final int btn_call_addby=0x7f0a007d;
         public static final int btn_call_addfrom=0x7f0a007c;
+        public static final int btn_call_set=0x7f0a0079;
         public static final int btn_ctrl=0x7f0a00ad;
         public static final int btn_dlg_negative=0x7f0a002a;
         public static final int btn_dlg_positive=0x7f0a0029;
@@ -277,6 +278,7 @@ public final class R {
         public static final int btn_feedback_return=0x7f0a002b;
         public static final int btn_important_addby=0x7f0a0089;
         public static final int btn_important_addfrom=0x7f0a0088;
+        public static final int btn_important_set=0x7f0a0085;
         public static final int btn_notification_busymode_refused_call=0x7f0a003f;
         public static final int btn_notification_busymode_refused_clear=0x7f0a0040;
         public static final int btn_ok=0x7f0a000f;
@@ -288,6 +290,7 @@ public final class R {
         public static final int btn_sethidestyle_return_sms=0x7f0a0056;
         public static final int btn_sms_addby=0x7f0a00a2;
         public static final int btn_sms_addfrom=0x7f0a00a1;
+        public static final int btn_sms_set=0x7f0a009e;
         public static final int btn_tools_return=0x7f0a00bd;
         public static final int btn_watermark_cancel=0x7f0a00b0;
         public static final int btn_watermark_change=0x7f0a00b6;
@@ -315,17 +318,14 @@ public final class R {
         public static final int img_add_calm_important=0x7f0a0062;
         public static final int img_add_contact_animation=0x7f0a0009;
         public static final int img_addcontacts_clear=0x7f0a0007;
-        public static final int img_call_set=0x7f0a0079;
         public static final int img_del_calm_1_important=0x7f0a0065;
         public static final int img_del_calm_2_important=0x7f0a0068;
-        public static final int img_important_set=0x7f0a0085;
         public static final int img_sethidestyle_call_no_answer=0x7f0a004d;
         public static final int img_sethidestyle_call_null=0x7f0a004f;
         public static final int img_sethidestyle_call_receive_shutdown=0x7f0a0053;
         public static final int img_sethidestyle_call_shutdown=0x7f0a0051;
         public static final int img_sethidestyle_sms_disreceive=0x7f0a005a;
         public static final int img_sethidestyle_sms_slient=0x7f0a0058;
-        public static final int img_sms_set=0x7f0a009e;
         public static final int img_tab_call=0x7f0a0036;
         public static final int img_tab_important=0x7f0a0034;
         public static final int img_tab_more=0x7f0a003a;
@@ -700,8 +700,10 @@ public final class R {
          */
         public static final int str_docall=0x7f0800c1;
         public static final int str_doclear=0x7f0800c2;
+        public static final int str_exit=0x7f0800ea;
         public static final int str_ok=0x7f08001a;
         public static final int str_open=0x7f0800a0;
+        public static final int str_opera=0x7f0800e9;
         public static final int str_set=0x7f080032;
         /**  2012-12-2 
  2012-12-2 

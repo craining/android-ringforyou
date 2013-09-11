@@ -17,6 +17,7 @@ import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
+import com.zgy.ringforu.util.ViewUtil;
 
 public class SetHideStyleActivity extends BaseGestureActivity implements OnClickListener {
 
@@ -192,6 +193,7 @@ public class SetHideStyleActivity extends BaseGestureActivity implements OnClick
 	@Override
 	public void onSlideToRight() {
 		super.onSlideToRight();
+		ViewUtil.onButtonPressedBack(btnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		RingForUActivityManager.pop(this);
 	}

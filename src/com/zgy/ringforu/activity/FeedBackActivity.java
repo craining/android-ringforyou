@@ -26,6 +26,7 @@ import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.NetWorkUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.SendEmailUtil;
+import com.zgy.ringforu.util.ViewUtil;
 import com.zgy.ringforu.view.MyToast;
 
 public class FeedBackActivity extends BaseGestureActivity implements OnClickListener {
@@ -156,6 +157,7 @@ public class FeedBackActivity extends BaseGestureActivity implements OnClickList
 	@Override
 	public void onSlideToRight() {
 		super.onSlideToRight();
+		ViewUtil.onButtonPressedBack(btnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		RingForUActivityManager.pop(this);
 	}
@@ -163,6 +165,7 @@ public class FeedBackActivity extends BaseGestureActivity implements OnClickList
 	@Override
 	public void onSlideToLeft() {
 		super.onSlideToLeft();
+		ViewUtil.onButtonPressedBlue(btnSubmit);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		doFeedBack();
 	}

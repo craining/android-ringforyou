@@ -34,6 +34,7 @@ import com.zgy.ringforu.util.ImportExportUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.StringUtil;
+import com.zgy.ringforu.util.ViewUtil;
 import com.zgy.ringforu.view.FCMenu;
 import com.zgy.ringforu.view.FCMenu.MenuItemOnClickListener;
 import com.zgy.ringforu.view.FCMenuItem;
@@ -54,7 +55,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 	private ListView listMain;
 	private SimpleAdapter listItemAdapter;
 
-	private ImageView imgSet;
+	private Button btnSet;
 
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 
@@ -83,13 +84,13 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 		btnAddFromContacts = (Button) findViewById(R.id.btn_important_addfrom);
 		btnAddByInput = (Button) findViewById(R.id.btn_important_addby);
 		listMain = (ListView) findViewById(R.id.list_important);
-		imgSet = (ImageView) findViewById(R.id.img_important_set);
+	btnSet = (Button) findViewById(R.id.btn_important_set);
 
 		initTopMenu();
 
 		btnAddFromContacts.setOnClickListener(TabImportantActivity.this);
 		btnAddByInput.setOnClickListener(TabImportantActivity.this);
-		imgSet.setOnClickListener(TabImportantActivity.this);
+		btnSet.setOnClickListener(TabImportantActivity.this);
 
 		listMain.setOnItemLongClickListener(new OnItemLongClickListener() {
 
@@ -262,7 +263,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 		PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 
 		switch (v.getId()) {
-		case R.id.img_important_set:
+		case R.id.btn_important_set:
 
 			if (mTopMenu == null) {
 				initTopMenu();
@@ -293,6 +294,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 		@Override
 		public void onSlideToLeft() {
 			if(!mTopMenu.isShowing()) {
+				ViewUtil.onButtonPressedBlue(btnSet);
 				PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 				mTopMenu.showMenu();
 			}

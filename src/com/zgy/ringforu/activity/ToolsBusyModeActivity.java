@@ -16,6 +16,7 @@ import com.zgy.ringforu.R;
 import com.zgy.ringforu.util.BusyModeUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
+import com.zgy.ringforu.util.ViewUtil;
 import com.zgy.ringforu.view.MyToast;
 import com.zgy.ringforu.view.WordsFlowView;
 
@@ -176,6 +177,7 @@ public class ToolsBusyModeActivity extends BaseGestureActivity implements OnClic
 	@Override
 	public void onSlideToRight() {
 		super.onSlideToRight();
+		ViewUtil.onButtonPressedBack(btnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		RingForUActivityManager.pop(this);
 	}
@@ -183,6 +185,7 @@ public class ToolsBusyModeActivity extends BaseGestureActivity implements OnClic
 	@Override
 	public void onSlideToLeft() {
 		super.onSlideToLeft();
+		ViewUtil.onButtonPressedBlue(btnOk);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		setOk();
 	}

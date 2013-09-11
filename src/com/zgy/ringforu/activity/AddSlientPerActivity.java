@@ -18,6 +18,7 @@ import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.TimeUtil;
+import com.zgy.ringforu.util.ViewUtil;
 import com.zgy.ringforu.view.MyToast;
 import com.zgy.ringforu.view.NumericWheelAdapter;
 import com.zgy.ringforu.view.WheelView;
@@ -170,6 +171,7 @@ public class AddSlientPerActivity extends BaseGestureActivity implements OnClick
 	@Override
 	public void onSlideToRight() {
 		super.onSlideToRight();
+		ViewUtil.onButtonPressedBack(btnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		RingForUActivityManager.pop(this);
 	}
@@ -177,6 +179,7 @@ public class AddSlientPerActivity extends BaseGestureActivity implements OnClick
 	@Override
 	public void onSlideToLeft() {
 		super.onSlideToLeft();
+		ViewUtil.onButtonPressedBlue(btnAdd);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		addSlientTime();
 	}
