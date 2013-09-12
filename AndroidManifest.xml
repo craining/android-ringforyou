@@ -116,6 +116,7 @@
             android:name=".activity.FeedBackActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
+            android:windowSoftInputMode="stateAlwaysVisible"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ToolsListActivity"
@@ -161,6 +162,7 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:launchMode="singleTask"
+            android:windowSoftInputMode="stateAlwaysVisible"
             android:screenOrientation="portrait" />
 
         <service

@@ -30,6 +30,7 @@ import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.interfaces.OnGestureChangedListener;
+import com.zgy.ringforu.util.AddContactUtil;
 import com.zgy.ringforu.util.ImportExportUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -112,8 +113,9 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 	private void saveLastAll() {
 		MainConfig.getInstance().setImportantNumbers("");
 		MainConfig.getInstance().setImportantNames("");
+		AddContactUtil.insert("", "", TabImportantActivity.this, MainCanstants.TYPE_IMPORTANT);
 		for (HashMap<String, String> a : listItem) {
-			MainUtil.insert(a.get("name"), a.get("number"), TabImportantActivity.this, MainCanstants.TYPE_IMPORTANT);
+			AddContactUtil.insert(a.get("name"), a.get("number"), TabImportantActivity.this, MainCanstants.TYPE_IMPORTANT);
 		}
 	}
 

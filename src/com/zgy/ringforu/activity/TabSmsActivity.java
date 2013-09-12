@@ -31,6 +31,7 @@ import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.interfaces.OnGestureChangedListener;
+import com.zgy.ringforu.util.AddContactUtil;
 import com.zgy.ringforu.util.ImportExportUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -111,8 +112,9 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 	private void saveLastAll() {
 		MainConfig.getInstance().setInterceptSmsNumbers("");
 		MainConfig.getInstance().setInterceptSmsNames("");
+		AddContactUtil.insert("", "", TabSmsActivity.this, MainCanstants.TYPE_INTECEPT_SMS);
 		for (HashMap<String, String> a : listItem) {
-			MainUtil.insert(a.get("name"), a.get("number"), TabSmsActivity.this, MainCanstants.TYPE_INTECEPT_SMS);
+			AddContactUtil.insert(a.get("name"), a.get("number"), TabSmsActivity.this, MainCanstants.TYPE_INTECEPT_SMS);
 		}
 	}
 

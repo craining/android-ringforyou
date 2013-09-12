@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.BusyModeUtil;
 import com.zgy.ringforu.util.DisableGprsUtil;
@@ -79,6 +80,8 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 		layoutDisableGprs.setOnClickListener(this);
 		layoutSignalReconnect.setOnClickListener(this);
 
+		MainConfig.getInstance().setRedToolsShown(true);
+		
 		mReceiver = new ToolsReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(ACTION_WATERMARK_ON);

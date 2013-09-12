@@ -16,4 +16,7 @@
     <color name="login_edit_unfocused">#00BFFF</color>
 
     <color name="bg_grey">#98989C</color>
+    
+    
+    <color name="red_point">#DF212A</color>
 </resources>

@@ -2,9 +2,9 @@ package com.zgy.ringforu.config;
 
 import android.content.Context;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.util.PreferenceUtil;
-import com.zgy.ringforu.util.WaterMarkUtil;
 
 public class MainConfig extends PreferenceUtil {
 
@@ -49,7 +49,7 @@ public class MainConfig extends PreferenceUtil {
 	}
 
 	public synchronized int getWaterMarkAlpha() {
-		return getInt(ConfigCanstants.SCREEN_WATERMARK_ALPHA, WaterMarkUtil.WATER_MARK_ALPHA_DEF);
+		return getInt(ConfigCanstants.SCREEN_WATERMARK_ALPHA, MainCanstants.WATER_MARK_ALPHA_DEF);
 	}
 
 	public synchronized String getBusyModeReplyStr() {
@@ -179,4 +179,29 @@ public class MainConfig extends PreferenceUtil {
 	public synchronized void setNotificationOnOff(boolean on) {
 		putBool(ConfigCanstants.NOTIFICATION_SWITCH, on);
 	}
+
+	public synchronized String getVersionCode() {
+		return getString(ConfigCanstants.VERSION_CODE, "");
+	}
+
+	public synchronized void setVersionCode(String code) {
+		putString(ConfigCanstants.VERSION_CODE, code);
+	}
+
+	public synchronized boolean isUserGuideShown() {
+		return getBool(ConfigCanstants.USER_GUIDE_SHOWD, false);
+	}
+
+	public synchronized void setUserGuideShown(boolean shown) {
+		putBool(ConfigCanstants.USER_GUIDE_SHOWD, shown);
+	}
+
+	public synchronized boolean isRedToolsShown() {
+		return getBool(ConfigCanstants.RED_TOOLS, false);
+	}
+
+	public synchronized void setRedToolsShown(boolean shown) {
+		putBool(ConfigCanstants.RED_TOOLS, shown);
+	}
+
 }

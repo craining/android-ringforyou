@@ -38,7 +38,7 @@ public class ImportExportUtil {
 				return;
 			}
 			try {
-				if (FileUtil.write(mainConfig.getImporantNames(), new File(MainUtil.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath()), false) && FileUtil.write(mainConfig.getImporantNumbers(), new File(MainUtil.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath()), false)) {
+				if (FileUtil.write(mainConfig.getImporantNames(), new File(MainCanstants.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath()), false) && FileUtil.write(mainConfig.getImporantNumbers(), new File(MainCanstants.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath()), false)) {
 					MyToast.makeText(context, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(context, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
@@ -57,7 +57,7 @@ public class ImportExportUtil {
 			}
 			// 备份通话拦截数据
 			try {
-				if (FileUtil.write(mainConfig.getInterceptCallNames(), new File(MainUtil.FILE_SDCARD_CALL_NAME.getAbsolutePath()), false) && FileUtil.write(mainConfig.getInterceptCallNumbers(), new File(MainUtil.FILE_SDCARD_CALL_NUM.getAbsolutePath()), false)) {
+				if (FileUtil.write(mainConfig.getInterceptCallNames(), new File(MainCanstants.FILE_SDCARD_CALL_NAME.getAbsolutePath()), false) && FileUtil.write(mainConfig.getInterceptCallNumbers(), new File(MainCanstants.FILE_SDCARD_CALL_NUM.getAbsolutePath()), false)) {
 					MyToast.makeText(context, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(context, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
@@ -76,7 +76,7 @@ public class ImportExportUtil {
 				return;
 			}
 			try {
-				if (FileUtil.write(mainConfig.getInterceptSmsNames(), new File(MainUtil.FILE_SDCARD_SMS_NAME.getAbsolutePath()), false) && FileUtil.write(mainConfig.getInterceptSmsNumbers(), new File(MainUtil.FILE_SDCARD_SMS_NUM.getAbsolutePath()), false)) {
+				if (FileUtil.write(mainConfig.getInterceptSmsNames(), new File(MainCanstants.FILE_SDCARD_SMS_NAME.getAbsolutePath()), false) && FileUtil.write(mainConfig.getInterceptSmsNumbers(), new File(MainCanstants.FILE_SDCARD_SMS_NUM.getAbsolutePath()), false)) {
 					MyToast.makeText(context, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(context, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
@@ -110,13 +110,13 @@ public class ImportExportUtil {
 		switch (tag) {
 		case MainCanstants.TYPE_IMPORTANT:
 			// 导入备份
-			if (!(MainUtil.FILE_SDCARD_IMPORTANT_NAME.exists())) {
+			if (!(MainCanstants.FILE_SDCARD_IMPORTANT_NAME.exists())) {
 				MyToast.makeText(context, R.string.set_backup_nobackups, Toast.LENGTH_SHORT, true).show();
 				return;
 			}
 			try {
-				mainConfig.setImportantNames(FileUtil.read(new File(MainUtil.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath())));
-				mainConfig.setImportantNumbers(FileUtil.read(new File(MainUtil.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath())));
+				mainConfig.setImportantNames(FileUtil.read(new File(MainCanstants.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath())));
+				mainConfig.setImportantNumbers(FileUtil.read(new File(MainCanstants.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath())));
 				MyToast.makeText(context, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
 				// MyToast.makeText(conttext, R.string.import_fail,
 				// Toast.LENGTH_SHORT, true).show();
@@ -126,14 +126,14 @@ public class ImportExportUtil {
 			}
 			break;
 		case MainCanstants.TYPE_INTECEPT_CALL:
-			if (!(MainUtil.FILE_SDCARD_CALL_NAME.exists())) {
+			if (!(MainCanstants.FILE_SDCARD_CALL_NAME.exists())) {
 				MyToast.makeText(context, R.string.set_backup_nobackups, Toast.LENGTH_SHORT, true).show();
 				return;
 			}
 			// 导入备份
 			try {
-				mainConfig.setInterceptCallNames(FileUtil.read(new File(MainUtil.FILE_SDCARD_CALL_NAME.getAbsolutePath())));
-				mainConfig.setInterceptCallNumbers(FileUtil.read(new File(MainUtil.FILE_SDCARD_CALL_NUM.getAbsolutePath())));
+				mainConfig.setInterceptCallNames(FileUtil.read(new File(MainCanstants.FILE_SDCARD_CALL_NAME.getAbsolutePath())));
+				mainConfig.setInterceptCallNumbers(FileUtil.read(new File(MainCanstants.FILE_SDCARD_CALL_NUM.getAbsolutePath())));
 				MyToast.makeText(context, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
 				// MyToast.makeText(conttext, R.string.import_fail,
 				// Toast.LENGTH_SHORT, true).show();
@@ -143,15 +143,15 @@ public class ImportExportUtil {
 			}
 			break;
 		case MainCanstants.TYPE_INTECEPT_SMS:
-			if (!MainUtil.FILE_SDCARD_SMS_NAME.exists()) {
+			if (!MainCanstants.FILE_SDCARD_SMS_NAME.exists()) {
 				MyToast.makeText(context, R.string.set_backup_nobackups, Toast.LENGTH_SHORT, true).show();
 				return;
 			}
 			// 导入备份
 			try {
 
-				mainConfig.setInterceptSmsNames(FileUtil.read(new File(MainUtil.FILE_SDCARD_SMS_NAME.getAbsolutePath())));
-				mainConfig.setInterceptSmsNumbers(FileUtil.read(new File(MainUtil.FILE_SDCARD_SMS_NUM.getAbsolutePath())));
+				mainConfig.setInterceptSmsNames(FileUtil.read(new File(MainCanstants.FILE_SDCARD_SMS_NAME.getAbsolutePath())));
+				mainConfig.setInterceptSmsNumbers(FileUtil.read(new File(MainCanstants.FILE_SDCARD_SMS_NUM.getAbsolutePath())));
 				MyToast.makeText(context, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
 				// MyToast.makeText(conttext, R.string.import_fail,
 				// Toast.LENGTH_SHORT, true).show();

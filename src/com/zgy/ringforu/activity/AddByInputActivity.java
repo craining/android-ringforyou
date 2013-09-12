@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.util.AddContactUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -67,7 +68,7 @@ public class AddByInputActivity extends BaseGestureActivity implements OnClickLi
 	}
 
 	private void refresh() {
-		int left = MainUtil.getLeft(AddByInputActivity.this, tag);
+		int left = AddContactUtil.getLeft(AddByInputActivity.this, tag);
 		textShowLeft.setText(getString(R.string.left_top) + left + getString(R.string.left_bottom));
 		if (left <= 0) {
 			MyToast.makeText(AddByInputActivity.this, R.string.add_cannot_more, Toast.LENGTH_SHORT, true).show();
@@ -118,7 +119,7 @@ public class AddByInputActivity extends BaseGestureActivity implements OnClickLi
 			}
 			number = editNumber.getText().toString();
 
-			int result = MainUtil.insert(name, StringUtil.getRidofSpeciall(number), AddByInputActivity.this, tag);
+			int result = AddContactUtil.insert(name, StringUtil.getRidofSpeciall(number), AddByInputActivity.this, tag);
 
 			switch (result) {
 			case -1:

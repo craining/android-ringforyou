@@ -7,9 +7,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
@@ -63,13 +64,16 @@ public class FCMenu extends FCPopupWindow implements OnItemClickListener {
 		this.mListView = (ListView) this.container.findViewById(R.id.list_top_menu);
 		this.mTextTitle = (TextView) this.container.findViewById(R.id.text_top_menu_title);
 
-		this.container.setOnClickListener(new OnClickListener() {
+		this.container.setOnTouchListener(new OnTouchListener() {
 
 			@Override
-			public void onClick(View v) {
-				if (FCMenu.this.isShowing()) {
-					FCMenu.this.close();
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					if (FCMenu.this.isShowing()) {
+						FCMenu.this.close();
+					}
 				}
+				return false;
 			}
 		});
 		this.container.setOnKeyListener(new OnKeyListener() {

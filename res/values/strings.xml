@@ -1,5 +1,8 @@
 <resources>
 
+    
+    <string name="version_code">v2.0_20130912_18:00</string>
+    
     <string name="app_name">Waiter</string>
     <string name="back">Back</string>
     <string name="clear_all">Clear</string>
@@ -113,7 +116,7 @@
     <string name="set_backup_noimportant">尚未添加重要联系人</string>
     <string name="set_backup_nocall">尚未添加要屏蔽来电的联系人</string>
     <string name="set_backup_nosms">尚未添加要屏蔽短信的联系人</string>
-    <string name="set_backup_nobackups">存储卡上没有备份文件</string>
+    <string name="set_backup_nobackups">没有找到备份文件</string>
     <string name="set_hidestyle_sms">短信屏蔽方式</string>
     <string name="set_hidestyle_call">来电屏蔽方式</string>
     <string name="set_hidestyle_call_no_answer">直接挂断</string>
@@ -155,9 +158,10 @@
     <string name="sms_lightscreen_info">防止手机静音错过普通短信</string>
     <string name="sms_lightscreen_toast_on">收到短信将点亮屏幕</string>
     <string name="clear_str">清空缓存</string>
-    <string name="clear_str_info">删除存储卡上的备份文件</string>
+    <string name="clear_str_info">删除备份文件</string>
     <string name="clear_alert">您确定要删除所有备份数据吗？</string>
     <string name="clear_data_over">备份文件已清空</string>
+    <string name="clear_data_null">没有备份文件</string>
     <string name="signalreconnect_title">掉线重连</string>
     <string name="signalreconnect_info">手机无信号时定时自动重连</string>
     <string name="signalreconnect_success">开启成功</string>
@@ -220,7 +224,7 @@
     <string name="busymode_refused_title">来电已拒绝</string>
     <string name="watermark_close">关闭</string>
     <string name="watermark_close_finish">屏幕水印已关闭！</string>
-    <string name="watermark_cannot_pick">操作无法进行，请检查存储卡是否可用</string>
+    <string name="no_sdcard">操作无法进行，请检查存储卡是否可用</string>
     <string name="about_maker">制作：</string>
     <string name="about_maker_name">庄广钰</string>
     <string name="about_programer">开发：</string>

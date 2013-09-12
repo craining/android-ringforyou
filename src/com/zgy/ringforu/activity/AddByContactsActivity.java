@@ -35,6 +35,7 @@ import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.bean.ContactInfo;
 import com.zgy.ringforu.config.MainConfig;
+import com.zgy.ringforu.util.AddContactUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
@@ -123,7 +124,7 @@ public class AddByContactsActivity extends BaseGestureActivity implements OnClic
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-				int result = MainUtil.insert(listItem.get(position).get("name"), listItem.get(position).get("number"), AddByContactsActivity.this, tag);
+				int result = AddContactUtil.insert(listItem.get(position).get("name"), listItem.get(position).get("number"), AddByContactsActivity.this, tag);
 				switch (result) {
 				case 1:
 					listItem.remove(position);
@@ -304,7 +305,7 @@ public class AddByContactsActivity extends BaseGestureActivity implements OnClic
 			textShowNull.setVisibility(View.VISIBLE);
 			layoutTip.setVisibility(View.GONE);
 		}
-		int left = MainUtil.getLeft(AddByContactsActivity.this, tag);
+		int left = AddContactUtil.getLeft(AddByContactsActivity.this, tag);
 		textShowLeft.setText(getString(R.string.left_top) + left + getString(R.string.left_bottom));
 		if (left <= 0) {
 			MyToast.makeText(AddByContactsActivity.this, R.string.add_cannot_more, Toast.LENGTH_SHORT, true).show();

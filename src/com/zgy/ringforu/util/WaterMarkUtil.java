@@ -1,16 +1,10 @@
 package com.zgy.ringforu.util;
 
-import java.io.File;
-
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
 import com.zgy.ringforu.LogRingForu;
-import com.zgy.ringforu.R;
-import com.zgy.ringforu.RingForU;
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.service.WaterMarkService;
 
@@ -22,20 +16,12 @@ import com.zgy.ringforu.service.WaterMarkService;
  */
 public class WaterMarkUtil {
 
-	public static final File FILE_WATERMARK_IMG = new File("/data/data/com.zgy.ringforu/files/watermark.jpg");
-	public static final String FILE_WATERMARK_IMG_TEMP_CUT = MainUtil.FILE_IN_SDCARD + "cut";
-	public static final String FILE_WATERMARK_IMG_TEMP_SRC = MainUtil.FILE_IN_SDCARD + "src";
-
-	private static final String SERVICE_NAME_WATERMARK = "com.zgy.ringforu.service.WaterMarkService";
-
 	private static final String TAG = "WaterMarkUtil";
-
-	public static final int WATER_MARK_ALPHA_DEF = 50;
 
 	// TODO getstate , check ,
 
 	public static boolean isWaterMarkShowing(Context context) {
-		if (isWaterMarkSeted() && MainUtil.isServiceStarted(context, SERVICE_NAME_WATERMARK)) {
+		if (isWaterMarkSeted() && MainUtil.isServiceStarted(context, MainCanstants.SERVICE_NAME_WATERMARK)) {
 			return true;
 		} else {
 			return false;
@@ -49,7 +35,7 @@ public class WaterMarkUtil {
 	 * @return
 	 */
 	public static boolean isWaterMarkSeted() {
-		if (FILE_WATERMARK_IMG.exists() && MainConfig.getInstance().isWaterMarkOn()) {
+		if (MainCanstants.FILE_WATERMARK_IMG.exists() && MainConfig.getInstance().isWaterMarkOn()) {
 			return true;
 		} else {
 			return false;
@@ -108,7 +94,7 @@ public class WaterMarkUtil {
 //				LogRingForu.v(TAG, "service is running, no need to start service!");
 //			}
 		} else {
-			if (MainUtil.isServiceStarted(context, SERVICE_NAME_WATERMARK)) {
+			if (MainUtil.isServiceStarted(context, MainCanstants.SERVICE_NAME_WATERMARK)) {
 				Intent i = new Intent(context, WaterMarkService.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.stopService(i);

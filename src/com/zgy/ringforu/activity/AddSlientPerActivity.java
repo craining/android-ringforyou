@@ -17,6 +17,7 @@ import com.zgy.ringforu.interfaces.OnWheelScrollListener;
 import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.SlientTimeUtil;
 import com.zgy.ringforu.util.TimeUtil;
 import com.zgy.ringforu.util.ViewUtil;
 import com.zgy.ringforu.view.MyToast;
@@ -117,7 +118,7 @@ public class AddSlientPerActivity extends BaseGestureActivity implements OnClick
 		if ((hoursPickStart.getCurrentItem() == hoursPickEnd.getCurrentItem()) && (minutesPickStart.getCurrentItem() == minutesPickEnd.getCurrentItem())) {
 			MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_fail_same, Toast.LENGTH_SHORT, true).show();
 		} else {
-			switch (MainUtil.insertSlientP(AddSlientPerActivity.this, TimeUtil.getTimeformatString(hoursPickStart.getCurrentItem()) + ":" + TimeUtil.getTimeformatString(minutesPickStart.getCurrentItem()) + "-" + TimeUtil.getTimeformatString(hoursPickEnd.getCurrentItem()) + ":" + TimeUtil.getTimeformatString(minutesPickEnd.getCurrentItem()))) {
+			switch (SlientTimeUtil.insertSlientP(AddSlientPerActivity.this, TimeUtil.getTimeformatString(hoursPickStart.getCurrentItem()) + ":" + TimeUtil.getTimeformatString(minutesPickStart.getCurrentItem()) + "-" + TimeUtil.getTimeformatString(hoursPickEnd.getCurrentItem()) + ":" + TimeUtil.getTimeformatString(minutesPickEnd.getCurrentItem()))) {
 			case 2:
 				// ³É¹¦
 				MyToast.makeText(AddSlientPerActivity.this, R.string.add_success, Toast.LENGTH_SHORT, false).show();

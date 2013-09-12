@@ -12,6 +12,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.RingForU;
 
 public class FileUtil {
@@ -226,4 +227,43 @@ public class FileUtil {
 		return true;
 	}
 
+	
+	
+	
+	/**
+	 * 清空缓存（备份文件）
+	 */
+	public static boolean clearData() {
+
+		File file = new File(MainCanstants.FILE_IN_SDCARD);
+		
+		String[] files = file.list();
+		if(files == null || files.length<=0) {
+			return false;
+		}
+		
+		if (new File(MainCanstants.FILE_IN_SDCARD).exists()) {
+			FileUtil.delFileDir(new File(MainCanstants.FILE_IN_SDCARD));
+		}
+
+		return true;
+		// if (FILE_SDCARD_IMPORTANT_NUM.exists()) {
+		// FILE_SDCARD_IMPORTANT_NUM.delete();
+		// }
+		// if (FILE_SDCARD_IMPORTANT_NAME.exists()) {
+		// FILE_SDCARD_IMPORTANT_NAME.delete();
+		// }
+		// if (FILE_SDCARD_CALL_NUM.exists()) {
+		// FILE_SDCARD_CALL_NUM.delete();
+		// }
+		// if (FILE_SDCARD_CALL_NAME.exists()) {
+		// FILE_SDCARD_CALL_NAME.delete();
+		// }
+		// if (FILE_SDCARD_SMS_NUM.exists()) {
+		// FILE_SDCARD_SMS_NUM.delete();
+		// }
+		// if (FILE_SDCARD_SMS_NAME.exists()) {
+		// FILE_SDCARD_SMS_NAME.delete();
+		// }
+	}
 }

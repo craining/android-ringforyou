@@ -64,8 +64,7 @@
                     android:background="@drawable/bg_list_item"
                     android:clickable="true" >
 
-                    <LinearLayout style="@style/layout_set_item_content_left"
-                        >
+                    <LinearLayout style="@style/layout_set_item_content_left" >
 
                         <TextView
                             style="@style/text_set_item_content_left_top"
@@ -106,6 +105,7 @@
                                 android:text="@string/tools_str" />
 
                             <RelativeLayout
+                                android:id="@+id/layout_more_tool_red"
                                 android:layout_width="@dimen/img_wh_red_note"
                                 android:layout_height="@dimen/img_wh_red_note"
                                 android:layout_marginLeft="@dimen/layout_height_five" >

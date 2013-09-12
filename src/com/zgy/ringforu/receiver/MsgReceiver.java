@@ -12,6 +12,7 @@ import com.zgy.ringforu.config.ConfigCanstants;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.SlientTimeUtil;
 import com.zgy.ringforu.util.SmsLightScreenUtil;
 import com.zgy.ringforu.util.StringUtil;
 
@@ -55,7 +56,7 @@ public class MsgReceiver extends BroadcastReceiver {
 
 				LogRingForu.e(TAG, "check screen light");
 				SmsLightScreenUtil.checkSmsLightScreenOn(context);// µ„¡¡∆¡ƒª”Î∑Ò
-				if (MainUtil.isEffective(context)) {
+				if (SlientTimeUtil.isEffective(context)) {
 					PhoneUtil.turnUpMost(context);
 				} else {
 

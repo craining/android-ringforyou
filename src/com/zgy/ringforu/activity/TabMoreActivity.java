@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.Checkable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zgy.ringforu.LogRingForu;
@@ -23,6 +24,7 @@ import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
+import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.NetWorkUtil;
@@ -41,6 +43,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 	private RelativeLayout layoutClear;
 	private RelativeLayout layoutV;
 	private RelativeLayout layoutGesture;
+	private RelativeLayout layoutRedTools;
 
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 
@@ -60,6 +63,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 		layoutV = (RelativeLayout) findViewById(R.id.layout_more_v);
 		checkV = (CheckBox) findViewById(R.id.check_more_checkv);
 		checkGesture = (CheckBox) findViewById(R.id.check_more_gesture);
+		layoutRedTools = (RelativeLayout) findViewById(R.id.layout_more_tool_red);
 
 		layoutFeedback.setOnClickListener(this);
 		layoutHelp.setOnClickListener(this);
@@ -88,6 +92,12 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 		// 刷新震动开关的显示
 		checkV.setChecked(MainCanstants.bIsVerbOn);
 		checkGesture.setChecked(MainCanstants.bIsGestureOn);
+		// 刷新小红点
+		if (!MainConfig.getInstance().isRedToolsShown()) {
+			layoutRedTools.setVisibility(View.VISIBLE);
+		} else {
+			layoutRedTools.setVisibility(View.GONE);
+		}
 	}
 
 	@Override
@@ -159,8 +169,15 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 					dialog.dismiss();
 					PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 					// 删除文件
-					MainUtil.clearData();
-					MyToast.makeText(TabMoreActivity.this, R.string.clear_data_over, Toast.LENGTH_LONG, false).show();
+					if (PhoneUtil.existSDcard()) {
+						if (FileUtil.clearData()) {
+							MyToast.makeText(TabMoreActivity.this, R.string.clear_data_over, Toast.LENGTH_LONG, false).show();
+						} else {
+							MyToast.makeText(TabMoreActivity.this, R.string.clear_data_null, Toast.LENGTH_LONG, false).show();
+						}
+					} else {
+						MyToast.makeText(TabMoreActivity.this, R.string.no_sdcard, Toast.LENGTH_LONG, false).show();
+					}
 				}
 			}).setNegativeButton(R.string.str_cancel, new DialogInterface.OnClickListener() {
 

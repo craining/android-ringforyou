@@ -1,5 +1,9 @@
 package com.zgy.ringforu;
 
+import java.io.File;
+
+import android.os.Environment;
+
 public class MainCanstants {
 
 	public static final int TYPE_IMPORTANT = 0;
@@ -25,4 +29,22 @@ public class MainCanstants {
 	public static final int[] INT_ONFLING_LEN = { 100, 60 };
 	
 	public static final int BUTTON_PRESSED_STATUES_SHOW_TIME = 500;//按钮按下状态显示时间，手势触发时的ui显示
+	
+	public static final String FILE_INNER = "/data/data/com.zgy.ringforu/files/";
+	public static final String FILE_IN_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ringforu/";
+
+	public static final File FILE_SDCARD_IMPORTANT_NUM = new File(FILE_IN_SDCARD + "importantnumbers.cfg");
+	public static final File FILE_SDCARD_IMPORTANT_NAME = new File(FILE_IN_SDCARD + "importantnames.cfg");
+
+	public static final File FILE_SDCARD_CALL_NUM = new File(FILE_IN_SDCARD + "callnumbers.cfg");
+	public static final File FILE_SDCARD_CALL_NAME = new File(FILE_IN_SDCARD + "callnames.cfg");
+
+	public static final File FILE_SDCARD_SMS_NUM = new File(FILE_IN_SDCARD + "smsnumbers.cfg");
+	public static final File FILE_SDCARD_SMS_NAME = new File(FILE_IN_SDCARD + "smsnames.cfg");
+	
+	public static final File FILE_WATERMARK_IMG = new File("/data/data/com.zgy.ringforu/files/watermark.jpg");
+	public static final String FILE_WATERMARK_IMG_TEMP_CUT = MainCanstants.FILE_IN_SDCARD + "cut";
+	public static final String FILE_WATERMARK_IMG_TEMP_SRC = MainCanstants.FILE_IN_SDCARD + "src";
+	public static final String SERVICE_NAME_WATERMARK = "com.zgy.ringforu.service.WaterMarkService";
+	public static final int WATER_MARK_ALPHA_DEF = 50;
 }

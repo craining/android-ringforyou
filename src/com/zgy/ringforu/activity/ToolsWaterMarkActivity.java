@@ -29,6 +29,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.service.WaterMarkService;
@@ -187,8 +188,8 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			// ÒÆ³ý
 			WaterMarkUtil.setSwitchOnOff(false);
 
-			if (WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
-				WaterMarkUtil.FILE_WATERMARK_IMG.delete();
+			if (MainCanstants.FILE_WATERMARK_IMG.exists()) {
+				MainCanstants.FILE_WATERMARK_IMG.delete();
 			}
 			WaterMarkUtil.checkState(ToolsWaterMarkActivity.this);
 			MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_del_success, MyToast.LENGTH_SHORT, false).show();
@@ -211,17 +212,17 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 
 			if (PhoneUtil.existSDcard()) {
 				try {
-					tempFileSrc = new File(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
-					FileUtil.copyFileTo(WaterMarkUtil.FILE_WATERMARK_IMG, tempFileSrc);
+					tempFileSrc = new File(MainCanstants.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
+					FileUtil.copyFileTo(MainCanstants.FILE_WATERMARK_IMG, tempFileSrc);
 					Uri uriMark = Uri.fromFile(tempFileSrc);
 					startPhotoZoom(uriMark);
 				} catch (IOException e) {
 					e.printStackTrace();
-					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_cannot_pick, MyToast.LENGTH_SHORT, true).show();
+					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.no_sdcard, MyToast.LENGTH_SHORT, true).show();
 				}
 
 			} else {
-				MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_cannot_pick, MyToast.LENGTH_SHORT, true).show();
+				MyToast.makeText(ToolsWaterMarkActivity.this, R.string.no_sdcard, MyToast.LENGTH_SHORT, true).show();
 			}
 
 			break;
@@ -234,7 +235,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 				btnOrientation.setText(R.string.watermark_orientation_landscape);
 			}
 
-			if (WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
+			if (MainCanstants.FILE_WATERMARK_IMG.exists()) {
 				MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_LONG, false).show();
 			}
 			break;
@@ -293,7 +294,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 					dialog.dismiss();
 					mJumpOutFromPick = true;
 					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-					tempFileSrc = new File(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
+					tempFileSrc = new File(MainCanstants.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
 					File mediaDir = tempFileSrc.getParentFile();
 					if (!mediaDir.exists()) {
 						mediaDir.mkdirs();
@@ -306,7 +307,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 
 					startActivityForResult(intent, REQUEST_PICKPIC_CAMERA);
 				} else {
-					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_cannot_pick, MyToast.LENGTH_SHORT, true).show();
+					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.no_sdcard, MyToast.LENGTH_SHORT, true).show();
 				}
 
 			}
@@ -339,7 +340,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 
 		mJumpOutFromPick = true;
 
-		tempFileCutted = new File(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_CUT + TimeUtil.getCurrentTimeMillis());
+		tempFileCutted = new File(MainCanstants.FILE_WATERMARK_IMG_TEMP_CUT + TimeUtil.getCurrentTimeMillis());
 
 		Uri uriTemp = Uri.fromFile(tempFileCutted);
 		LogRingForu.e(TAG, "after cut uriTemp =" + uriTemp.toString() + "  src uri = " + cutFileUri.toString());
@@ -409,13 +410,13 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			if (tempFileCutted.exists()) {
 
 				try {
-					if (WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
-						WaterMarkUtil.FILE_WATERMARK_IMG.delete();
+					if (MainCanstants.FILE_WATERMARK_IMG.exists()) {
+						MainCanstants.FILE_WATERMARK_IMG.delete();
 					}
 					if (tempFileSrc != null && tempFileSrc.exists()) {
 						tempFileSrc.delete();
 					}
-					FileUtil.copyFileTo(tempFileCutted, WaterMarkUtil.FILE_WATERMARK_IMG);
+					FileUtil.copyFileTo(tempFileCutted, MainCanstants.FILE_WATERMARK_IMG);
 					tempFileCutted.delete();
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -444,7 +445,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 					if (!StringUtil.isNull(abPath)) {
 						File getFileSrc = new File(abPath);
 						try {
-							tempFileSrc = new File(WaterMarkUtil.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
+							tempFileSrc = new File(MainCanstants.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
 							FileUtil.copyFileTo(getFileSrc, tempFileSrc);
 							startPhotoZoom(Uri.fromFile(tempFileSrc));
 							// cropImageUri(Uri.fromFile(tempFileSrc), 2000,
@@ -502,9 +503,9 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	private void refreshViews() {
 		mJumpOutFromPick = false;
 		// ÏÔÊ¾Ë®Ó¡µ½view
-		if (WaterMarkUtil.FILE_WATERMARK_IMG.exists()) {
+		if (MainCanstants.FILE_WATERMARK_IMG.exists()) {
 			DisplayMetrics metric = getResources().getDisplayMetrics();
-			imgShow.setImageBitmap(BitmapUtil.readBitmapAutoSize(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath(), metric.widthPixels, metric.heightPixels));
+			imgShow.setImageBitmap(BitmapUtil.readBitmapAutoSize(MainCanstants.FILE_WATERMARK_IMG.getAbsolutePath(), metric.widthPixels, metric.heightPixels));
 			imgShow.setScaleType(ScaleType.FIT_XY);
 			btnOk.setVisibility(View.VISIBLE);
 			btnCut.setVisibility(View.VISIBLE);
@@ -557,7 +558,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	protected void onResume() {
 		LogRingForu.e(TAG, "onResume");
 		if (PhoneUtil.existSDcard()) {
-			File f = new File(MainUtil.FILE_IN_SDCARD);
+			File f = new File(MainCanstants.FILE_IN_SDCARD);
 			if (!f.exists()) {
 				f.mkdirs();
 			}

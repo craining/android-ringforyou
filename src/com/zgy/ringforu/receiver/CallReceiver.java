@@ -16,6 +16,7 @@ import com.zgy.ringforu.util.BusyModeUtil;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.NotificationUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.SlientTimeUtil;
 import com.zgy.ringforu.util.StringUtil;
 
 public class CallReceiver extends BroadcastReceiver {
@@ -71,7 +72,7 @@ public class CallReceiver extends BroadcastReceiver {
 
 				LogRingForu.v(TAG, "ring num: " + incomingNumber);
 				if (strAllNumsImportant != null && strAllNumsImportant.contains(StringUtil.getRidofSpeciall(incomingNumber))) {
-					if (MainUtil.isEffective(con)) {
+					if (SlientTimeUtil.isEffective(con)) {
 						PhoneUtil.turnUpMost(con);
 					} else {
 

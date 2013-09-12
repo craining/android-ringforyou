@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.activity.ToolsListActivity;
@@ -104,7 +105,7 @@ public class WaterMarkService extends Service {
 		// Bitmap bitmap =
 		// BitmapFactory.decodeFile(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath());
 		DisplayMetrics metric = getResources().getDisplayMetrics();
-		imgShow.setImageBitmap(BitmapUtil.readBitmapAutoSize(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath(), metric.widthPixels, metric.heightPixels));
+		imgShow.setImageBitmap(BitmapUtil.readBitmapAutoSize(MainCanstants.FILE_WATERMARK_IMG.getAbsolutePath(), metric.widthPixels, metric.heightPixels));
 
 		// } else {
 		// imgShow.setImageDrawable(null);

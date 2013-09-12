@@ -64,7 +64,7 @@
     <dimen name="layout_height_double">2dip</dimen>
     <dimen name="layout_height_five">5dip</dimen>
     <dimen name="img_wh_red_note">18dip</dimen>
-    <dimen name="text_size_little">8sp</dimen>
+    <dimen name="text_size_little">10sp</dimen>
 
     <!-- 轮子 -->
     <dimen name="items_height">10dip</dimen>
