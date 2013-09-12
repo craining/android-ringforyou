@@ -173,10 +173,10 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 						if (FileUtil.clearData()) {
 							MyToast.makeText(TabMoreActivity.this, R.string.clear_data_over, Toast.LENGTH_LONG, false).show();
 						} else {
-							MyToast.makeText(TabMoreActivity.this, R.string.clear_data_null, Toast.LENGTH_LONG, false).show();
+							MyToast.makeText(TabMoreActivity.this, R.string.clear_data_null, Toast.LENGTH_LONG, true).show();
 						}
 					} else {
-						MyToast.makeText(TabMoreActivity.this, R.string.no_sdcard, Toast.LENGTH_LONG, false).show();
+						MyToast.makeText(TabMoreActivity.this, R.string.no_sdcard, Toast.LENGTH_LONG, true).show();
 					}
 				}
 			}).setNegativeButton(R.string.str_cancel, new DialogInterface.OnClickListener() {
