@@ -8,14 +8,14 @@ public class ContactInfo {
 	public boolean match = true;
 	public String name;
 	public String num;
-	public String storeKey;// ∆¥“Ù
+	public String sortKey;// ∆¥“Ù
 
 	public String getStoreKey() {
-		return storeKey;
+		return sortKey;
 	}
 
 	public void setStoreKey(String storeKey) {
-		this.storeKey = storeKey;
+		this.sortKey = storeKey;
 	}
 
 	public boolean getMatch() {
@@ -45,7 +45,7 @@ public class ContactInfo {
 	@Override
 	public int hashCode() {
 		// LogRingForu.e("", "hashCode");
-		return this.name.hashCode() + this.num.hashCode() + this.storeKey.hashCode();
+		return this.name.hashCode() + this.num.hashCode() + this.sortKey.hashCode();
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class ContactInfo {
 		}
 		if (obj != null) {
 			if (obj instanceof ContactInfo) {
-				if (((ContactInfo) obj).name.equals(this.name) && ((ContactInfo) obj).num.equals(this.num) && ((ContactInfo) obj).storeKey.equals(this.storeKey)) {
+				if (((ContactInfo) obj).name.equals(this.name) && ((ContactInfo) obj).num.equals(this.num) && ((ContactInfo) obj).sortKey.equals(this.sortKey)) {
 					return true;
 				}
 			}

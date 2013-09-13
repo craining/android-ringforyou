@@ -46,20 +46,17 @@
         <item name="android:textSize">@dimen/btn_textsize_top_title</item>
     </style>
 
-    <!--
-    <style name="btn_left_top_clear">
+    <style name="btn_left_top_exit">
         <item name="android:layout_width">@dimen/btn_width_top</item>
         <item name="android:layout_height">@dimen/btn_height_top</item>
         <item name="android:layout_alignParentLeft">true</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_marginLeft">@dimen/btn_margin_left_right_top</item>
-        <item name="android:background">@drawable/bg_btn_red</item>
-        <item name="android:text">@string/clear_all</item>
+        <item name="android:background">@drawable/bg_btn_blue</item>
+        <item name="android:text">@string/str_exit</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/btn_textsize_top_title</item>
-    </style>
-    -->
-    <style name="text_top_title">
+    </style>    <style name="text_top_title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>

@@ -13,12 +13,16 @@
             android:id="@+id/view_important_anchor"
             style="@style/view_anchor" />
 
+        <Button
+            android:id="@+id/btn_important_exit"
+            style="@style/btn_left_top_exit" />
+
         <TextView
             android:id="@+id/text_important_title"
             style="@style/text_top_title"
             android:text="@string/tab_important" />
 
-       <Button
+        <Button
             android:id="@+id/btn_important_set"
             style="@style/btn_right_top"
             android:text="@string/str_opera" />
@@ -31,33 +35,6 @@
         android:layout_below="@id/layout_important_title"
         android:layout_marginBottom="@dimen/layout_big_less_less"
         android:orientation="vertical" >
-
-        <LinearLayout
-            android:id="@+id/layout_important_add"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/layout_margin_left_right"
-            android:layout_marginRight="@dimen/layout_margin_left_right"
-            android:layout_marginTop="@dimen/layout_margin_top_title"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-
-            <Button
-                android:id="@+id/btn_important_addfrom"
-                style="@style/btn_main_add"
-                android:text="@string/add_fromcontacts" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3" />
-
-            <Button
-                android:id="@+id/btn_important_addby"
-                style="@style/btn_main_add"
-                android:text="@string/add_byhand" />
-        </LinearLayout>
-
         <TextView
             android:id="@+id/text_important_top_deletetip"
             android:layout_width="fill_parent"

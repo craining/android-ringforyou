@@ -15,29 +15,5 @@
     <item
         android:drawable="@drawable/ic_customer_loading4"
         android:duration="80"/>
-    <item
-        android:drawable="@drawable/ic_customer_loading5"
-        android:duration="80"/>
-    <item
-        android:drawable="@drawable/ic_customer_loading6"
-        android:duration="80"/>
-    <item
-        android:drawable="@drawable/ic_customer_loading7"
-        android:duration="80"/>
-    <item
-        android:drawable="@drawable/ic_customer_loading8"
-        android:duration="80"/>
-    <item
-        android:drawable="@drawable/ic_customer_loading9"
-        android:duration="80"/>
-    <item
-        android:drawable="@drawable/ic_customer_loading10"
-        android:duration="80"/>
-    <item
-        android:drawable="@drawable/ic_customer_loading11"
-        android:duration="80"/>
-    <item
-        android:drawable="@drawable/ic_customer_loading12"
-        android:duration="80"/>
 
 </animation-list>

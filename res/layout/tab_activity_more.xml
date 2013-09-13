@@ -9,6 +9,10 @@
         android:id="@+id/layout_more_title"
         style="@style/layout_top_title" >
 
+        <Button
+            android:id="@+id/btn_more_exit"
+            style="@style/btn_left_top_exit" />
+
         <TextView
             android:id="@+id/text_more_title"
             style="@style/text_top_title"

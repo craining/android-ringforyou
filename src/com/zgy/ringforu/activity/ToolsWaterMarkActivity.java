@@ -92,8 +92,6 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		setContentView(R.layout.tools_watermark);
 		mMainConfig = MainConfig.getInstance();
 
-		clearWaterMark();
-
 		mSeekBarOnTouchMove = false;
 
 		RingForUActivityManager.push(this);
@@ -557,6 +555,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	@Override
 	protected void onResume() {
 		LogRingForu.e(TAG, "onResume");
+		clearWaterMark();
 		if (PhoneUtil.existSDcard()) {
 			File f = new File(MainCanstants.FILE_IN_SDCARD);
 			if (!f.exists()) {

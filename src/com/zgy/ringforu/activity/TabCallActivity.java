@@ -48,17 +48,14 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 	private static final String TAG = "TabCallActivity";
 
-	private Button btnAddFromContacts;
-	private Button btnAddByInput;
 	private String allNumbersSelected;// 所有已选号码
 	private String allNameSelected;// 所有已选名字
 	private LinearLayout layoutShowNull;
-	// private RelativeLayout layoutMain;
 	private TextView textShowdelTip;
 	private ListView listMain;
 	private SimpleAdapter listItemAdapter;
-	private Button btnSet;
-	
+	private Button btnSet, btnExit;
+
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 
 	private FCMenu mTopMenu;
@@ -76,23 +73,17 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tab_activity_call);
 
-		// RingForUActivityManager.push(this);
-		
-		// layoutMain = (RelativeLayout)
-		// findViewById(R.id.layout_tab_call_main);
 		layoutShowNull = (LinearLayout) findViewById(R.id.layout_call_null);
 		textShowdelTip = (TextView) findViewById(R.id.text_call_top_deletetip);
 
-		btnAddFromContacts = (Button) findViewById(R.id.btn_call_addfrom);
-		btnAddByInput = (Button) findViewById(R.id.btn_call_addby);
 		listMain = (ListView) findViewById(R.id.list_call);
 		btnSet = (Button) findViewById(R.id.btn_call_set);
+		btnExit = (Button) findViewById(R.id.btn_call_exit);
 
 		initTopMenu();
 
-		btnAddFromContacts.setOnClickListener(TabCallActivity.this);
-		btnAddByInput.setOnClickListener(TabCallActivity.this);
-		btnSet.setOnClickListener(TabCallActivity.this);
+		btnSet.setOnClickListener(this);
+		btnExit.setOnClickListener(this);
 
 		listMain.setOnItemLongClickListener(new OnItemLongClickListener() {
 
@@ -176,6 +167,9 @@ public class TabCallActivity extends Activity implements OnClickListener {
 
 		switch (v.getId()) {
 
+		case R.id.btn_call_exit:
+			finish();
+			break;
 		case R.id.btn_call_set:
 			if (mTopMenu.isShowing()) {
 				mTopMenu.closeMenu();
@@ -277,25 +271,29 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		}).create().show();
 	}
 
-	
 	/**
 	 * 手势监听，从ActivityGroup传递过来的
 	 */
 	private OnGestureChangedListener mGuesterListener = new OnGestureChangedListener() {
-		
+
 		@Override
 		public void onSlideToRight() {
-			
+			ViewUtil.onButtonPressedBlue(btnExit);
+			PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
+			if (mTopMenu.isShowing()) {
+				mTopMenu.closeMenu();
+			}
+			finish();
 		}
-		
+
 		@Override
 		public void onSlideToLeft() {
-			if(!mTopMenu.isShowing()) {
+			if (!mTopMenu.isShowing()) {
 				ViewUtil.onButtonPressedBlue(btnSet);
 				PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 				mTopMenu.showMenu();
 			}
 		}
 	};
-	 
+
 }

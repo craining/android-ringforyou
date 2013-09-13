@@ -46,8 +46,6 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 
 	private static final String TAG = "TabImportantActivity";
 
-	private Button btnAddFromContacts;
-	private Button btnAddByInput;
 	private String allNumbersSelected;// 所有已选号码
 	private String allNameSelected;// 所有已选名字
 	private LinearLayout layoutShowNull;
@@ -56,10 +54,9 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 	private ListView listMain;
 	private SimpleAdapter listItemAdapter;
 
-	private Button btnSet;
+	private Button btnSet, btnExit;
 
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
-
 
 	private FCMenu mTopMenu;
 	private OnTopMenuItemClickedListener mTopMenuListener;
@@ -77,21 +74,19 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.tab_activity_important);
 
 		// RingForUActivityManager.push(this);
-		
+
 		// layoutMain = (RelativeLayout) findViewById(R.id.layout_tab_important_main);
 		layoutShowNull = (LinearLayout) findViewById(R.id.layout_important_null);
 		textShowdelTip = (TextView) findViewById(R.id.text_important_top_deletetip);
 
-		btnAddFromContacts = (Button) findViewById(R.id.btn_important_addfrom);
-		btnAddByInput = (Button) findViewById(R.id.btn_important_addby);
 		listMain = (ListView) findViewById(R.id.list_important);
-	btnSet = (Button) findViewById(R.id.btn_important_set);
+		btnSet = (Button) findViewById(R.id.btn_important_set);
+		btnExit = (Button) findViewById(R.id.btn_important_exit);
 
 		initTopMenu();
 
-		btnAddFromContacts.setOnClickListener(TabImportantActivity.this);
-		btnAddByInput.setOnClickListener(TabImportantActivity.this);
-		btnSet.setOnClickListener(TabImportantActivity.this);
+		btnSet.setOnClickListener(this);
+		btnExit.setOnClickListener(this);
 
 		listMain.setOnItemLongClickListener(new OnItemLongClickListener() {
 
@@ -215,7 +210,6 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 				i4.putExtra("tag", MainCanstants.TYPE_IMPORTANT);
 				startActivity(i4);
 				break;
-
 			default:
 				break;
 			}
@@ -277,6 +271,9 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 			}
 
 			break;
+		case R.id.btn_important_exit:
+			finish();
+			break;
 		default:
 			break;
 		}
@@ -287,15 +284,20 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 	 * 手势监听，从ActivityGroup传递过来的
 	 */
 	private OnGestureChangedListener mGuesterListener = new OnGestureChangedListener() {
-		
+
 		@Override
 		public void onSlideToRight() {
-			
+			ViewUtil.onButtonPressedBlue(btnExit);
+			PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
+			if (mTopMenu.isShowing()) {
+				mTopMenu.closeMenu();
+			}
+			finish();
 		}
-		
+
 		@Override
 		public void onSlideToLeft() {
-			if(!mTopMenu.isShowing()) {
+			if (!mTopMenu.isShowing()) {
 				ViewUtil.onButtonPressedBlue(btnSet);
 				PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 				mTopMenu.showMenu();

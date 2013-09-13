@@ -12,6 +12,7 @@ import android.os.Vibrator;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Checkable;
 import android.widget.ImageView;
@@ -24,11 +25,13 @@ import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
+import com.zgy.ringforu.interfaces.OnGestureChangedListener;
 import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.NetWorkUtil;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.ViewUtil;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
 
@@ -44,6 +47,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 	private RelativeLayout layoutV;
 	private RelativeLayout layoutGesture;
 	private RelativeLayout layoutRedTools;
+	private Button btnExit;
 
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 
@@ -64,12 +68,14 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 		checkV = (CheckBox) findViewById(R.id.check_more_checkv);
 		checkGesture = (CheckBox) findViewById(R.id.check_more_gesture);
 		layoutRedTools = (RelativeLayout) findViewById(R.id.layout_more_tool_red);
+		btnExit = (Button) findViewById(R.id.btn_more_exit);
 
 		layoutFeedback.setOnClickListener(this);
 		layoutHelp.setOnClickListener(this);
 		layoutTools.setOnClickListener(this);
 		layoutClear.setOnClickListener(this);
 		layoutGesture.setOnClickListener(this);
+		btnExit.setOnClickListener(this);
 
 		// 震动的开关需单独处理
 		layoutV.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +113,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
-		((MainActivityGroup) getParent()).setOnGestureChangedListener(null);
+		((MainActivityGroup) getParent()).setOnGestureChangedListener(mGuesterListener);
 		refreshViews();
 		LogRingForu.e(TAG, "onResume");
 		super.onResume();
@@ -150,6 +156,9 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 			MainConfig.getInstance().setGestureOnOff(MainCanstants.bIsGestureOn);
 			refreshViews();
 			break;
+		case R.id.btn_more_exit:
+			finish();
+			break;
 		default:
 			break;
 		}
@@ -190,4 +199,21 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 			MyToast.makeText(TabMoreActivity.this, R.string.set_backup_nosdcard, Toast.LENGTH_SHORT, true).show();
 		}
 	}
+
+	/**
+	 * 手势监听，从ActivityGroup传递过来的
+	 */
+	private OnGestureChangedListener mGuesterListener = new OnGestureChangedListener() {
+
+		@Override
+		public void onSlideToRight() {
+			ViewUtil.onButtonPressedBlue(btnExit);
+			PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
+			finish();
+		}
+
+		@Override
+		public void onSlideToLeft() {
+		}
+	};
 }

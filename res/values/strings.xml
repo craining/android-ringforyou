@@ -225,11 +225,11 @@
     <string name="watermark_close">关闭</string>
     <string name="watermark_close_finish">屏幕水印已关闭！</string>
     <string name="no_sdcard">操作无法进行，请检查存储卡是否可用</string>
-    <string name="about_maker">制作：</string>
+    <string name="about_maker">产品设计：</string>
     <string name="about_maker_name">庄广钰</string>
-    <string name="about_programer">开发：</string>
+    <string name="about_programer">开发人员：</string>
     <string name="about_programer_name">庄广钰</string>
-    <string name="about_qa">测试：</string>
+    <string name="about_qa">测试人员：</string>
     <string name="about_qa_name">徐欣莹</string>
     <string name="finish">完成</string>
     <string name="smslight_msg">点亮屏幕可防止手机静音状态下错过普通短信，夜间效果更佳！</string>

@@ -47,8 +47,6 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 
 	private static final String TAG = "TabSmsActivity";
 
-	private Button btnAddFromContacts;
-	private Button btnAddByInput;
 	private String allNumbersSelected;// 所有已选号码
 	private String allNameSelected;// 所有已选名字
 	private LinearLayout layoutShowNull;
@@ -57,7 +55,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 	private ListView listMain;
 	private SimpleAdapter listItemAdapter;
 
-	private Button btnSet;
+	private Button btnSet, btnExit;
 
 	ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 
@@ -82,16 +80,14 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 		layoutShowNull = (LinearLayout) findViewById(R.id.layout_sms_null);
 		textShowdelTip = (TextView) findViewById(R.id.text_sms_top_deletetip);
 
-		btnAddFromContacts = (Button) findViewById(R.id.btn_sms_addfrom);
-		btnAddByInput = (Button) findViewById(R.id.btn_sms_addby);
 		listMain = (ListView) findViewById(R.id.list_sms);
 		btnSet = (Button) findViewById(R.id.btn_sms_set);
+		btnExit = (Button) findViewById(R.id.btn_sms_exit);
 
 		initTopMenu();
 
-		btnAddFromContacts.setOnClickListener(TabSmsActivity.this);
-		btnAddByInput.setOnClickListener(TabSmsActivity.this);
-		btnSet.setOnClickListener(TabSmsActivity.this);
+		btnSet.setOnClickListener(this);
+		btnExit.setOnClickListener(this);
 
 		listMain.setOnItemLongClickListener(new OnItemLongClickListener() {
 
@@ -179,6 +175,9 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 			} else {
 				mTopMenu.showMenu();
 			}
+			break;
+		case R.id.btn_sms_exit:
+			finish();
 			break;
 		default:
 			break;
@@ -273,24 +272,25 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 			}
 		}).create().show();
 	}
-	
-	
-	
-	
 
 	/**
 	 * 手势监听，从ActivityGroup传递过来的
 	 */
 	private OnGestureChangedListener mGuesterListener = new OnGestureChangedListener() {
-		
+
 		@Override
 		public void onSlideToRight() {
-			
+			ViewUtil.onButtonPressedBlue(btnExit);
+			PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
+			if (mTopMenu.isShowing()) {
+				mTopMenu.closeMenu();
+			}
+			finish();
 		}
-		
+
 		@Override
 		public void onSlideToLeft() {
-			if(!mTopMenu.isShowing()) {
+			if (!mTopMenu.isShowing()) {
 				ViewUtil.onButtonPressedBlue(btnSet);
 				PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
 				mTopMenu.showMenu();

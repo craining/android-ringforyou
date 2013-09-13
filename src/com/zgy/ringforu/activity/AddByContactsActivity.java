@@ -97,7 +97,7 @@ public class AddByContactsActivity extends BaseGestureActivity implements OnClic
 		btnBack = (Button) findViewById(R.id.btn_add_contact_return);
 		imgLoading = (ImageView) findViewById(R.id.img_add_contact_animation);
 		// ²¥·Å¶¯»­
-		imgLoading.setImageResource(R.anim.loading);
+		// imgLoading.setImageResource(R.anim.loading);
 		animationDrawable = (AnimationDrawable) imgLoading.getDrawable();
 		animationDrawable.start();
 		// imgLoading.post(new Runnable() {
@@ -197,9 +197,9 @@ public class AddByContactsActivity extends BaseGestureActivity implements OnClic
 					info = new ContactInfo();
 					info.name = cursor.getString(1);
 					info.num = StringUtil.getRidofSpeciall(cursor.getString(2));
-					info.storeKey = cursor.getString(3);
+					info.sortKey = cursor.getString(3);
 
-					LogRingForu.v(TAG, "info.name=" + info.name + "   changed=" + StringUtil.getRidofSpecialOfFileName(info.name));
+					LogRingForu.v(TAG, "name=" + info.name + "    sortKey="  + info.sortKey);
 
 					listContacts.add(info);
 				}
@@ -386,7 +386,7 @@ public class AddByContactsActivity extends BaseGestureActivity implements OnClic
 		} else {
 			constraint = constraint.trim().toLowerCase();
 			for (ContactInfo info : listContacts) {
-				if (matchIgnorCase(info.name, constraint) || matchIgnorCase(info.num, constraint) || matchStartViewKeyStore(info.storeKey, constraint)) {
+				if (matchIgnorCase(info.name, constraint) || matchIgnorCase(info.num, constraint) || matchStartViewKeyStore(info.sortKey, constraint)) {
 					info.match = true;
 					// mMarchCount++;
 				} else {

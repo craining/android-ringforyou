@@ -26,7 +26,7 @@ public class MainCanstants {
 	public static final String FEEDBACK_NO_EMAIL_LABEL = "\r\n\r\nNo Email";
 	public static final String FEEDBACK_EMAIL_LABEL = "\r\r\n\r\nEmail:  ";
 
-	public static final int[] INT_ONFLING_LEN = { 100, 60 };
+	public static final int[] INT_ONFLING_LEN = { 100, 200 };
 	
 	public static final int BUTTON_PRESSED_STATUES_SHOW_TIME = 500;//按钮按下状态显示时间，手势触发时的ui显示
 	
