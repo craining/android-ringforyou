@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 
 import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
+import com.zgy.ringforu.RingForU;
 
 public class BaseGestureActivityGroup extends ActivityGroup implements OnGestureListener {
 
@@ -38,7 +39,7 @@ public class BaseGestureActivityGroup extends ActivityGroup implements OnGesture
 
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
-		if (MainCanstants.bIsGestureOn) {
+		if (RingForU.getInstance().isbIsGestureOn()) {
 			if (ev.getAction() == MotionEvent.ACTION_UP) {
 				mGetResult = false;
 			}

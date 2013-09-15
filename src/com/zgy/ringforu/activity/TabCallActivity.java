@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.interfaces.OnGestureChangedListener;
 import com.zgy.ringforu.util.AddContactUtil;
@@ -111,7 +112,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	private void initListView() {
+	public void initListView() {
 		listItem = new ArrayList<HashMap<String, String>>();
 		MainConfig mainConfig = MainConfig.getInstance();
 		allNumbersSelected = mainConfig.getInterceptCallNumbers();
@@ -155,6 +156,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		LogRingForu.e(TAG, "onResume");
+		RingForU.getInstance().setSelsectedTabId(MainCanstants.TYPE_INTECEPT_CALL);
 		((MainActivityGroup) getParent()).setOnGestureChangedListener(mGuesterListener);
 		initListView();
 		super.onResume();

@@ -15,8 +15,6 @@ public class MainCanstants {
 	// 操作振动反馈相关
 	public static final int VIBRATE_STREGTH_NORMAL = 40;// 振动强度
 	public static final long[] VIBRATE_STREGTH_ERROR = new long[] { 0, 20, 100, 20 };// 振动强度
-	public static boolean bIsVerbOn = true;
-	public static boolean bIsGestureOn = true;
 	// 最多可添加10个
 	public static final int MAX_NUMS = 10;
 
@@ -26,7 +24,7 @@ public class MainCanstants {
 	public static final String FEEDBACK_NO_EMAIL_LABEL = "\r\n\r\nNo Email";
 	public static final String FEEDBACK_EMAIL_LABEL = "\r\r\n\r\nEmail:  ";
 
-	public static final int[] INT_ONFLING_LEN = { 100, 200 };
+	public static final int[] INT_ONFLING_LEN = { 100, 70 };
 	
 	public static final int BUTTON_PRESSED_STATUES_SHOW_TIME = 500;//按钮按下状态显示时间，手势触发时的ui显示
 	

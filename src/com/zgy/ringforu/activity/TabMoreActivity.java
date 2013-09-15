@@ -83,11 +83,15 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// 震动的开启关闭
-				if (!MainCanstants.bIsVerbOn) {
+				if (!RingForU.getInstance().isbIsVerbOn()) {
 					((MainActivityGroup) getParent()).mVb.vibrate(MainCanstants.VIBRATE_STREGTH_NORMAL);
+					RingForU.getInstance().setbIsVerbOn(true);
+					MainConfig.getInstance().setVibrateOnOff(true);
+				} else {
+					RingForU.getInstance().setbIsVerbOn(false);
+					MainConfig.getInstance().setVibrateOnOff(false);
 				}
-				MainCanstants.bIsVerbOn = !MainCanstants.bIsVerbOn;
-				MainConfig.getInstance().setVibrateOnOff(MainCanstants.bIsVerbOn);
+
 				refreshViews();
 
 			}
@@ -96,8 +100,8 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 	private void refreshViews() {
 		// 刷新震动开关的显示
-		checkV.setChecked(MainCanstants.bIsVerbOn);
-		checkGesture.setChecked(MainCanstants.bIsGestureOn);
+		checkV.setChecked(RingForU.getInstance().isbIsVerbOn());
+		checkGesture.setChecked(RingForU.getInstance().isbIsGestureOn());
 		// 刷新小红点
 		if (!MainConfig.getInstance().isRedToolsShown()) {
 			layoutRedTools.setVisibility(View.VISIBLE);
@@ -113,6 +117,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
+		RingForU.getInstance().setSelsectedTabId(MainCanstants.TYPE_MORE);
 		((MainActivityGroup) getParent()).setOnGestureChangedListener(mGuesterListener);
 		refreshViews();
 		LogRingForu.e(TAG, "onResume");
@@ -152,8 +157,14 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 
 		case R.id.layout_more_gesture:
 			// 手势开关
-			MainCanstants.bIsGestureOn = !MainCanstants.bIsGestureOn;
-			MainConfig.getInstance().setGestureOnOff(MainCanstants.bIsGestureOn);
+			if (RingForU.getInstance().isbIsGestureOn()) {
+				RingForU.getInstance().setbIsGestureOn(false);
+				MainConfig.getInstance().setGestureOnOff(false);
+			} else {
+				RingForU.getInstance().setbIsGestureOn(true);
+				MainConfig.getInstance().setGestureOnOff(true);
+			}
+
 			refreshViews();
 			break;
 		case R.id.btn_more_exit:

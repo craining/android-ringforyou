@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -67,9 +68,9 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 
 	private SeekBar seekbarAlpha;
 
-	private static final int REQUEST_CUTPIC = 101;
-	private static final int REQUEST_PICKPIC_CAMERA = 102;
-	private static final int REQUEST_PICKPIC_GALLERY = 103;
+	private static final int REQUEST_CUTPIC = 0;
+	private static final int REQUEST_PICKPIC_CAMERA = 1;
+	private static final int REQUEST_PICKPIC_GALLERY = 2;
 
 	private String[] arrayBbColors;
 	private String[] arrayTextColors;
@@ -363,6 +364,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		// Bitmap.CompressFormat.JPEG.toString());
 
 		Intent intent = new Intent("com.android.camera.action.CROP");
+		// Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.setDataAndType(cutFileUri, "image/*");
 		// 下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
 		intent.putExtra("crop", "true");
@@ -372,10 +374,10 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		intent.putExtra("aspectY", metric.heightPixels);
 		// // outputX outputY 是裁剪图片宽高
 		// intent.putExtra("outputX", metric.widthPixels);
-		// intent.putExtra("outputY", metric.heightPixels);
+		// intent.putExtra("outputY", metric.hF eightPixels);
 		intent.putExtra("scale", true);
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, uriTemp);
 		intent.putExtra("return-data", false);
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, uriTemp);
 		intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
 		intent.putExtra("noFaceDetection", true);
 
@@ -401,8 +403,16 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	// }
 
 	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		// TODO Auto-generated method stub
+		LogRingForu.e(TAG, "onConfigurationChanged");
+		super.onConfigurationChanged(newConfig);
+	}
+
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+		LogRingForu.e(TAG, "onActivityResult");
 		switch (requestCode) {
 		case REQUEST_CUTPIC:
 			if (tempFileCutted.exists()) {
@@ -543,6 +553,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 
 	@Override
 	protected void onDestroy() {
+		LogRingForu.e(TAG, "onDestroy");
 		// WaterMarkService.show = true;
 		// WaterMarkUtil.ctrlWaterMarkBackService(WaterMarkActivity.this, true);
 		// WaterMarkUtil.checkState(ToolsWaterMarkActivity.this);

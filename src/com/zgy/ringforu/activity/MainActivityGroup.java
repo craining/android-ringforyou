@@ -1,9 +1,7 @@
 package com.zgy.ringforu.activity;
 
-import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +11,7 @@ import android.widget.LinearLayout;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.interfaces.OnGestureChangedListener;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
@@ -28,7 +27,6 @@ public class MainActivityGroup extends BaseGestureActivityGroup implements OnCli
 	private ImageView imgCall;
 	private ImageView imgSms;
 	private ImageView imgMore;
-	private Vibrator vb = null;
 	private int flag = 0; // 通过标记跳转不同的页面，显示不同的菜单项
 	public int[] mWidthHeightTopMenu;
 
@@ -44,13 +42,12 @@ public class MainActivityGroup extends BaseGestureActivityGroup implements OnCli
 		RingForUActivityManager.push(this);
 
 		initMainView();
-		vb = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
-		// 主界面开始接收参数
-		Bundle bundle = getIntent().getExtras();
-		if (null != bundle) {
-			flag = bundle.getInt("flag");
-		}
-		showView(flag);
+		// // 主界面开始接收参数
+		// Bundle bundle = getIntent().getExtras();
+		// if (null != bundle) {
+		// flag = bundle.getInt("flag");
+		// }
+		showView(RingForU.getInstance().getSelsectedTabId());
 
 		tabImportant.setOnClickListener(this);
 		tabCall.setOnClickListener(this);
@@ -168,7 +165,7 @@ public class MainActivityGroup extends BaseGestureActivityGroup implements OnCli
 
 	@Override
 	public void onClick(View v) {
-		PhoneUtil.doVibraterNormal(vb);
+		PhoneUtil.doVibraterNormal(MainActivityGroup.super.mVb);
 		switch (v.getId()) {
 		case R.id.tab_important:
 			flag = 0;

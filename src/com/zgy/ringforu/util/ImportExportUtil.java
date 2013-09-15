@@ -8,6 +8,9 @@ import android.widget.Toast;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.activity.SetActivity;
+import com.zgy.ringforu.activity.TabCallActivity;
+import com.zgy.ringforu.activity.TabImportantActivity;
+import com.zgy.ringforu.activity.TabSmsActivity;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.view.MyToast;
 
@@ -118,8 +121,7 @@ public class ImportExportUtil {
 				mainConfig.setImportantNames(FileUtil.read(new File(MainCanstants.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath())));
 				mainConfig.setImportantNumbers(FileUtil.read(new File(MainCanstants.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath())));
 				MyToast.makeText(context, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
-				// MyToast.makeText(conttext, R.string.import_fail,
-				// Toast.LENGTH_SHORT, true).show();
+				((TabImportantActivity) context).initListView();
 			} catch (Exception e) {
 				e.printStackTrace();
 				MyToast.makeText(context, R.string.import_fail, Toast.LENGTH_SHORT, true).show();
@@ -135,8 +137,7 @@ public class ImportExportUtil {
 				mainConfig.setInterceptCallNames(FileUtil.read(new File(MainCanstants.FILE_SDCARD_CALL_NAME.getAbsolutePath())));
 				mainConfig.setInterceptCallNumbers(FileUtil.read(new File(MainCanstants.FILE_SDCARD_CALL_NUM.getAbsolutePath())));
 				MyToast.makeText(context, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
-				// MyToast.makeText(conttext, R.string.import_fail,
-				// Toast.LENGTH_SHORT, true).show();
+				((TabCallActivity) context).initListView();
 			} catch (Exception e) {
 				e.printStackTrace();
 				MyToast.makeText(context, R.string.import_fail, Toast.LENGTH_SHORT, true).show();
@@ -153,8 +154,7 @@ public class ImportExportUtil {
 				mainConfig.setInterceptSmsNames(FileUtil.read(new File(MainCanstants.FILE_SDCARD_SMS_NAME.getAbsolutePath())));
 				mainConfig.setInterceptSmsNumbers(FileUtil.read(new File(MainCanstants.FILE_SDCARD_SMS_NUM.getAbsolutePath())));
 				MyToast.makeText(context, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
-				// MyToast.makeText(conttext, R.string.import_fail,
-				// Toast.LENGTH_SHORT, true).show();
+				((TabSmsActivity) context).initListView();
 			} catch (Exception e) {
 				e.printStackTrace();
 				MyToast.makeText(context, R.string.import_fail, Toast.LENGTH_SHORT, true).show();

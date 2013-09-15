@@ -334,13 +334,13 @@ public class PhoneUtil {
 	}
 
 	public static void doVibraterNormal(Vibrator v) {
-		if (MainCanstants.bIsVerbOn) {
+		if (RingForU.getInstance().isbIsVerbOn()) {
 			v.vibrate(MainCanstants.VIBRATE_STREGTH_NORMAL);
 		}
 	}
 
 	public static void doVibraterError(Vibrator v) {
-		if (MainCanstants.bIsVerbOn) {
+		if (RingForU.getInstance().isbIsVerbOn()) {
 			v.vibrate(MainCanstants.VIBRATE_STREGTH_ERROR, -1);
 		}
 	}

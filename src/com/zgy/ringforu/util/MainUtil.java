@@ -8,6 +8,7 @@ import android.content.Context;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
 
 public class MainUtil {
@@ -81,8 +82,8 @@ public class MainUtil {
 		MainConfig config = MainConfig.getInstance();
 
 		// 得到振动的开关状态
-		MainCanstants.bIsVerbOn = config.isVibrateOn();
-		MainCanstants.bIsGestureOn = config.isGestureOn();
+		RingForU.getInstance().setbIsVerbOn(config.isVibrateOn());
+		RingForU.getInstance().setbIsGestureOn(config.isGestureOn());
 		if (!(new File(MainCanstants.FILE_INNER).exists())) {
 			new File(MainCanstants.FILE_INNER).mkdirs();
 		}
