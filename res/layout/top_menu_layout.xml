@@ -11,6 +11,7 @@
         android:layout_height="@dimen/height_title"
         android:background="@drawable/bg_bar_top"
         android:gravity="center"
+        android:clickable="true"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_menu" />
 

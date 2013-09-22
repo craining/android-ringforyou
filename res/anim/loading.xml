@@ -4,16 +4,16 @@
     android:visible="true" >
 
     <item
-        android:drawable="@drawable/ic_customer_loading1"
+        android:drawable="@drawable/ic_customer_loading_1"
         android:duration="80"/>
     <item
-        android:drawable="@drawable/ic_customer_loading2"
+        android:drawable="@drawable/ic_customer_loading_2"
         android:duration="80"/>
     <item
-        android:drawable="@drawable/ic_customer_loading3"
+        android:drawable="@drawable/ic_customer_loading_3"
         android:duration="80"/>
     <item
-        android:drawable="@drawable/ic_customer_loading4"
+        android:drawable="@drawable/ic_customer_loading_4"
         android:duration="80"/>
 
 </animation-list>
