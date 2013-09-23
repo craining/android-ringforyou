@@ -39,5 +39,9 @@ public class ConfigCanstants {
 	public static final String USER_GUIDE_SHOWD = "USER_GUIDE_SHOWD";// 是否显示过新手引导
 	public static final String RED_TOOLS = "RED_TOOLS";// 是否显示过工具红点
 	
+	public static final String PUSH_NEW_VERSION_CODE = "";//推送的新版本号
+	public static final String PUSH_NEW_VERSION_DOWNLOAD_URL = "";//推送的下载链接
+	
+	
 	
 }

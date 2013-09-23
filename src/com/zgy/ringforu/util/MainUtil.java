@@ -5,6 +5,8 @@ import java.util.List;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
@@ -101,6 +103,26 @@ public class MainUtil {
 			config.setVersionCode(version);
 			config.setUserGuideShown(false);
 			config.setRedToolsShown(false);
+		}
+	}
+
+	/**
+	 * 获得程序版本号
+	 * @Description:
+	 * @param context
+	 * @return
+	 * @see: 
+	 * @since: 
+	 * @author: zhuanggy
+	 * @date:2013-9-23
+	 */
+	public static int getAppVersionCode(Context context) {
+		try {
+			PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+			return pi.versionCode;
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+			return 0;
 		}
 	}
 

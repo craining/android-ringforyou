@@ -9,11 +9,14 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.interfaces.OnGestureChangedListener;
 import com.zgy.ringforu.util.PhoneUtil;
+import com.zgy.ringforu.util.PushMessageUtils;
 import com.zgy.ringforu.util.RingForUActivityManager;
 
 public class MainActivityGroup extends BaseGestureActivityGroup implements OnClickListener {
@@ -40,7 +43,7 @@ public class MainActivityGroup extends BaseGestureActivityGroup implements OnCli
 		setContentView(R.layout.main_group);
 
 		RingForUActivityManager.push(this);
-
+		PushManager.startWork(MainActivityGroup.this, PushConstants.LOGIN_TYPE_API_KEY, PushMessageUtils.getMetaValue(MainActivityGroup.this, "api_key"));
 		initMainView();
 		// // 主界面开始接收参数
 		// Bundle bundle = getIntent().getExtras();

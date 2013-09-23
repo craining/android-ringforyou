@@ -204,4 +204,19 @@ public class MainConfig extends PreferenceUtil {
 		putBool(ConfigCanstants.RED_TOOLS, shown);
 	}
 
+	public synchronized int getPushNewVersionCode() {
+		return getInt(ConfigCanstants.PUSH_NEW_VERSION_CODE, 0);
+	}
+
+	public synchronized void setPushNewVersionCode(int versionCode) {
+		putInt(ConfigCanstants.PUSH_NEW_VERSION_CODE, versionCode);
+	}
+
+	public synchronized String getPushNewVersionDownloadUrl() {
+		return getString(ConfigCanstants.PUSH_NEW_VERSION_DOWNLOAD_URL, null);
+	}
+
+	public synchronized void setPushNewVersionDownloadUrl(String url) {
+		putString(ConfigCanstants.PUSH_NEW_VERSION_DOWNLOAD_URL, url);
+	}
 }
