@@ -62,13 +62,13 @@ public class PushMessageUtils {
 	 * @author: zhuanggy
 	 * @date:2013-9-24
 	 */
-	public static void checkPushEnabled(Context context) {
-		if(!PushManager.isPushEnabled(context)){
+	public static void startPushWork(Context context) {
+//		if(!PushManager.isPushEnabled(context)){
 			PushManager.startWork(context, PushConstants.LOGIN_TYPE_API_KEY, PushMessageUtils.getMetaValue(context, "api_key"));
-			LogRingForu.v(TAG, "start push work");
-		} else {
-			LogRingForu.v(TAG, "no need start push work");
-		}
+//			LogRingForu.v(TAG, "start push work");
+//		} else {
+//			LogRingForu.v(TAG, "no need start push work");
+//		}
 	}
 	
 }

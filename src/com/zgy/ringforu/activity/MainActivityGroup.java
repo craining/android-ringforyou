@@ -47,15 +47,17 @@ public class MainActivityGroup extends BaseGestureActivityGroup implements OnCli
 		setContentView(R.layout.main_group);
 
 		RingForUActivityManager.push(this);
-		
+
+		PushMessageUtils.startPushWork(RingForU.getInstance());
+
 		MainUtil.checkNewVersion(MainActivityGroup.this);
-		if(MainConfig.getInstance().getPushNewVersionCode() == MainUtil.getAppVersionCode(MainActivityGroup.this)) {
-			//当前版本为新版本，若更新说明不为空，则提示更新说明，待显示后，清空更新说明
-			if(!StringUtil.isNull(MainConfig.getInstance().getPushNewVersionInfo())) {
+		if (MainConfig.getInstance().getPushNewVersionCode() == MainUtil.getAppVersionCode(MainActivityGroup.this)) {
+			// 当前版本为新版本，若更新说明不为空，则提示更新说明，待显示后，清空更新说明
+			if (!StringUtil.isNull(MainConfig.getInstance().getPushNewVersionInfo())) {
 				startActivity(new Intent(MainActivityGroup.this, NewVersionInfoActivity.class));
 			}
 		}
-		
+
 		initMainView();
 		showView(RingForU.getInstance().getSelsectedTabId());
 

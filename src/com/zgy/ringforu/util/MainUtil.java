@@ -73,7 +73,6 @@ public class MainUtil {
 		BusyModeUtil.checkState(context);
 		SmsLightScreenUtil.checkState(context);
 		SignalReconnectUtil.checkState(context);
-		PushMessageUtils.checkPushEnabled(context);
 	}
 
 	/**
