@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_about"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/light_blue_bg"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/title_margin_tn"
+        android:layout_marginTop="@dimen/title_margin_tn"
+        android:paddingLeft="@dimen/title_padding_lr"
+        android:paddingRight="@dimen/title_padding_lr"
+        android:text="@string/newversion_title_info"
+        android:textColor="@color/yellow_border"
+        android:textSize="@dimen/text_textsize_top_title" />
+
+    <TextView
+        android:id="@+id/text_new_version_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/title_margin_tn"
+        android:layout_marginTop="@dimen/title_margin_tn"
+        android:minHeight="@dimen/title_content_minh"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/item_text_size" />
+
+    <Button
+        android:id="@+id/btn_new_version_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/title_margin_tn"
+        android:background="@drawable/bg_btn_blue"
+        android:paddingBottom="@dimen/layout_little_margin"
+        android:paddingLeft="@dimen/layout_margin_title"
+        android:paddingRight="@dimen/layout_margin_title"
+        android:paddingTop="@dimen/layout_little_margin"
+        android:text="@string/str_ok"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_textsize_top_title" />
+
+</LinearLayout>

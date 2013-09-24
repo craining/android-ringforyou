@@ -11,6 +11,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
+import com.zgy.ringforu.activity.MainActivityGroup;
 import com.zgy.ringforu.config.MainConfig;
 
 public class MainUtil {
@@ -72,6 +73,7 @@ public class MainUtil {
 		BusyModeUtil.checkState(context);
 		SmsLightScreenUtil.checkState(context);
 		SignalReconnectUtil.checkState(context);
+		PushMessageUtils.checkPushEnabled(context);
 	}
 
 	/**
@@ -96,14 +98,17 @@ public class MainUtil {
 				f.mkdirs();
 			}
 		}
+		
 		checkAllState(context);
 
 		String version = context.getString(R.string.version_code);
-		if (StringUtil.isNull(config.getVersionCode()) || !config.getVersionCode().equals(version)) {
-			config.setVersionCode(version);
+		if (StringUtil.isNull(config.getVersionName()) || !config.getVersionName().equals(version)) {
+			config.setVersionName(version);
 			config.setUserGuideShown(false);
 			config.setRedToolsShown(false);
 		}
+		
+		MainUtil.checkNewVersion(context);
 	}
 
 	/**
@@ -123,6 +128,21 @@ public class MainUtil {
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 			return 0;
+		}
+	}
+	
+	/**
+	 * ¼ì²âÐÂ°æ±¾
+	 * @Description:
+	 * @param context
+	 * @see: 
+	 * @since: 
+	 * @author: zhuanggy
+	 * @date:2013-9-24
+	 */
+	public static void checkNewVersion(Context context) {
+		if(MainConfig.getInstance().getPushNewVersionCode() > getAppVersionCode(context)) {
+			NotificationUtil.showHideNewVersionNotify(true, context, MainConfig.getInstance().getPushNewVersionDownloadUrl());
 		}
 	}
 

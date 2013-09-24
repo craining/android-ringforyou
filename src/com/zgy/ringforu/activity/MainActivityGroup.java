@@ -11,13 +11,17 @@ import android.widget.LinearLayout;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
+import com.baidu.android.pushservice.PushService;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.interfaces.OnGestureChangedListener;
+import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.PushMessageUtils;
 import com.zgy.ringforu.util.RingForUActivityManager;
+import com.zgy.ringforu.util.StringUtil;
 
 public class MainActivityGroup extends BaseGestureActivityGroup implements OnClickListener {
 
@@ -43,32 +47,22 @@ public class MainActivityGroup extends BaseGestureActivityGroup implements OnCli
 		setContentView(R.layout.main_group);
 
 		RingForUActivityManager.push(this);
-		PushManager.startWork(MainActivityGroup.this, PushConstants.LOGIN_TYPE_API_KEY, PushMessageUtils.getMetaValue(MainActivityGroup.this, "api_key"));
+		
+		MainUtil.checkNewVersion(MainActivityGroup.this);
+		if(MainConfig.getInstance().getPushNewVersionCode() == MainUtil.getAppVersionCode(MainActivityGroup.this)) {
+			//当前版本为新版本，若更新说明不为空，则提示更新说明，待显示后，清空更新说明
+			if(!StringUtil.isNull(MainConfig.getInstance().getPushNewVersionInfo())) {
+				startActivity(new Intent(MainActivityGroup.this, NewVersionInfoActivity.class));
+			}
+		}
+		
 		initMainView();
-		// // 主界面开始接收参数
-		// Bundle bundle = getIntent().getExtras();
-		// if (null != bundle) {
-		// flag = bundle.getInt("flag");
-		// }
 		showView(RingForU.getInstance().getSelsectedTabId());
 
 		tabImportant.setOnClickListener(this);
 		tabCall.setOnClickListener(this);
 		tabSms.setOnClickListener(this);
 		tabMore.setOnClickListener(this);
-
-		// new Thread(new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		// try {
-		// ReceiveEmailUtil.getAllEmails();
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
-		//
-		// }
-		// }).start();
 
 	}
 

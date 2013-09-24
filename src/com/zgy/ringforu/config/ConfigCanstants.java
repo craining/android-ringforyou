@@ -10,7 +10,7 @@ public class ConfigCanstants {
 	public static final int STYLE_INTERCEPT_SMS_SLIENT = 1;// 静音接收
 	public static final int STYLE_INTERCEPT_SMS_DISRECEIVE = 2;// 不接收
 
-	public static final String VERSION_CODE = "VERSION_CODE";
+	public static final String VERSION_NAME = "VERSION_CODE";
 	public static final String STYLE_INTERCEPT_CALL = "STYLE_INTERCEPT_CALL";
 	public static final String STYLE_INTERCEPT_SMS = "STYLE_INTERCEPT_SMS";
 	public static final String SWITCH_BUSYMODE = "SWITCH_BUSYMODE";// TRUE为on，false为off
@@ -39,8 +39,10 @@ public class ConfigCanstants {
 	public static final String USER_GUIDE_SHOWD = "USER_GUIDE_SHOWD";// 是否显示过新手引导
 	public static final String RED_TOOLS = "RED_TOOLS";// 是否显示过工具红点
 	
-	public static final String PUSH_NEW_VERSION_CODE = "";//推送的新版本号
-	public static final String PUSH_NEW_VERSION_DOWNLOAD_URL = "";//推送的下载链接
+	public static final String PUSH_NEW_VERSION_CODE = "PUSH_NEW_VERSION_CODE";//推送的新版本号
+	public static final String PUSH_NEW_VERSION_DOWNLOAD_URL = "PUSH_NEW_VERSION_DOWNLOAD_URL";//推送的下载链接
+	public static final String PUSH_NEW_VERSION_INFO = "PUSH_NEW_VERSION_INFO";//更新说明
+	
 	
 	
 	

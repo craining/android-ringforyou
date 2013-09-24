@@ -89,5 +89,10 @@
  <!-- 39+15+15 -->
     <dimen name="text_size_menu">21sp</dimen>
     <dimen name="height_title">60dip</dimen>
+    
+        <!-- new version info -->
+    <dimen name="title_padding_lr">120dip</dimen>
+    <dimen name="title_content_minh">225dip</dimen>
+    <dimen name="title_margin_tn">30dip</dimen>
 
 </resources>

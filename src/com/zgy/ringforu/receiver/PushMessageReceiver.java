@@ -2,14 +2,13 @@ package com.zgy.ringforu.receiver;
 
 import org.json.JSONObject;
 
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PushMessageUtils;
 
@@ -37,7 +36,6 @@ public class PushMessageReceiver extends BroadcastReceiver {
 			LogRingForu.i(TAG, "onMessage: " + message);
 
 			// 用户在此自定义处理消息,以下代码为demo界面展示用
-
 			if (message.equals(PushMessageUtils.MESSAGE_CONTENT_NEW_VERSION)) {
 				try {
 					String extras = intent.getStringExtra(PushConstants.EXTRA_EXTRA);
@@ -45,19 +43,17 @@ public class PushMessageReceiver extends BroadcastReceiver {
 					LogRingForu.d(TAG, "EXTRA_EXTRA = " + extras);
 					JSONObject json = new JSONObject(extras);
 					int newVersionCode = Integer.parseInt(json.getString(PushMessageUtils.MESSAGE_TAG_VERSION_CODE));
-					String newVersionDownloadUrl = 
-					
-					
+					LogRingForu.v(TAG, "newVersionCode = " + newVersionCode + "   now version=" + MainUtil.getAppVersionCode(context));
 					if (newVersionCode > MainUtil.getAppVersionCode(context)) {
 						// versionCode较大，新版本
-						
-						
-
+						MainConfig.getInstance().setPushNewVersionCode(newVersionCode);
+						MainConfig.getInstance().setPushNewVersionDownloadUrl(json.getString(PushMessageUtils.MESSAGE_TAG_DOWNLOAD_URL));
+						MainConfig.getInstance().setPushNewVersionInfo(json.getString(PushMessageUtils.MESSAGE_TAG_VERSION_INFO));
+						MainUtil.checkNewVersion(context);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-
 			}
 
 		}
@@ -83,7 +79,7 @@ public class PushMessageReceiver extends BroadcastReceiver {
 			LogRingForu.d(TAG, "onMessage: method : " + method);
 			LogRingForu.d(TAG, "onMessage: result : " + errorCode);
 			LogRingForu.d(TAG, "onMessage: content : " + content);
-			Toast.makeText(context, "method : " + method + "\n result: " + errorCode + "\n content = " + content, Toast.LENGTH_SHORT).show();
+//			Toast.makeText(context, "method : " + method + "\n result: " + errorCode + "\n content = " + content, Toast.LENGTH_SHORT).show();
 
 			// 可选。通知用户点击事件处理
 		} else if (intent.getAction().equals(PushConstants.ACTION_RECEIVER_NOTIFICATION_CLICK)) {

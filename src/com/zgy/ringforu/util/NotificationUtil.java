@@ -5,24 +5,25 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.R;
-import com.zgy.ringforu.activity.ToolsBusyModeActivity;
-import com.zgy.ringforu.activity.ToolsDisableGprsActivity;
-import com.zgy.ringforu.activity.ToolsWaterMarkActivity;
-import com.zgy.ringforu.receiver.NotificationReceiver;
 
 /**
  * 通知栏util
+ * 
  * @Description:
  * @author: zhuanggy
- * @see:   
- * @since:      
+ * @see:
+ * @since:
  * @copyright © 35.com
  * @Date:2013-9-6
  */
 public class NotificationUtil {
 
+	private static final int PENDINGINTENT_ID_WATERMARK_ON = 0;
+	private static final int NOTIFICATION_ID_WATERMARK_ON = 0;
 	private static final int NOTIFICATION_ID_DISABLEGPRS_ON = 1;
 	private static final int PENDINGINTENT_ID_DISABLEGPRS = 1;
 	private static final int NOTIFICATION_ID_BUSYMODE_ON = 2;// 状态栏通知的id
@@ -31,7 +32,10 @@ public class NotificationUtil {
 	private static final int PENDINGINTENT_ID_SMSLIGHT = 3;
 	private static final int NOTIFICATION_ID_SIGNALRECONNECT_ON = 5;// 状态栏通知的id
 	private static final int PENDINGINTENT_ID_SIGNALRECONNECT = 5;
-	
+
+	private static final int NOTIFICATION_ID_NEW_VERSION = 6;// 状态栏通知的id
+	private static final int PENDINGINTENT_ID_NEW_VERSION = 6;
+
 	private static int NOTIFICATION_ID_BUSYMODE_REFUSED = 20;// 状态栏通知的id
 
 	/**
@@ -41,16 +45,16 @@ public class NotificationUtil {
 	public static final String ACTION_BUSYMODE = "com.zgy.ringforu.ACTION_NOTIFICATION_BUSYMODE";
 	public static final String ACTION_WATERMARK = "com.zgy.ringforu.ACTION_NOTIFICATION_WATERMARK";
 	public static final String ACTION_DISABLEGPRS = "com.zgy.ringforu.ACTION_NOTIFICATION_DISABLEGPRS";
-	public static final String ACTION_SMSLIGHT= "com.zgy.ringforu.ACTION_NOTIFICATION_SMSLIGHT";
+	public static final String ACTION_SMSLIGHT = "com.zgy.ringforu.ACTION_NOTIFICATION_SMSLIGHT";
 	public static final String ACTION_SIGNALRECONNECT = "com.zgy.ringforu.ACTION_NOTIFICATION_SIGNALRECONNECT";
-	
+	public static final String ACTION_NEW_VERSION = "com.zgy.ringforu.ACTION_NOTIFICATION_NEW_VERSION";
+
 	public static final String INTENT_ACTION_KEY_CALL = "notification_refused_number";
-	
+	public static final String INTENT_ACTION_KEY_DOWNLOAD_URL = "notification_downloadurl";
+
 	public static final String BUSYMODE_ACTION_CLEAR = "com.zgy.ringforu.ACTION_NOTIFICATION_CLEAR";// 通知栏清除
 	public static final String INTENT_ACTION_KEY_CLEAR = "notification_refused_clear";
 
-	private static final int PENDINGINTENT_ID_WATERMARK_ON = 0;
-	private static final int NOTIFICATION_ID_WATERMARK_ON = 0;
 
 	/**
 	 * 显示gprs已经禁用的通知
@@ -94,10 +98,10 @@ public class NotificationUtil {
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			// 定义Notification的各种属性
 			Notification notification = new Notification(R.drawable.ic_notification_busymode_on, context.getString(R.string.busymode_tip_open_toast), System.currentTimeMillis());
-			
-//			notification.internalApp = 1;    //加上这句就ok了. 只适用于魅族的sdk
+
+			// notification.internalApp = 1; //加上这句就ok了. 只适用于魅族的sdk
 			notification.icon = R.drawable.ic_notification_busymode_on;
-			
+
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
 			notification.flags |= Notification.FLAG_NO_CLEAR;
@@ -264,7 +268,7 @@ public class NotificationUtil {
 			notificationManager.cancel(NOTIFICATION_ID_WATERMARK_ON);// 注意ID号，不能与此程序中的其他通知栏图标相同
 		}
 	}
-	
+
 	/**
 	 * 显示gprs已经禁用的通知
 	 * 
@@ -291,7 +295,7 @@ public class NotificationUtil {
 
 			CharSequence contentText = context.getString(R.string.smslight_set_tip);
 			CharSequence contentTitle = context.getString(R.string.smslight_on);
-			
+
 			Intent notificationIntent = new Intent(ACTION_SMSLIGHT);
 			PendingIntent contentItent = PendingIntent.getBroadcast(context, PENDINGINTENT_ID_SMSLIGHT, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
@@ -303,7 +307,7 @@ public class NotificationUtil {
 			notificationManager.cancel(NOTIFICATION_ID_SMSLIGHT_ON);// 注意ID号，不能与此程序中的其他通知栏图标相同
 		}
 	}
-	
+
 	/**
 	 * 显示gprs已经禁用的通知
 	 * 
@@ -340,6 +344,41 @@ public class NotificationUtil {
 			// 启动后删除之前我们定义的通知
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			notificationManager.cancel(NOTIFICATION_ID_SIGNALRECONNECT_ON);// 注意ID号，不能与此程序中的其他通知栏图标相同
+		}
+	}
+
+	/**
+	 * 显示新版本的通知
+	 * 
+	 * @param con
+	 */
+	public static void showHideNewVersionNotify(boolean show, Context context, String downloadUrl) {
+
+		if (show) {
+			LogRingForu.e("", "显示通知");
+			// 显示
+			// 创建一个NotificationManager的引用
+			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+			// 定义Notification的各种属性
+			Notification notification = new Notification(R.drawable.ic_launcher, context.getString(R.string.notify_new_version), System.currentTimeMillis());
+			notification.icon = R.drawable.ic_launcher;
+			notification.flags |= Notification.FLAG_ONGOING_EVENT;
+			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
+			notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+			CharSequence contentText = context.getString(R.string.notify_new_version_tip);
+			CharSequence contentTitle = context.getString(R.string.notify_new_version);
+
+			Intent notificationIntent = new Intent(ACTION_NEW_VERSION);
+			notificationIntent.putExtra(INTENT_ACTION_KEY_DOWNLOAD_URL, downloadUrl);
+			PendingIntent contentItent = PendingIntent.getBroadcast(context, PENDINGINTENT_ID_NEW_VERSION, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
+			// 把Notification传递给NotificationManager
+			notificationManager.notify(NOTIFICATION_ID_NEW_VERSION, notification);// 注意ID号，不能与此程序中的其他通知栏图标相同
+		} else {
+			// 启动后删除之前我们定义的通知
+			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+			notificationManager.cancel(NOTIFICATION_ID_NEW_VERSION);// 注意ID号，不能与此程序中的其他通知栏图标相同
 		}
 	}
 }

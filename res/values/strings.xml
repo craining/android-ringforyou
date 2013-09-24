@@ -94,6 +94,10 @@
     <string name="smslight_set_tip">点击更改设置</string>
     <string name="signalreconnect_on">掉线重连已开启</string>
     <string name="signalreconnect_set_tip">点击更改设置</string>
+    <string name="notify_new_version">检测到新版本</string>
+    <string name="notify_new_version_tip">点击进行下载</string>
+    <string name="newversion_title_info">更新说明</string>
+    
 
     <!-- new -->
     <!-- The important contact has not yet been added, please add. -->

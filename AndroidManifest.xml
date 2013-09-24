@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zgy.ringforu"
-    android:versionCode="2"
+    android:versionCode="1"
     android:versionName="2.0" >
 
     <uses-sdk
@@ -96,7 +96,7 @@
                 <action android:name="android.intent.action.PICK_ACTIVITY" />
                 <action android:name="android.intent.action.SET_WALLPAPER" />
                 <action android:name="android.intent.action.DIAL"/>
-                <action android:name="android.intent.action.SENDTO"/>
+                <action android:name="android.intent.action.SENDTO"/>
                 -->
                 <action android:name="android.intent.action.SEND" />
                 <!-- 分享到 -->
@@ -167,6 +167,11 @@
             android:launchMode="singleTask"
             android:theme="@style/dialog" />
         <activity
+            android:name=".activity.NewVersionInfoActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/dialog" />
+        <activity
             android:name=".activity.ToolsBusyModeActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
@@ -232,6 +237,7 @@
                 <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_DISABLEGPRS" />
                 <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_SMSLIGHT" />
                 <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_SIGNALRECONNECT" />
+                <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_NEW_VERSION" />
             </intent-filter>
         </receiver>
 

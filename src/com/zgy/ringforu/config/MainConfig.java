@@ -180,12 +180,12 @@ public class MainConfig extends PreferenceUtil {
 		putBool(ConfigCanstants.NOTIFICATION_SWITCH, on);
 	}
 
-	public synchronized String getVersionCode() {
-		return getString(ConfigCanstants.VERSION_CODE, "");
+	public synchronized String getVersionName() {
+		return getString(ConfigCanstants.VERSION_NAME, "");
 	}
 
-	public synchronized void setVersionCode(String code) {
-		putString(ConfigCanstants.VERSION_CODE, code);
+	public synchronized void setVersionName(String name) {
+		putString(ConfigCanstants.VERSION_NAME, name);
 	}
 
 	public synchronized boolean isUserGuideShown() {
@@ -218,5 +218,13 @@ public class MainConfig extends PreferenceUtil {
 
 	public synchronized void setPushNewVersionDownloadUrl(String url) {
 		putString(ConfigCanstants.PUSH_NEW_VERSION_DOWNLOAD_URL, url);
+	}
+	
+	public synchronized String getPushNewVersionInfo() {
+		return getString(ConfigCanstants.PUSH_NEW_VERSION_INFO, null);
+	}
+
+	public synchronized void setPushNewVersionInfo(String info) {
+		putString(ConfigCanstants.PUSH_NEW_VERSION_INFO, info);
 	}
 }

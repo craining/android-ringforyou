@@ -1,7 +1,12 @@
 package com.zgy.ringforu.receiver;
 
+import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+
 import com.zgy.ringforu.LogRingForu;
-import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.activity.ToolsBusyModeActivity;
 import com.zgy.ringforu.activity.ToolsDisableGprsActivity;
 import com.zgy.ringforu.activity.ToolsSignalReconnectActivity;
@@ -9,13 +14,7 @@ import com.zgy.ringforu.activity.ToolsSmsLightActivity;
 import com.zgy.ringforu.activity.ToolsWaterMarkActivity;
 import com.zgy.ringforu.util.NotificationUtil;
 import com.zgy.ringforu.util.PopActivityUtil;
-
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+import com.zgy.ringforu.util.SelectApplicationUtil;
 
 /**
  * 点击通知栏的receiver
@@ -28,6 +27,7 @@ import android.net.Uri;
  * @Date:2013-9-6
  */
 public class NotificationReceiver extends BroadcastReceiver {
+
 	private static final String TAG = "NotificationBusyModeRefusedReceiver";
 
 	@Override
@@ -70,8 +70,9 @@ public class NotificationReceiver extends BroadcastReceiver {
 			i = new Intent(context, ToolsSignalReconnectActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
+		} else if (intent.getAction().equals(NotificationUtil.ACTION_NEW_VERSION)) {
+			SelectApplicationUtil.viewHtml(context, intent.getExtras().getString(NotificationUtil.INTENT_ACTION_KEY_DOWNLOAD_URL));
 		}
-
 	}
 
 }

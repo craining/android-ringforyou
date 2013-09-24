@@ -1,5 +1,10 @@
 package com.zgy.ringforu.util;
 
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
+import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.activity.MainActivityGroup;
+
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -8,7 +13,7 @@ import android.os.Bundle;
 
 public class PushMessageUtils {
 
-	public static final String TAG = "PushDemoActivity";
+	public static final String TAG = "PushMessageUtils";
 	public static final String RESPONSE_METHOD = "method";
 	public static final String RESPONSE_CONTENT = "content";
 	public static final String RESPONSE_ERRCODE = "errcode";
@@ -41,10 +46,29 @@ public class PushMessageUtils {
 	
 	
 	/*****扩展*******/
-	public static final String MESSAGE_CONTENT_NEW_VERSION = "new_version";
+	public static final String MESSAGE_CONTENT_NEW_VERSION = "new_version";//消息内容
+	//消息字段名
 	public static final String MESSAGE_TAG_VERSION_CODE = "version_code";
 	public static final String MESSAGE_TAG_DOWNLOAD_URL = "download_url";
+	public static final String MESSAGE_TAG_VERSION_INFO = "version_info";
+	public static final String MESSAGE_TAG_VERSION_INFO_BREAKLINE = ":::";//换行符
 	
-	
+	/**
+	 * 检测push状态
+	 * @Description:
+	 * @param context
+	 * @see: 
+	 * @since: 
+	 * @author: zhuanggy
+	 * @date:2013-9-24
+	 */
+	public static void checkPushEnabled(Context context) {
+		if(!PushManager.isPushEnabled(context)){
+			PushManager.startWork(context, PushConstants.LOGIN_TYPE_API_KEY, PushMessageUtils.getMetaValue(context, "api_key"));
+			LogRingForu.v(TAG, "start push work");
+		} else {
+			LogRingForu.v(TAG, "no need start push work");
+		}
+	}
 	
 }
