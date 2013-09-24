@@ -66,7 +66,10 @@
 
 -libraryjars libs/activation.jar
 -libraryjars libs/additionnal.jar
+-libraryjars libs/android-support-v4.jar
+-libraryjars libs/pushservice-2.4.0.jar
 -libraryjars libs/mail.jar
+
 
 -dontskipnonpubliclibraryclassmembers
 -dontskipnonpubliclibraryclasses
@@ -76,3 +79,6 @@
 -keep class com.sun.**{*;}
 -keep class myjava.awt.**{*;}
 -keep class org.apache.**{*;}
+
+-keep class com.baidu.android.pushservice.** { *; }
+-keep class android.support.v4.** { *; }

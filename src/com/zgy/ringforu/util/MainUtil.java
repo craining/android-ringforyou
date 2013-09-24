@@ -100,7 +100,7 @@ public class MainUtil {
 		
 		checkAllState(context);
 
-		String version = context.getString(R.string.version_code);
+		String version = context.getString(R.string.version_name);
 		if (StringUtil.isNull(config.getVersionName()) || !config.getVersionName().equals(version)) {
 			config.setVersionName(version);
 			config.setUserGuideShown(false);

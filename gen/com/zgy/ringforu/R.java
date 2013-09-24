@@ -732,7 +732,7 @@ public final class R {
         public static final int toast_open_ok=0x7f0800e1;
         public static final int tools_info=0x7f08003e;
         public static final int tools_str=0x7f08003d;
-        public static final int version_code=0x7f080000;
+        public static final int version_name=0x7f080000;
         public static final int watermark_album=0x7f080044;
         public static final int watermark_camera=0x7f080043;
         public static final int watermark_change=0x7f08004a;

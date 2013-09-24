@@ -9,9 +9,6 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.baidu.android.pushservice.PushConstants;
-import com.baidu.android.pushservice.PushManager;
-import com.baidu.android.pushservice.PushService;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;

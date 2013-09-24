@@ -44,13 +44,12 @@ public class PushMessageReceiver extends BroadcastReceiver {
 					JSONObject json = new JSONObject(extras);
 					int newVersionCode = Integer.parseInt(json.getString(PushMessageUtils.MESSAGE_TAG_VERSION_CODE));
 					LogRingForu.v(TAG, "newVersionCode = " + newVersionCode + "   now version=" + MainUtil.getAppVersionCode(context));
-					if (newVersionCode > MainUtil.getAppVersionCode(context)) {
-						// versionCode较大，新版本
-						MainConfig.getInstance().setPushNewVersionCode(newVersionCode);
-						MainConfig.getInstance().setPushNewVersionDownloadUrl(json.getString(PushMessageUtils.MESSAGE_TAG_DOWNLOAD_URL));
-						MainConfig.getInstance().setPushNewVersionInfo(json.getString(PushMessageUtils.MESSAGE_TAG_VERSION_INFO));
-						MainUtil.checkNewVersion(context);
-					}
+					// if (newVersionCode > MainUtil.getAppVersionCode(context)) {
+					MainConfig.getInstance().setPushNewVersionCode(newVersionCode);
+					MainConfig.getInstance().setPushNewVersionDownloadUrl(json.getString(PushMessageUtils.MESSAGE_TAG_DOWNLOAD_URL));
+					MainConfig.getInstance().setPushNewVersionInfo(json.getString(PushMessageUtils.MESSAGE_TAG_VERSION_INFO));
+					MainUtil.checkNewVersion(context);
+					// }
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -79,7 +78,8 @@ public class PushMessageReceiver extends BroadcastReceiver {
 			LogRingForu.d(TAG, "onMessage: method : " + method);
 			LogRingForu.d(TAG, "onMessage: result : " + errorCode);
 			LogRingForu.d(TAG, "onMessage: content : " + content);
-//			Toast.makeText(context, "method : " + method + "\n result: " + errorCode + "\n content = " + content, Toast.LENGTH_SHORT).show();
+			// Toast.makeText(context, "method : " + method + "\n result: " + errorCode + "\n content = " +
+			// content, Toast.LENGTH_SHORT).show();
 
 			// 可选。通知用户点击事件处理
 		} else if (intent.getAction().equals(PushConstants.ACTION_RECEIVER_NOTIFICATION_CLICK)) {
