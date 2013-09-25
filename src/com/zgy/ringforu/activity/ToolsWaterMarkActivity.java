@@ -46,7 +46,8 @@ import com.zgy.ringforu.util.WaterMarkUtil;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
 
-public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSeekBarChangeListener, OnClickListener {
+public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSeekBarChangeListener,
+		OnClickListener {
 
 	private static final String TAG = "WaterMarkActivity";
 
@@ -437,7 +438,17 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		case REQUEST_PICKPIC_CAMERA:
 
 			if (tempFileSrc.exists()) {
-				startPhotoZoom(Uri.fromFile(tempFileSrc));
+
+				try {
+					FileUtil.copyFileTo(tempFileSrc, MainCanstants.FILE_WATERMARK_IMG);
+					tempFileSrc.delete();
+					refreshViews();
+				} catch (Exception e) {
+					e.printStackTrace();
+					MyToast.makeText(ToolsWaterMarkActivity.this, "ªÒ»°Õº∆¨ ß∞‹£°", MyToast.LENGTH_SHORT, true).show();
+					refreshViews();
+				}
+				// startPhotoZoom(Uri.fromFile(tempFileSrc));
 			} else {
 				MyToast.makeText(ToolsWaterMarkActivity.this, "ªÒ»°Õº∆¨ ß∞‹£°", MyToast.LENGTH_SHORT, true).show();
 				refreshViews();
@@ -453,9 +464,14 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 					if (!StringUtil.isNull(abPath)) {
 						File getFileSrc = new File(abPath);
 						try {
-							tempFileSrc = new File(MainCanstants.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
-							FileUtil.copyFileTo(getFileSrc, tempFileSrc);
-							startPhotoZoom(Uri.fromFile(tempFileSrc));
+							// tempFileSrc = new File(MainCanstants.FILE_WATERMARK_IMG_TEMP_SRC +
+							// TimeUtil.getCurrentTimeMillis());
+							// FileUtil.copyFileTo(getFileSrc, tempFileSrc);
+							FileUtil.copyFileTo(getFileSrc, MainCanstants.FILE_WATERMARK_IMG);
+							getFileSrc.delete();
+
+							refreshViews();
+							// startPhotoZoom(Uri.fromFile(tempFileSrc));
 							// cropImageUri(Uri.fromFile(tempFileSrc), 2000,
 							// 500);
 							break;

@@ -55,7 +55,6 @@ public class NotificationUtil {
 	public static final String BUSYMODE_ACTION_CLEAR = "com.zgy.ringforu.ACTION_NOTIFICATION_CLEAR";// 通知栏清除
 	public static final String INTENT_ACTION_KEY_CLEAR = "notification_refused_clear";
 
-
 	/**
 	 * 显示gprs已经禁用的通知
 	 * 
@@ -362,8 +361,7 @@ public class NotificationUtil {
 			// 定义Notification的各种属性
 			Notification notification = new Notification(R.drawable.ic_launcher, context.getString(R.string.notify_new_version), System.currentTimeMillis());
 			notification.icon = R.drawable.ic_launcher;
-			notification.flags |= Notification.FLAG_ONGOING_EVENT;
-			// 将此通知放到通知栏的"Ongoing"即"正在运行"组中
+			// notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
 			CharSequence contentText = context.getString(R.string.notify_new_version_tip);

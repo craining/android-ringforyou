@@ -106,8 +106,6 @@ public class MainUtil {
 			config.setUserGuideShown(false);
 			config.setRedToolsShown(false);
 		}
-		
-		MainUtil.checkNewVersion(context);
 	}
 
 	/**
