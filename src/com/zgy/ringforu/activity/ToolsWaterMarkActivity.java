@@ -131,8 +131,6 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		btnTitleClose.setOnClickListener(this);
 		btnOrientation.setOnClickListener(this);
 
-		refreshViews();
-
 		Intent intent = getIntent();
 		String action = intent.getAction();
 		// 共享获得的图片
@@ -140,9 +138,16 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			String type = intent.getType();
 			Uri stream = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
 			if (stream != null && type != null) {
-				startPhotoZoom(stream);
+				try {
+					FileUtil.copyFileTo(new File(stream.getPath()), MainCanstants.FILE_WATERMARK_IMG);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				// startPhotoZoom(stream);
 			}
 		}
+		refreshViews();
+
 		// else {
 		// Bundle b = intent.getExtras();
 		// if (b != null && b.containsKey("fromnotifybar") &&
