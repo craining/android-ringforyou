@@ -41,7 +41,7 @@ public class NotificationUtil {
 	/**
 	 * intent action
 	 */
-	public static final String ACTION_REFUSED_CALL = "com.zgy.ringforu.ACTION_NOTIFICATION_REFUSED_CALL";// 通知栏拨打电话
+	public static final String ACTION_REFUSED_CALL = "com.zgy.ringforu.ACTION_NOTIFICATION_CALL";// 通知栏拨打电话
 	public static final String ACTION_BUSYMODE = "com.zgy.ringforu.ACTION_NOTIFICATION_BUSYMODE";
 	public static final String ACTION_WATERMARK = "com.zgy.ringforu.ACTION_NOTIFICATION_WATERMARK";
 	public static final String ACTION_DISABLEGPRS = "com.zgy.ringforu.ACTION_NOTIFICATION_DISABLEGPRS";

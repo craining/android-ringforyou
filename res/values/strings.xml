@@ -87,7 +87,7 @@
     <string name="watermark_del_success">Successfully removed the watermark</string>
     <string name="watermark_text">Transparence :</string>
     <string name="watermark_show_fail">Set the watermark failed</string>
-    <string name="watermark_ori_tip">You may need to recut the image to show a normal ratio watermark</string>
+    <string name="watermark_ori_tip">Crop the image to show a normal ratio watermark</string>
     <string name="watermark_on">屏幕水印已开启</string>
     <string name="watermark_set_tip">点击进入水印设置页</string>
     <string name="smslight_on">收到短信点亮屏幕已开启</string>
@@ -261,5 +261,9 @@
     
     <string name="str_opera">操作</string>
     <string name="str_exit">退出</string>
+    
+    <string name="tools_test">工程测试</string>
+    <string name="tools_test_tip">进入系统隐含的测试模块</string>
+    
 
 </resources>

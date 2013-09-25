@@ -75,6 +75,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout_tools_part_two"
         style="@style/layout_set_block"
         android:layout_below="@id/layout_tools_part_one" >
 
@@ -152,6 +153,29 @@
             <CheckBox
                 android:id="@+id/check_tool_signalreconnect"
                 style="@style/checkbox_set_item_check" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_tools_part_three"
+        style="@style/layout_set_block"
+        android:layout_below="@id/layout_tools_part_two" >
+        <RelativeLayout
+            android:id="@+id/layout_tool_test"
+            style="@style/layout_set_item"
+            android:background="@drawable/bg_list_item"
+            android:clickable="true" >
+
+            <LinearLayout style="@style/layout_set_item_content_left" >
+
+                <TextView
+                    style="@style/text_set_item_content_left_top"
+                    android:text="@string/tools_test" />
+
+                <TextView
+                    style="@style/text_set_item_content_left_bottom"
+                    android:text="@string/tools_test_tip" />
+            </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 

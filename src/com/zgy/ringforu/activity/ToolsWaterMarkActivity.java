@@ -92,6 +92,9 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tools_watermark);
+		
+		LogRingForu.v(TAG, "onCreate");
+		
 		mMainConfig = MainConfig.getInstance();
 
 		mSeekBarOnTouchMove = false;
@@ -134,13 +137,35 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		Intent intent = getIntent();
 		String action = intent.getAction();
 		// 共享获得的图片
-		if ((Intent.ACTION_SEND.equals(action) || Intent.ACTION_VIEW.equals(action)) && intent.hasExtra(Intent.EXTRA_STREAM)) {
+		if (Intent.ACTION_SEND.equals(action) && intent.hasExtra(Intent.EXTRA_STREAM)) {
 			String type = intent.getType();
 			Uri stream = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+			
+			LogRingForu.e(TAG, "get intent  type=" + type + "    stream =" + stream.toString());
+			
+			if (stream != null && type != null) {
+				try {
+					LogRingForu.e(TAG, "stream.getPath()=" + stream.getPath());
+					FileUtil.copyFileTo(new File(getImageAbsolutePath(stream)), MainCanstants.FILE_WATERMARK_IMG);
+					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				// startPhotoZoom(stream);
+			}
+		} else if (Intent.ACTION_VIEW.equals(action) ) {
+			String type = intent.getType();
+			Uri stream = (Uri) intent.getData();
+			
+			LogRingForu.e(TAG, "get intent  type=" + type + "    stream =" + stream.toString());
+			
 			if (stream != null && type != null) {
 				try {
 					LogRingForu.e(TAG, "stream.getPath()=" + stream.getPath());
 					FileUtil.copyFileTo(new File(stream.getPath()), MainCanstants.FILE_WATERMARK_IMG);
+					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -242,7 +267,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			}
 
 			if (MainCanstants.FILE_WATERMARK_IMG.exists()) {
-				MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_LONG, false).show();
+				MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
 			}
 			break;
 
@@ -448,6 +473,8 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 				try {
 					FileUtil.copyFileTo(tempFileSrc, MainCanstants.FILE_WATERMARK_IMG);
 					tempFileSrc.delete();
+					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
+					
 					refreshViews();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -475,7 +502,8 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 							// FileUtil.copyFileTo(getFileSrc, tempFileSrc);
 							FileUtil.copyFileTo(getFileSrc, MainCanstants.FILE_WATERMARK_IMG);
 							getFileSrc.delete();
-
+							MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
+							
 							refreshViews();
 							// startPhotoZoom(Uri.fromFile(tempFileSrc));
 							// cropImageUri(Uri.fromFile(tempFileSrc), 2000,
@@ -506,7 +534,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	 * @return
 	 */
 	private String getImageAbsolutePath(Uri uri) {
-		String result = null;
+		String result = uri.toString();
 		try {
 			String[] proj = { MediaStore.Images.Media.DATA };
 			Cursor cursor = managedQuery(uri, proj, null, null, null);

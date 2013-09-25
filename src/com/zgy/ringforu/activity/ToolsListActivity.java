@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -35,7 +36,7 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 
 	private static final String TAG = "RToolsActivity";
 	private Button btnBack;
-	private RelativeLayout layoutWatermark, layoutBusyMode, layoutSmsLightScreen, layoutDisableGprs, layoutSignalReconnect;
+	private RelativeLayout layoutWatermark, layoutBusyMode, layoutSmsLightScreen, layoutDisableGprs, layoutSignalReconnect, layoutTest;
 	private CheckBox checkWatermarkSwitch, checkSmsLightScreenSwitch, checkDisableGprsSwitch, checkSignalReconnectSwitch, checkBusyModeSwitch;
 	private TextView textBusyModeTitle;
 	private TextView textBusyModeInfo;
@@ -66,12 +67,14 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 		layoutSmsLightScreen = (RelativeLayout) findViewById(R.id.layout_tool_smslightscreen);
 		layoutDisableGprs = (RelativeLayout) findViewById(R.id.layout_tool_disablegprs);
 		layoutSignalReconnect = (RelativeLayout) findViewById(R.id.layout_tool_signalreconnect);
+		layoutTest = (RelativeLayout) findViewById(R.id.layout_tool_test);
 
 		checkBusyModeSwitch = (CheckBox) findViewById(R.id.check_busymode_switch);
 		textBusyModeTitle = (TextView) findViewById(R.id.text_tools_busymode_title);
 		textBusyModeInfo = (TextView) findViewById(R.id.text_tools_busymode_info);
 
 		btnBack.setOnClickListener(this);
+		layoutTest.setOnClickListener(this);
 		checkWatermarkSwitch.setOnClickListener(this);
 		layoutWatermark.setOnClickListener(this);
 		layoutBusyMode.setOnClickListener(this);
@@ -81,7 +84,7 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 		layoutSignalReconnect.setOnClickListener(this);
 
 		MainConfig.getInstance().setRedToolsShown(true);
-		
+
 		mReceiver = new ToolsReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(ACTION_WATERMARK_ON);
@@ -181,6 +184,11 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 			Intent i = new Intent(ToolsListActivity.this, ToolsBusyModeActivity.class);
 			startActivity(i);
 			break;
+		case R.id.layout_tool_test:
+			i = new Intent(Intent.ACTION_FACTORY_TEST);
+			sendBroadcast(i);
+//			startActivity(i);
+			break;
 		default:
 			break;
 		}
@@ -206,16 +214,14 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 			textBusyModeTitle.setText(mStrBusyModeTitle);
 		} else {
 			textBusyModeTitle.setText(mStrBusyModeTitle + " - " + title);
-			if(getResources().getStringArray(R.array.busymodes_title)[9].equals(title)) {
-				//不回复短信
+			if (getResources().getStringArray(R.array.busymodes_title)[9].equals(title)) {
+				// 不回复短信
 				textBusyModeInfo.setText(R.string.busymode_info_notreply);
-			}else {
+			} else {
 				textBusyModeInfo.setText(R.string.busymode_info);
 			}
 		}
 
-		
-		
 		// 忙碌模式是否开启
 		checkBusyModeSwitch.setChecked(BusyModeUtil.isBusyModeOn());
 		BusyModeUtil.checkState(ToolsListActivity.this);
@@ -252,7 +258,5 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 	public void onSlideToLeft() {
 		super.onSlideToLeft();
 	}
-	
-	
 
 }
