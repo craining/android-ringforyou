@@ -134,11 +134,12 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		Intent intent = getIntent();
 		String action = intent.getAction();
 		// 共享获得的图片
-		if (Intent.ACTION_SEND.equals(action) && intent.hasExtra(Intent.EXTRA_STREAM)) {
+		if ((Intent.ACTION_SEND.equals(action) || Intent.ACTION_VIEW.equals(action)) && intent.hasExtra(Intent.EXTRA_STREAM)) {
 			String type = intent.getType();
 			Uri stream = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
 			if (stream != null && type != null) {
 				try {
+					LogRingForu.e(TAG, "stream.getPath()=" + stream.getPath());
 					FileUtil.copyFileTo(new File(stream.getPath()), MainCanstants.FILE_WATERMARK_IMG);
 				} catch (Exception e) {
 					e.printStackTrace();
