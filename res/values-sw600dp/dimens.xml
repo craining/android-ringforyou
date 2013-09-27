@@ -95,4 +95,8 @@
     <dimen name="title_content_minh">225dip</dimen>
     <dimen name="title_margin_tn">30dip</dimen>
 
+    <dimen name="eidt_conner">20dip</dimen>
+    <dimen name="layout_conner">5dip</dimen>
+    <dimen name="layout_conner_padding">3dip</dimen>
+    <dimen name="layout_stoke">2dip</dimen>
 </resources>

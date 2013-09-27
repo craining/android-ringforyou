@@ -80,18 +80,16 @@ public class BitmapUtil {
 		int h = bitmap.getHeight();
 
 		// 若读取图片的宽度或高度小于ImageView的宽度或高度，则对图片进行放大
-		if (w < width || h < height) {
-			Matrix matrix = new Matrix();
-			matrix.postScale((float) width / w, (float) height / h); // 长和宽放大缩小的比例
-			// bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-			// bitmap.getHeight(), matrix,
-			// false);
-			bitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
-		}
-		{
-			LogRingForu.e("", "w = " + w + "  h=" + h + " (float) width / w" + (float) width / w + "   (float) height / h=" + (float) height / h);
-			LogRingForu.e("", "bitmap.w=" + bitmap.getWidth() + " h=" + bitmap.getHeight());
-		}
+		// if (w < width || h < height) {
+		Matrix matrix = new Matrix();
+		matrix.postScale((float) width / w, (float) height / h); // 长和宽放大缩小的比例
+		// bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+		// bitmap.getHeight(), matrix,
+		// false);
+		bitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
+		// }
+		LogRingForu.e("", "w = " + w + "  h=" + h + " (float) width / w" + (float) width / w + "   (float) height / h=" + (float) height / h);
+		LogRingForu.e("", "bitmap.w=" + bitmap.getWidth() + " h=" + bitmap.getHeight());
 
 		// // GoOutDebug.e(TAG, "w = " + output.getWidth() + "   h = " +
 		// output.getHeight());

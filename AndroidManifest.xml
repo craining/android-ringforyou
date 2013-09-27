@@ -141,7 +141,6 @@
             android:name=".activity.ToolsWaterMarkActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/share_label_watermark"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />

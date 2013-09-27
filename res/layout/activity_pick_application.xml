@@ -10,8 +10,8 @@
         style="@style/layout_top_title" >
 
         <Button
-            android:id="@+id/btn_pick_app_exit"
-            style="@style/btn_left_top_exit" />
+            android:id="@+id/btn_pick_back"
+            style="@style/btn_left_top_back" />
 
         <TextView
             android:id="@+id/text_pick_app_title"
@@ -21,21 +21,44 @@
         <Button
             android:id="@+id/btn_pick_app_set"
             style="@style/btn_right_top"
-            android:text="@string/str_opera" />
+            android:text="@string/set_str" />
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/text_pick_app_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:layout_marginRight="@dimen/layout_margin_left_right"
+        android:layout_marginTop="@dimen/search_layout_padding_tb"
+        android:text="@string/water_mark_hide_app_tip"
+        android:layout_below="@id/layout_pick_app_title"
+        android:textColor="@color/textblue"
+        android:textSize="@dimen/textsize_content" />
+
+     <ImageView
+        android:id="@+id/img_pick_app_animation"
+        android:layout_width="@dimen/img_loading_hw"
+        android:layout_height="@dimen/img_loading_hw"
+        android:layout_below="@id/text_pick_app_tip"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/search_layout_padding_tb"
+        android:scaleType="fitCenter"
+        android:src="@anim/loading" />
+    
     <ListView
         android:id="@+id/list_pick_app"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layout_pick_app_title"
+        android:layout_below="@id/img_pick_app_animation"
         android:layout_marginBottom="@dimen/layout_margin_left_right"
         android:layout_marginLeft="@dimen/layout_margin_left_right"
         android:layout_marginRight="@dimen/layout_margin_left_right"
-        android:layout_marginTop="@dimen/layout_margin_top_title"
-        android:background="@drawable/bg_search"
+        android:layout_marginTop="@dimen/search_layout_padding_tb"
+        android:background="@drawable/shape_rounded_layout"
         android:cacheColorHint="#00000000"
         android:dividerHeight="1dip"
+        android:layoutAnimation="@anim/list_layout_anim_up_down"
         android:listSelector="#00000000" />
 
 </RelativeLayout>

@@ -10,6 +10,7 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable.Orientation;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -42,8 +43,7 @@ import com.zgy.ringforu.util.WaterMarkUtil;
 import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
 
-public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSeekBarChangeListener,
-		OnClickListener {
+public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSeekBarChangeListener, OnClickListener {
 
 	private static final String TAG = "WaterMarkActivity";
 
@@ -62,6 +62,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	private TextView textSeekbar;
 	private LinearLayout layoutOperas;
 	private TextView mTextChangeBg;
+	private TextView mTextCutTip;
 	private RelativeLayout layoutMain;
 
 	private SeekBar seekbarAlpha;
@@ -119,6 +120,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		layoutOperas = (LinearLayout) findViewById(R.id.layout_watermark_operas);
 		layoutMain = (RelativeLayout) findViewById(R.id.layout_watermark_main);
 		mTextChangeBg = (TextView) findViewById(R.id.text_watermark_changebg);
+		mTextCutTip = (TextView) findViewById(R.id.text_watermark_recut);
 
 		setBgAndTextColor();
 
@@ -146,7 +148,9 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 				try {
 					LogRingForu.e(TAG, "stream.getPath()=" + stream.getPath());
 					FileUtil.copyFileTo(new File(getImageAbsolutePath(stream)), MainCanstants.FILE_WATERMARK_IMG);
-					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
+					// MyToast.makeText(ToolsWaterMarkActivity.this,
+					// R.string.watermark_ori_tip, MyToast.LENGTH_SHORT,
+					// false).show();
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -163,7 +167,9 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 				try {
 					LogRingForu.e(TAG, "stream.getPath()=" + stream.getPath());
 					FileUtil.copyFileTo(new File(stream.getPath()), MainCanstants.FILE_WATERMARK_IMG);
-					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
+					// MyToast.makeText(ToolsWaterMarkActivity.this,
+					// R.string.watermark_ori_tip, MyToast.LENGTH_SHORT,
+					// false).show();
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -266,7 +272,9 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			}
 
 			if (MainCanstants.FILE_WATERMARK_IMG.exists()) {
-				MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
+				// MyToast.makeText(ToolsWaterMarkActivity.this,
+				// R.string.watermark_ori_tip, MyToast.LENGTH_SHORT,
+				// false).show();
 			}
 			break;
 
@@ -300,6 +308,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		// R.anim.alpha_in_long));
 		layoutMain.setBackgroundColor(Color.parseColor(arrayBbColors[currentBgColor]));
 		textSeekbar.setTextColor(Color.parseColor(arrayTextColors[currentBgColor]));
+		mTextCutTip.setTextColor(Color.parseColor(arrayTextColors[currentBgColor]));
 		currentBgColor++;
 	}
 
@@ -439,8 +448,14 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
-		// TODO Auto-generated method stub
 		LogRingForu.e(TAG, "onConfigurationChanged");
+
+		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			btnOrientation.setText(R.string.watermark_orientation_portrait);
+		} else {
+			btnOrientation.setText(R.string.watermark_orientation_landscape);
+		}
+
 		super.onConfigurationChanged(newConfig);
 	}
 
@@ -476,7 +491,9 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 				try {
 					FileUtil.copyFileTo(tempFileSrc, MainCanstants.FILE_WATERMARK_IMG);
 					tempFileSrc.delete();
-					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
+					// MyToast.makeText(ToolsWaterMarkActivity.this,
+					// R.string.watermark_ori_tip, MyToast.LENGTH_SHORT,
+					// false).show();
 
 					refreshViews();
 				} catch (Exception e) {
@@ -500,12 +517,14 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 					if (!StringUtil.isNull(abPath)) {
 						File getFileSrc = new File(abPath);
 						try {
-							// tempFileSrc = new File(MainCanstants.FILE_WATERMARK_IMG_TEMP_SRC +
+							// tempFileSrc = new
+							// File(MainCanstants.FILE_WATERMARK_IMG_TEMP_SRC +
 							// TimeUtil.getCurrentTimeMillis());
 							// FileUtil.copyFileTo(getFileSrc, tempFileSrc);
 							FileUtil.copyFileTo(getFileSrc, MainCanstants.FILE_WATERMARK_IMG);
-							getFileSrc.delete();
-							MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
+							// MyToast.makeText(ToolsWaterMarkActivity.this,
+							// R.string.watermark_ori_tip, MyToast.LENGTH_SHORT,
+							// false).show();
 
 							refreshViews();
 							// startPhotoZoom(Uri.fromFile(tempFileSrc));
@@ -571,6 +590,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			btnOk.setVisibility(View.VISIBLE);
 			btnCut.setVisibility(View.VISIBLE);
 			btnDel.setVisibility(View.VISIBLE);
+			btnHideApp.setVisibility(View.VISIBLE);
 			// btnCancel.setVisibility(View.VISIBLE);
 			seekbarAlpha.setVisibility(View.VISIBLE);
 			textSeekbar.setVisibility(View.VISIBLE);
@@ -582,6 +602,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			btnOk.setVisibility(View.GONE);
 			btnCut.setVisibility(View.GONE);
 			btnDel.setVisibility(View.GONE);
+			btnHideApp.setVisibility(View.GONE);
 			// btnCancel.setVisibility(View.GONE);
 			seekbarAlpha.setVisibility(View.GONE);
 			textSeekbar.setVisibility(View.GONE);

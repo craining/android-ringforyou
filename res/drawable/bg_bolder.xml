@@ -5,7 +5,7 @@
     <gradient
         android:angle="0"
         android:endColor="@color/white"
-        android:paddingTop="5dp"
+       
         android:startColor="@color/white" />
     <!-- 按钮四个角的平滑度 -->
     <corners android:radius="5dip" />

@@ -42,7 +42,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/bg_translation_light"
-        android:clickable="true"
         android:orientation="vertical"
         android:paddingBottom="@dimen/layout_margin_title" >
 
@@ -92,13 +91,13 @@
                 android:id="@+id/btn_watermark_hide_app"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/btn_watermark_bottom_height"
-                android:layout_weight="1"
                 android:layout_marginRight="@dimen/layout_little_margin"
-                android:background="@drawable/bg_btn_red"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_blue"
                 android:text="@string/water_mark_hide_app"
                 android:textColor="@color/white"
                 android:textSize="@dimen/btn_textsize_main_add" />
-            
+
             <Button
                 android:id="@+id/btn_watermark_delete"
                 android:layout_width="fill_parent"
@@ -108,8 +107,6 @@
                 android:text="@string/watermark_del"
                 android:textColor="@color/white"
                 android:textSize="@dimen/btn_textsize_main_add" />
-            
-            
         </LinearLayout>
 
         <LinearLayout
@@ -150,12 +147,24 @@
         android:text="@string/str_change_bg_color"
         android:textColor="@color/white" />
 
+    <TextView
+        android:id="@+id/text_watermark_recut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_watermark_operas"
+        android:layout_alignParentLeft="true"
+        android:padding="@dimen/layout_margin_title"
+        android:text="@string/watermark_ori_tip"
+        android:textColor="@color/white" />
+
     <ImageView
         android:id="@+id/img_watermark"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
         android:contentDescription="@string/app_name"
-        android:scaleType="fitXY" />
+        android:clickable="false"
+        android:focusable="false"
+        android:scaleType="centerCrop" />
 
 </RelativeLayout>

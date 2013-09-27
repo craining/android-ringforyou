@@ -84,7 +84,7 @@
             android:layout_marginLeft="@dimen/layout_margin_left_right"
             android:layout_marginRight="@dimen/layout_margin_left_right"
             android:layout_marginTop="@dimen/layout_margin_top_title"
-            android:background="@drawable/bg_bolder"
+            android:background="@drawable/shape_rounded_layout"
             android:cacheColorHint="#00000000"
             android:dividerHeight="1dip"
             android:listSelector="#00000000" />

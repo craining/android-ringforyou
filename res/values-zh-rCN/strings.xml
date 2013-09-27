@@ -85,6 +85,6 @@
     <string name="watermark_del_success">水印去除成功</string>
     <string name="watermark_text">透明度：</string>
     <string name="watermark_show_fail">水印显示失败</string>
-    <string name="watermark_ori_tip">剪裁图片获得最佳显示比例！</string>
+    <string name="watermark_ori_tip">剪裁图片可获得最佳显示比例！</string>
  
 </resources>
