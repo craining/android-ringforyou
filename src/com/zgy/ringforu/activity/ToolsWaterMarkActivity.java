@@ -3,8 +3,6 @@ package com.zgy.ringforu.activity;
 import java.io.File;
 import java.io.IOException;
 
-import android.app.Activity;
-import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,7 +12,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -36,7 +33,6 @@ import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.service.WaterMarkService;
 import com.zgy.ringforu.util.BitmapUtil;
 import com.zgy.ringforu.util.FileUtil;
-import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.StringUtil;
@@ -62,6 +58,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	private Button btnTitleClose;
 	private Button btnChange;
 	private Button btnOrientation;
+	private Button btnHideApp;
 	private TextView textSeekbar;
 	private LinearLayout layoutOperas;
 	private TextView mTextChangeBg;
@@ -92,9 +89,9 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tools_watermark);
-		
+
 		LogRingForu.v(TAG, "onCreate");
-		
+
 		mMainConfig = MainConfig.getInstance();
 
 		mSeekBarOnTouchMove = false;
@@ -117,6 +114,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		btnCancel = (Button) findViewById(R.id.btn_watermark_cancel);
 		btnCut = (Button) findViewById(R.id.btn_watermark_cut);
 		btnOrientation = (Button) findViewById(R.id.btn_watermark_orientation);
+		btnHideApp = (Button) findViewById(R.id.btn_watermark_hide_app);
 		textSeekbar = (TextView) findViewById(R.id.text_watermark);
 		layoutOperas = (LinearLayout) findViewById(R.id.layout_watermark_operas);
 		layoutMain = (RelativeLayout) findViewById(R.id.layout_watermark_main);
@@ -133,6 +131,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		btnDel.setOnClickListener(this);
 		btnTitleClose.setOnClickListener(this);
 		btnOrientation.setOnClickListener(this);
+		btnHideApp.setOnClickListener(this);
 
 		Intent intent = getIntent();
 		String action = intent.getAction();
@@ -140,32 +139,32 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		if (Intent.ACTION_SEND.equals(action) && intent.hasExtra(Intent.EXTRA_STREAM)) {
 			String type = intent.getType();
 			Uri stream = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
-			
+
 			LogRingForu.e(TAG, "get intent  type=" + type + "    stream =" + stream.toString());
-			
+
 			if (stream != null && type != null) {
 				try {
 					LogRingForu.e(TAG, "stream.getPath()=" + stream.getPath());
 					FileUtil.copyFileTo(new File(getImageAbsolutePath(stream)), MainCanstants.FILE_WATERMARK_IMG);
 					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				// startPhotoZoom(stream);
 			}
-		} else if (Intent.ACTION_VIEW.equals(action) ) {
+		} else if (Intent.ACTION_VIEW.equals(action)) {
 			String type = intent.getType();
 			Uri stream = (Uri) intent.getData();
-			
+
 			LogRingForu.e(TAG, "get intent  type=" + type + "    stream =" + stream.toString());
-			
+
 			if (stream != null && type != null) {
 				try {
 					LogRingForu.e(TAG, "stream.getPath()=" + stream.getPath());
 					FileUtil.copyFileTo(new File(stream.getPath()), MainCanstants.FILE_WATERMARK_IMG);
 					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -276,6 +275,10 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		// break;
 		case R.id.text_watermark_changebg:
 			setBgAndTextColor();
+			break;
+
+		case R.id.btn_watermark_hide_app:
+			startActivity(new Intent(ToolsWaterMarkActivity.this, PickerApplicationActivity.class));
 			break;
 		default:
 			break;
@@ -474,7 +477,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 					FileUtil.copyFileTo(tempFileSrc, MainCanstants.FILE_WATERMARK_IMG);
 					tempFileSrc.delete();
 					MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
-					
+
 					refreshViews();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -503,7 +506,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 							FileUtil.copyFileTo(getFileSrc, MainCanstants.FILE_WATERMARK_IMG);
 							getFileSrc.delete();
 							MyToast.makeText(ToolsWaterMarkActivity.this, R.string.watermark_ori_tip, MyToast.LENGTH_SHORT, false).show();
-							
+
 							refreshViews();
 							// startPhotoZoom(Uri.fromFile(tempFileSrc));
 							// cropImageUri(Uri.fromFile(tempFileSrc), 2000,

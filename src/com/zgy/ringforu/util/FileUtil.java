@@ -234,13 +234,6 @@ public class FileUtil {
 	 * 清空缓存（备份文件）
 	 */
 	public static boolean clearData() {
-
-		File file = new File(MainCanstants.FILE_IN_SDCARD);
-		
-		String[] files = file.list();
-		if(files == null || files.length<=0) {
-			return false;
-		}
 		
 		if (new File(MainCanstants.FILE_IN_SDCARD).exists()) {
 			FileUtil.delFileDir(new File(MainCanstants.FILE_IN_SDCARD));

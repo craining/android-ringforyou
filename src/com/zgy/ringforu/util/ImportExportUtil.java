@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.activity.SetActivity;
 import com.zgy.ringforu.activity.TabCallActivity;
 import com.zgy.ringforu.activity.TabImportantActivity;
@@ -35,13 +36,13 @@ public class ImportExportUtil {
 		switch (tag) {
 		case MainCanstants.TYPE_IMPORTANT:
 			// 备份重要联系人
-			String importantNums = mainConfig.getImporantNumbers();
+			String importantNums = RingForU.getInstance().getNumbersImportant();
 			if (StringUtil.isNull(importantNums)) {
 				MyToast.makeText(context, R.string.set_backup_noimportant, Toast.LENGTH_SHORT, true).show();
 				return;
 			}
 			try {
-				if (FileUtil.write(mainConfig.getImporantNames(), new File(MainCanstants.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath()), false) && FileUtil.write(mainConfig.getImporantNumbers(), new File(MainCanstants.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath()), false)) {
+				if (FileUtil.write(mainConfig.getImporantNames(), new File(MainCanstants.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath()), false) && FileUtil.write(RingForU.getInstance().getNumbersImportant(), new File(MainCanstants.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath()), false)) {
 					MyToast.makeText(context, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(context, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
@@ -53,14 +54,14 @@ public class ImportExportUtil {
 
 			break;
 		case MainCanstants.TYPE_INTECEPT_CALL:
-			String callNums = mainConfig.getInterceptCallNumbers();
+			String callNums = RingForU.getInstance().getNumbersCall();
 			if (StringUtil.isNull(callNums)) {
 				MyToast.makeText(context, R.string.set_backup_nocall, Toast.LENGTH_SHORT, true).show();
 				return;
 			}
 			// 备份通话拦截数据
 			try {
-				if (FileUtil.write(mainConfig.getInterceptCallNames(), new File(MainCanstants.FILE_SDCARD_CALL_NAME.getAbsolutePath()), false) && FileUtil.write(mainConfig.getInterceptCallNumbers(), new File(MainCanstants.FILE_SDCARD_CALL_NUM.getAbsolutePath()), false)) {
+				if (FileUtil.write(mainConfig.getInterceptCallNames(), new File(MainCanstants.FILE_SDCARD_CALL_NAME.getAbsolutePath()), false) && FileUtil.write(RingForU.getInstance().getNumbersCall(), new File(MainCanstants.FILE_SDCARD_CALL_NUM.getAbsolutePath()), false)) {
 					MyToast.makeText(context, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(context, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
@@ -73,13 +74,13 @@ public class ImportExportUtil {
 			break;
 		case MainCanstants.TYPE_INTECEPT_SMS:
 			// 备份拦截短信
-			String smsNumbers = mainConfig.getInterceptSmsNumbers();
+			String smsNumbers = RingForU.getInstance().getNumbersSms();
 			if (StringUtil.isNull(smsNumbers)) {
 				MyToast.makeText(context, R.string.set_backup_nosms, Toast.LENGTH_SHORT, true).show();
 				return;
 			}
 			try {
-				if (FileUtil.write(mainConfig.getInterceptSmsNames(), new File(MainCanstants.FILE_SDCARD_SMS_NAME.getAbsolutePath()), false) && FileUtil.write(mainConfig.getInterceptSmsNumbers(), new File(MainCanstants.FILE_SDCARD_SMS_NUM.getAbsolutePath()), false)) {
+				if (FileUtil.write(mainConfig.getInterceptSmsNames(), new File(MainCanstants.FILE_SDCARD_SMS_NAME.getAbsolutePath()), false) && FileUtil.write(RingForU.getInstance().getNumbersSms(), new File(MainCanstants.FILE_SDCARD_SMS_NUM.getAbsolutePath()), false)) {
 					MyToast.makeText(context, R.string.export_success, Toast.LENGTH_SHORT, false).show();
 				} else {
 					MyToast.makeText(context, R.string.export_fail, Toast.LENGTH_SHORT, true).show();
@@ -118,8 +119,7 @@ public class ImportExportUtil {
 				return;
 			}
 			try {
-				mainConfig.setImportantNames(FileUtil.read(new File(MainCanstants.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath())));
-				mainConfig.setImportantNumbers(FileUtil.read(new File(MainCanstants.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath())));
+				MainUtil.refreshImportant(FileUtil.read(new File(MainCanstants.FILE_SDCARD_IMPORTANT_NUM.getAbsolutePath())), FileUtil.read(new File(MainCanstants.FILE_SDCARD_IMPORTANT_NAME.getAbsolutePath())));
 				MyToast.makeText(context, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
 				((TabImportantActivity) context).initListView();
 			} catch (Exception e) {
@@ -134,8 +134,7 @@ public class ImportExportUtil {
 			}
 			// 导入备份
 			try {
-				mainConfig.setInterceptCallNames(FileUtil.read(new File(MainCanstants.FILE_SDCARD_CALL_NAME.getAbsolutePath())));
-				mainConfig.setInterceptCallNumbers(FileUtil.read(new File(MainCanstants.FILE_SDCARD_CALL_NUM.getAbsolutePath())));
+				MainUtil.refreshCall(FileUtil.read(new File(MainCanstants.FILE_SDCARD_CALL_NUM.getAbsolutePath())), FileUtil.read(new File(MainCanstants.FILE_SDCARD_CALL_NAME.getAbsolutePath())));
 				MyToast.makeText(context, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
 				((TabCallActivity) context).initListView();
 			} catch (Exception e) {
@@ -150,9 +149,7 @@ public class ImportExportUtil {
 			}
 			// 导入备份
 			try {
-
-				mainConfig.setInterceptSmsNames(FileUtil.read(new File(MainCanstants.FILE_SDCARD_SMS_NAME.getAbsolutePath())));
-				mainConfig.setInterceptSmsNumbers(FileUtil.read(new File(MainCanstants.FILE_SDCARD_SMS_NUM.getAbsolutePath())));
+				MainUtil.refreshSms(FileUtil.read(new File(MainCanstants.FILE_SDCARD_SMS_NUM.getAbsolutePath())), FileUtil.read(new File(MainCanstants.FILE_SDCARD_SMS_NAME.getAbsolutePath())));
 				MyToast.makeText(context, R.string.import_sueccess, Toast.LENGTH_SHORT, false).show();
 				((TabSmsActivity) context).initListView();
 			} catch (Exception e) {

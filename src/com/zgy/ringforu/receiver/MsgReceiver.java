@@ -23,8 +23,6 @@ public class MsgReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		MainConfig mainConfig = MainConfig.getInstance();
-		String strAllNumsImportant = mainConfig.getImporantNumbers();
-		String strAllNumsSms = mainConfig.getInterceptSmsNumbers();
 
 		if (intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
 			SmsMessage[] msg = null;
@@ -52,7 +50,7 @@ public class MsgReceiver extends BroadcastReceiver {
 
 			LogRingForu.v(TAG, getFromNum);
 			getFromNum = StringUtil.getRidofSpeciall(getFromNum);
-			if (strAllNumsImportant != null && strAllNumsImportant.contains(getFromNum)) {
+			if (RingForU.getInstance().getNumbersImportant().contains(getFromNum)) {
 
 				LogRingForu.e(TAG, "check screen light");
 				SmsLightScreenUtil.checkSmsLightScreenOn(context);// µ„¡¡∆¡ƒª”Î∑Ò
@@ -62,7 +60,7 @@ public class MsgReceiver extends BroadcastReceiver {
 
 					LogRingForu.v(TAG, "not effective!");
 				}
-			} else if (strAllNumsSms != null && strAllNumsSms.contains(getFromNum)) {
+			} else if (RingForU.getInstance().getNumbersSms().contains(getFromNum)) {
 				// ∆¡±Œ∂Ã–≈£¨
 				switch (MainConfig.getInstance().getInterceptSmsStyle()) {
 				case ConfigCanstants.STYLE_INTERCEPT_SMS_SLIENT:

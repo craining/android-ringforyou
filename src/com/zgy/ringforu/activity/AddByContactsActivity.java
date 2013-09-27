@@ -223,9 +223,9 @@ public class AddByContactsActivity extends BaseGestureActivity implements OnClic
 
 		MainConfig mainConfig = MainConfig.getInstance();
 
-		String getAllNumsImportant = mainConfig.getImporantNumbers();
-		String getAllNumsCall = mainConfig.getInterceptCallNumbers();
-		String getAllNumsSms = mainConfig.getInterceptSmsNumbers();
+		String getAllNumsImportant = RingForU.getInstance().getNumbersImportant();
+		String getAllNumsCall = RingForU.getInstance().getNumbersCall();
+		String getAllNumsSms = RingForU.getInstance().getNumbersSms();
 
 		switch (tag) {
 		case MainCanstants.TYPE_IMPORTANT:

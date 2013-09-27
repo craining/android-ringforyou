@@ -29,13 +29,13 @@ public class CallReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		MainConfig mainConfig = MainConfig.getInstance();
-		String strAllNumsImportant = mainConfig.getImporantNumbers();
-		String strAllNumsCall = mainConfig.getInterceptCallNumbers();
+//		String strAllNumsImportant = mainConfig.getImporantNumbers();
+//		String strAllNumsCall = mainConfig.getInterceptCallNumbers();
 		// if (tm == null) {
 		tm = (TelephonyManager) context.getSystemService(Service.TELEPHONY_SERVICE);
 		// }
 		// if (ml == null) {
-		ml = new MyListenner(context, strAllNumsImportant, strAllNumsCall);
+		ml = new MyListenner(context);
 		// }
 		if (intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
 		} else {
@@ -46,13 +46,9 @@ public class CallReceiver extends BroadcastReceiver {
 	private class MyListenner extends PhoneStateListener {
 
 		private Context con;
-		private String strAllNumsImportant;
-		private String strAllNumsCall;
 
-		public MyListenner(Context c, String numsImportant, String numsCall) {
+		public MyListenner(Context c) {
 			this.con = c;
-			this.strAllNumsImportant = numsImportant;
-			this.strAllNumsCall = numsCall;
 		}
 
 		@Override
@@ -71,7 +67,7 @@ public class CallReceiver extends BroadcastReceiver {
 			case TelephonyManager.CALL_STATE_RINGING:
 
 				LogRingForu.v(TAG, "ring num: " + incomingNumber);
-				if (strAllNumsImportant != null && strAllNumsImportant.contains(StringUtil.getRidofSpeciall(incomingNumber))) {
+				if (RingForU.getInstance().getNumbersImportant().contains(StringUtil.getRidofSpeciall(incomingNumber))) {
 					if (SlientTimeUtil.isEffective(con)) {
 						PhoneUtil.turnUpMost(con);
 					} else {
@@ -79,7 +75,7 @@ public class CallReceiver extends BroadcastReceiver {
 						LogRingForu.v(TAG, "not effective!");
 					}
 
-				} else if (strAllNumsCall != null && strAllNumsCall.contains(StringUtil.getRidofSpeciall(incomingNumber))) {
+				} else if (RingForU.getInstance().getNumbersCall().contains(StringUtil.getRidofSpeciall(incomingNumber))) {
 
 					// ÆÁ±Îµç»°£¬
 					PhoneUtil.turnDownThenUp(con);

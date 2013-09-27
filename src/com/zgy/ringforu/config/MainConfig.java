@@ -68,27 +68,27 @@ public class MainConfig extends PreferenceUtil {
 		putBool(ConfigCanstants.SWITCH_BUSYMODE, on);
 	}
 
-	public synchronized String getImporantNumbers() {
+	public synchronized String getNumbersImporant() {
 		return getString(ConfigCanstants.IMPORTANT_CALL_NUMBER, null);
 	}
 
-	public synchronized void setImportantNumbers(String numbers) {
+	public synchronized void setNumbersImportant(String numbers) {
 		putString(ConfigCanstants.IMPORTANT_CALL_NUMBER, numbers);
 	}
 
-	public synchronized String getInterceptCallNumbers() {
+	public synchronized String getNumbersCall() {
 		return getString(ConfigCanstants.INTERCEPT_CALL_NUMBER, null);
 	}
 
-	public synchronized void setInterceptCallNumbers(String numbers) {
+	public synchronized void setNumbersCall(String numbers) {
 		putString(ConfigCanstants.INTERCEPT_CALL_NUMBER, numbers);
 	}
 
-	public synchronized String getInterceptSmsNumbers() {
+	public synchronized String getNumbersSms() {
 		return getString(ConfigCanstants.INTERCEPT_SMS_NUMBER, null);
 	}
 
-	public synchronized void setInterceptSmsNumbers(String numbers) {
+	public synchronized void setNumbersSms(String numbers) {
 		putString(ConfigCanstants.INTERCEPT_SMS_NUMBER, numbers);
 	}
 
@@ -219,7 +219,7 @@ public class MainConfig extends PreferenceUtil {
 	public synchronized void setPushNewVersionDownloadUrl(String url) {
 		putString(ConfigCanstants.PUSH_NEW_VERSION_DOWNLOAD_URL, url);
 	}
-	
+
 	public synchronized String getPushNewVersionInfo() {
 		return getString(ConfigCanstants.PUSH_NEW_VERSION_INFO, null);
 	}
@@ -227,4 +227,13 @@ public class MainConfig extends PreferenceUtil {
 	public synchronized void setPushNewVersionInfo(String info) {
 		putString(ConfigCanstants.PUSH_NEW_VERSION_INFO, info);
 	}
+
+	public synchronized String getWaterMarkHideApps() {
+		return getString(ConfigCanstants.PUSH_WATERMARK_HIDE_APP, "");
+	}
+
+	public synchronized void setWaterMarkHideApps(String names) {
+		putString(ConfigCanstants.PUSH_WATERMARK_HIDE_APP, names);
+	}
+
 }

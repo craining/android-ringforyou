@@ -265,5 +265,7 @@
     <string name="tools_test">工程测试</string>
     <string name="tools_test_tip">进入系统隐含的测试模块</string>
     
+    <string name="water_mark_hide_app">隐藏列表</string>
+    
 
 </resources>

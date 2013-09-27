@@ -89,6 +89,17 @@
                 android:textSize="@dimen/btn_textsize_main_add" />
 
             <Button
+                android:id="@+id/btn_watermark_hide_app"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/btn_watermark_bottom_height"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/layout_little_margin"
+                android:background="@drawable/bg_btn_red"
+                android:text="@string/water_mark_hide_app"
+                android:textColor="@color/white"
+                android:textSize="@dimen/btn_textsize_main_add" />
+            
+            <Button
                 android:id="@+id/btn_watermark_delete"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/btn_watermark_bottom_height"
@@ -97,6 +108,8 @@
                 android:text="@string/watermark_del"
                 android:textColor="@color/white"
                 android:textSize="@dimen/btn_textsize_main_add" />
+            
+            
         </LinearLayout>
 
         <LinearLayout

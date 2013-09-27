@@ -87,6 +87,12 @@ public class MainUtil {
 		// 得到振动的开关状态
 		RingForU.getInstance().setbIsVerbOn(config.isVibrateOn());
 		RingForU.getInstance().setbIsGestureOn(config.isGestureOn());
+
+		refreshNumbersImportant();
+		refreshNumbersCall();
+		refreshNumbersSms();
+		refreshWaterMarkHideApps();
+
 		if (!(new File(MainCanstants.FILE_INNER).exists())) {
 			new File(MainCanstants.FILE_INNER).mkdirs();
 		}
@@ -97,7 +103,7 @@ public class MainUtil {
 				f.mkdirs();
 			}
 		}
-		
+
 		checkAllState(context);
 
 		String version = context.getString(R.string.version_name);
@@ -108,13 +114,54 @@ public class MainUtil {
 		}
 	}
 
+	
+	public static void refreshWaterMarkHideApps() {
+		RingForU.getInstance().setPackageNameHideWaterMark(MainConfig.getInstance().getWaterMarkHideApps());
+	}
+	
+	public static void refreshWaterMarkHideApps(String apps) {
+		RingForU.getInstance().setPackageNameHideWaterMark(apps);
+		MainConfig.getInstance().setWaterMarkHideApps(apps);
+	}
+	
+	public static void refreshNumbersImportant() {
+		RingForU.getInstance().setNumbersImportant(MainConfig.getInstance().getNumbersImporant());
+	}
+
+	public static void refreshNumbersCall() {
+		RingForU.getInstance().setNumbersCall(MainConfig.getInstance().getNumbersCall());
+	}
+
+	public static void refreshNumbersSms() {
+		RingForU.getInstance().setNumbersSms(MainConfig.getInstance().getNumbersSms());
+	}
+
+	public static void refreshImportant(String numbers, String names) {
+		MainConfig.getInstance().setNumbersImportant(numbers);
+		MainConfig.getInstance().setImportantNames(names);
+		RingForU.getInstance().setNumbersImportant(numbers);
+	}
+
+	public static void refreshCall(String numbers, String names) {
+		MainConfig.getInstance().setNumbersCall(numbers);
+		MainConfig.getInstance().setInterceptCallNames(names);
+		RingForU.getInstance().setNumbersCall(numbers);
+	}
+
+	public static void refreshSms(String numbers, String names) {
+		MainConfig.getInstance().setNumbersSms(numbers);
+		MainConfig.getInstance().setInterceptSmsNames(names);
+		RingForU.getInstance().setNumbersSms(numbers);
+	}
+
 	/**
 	 * 获得程序版本号
+	 * 
 	 * @Description:
 	 * @param context
 	 * @return
-	 * @see: 
-	 * @since: 
+	 * @see:
+	 * @since:
 	 * @author: zhuanggy
 	 * @date:2013-9-23
 	 */
@@ -127,18 +174,19 @@ public class MainUtil {
 			return 0;
 		}
 	}
-	
+
 	/**
 	 * 检测新版本
+	 * 
 	 * @Description:
 	 * @param context
-	 * @see: 
-	 * @since: 
+	 * @see:
+	 * @since:
 	 * @author: zhuanggy
 	 * @date:2013-9-24
 	 */
 	public static void checkNewVersion(Context context) {
-		if(MainConfig.getInstance().getPushNewVersionCode() > getAppVersionCode(context)) {
+		if (MainConfig.getInstance().getPushNewVersionCode() > getAppVersionCode(context)) {
 			NotificationUtil.showHideNewVersionNotify(true, context, MainConfig.getInstance().getPushNewVersionDownloadUrl());
 		}
 	}

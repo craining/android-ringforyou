@@ -107,8 +107,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 	}
 
 	private void saveLastAll() {
-		MainConfig.getInstance().setInterceptSmsNumbers("");
-		MainConfig.getInstance().setInterceptSmsNames("");
+		MainUtil.refreshSms("", "");
 		AddContactUtil.insert("", "", TabSmsActivity.this, MainCanstants.TYPE_INTECEPT_SMS);
 		for (HashMap<String, String> a : listItem) {
 			AddContactUtil.insert(a.get("name"), a.get("number"), TabSmsActivity.this, MainCanstants.TYPE_INTECEPT_SMS);
@@ -118,7 +117,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 	public void initListView() {
 		listItem = new ArrayList<HashMap<String, String>>();
 		MainConfig mainConfig = MainConfig.getInstance();
-		allNumbersSelected = mainConfig.getInterceptSmsNumbers();
+		allNumbersSelected = RingForU.getInstance().getNumbersSms();
 		allNameSelected = mainConfig.getInterceptSmsNames();
 		if (!StringUtil.isNull(allNumbersSelected) && !StringUtil.isNull(allNameSelected)) {
 			String[] allNums = allNumbersSelected.split(":::");

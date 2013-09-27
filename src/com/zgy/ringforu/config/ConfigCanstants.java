@@ -44,6 +44,9 @@ public class ConfigCanstants {
 	public static final String PUSH_NEW_VERSION_INFO = "PUSH_NEW_VERSION_INFO";//更新说明
 	
 	
+	public static final String PUSH_WATERMARK_HIDE_APP = "PUSH_WATERMARK_HIDE_APP";//水印屏蔽应用
+	
+	
 	
 	
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_sethidestyle_sms_slient"
+    style="@style/layout_set_item"
+    android:background="@drawable/bg_list_item"
+    android:clickable="true" >
+
+    <ImageView
+        android:id="@+id/img_app_icon"
+        android:layout_width="@dimen/icon_w_h"
+        android:layout_height="@dimen/icon_w_h"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/layout_little_margin"
+        android:src="@drawable/icon_apk" />
+
+    <TextView
+        android:id="@+id/text_app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/layout_set_item_height"
+        android:layout_marginLeft="@dimen/layout_margin_title_less"
+        android:layout_toRightOf="@id/img_app_icon"
+        android:gravity="center_vertical"
+        android:text="@string/set_hidestyle_sms_slient"
+        android:textSize="@dimen/textsize_tip" />
+
+    <ImageView
+        android:id="@+id/img_app_selected"
+        style="@style/img_set_item_selected"
+        android:contentDescription="@string/app_name" />
+
+</RelativeLayout>

@@ -107,8 +107,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 	}
 
 	private void saveLastAll() {
-		MainConfig.getInstance().setImportantNumbers("");
-		MainConfig.getInstance().setImportantNames("");
+		MainUtil.refreshImportant("", "");
 		AddContactUtil.insert("", "", TabImportantActivity.this, MainCanstants.TYPE_IMPORTANT);
 		for (HashMap<String, String> a : listItem) {
 			AddContactUtil.insert(a.get("name"), a.get("number"), TabImportantActivity.this, MainCanstants.TYPE_IMPORTANT);
@@ -118,7 +117,7 @@ public class TabImportantActivity extends Activity implements OnClickListener {
 	public void initListView() {
 		listItem = new ArrayList<HashMap<String, String>>();
 		MainConfig mainConfig = MainConfig.getInstance();
-		allNumbersSelected = mainConfig.getImporantNumbers();
+		allNumbersSelected = RingForU.getInstance().getNumbersImportant();
 		allNameSelected = mainConfig.getImporantNames();
 		// if(RingForU.DEBUG)
 		// LogRingForu.e(TAG, "names=" + allNameSelected);

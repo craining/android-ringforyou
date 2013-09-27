@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_light"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/layout_pick_app_title"
+        style="@style/layout_top_title" >
+
+        <Button
+            android:id="@+id/btn_pick_app_exit"
+            style="@style/btn_left_top_exit" />
+
+        <TextView
+            android:id="@+id/text_pick_app_title"
+            style="@style/text_top_title"
+            android:text="@string/tab_call" />
+
+        <Button
+            android:id="@+id/btn_pick_app_set"
+            style="@style/btn_right_top"
+            android:text="@string/str_opera" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/list_pick_app"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_pick_app_title"
+        android:layout_marginBottom="@dimen/layout_margin_left_right"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:layout_marginRight="@dimen/layout_margin_left_right"
+        android:layout_marginTop="@dimen/layout_margin_top_title"
+        android:background="@drawable/bg_search"
+        android:cacheColorHint="#00000000"
+        android:dividerHeight="1dip"
+        android:listSelector="#00000000" />
+
+</RelativeLayout>

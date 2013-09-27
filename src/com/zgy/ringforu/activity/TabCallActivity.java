@@ -104,8 +104,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 	}
 
 	private void saveLastAll() {
-		MainConfig.getInstance().setInterceptCallNumbers("");
-		MainConfig.getInstance().setInterceptCallNames("");
+		MainUtil.refreshCall("", "");
 		AddContactUtil.insert("", "", TabCallActivity.this, MainCanstants.TYPE_INTECEPT_CALL);
 		for (HashMap<String, String> a : listItem) {
 			AddContactUtil.insert(a.get("name"), a.get("number"), TabCallActivity.this, MainCanstants.TYPE_INTECEPT_CALL);
@@ -115,7 +114,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 	public void initListView() {
 		listItem = new ArrayList<HashMap<String, String>>();
 		MainConfig mainConfig = MainConfig.getInstance();
-		allNumbersSelected = mainConfig.getInterceptCallNumbers();
+		allNumbersSelected = RingForU.getInstance().getNumbersCall();
 		allNameSelected = mainConfig.getInterceptCallNames();
 		if (!StringUtil.isNull(allNumbersSelected) && !StringUtil.isNull(allNameSelected)) {
 			String[] allNums = allNumbersSelected.split(":::");

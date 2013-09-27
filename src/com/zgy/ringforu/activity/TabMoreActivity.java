@@ -1,5 +1,6 @@
 package com.zgy.ringforu.activity;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -180,7 +181,17 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 	 * 清空缓存
 	 */
 	private void clearData() {
+
 		if (PhoneUtil.existSDcard()) {
+
+			File file = new File(MainCanstants.FILE_IN_SDCARD);
+
+			String[] files = file.list();
+			if (files == null || files.length <= 0) {
+				MyToast.makeText(TabMoreActivity.this, R.string.clear_data_null, Toast.LENGTH_LONG, true).show();
+				return;
+			}
+
 			// 清空重要联系人
 			MyDialog.Builder builder = new MyDialog.Builder(TabMoreActivity.this);
 			builder.setTitle(R.string.str_tip).setMessage(R.string.clear_alert).setPositiveButton(R.string.str_ok, new DialogInterface.OnClickListener() {
@@ -192,8 +203,6 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 					if (PhoneUtil.existSDcard()) {
 						if (FileUtil.clearData()) {
 							MyToast.makeText(TabMoreActivity.this, R.string.clear_data_over, Toast.LENGTH_LONG, false).show();
-						} else {
-							MyToast.makeText(TabMoreActivity.this, R.string.clear_data_null, Toast.LENGTH_LONG, true).show();
 						}
 					} else {
 						MyToast.makeText(TabMoreActivity.this, R.string.no_sdcard, Toast.LENGTH_LONG, true).show();
