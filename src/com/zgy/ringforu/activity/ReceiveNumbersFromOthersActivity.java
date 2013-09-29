@@ -59,8 +59,6 @@ public class ReceiveNumbersFromOthersActivity extends Activity implements OnClic
 
 		}
 
-		MainUtil.mainInitData(RingForU.getInstance());
-
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.receivenumbers);
 

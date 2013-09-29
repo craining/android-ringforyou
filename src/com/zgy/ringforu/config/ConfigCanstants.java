@@ -46,6 +46,8 @@ public class ConfigCanstants {
 	
 	public static final String PUSH_WATERMARK_HIDE_APP = "PUSH_WATERMARK_HIDE_APP";//水印屏蔽应用
 	
+	public static final String SWITCH_PUSH_JOKE = "SWITCH_PUSH_JOKE";//笑话推送开关
+	
 	
 	
 	

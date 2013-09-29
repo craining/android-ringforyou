@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_about"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_light"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/layout_joke_title"
+        style="@style/layout_top_title" >
+
+        <View
+            android:id="@+id/view_joke_anchor"
+            style="@style/view_anchor" />
+
+        <Button
+            android:id="@+id/btn_joke_return"
+            style="@style/btn_left_top_back" />
+
+        <TextView
+            android:id="@+id/text_joke_title"
+            style="@style/text_top_title"
+            android:text="@string/joke_title_title" />
+
+        <Button
+            android:id="@+id/btn_joke_share"
+            style="@style/btn_right_top"
+            android:text="@string/str_share" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_margin_left_right"
+            android:layout_marginRight="@dimen/layout_margin_left_right"
+            android:layout_marginTop="@dimen/layout_margin_top_title"
+            android:background="@drawable/shape_rounded_layout"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/text_joke_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/title_content_minh"
+                android:padding="@dimen/layout_little_margin"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_textsize_top_title" />
+
+            <ImageView
+                android:id="@+id/img_joke_show"
+                android:layout_width="@dimen/joke_image_wh"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="@dimen/title_margin_tn"
+                android:layout_marginTop="@dimen/layout_margin_top_title"
+                android:layout_marginRight="@dimen/layout_margin_left_right"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_joke_hand" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

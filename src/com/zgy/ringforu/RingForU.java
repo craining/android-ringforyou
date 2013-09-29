@@ -1,6 +1,7 @@
 package com.zgy.ringforu;
 
 import android.app.Application;
+import android.text.StaticLayout;
 import android.view.WindowManager;
 
 import com.zgy.ringforu.util.MainUtil;

@@ -50,15 +50,6 @@ public class ToolsBusyModeActivity extends BaseGestureActivity implements OnClic
 		editMsgContent = (EditText) findViewById(R.id.edit_busymode_msgcontent);
 		wordsFlow = (WordsFlowView) findViewById(R.id.busymode_flow);
 
-		// 显示“关闭”和“开启”
-		// // 否则显示“返回”和“开启”
-		// Bundle b = getIntent().getExtras();
-		// if (b != null && b.containsKey("fromnotifybar") && b.getBoolean("fromnotifybar")) {
-		// // 是从通知栏跳转过来的
-		// boolFromNotification = true;
-		//
-		// }
-
 		if (BusyModeUtil.isBusyModeOn()) {
 			btnClose.setVisibility(View.VISIBLE);
 		} else {

@@ -279,6 +279,7 @@ public class SetActivity extends BaseGestureActivity implements OnClickListener 
 			break;
 		case R.id.img_add_calm_important:
 			startActivity(new Intent(SetActivity.this, AddSlientPerActivity.class));
+			overridePendingTransition(R.anim.push_right_in, R.anim.alpha_out);
 			break;
 		// case R.id.layout_set_backup_important:
 		// doBackup();
@@ -296,11 +297,13 @@ public class SetActivity extends BaseGestureActivity implements OnClickListener 
 			Intent iSms = new Intent(SetActivity.this, SetHideStyleActivity.class);
 			iSms.putExtra("style", 2);
 			startActivity(iSms);
+			overridePendingTransition(R.anim.push_right_in, R.anim.alpha_out);
 			break;
 		case R.id.layout_set_hidestyle_call:
 			Intent iCall = new Intent(SetActivity.this, SetHideStyleActivity.class);
 			iCall.putExtra("style", 1);
 			startActivity(iCall);
+			overridePendingTransition(R.anim.push_right_in, R.anim.alpha_out);
 			break;
 		default:
 			break;

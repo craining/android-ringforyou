@@ -8,8 +8,10 @@ import android.content.Intent;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.activity.MainActivityGroup;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.MainUtil;
+import com.zgy.ringforu.util.NotificationUtil;
 import com.zgy.ringforu.util.PushMessageUtils;
 
 public class PushMessageReceiver extends BroadcastReceiver {
@@ -37,6 +39,7 @@ public class PushMessageReceiver extends BroadcastReceiver {
 
 			// 用户在此自定义处理消息,以下代码为demo界面展示用
 			if (message.equals(PushMessageUtils.MESSAGE_CONTENT_NEW_VERSION)) {
+				// 版本更新提示
 				try {
 					String extras = intent.getStringExtra(PushConstants.EXTRA_EXTRA);
 					// 自定义内容的json串
@@ -53,6 +56,21 @@ public class PushMessageReceiver extends BroadcastReceiver {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			} else if (message.equals(PushMessageUtils.MESSAGE_CONTENT_JOKE)) {
+
+				try {
+					String extras = intent.getStringExtra(PushConstants.EXTRA_EXTRA);
+					// 自定义内容的json串
+					LogRingForu.d(TAG, "EXTRA_EXTRA = " + extras);
+					JSONObject json = new JSONObject(extras);
+					// 笑话提示
+					if (MainConfig.getInstance().isPushJokeOn()) {
+						NotificationUtil.showHideJokeNotify(true, context, json.getString(PushMessageUtils.MESSAGE_TAG_TITLE), json.getString(PushMessageUtils.MESSAGE_TAG_CONTENT), json.getString(PushMessageUtils.MESSAGE_TAG_TAG));
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
 			}
 
 		}
@@ -80,15 +98,6 @@ public class PushMessageReceiver extends BroadcastReceiver {
 			LogRingForu.d(TAG, "onMessage: content : " + content);
 			// Toast.makeText(context, "method : " + method + "\n result: " + errorCode + "\n content = " +
 			// content, Toast.LENGTH_SHORT).show();
-
-			// 可选。通知用户点击事件处理
-		} else if (intent.getAction().equals(PushConstants.ACTION_RECEIVER_NOTIFICATION_CLICK)) {
-			LogRingForu.d(TAG, "intent=" + intent.toUri(0));
-
-			// 自定义内容的json串
-			LogRingForu.d(TAG, "EXTRA_EXTRA = " + intent.getStringExtra(PushConstants.EXTRA_EXTRA));
-			String title = intent.getStringExtra(PushConstants.EXTRA_NOTIFICATION_TITLE);
-			String content = intent.getStringExtra(PushConstants.EXTRA_NOTIFICATION_CONTENT);
 
 		}
 	}

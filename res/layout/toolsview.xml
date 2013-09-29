@@ -160,8 +160,9 @@
         android:id="@+id/layout_tools_part_three"
         style="@style/layout_set_block"
         android:layout_below="@id/layout_tools_part_two" >
+
         <RelativeLayout
-            android:id="@+id/layout_tool_test"
+            android:id="@+id/layout_tool_joke"
             style="@style/layout_set_item"
             android:background="@drawable/bg_list_item"
             android:clickable="true" >
@@ -170,12 +171,16 @@
 
                 <TextView
                     style="@style/text_set_item_content_left_top"
-                    android:text="@string/tools_test" />
+                    android:text="@string/joke_title_title" />
 
                 <TextView
                     style="@style/text_set_item_content_left_bottom"
-                    android:text="@string/tools_test_tip" />
+                    android:text="@string/joke_tip" />
             </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/check_tool_joke"
+                style="@style/checkbox_set_item_check" />
         </RelativeLayout>
     </LinearLayout>
 

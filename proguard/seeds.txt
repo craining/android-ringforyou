@@ -6991,6 +6991,9 @@ com.zgy.ringforu.activity.BaseGestureActivityGroup: BaseGestureActivityGroup()
 com.zgy.ringforu.activity.FeedBackActivity
 com.zgy.ringforu.activity.FeedBackActivity: FeedBackActivity()
 com.zgy.ringforu.activity.FeedBackActivity: void onClick(android.view.View)
+com.zgy.ringforu.activity.JokeShowActivity
+com.zgy.ringforu.activity.JokeShowActivity: JokeShowActivity()
+com.zgy.ringforu.activity.JokeShowActivity: void onClick(android.view.View)
 com.zgy.ringforu.activity.MainActivityGroup
 com.zgy.ringforu.activity.MainActivityGroup: MainActivityGroup()
 com.zgy.ringforu.activity.MainActivityGroup: void onClick(android.view.View)
@@ -6998,6 +7001,9 @@ com.zgy.ringforu.activity.NaviActivity
 com.zgy.ringforu.activity.NewVersionInfoActivity
 com.zgy.ringforu.activity.NewVersionInfoActivity: NewVersionInfoActivity()
 com.zgy.ringforu.activity.NewVersionInfoActivity: void onClick(android.view.View)
+com.zgy.ringforu.activity.PickerApplicationActivity
+com.zgy.ringforu.activity.PickerApplicationActivity: PickerApplicationActivity()
+com.zgy.ringforu.activity.PickerApplicationActivity: void onClick(android.view.View)
 com.zgy.ringforu.activity.ReceiveNumbersFromOthersActivity
 com.zgy.ringforu.activity.ReceiveNumbersFromOthersActivity: ReceiveNumbersFromOthersActivity()
 com.zgy.ringforu.activity.ReceiveNumbersFromOthersActivity: void onClick(android.view.View)

@@ -137,18 +137,18 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 		case R.id.layout_more_feedback:
 			if (NetWorkUtil.isConnectInternet(TabMoreActivity.this)) {
 				startActivity(new Intent(TabMoreActivity.this, FeedBackActivity.class));
+				overridePendingTransition(R.anim.push_right_in, R.anim.alpha_out);
 			} else {
 				NetWorkUtil.setNetConnection(TabMoreActivity.this, ((MainActivityGroup) getParent()).mVb);
 			}
 			break;
 		case R.id.layout_more_help:
 			startActivity(new Intent(TabMoreActivity.this, AboutActivity.class));
-			break;
-		case R.id.img_add_calm_important:
-			startActivity(new Intent(TabMoreActivity.this, AddSlientPerActivity.class));
+			overridePendingTransition(R.anim.push_right_in, R.anim.alpha_out);
 			break;
 		case R.id.layout_more_tools:
 			startActivity(new Intent(TabMoreActivity.this, ToolsListActivity.class));
+			overridePendingTransition(R.anim.push_right_in, R.anim.alpha_out);
 			break;
 
 		case R.id.layout_more_clear:

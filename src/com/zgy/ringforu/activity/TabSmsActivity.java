@@ -174,7 +174,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 			if (mTopMenu.isShowing()) {
 				mTopMenu.closeMenu();
 			} else {
-				mTopMenu.showMenu();
+				mTopMenu.showMenu(R.style.top_menu);
 			}
 			break;
 		case R.id.btn_sms_exit:
@@ -205,7 +205,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 		items.add(new FCMenuItem(ID_MENU_IMPORT, -1, R.string.import_data));
 		items.add(new FCMenuItem(ID_MENU_CLEAR, -1, R.string.clear_all));
 		items.add(new FCMenuItem(ID_MENU_MORE, -1, R.string.set_str));
-		mTopMenu.setDatas(items, R.string.menu_title_sms);
+		mTopMenu.setDatas(items, R.string.menu_title_sms, true);
 
 	}
 
@@ -294,7 +294,7 @@ public class TabSmsActivity extends Activity implements OnClickListener {
 			if (!mTopMenu.isShowing()) {
 				ViewUtil.onButtonPressedBlue(btnSet);
 				PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
-				mTopMenu.showMenu();
+				mTopMenu.showMenu(R.style.top_menu);
 			}
 		}
 	};

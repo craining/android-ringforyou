@@ -208,6 +208,10 @@
                             style="@style/text_set_item_content_left_bottom"
                             android:text="@string/help_info" />
                     </LinearLayout>
+
+                    <ImageView
+                        style="@style/img_set_item_arrow"
+                        android:contentDescription="@string/app_name" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>

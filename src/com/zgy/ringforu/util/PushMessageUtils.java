@@ -46,12 +46,19 @@ public class PushMessageUtils {
 	
 	
 	/*****扩展*******/
+	public static final String MESSAGE_TAG_BREAKLINE = ":::";//换行符
+	
 	public static final String MESSAGE_CONTENT_NEW_VERSION = "new_version";//消息内容
 	//消息字段名
 	public static final String MESSAGE_TAG_VERSION_CODE = "version_code";
 	public static final String MESSAGE_TAG_DOWNLOAD_URL = "download_url";
 	public static final String MESSAGE_TAG_VERSION_INFO = "version_info";
-	public static final String MESSAGE_TAG_VERSION_INFO_BREAKLINE = ":::";//换行符
+	
+	public static final String MESSAGE_CONTENT_JOKE = "joke";
+	public static final String MESSAGE_TAG_TITLE = "title";
+	public static final String MESSAGE_TAG_CONTENT = "content";
+	public static final String MESSAGE_TAG_TAG = "tag";
+	
 	
 	/**
 	 * 检测push状态
@@ -64,6 +71,7 @@ public class PushMessageUtils {
 	 */
 	public static void startPushWork(Context context) {
 //		if(!PushManager.isPushEnabled(context)){
+		
 			PushManager.startWork(context, PushConstants.LOGIN_TYPE_API_KEY, PushMessageUtils.getMetaValue(context, "api_key"));
 //			LogRingForu.v(TAG, "start push work");
 //		} else {

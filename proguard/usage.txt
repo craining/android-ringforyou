@@ -105,6 +105,7 @@ com.zgy.ringforu.R$color
 com.zgy.ringforu.R$dimen
 com.zgy.ringforu.R$drawable
 com.zgy.ringforu.R$id
+com.zgy.ringforu.R$integer
 com.zgy.ringforu.R$layout
 com.zgy.ringforu.R$string
 com.zgy.ringforu.R$style
@@ -118,8 +119,13 @@ com.zgy.ringforu.activity.AddSlientPerActivity:
     private static final java.lang.String TAG
 com.zgy.ringforu.activity.FeedBackActivity:
     private static final java.lang.String TAG
+com.zgy.ringforu.activity.JokeShowActivity:
+    private static final int ID_MENU_MSG
 com.zgy.ringforu.activity.MainActivityGroup:
     public int[] mWidthHeightTopMenu
+com.zgy.ringforu.activity.PickerApplicationActivity:
+    private static final java.lang.String TAG
+    131:168:public void queryAppInfo()
 com.zgy.ringforu.activity.SetActivity:
     private static final java.lang.String TAG
 com.zgy.ringforu.activity.TabCallActivity:
@@ -193,11 +199,16 @@ com.zgy.ringforu.service.SignalReconnectService:
     private static final java.lang.String TAG
 com.zgy.ringforu.service.WaterMarkService:
     private static final java.lang.String TAG
+    private static final int MSG_NOOP
+    private static final int MSG_SHOW
+    private static final int MSG_HIDE
+    private static final int TIME_DELAY
+    private static final int TIME_DELAY_SHOW_HIDE
 com.zgy.ringforu.util.AddContactUtil:
     private static final java.lang.String TAG
     10:10:public AddContactUtil()
 com.zgy.ringforu.util.BitmapUtil:
-    13:13:public BitmapUtil()
+    14:14:public BitmapUtil()
 com.zgy.ringforu.util.BusyModeUtil:
     12:12:public BusyModeUtil()
     90:99:public static java.lang.String getMessageTitleFromContent(android.content.Context,java.lang.String[],java.lang.String[],java.lang.String)
@@ -209,10 +220,10 @@ com.zgy.ringforu.util.DisableGprsUtil:
 com.zgy.ringforu.util.FileUtil:
     private static final java.lang.String TAG
     private static final java.lang.String TEXT_ENCODING
-    18:18:public FileUtil()
-    146:163:public static boolean copyFilesTo(java.io.File,java.io.File)
+    19:19:public FileUtil()
+    147:164:public static boolean copyFilesTo(java.io.File,java.io.File)
 com.zgy.ringforu.util.ImportExportUtil:
-    17:17:public ImportExportUtil()
+    18:18:public ImportExportUtil()
 com.zgy.ringforu.util.MainUtil:
     private static final java.lang.String TAG
     17:17:public MainUtil()
@@ -232,17 +243,22 @@ com.zgy.ringforu.util.NotificationUtil:
     private static final int PENDINGINTENT_ID_SIGNALRECONNECT
     private static final int NOTIFICATION_ID_NEW_VERSION
     private static final int PENDINGINTENT_ID_NEW_VERSION
+    private static final int NOTIFICATION_ID_JOKE
+    private static final int PENDINGINTENT_ID_JOKE
     public static final java.lang.String ACTION_REFUSED_CALL
     public static final java.lang.String ACTION_BUSYMODE
     public static final java.lang.String ACTION_WATERMARK
     public static final java.lang.String ACTION_DISABLEGPRS
     public static final java.lang.String ACTION_SMSLIGHT
     public static final java.lang.String ACTION_SIGNALRECONNECT
+    public static final java.lang.String BUSYMODE_ACTION_CLEAR
     public static final java.lang.String ACTION_NEW_VERSION
+    public static final java.lang.String ACTION_JOKE
     public static final java.lang.String INTENT_ACTION_KEY_CALL
     public static final java.lang.String INTENT_ACTION_KEY_DOWNLOAD_URL
-    public static final java.lang.String BUSYMODE_ACTION_CLEAR
     public static final java.lang.String INTENT_ACTION_KEY_CLEAR
+    public static final java.lang.String INTENT_ACTION_KEY_JOKE_TITLE
+    public static final java.lang.String INTENT_ACTION_KEY_JOKE_CONTENT
     23:23:public NotificationUtil()
 com.zgy.ringforu.util.PhoneUtil:
     private static final java.lang.String TAG
@@ -268,11 +284,14 @@ com.zgy.ringforu.util.PushMessageUtils:
     public static final java.lang.String ACTION_RESPONSE
     public static final java.lang.String ACTION_SHOW_MESSAGE
     protected static final java.lang.String EXTRA_ACCESS_TOKEN
+    public static final java.lang.String MESSAGE_TAG_BREAKLINE
     public static final java.lang.String MESSAGE_CONTENT_NEW_VERSION
     public static final java.lang.String MESSAGE_TAG_VERSION_CODE
     public static final java.lang.String MESSAGE_TAG_DOWNLOAD_URL
     public static final java.lang.String MESSAGE_TAG_VERSION_INFO
-    public static final java.lang.String MESSAGE_TAG_VERSION_INFO_BREAKLINE
+    public static final java.lang.String MESSAGE_CONTENT_JOKE
+    public static final java.lang.String MESSAGE_TAG_TITLE
+    public static final java.lang.String MESSAGE_TAG_CONTENT
     14:14:public PushMessageUtils()
 com.zgy.ringforu.util.RingForUActivityManager:
     15:15:public RingForUActivityManager()
@@ -313,11 +332,11 @@ com.zgy.ringforu.view.FCMenuItem:
     32:33:public void setIconRes(int)
     40:41:public void setTextRes(int)
 com.zgy.ringforu.view.FCPopupWindow:
-    45:58:public void showAtBottom(int,int,android.view.View,android.view.View,boolean,android.graphics.drawable.BitmapDrawable)
-    61:74:public void showAtBottom(android.view.View,android.view.View,int)
-    77:78:public void showAtBottom(android.view.View)
-    81:82:public void setOnDismissListener(android.widget.PopupWindow$OnDismissListener)
-    95:95:public android.content.Context getContext()
+    46:61:public void showAtBottom(int,int,android.view.View,android.view.View,boolean,android.graphics.drawable.BitmapDrawable,int)
+    64:77:public void showAtBottom(android.view.View,android.view.View,int)
+    80:81:public void showAtBottom(android.view.View,int)
+    84:85:public void setOnDismissListener(android.widget.PopupWindow$OnDismissListener)
+    98:98:public android.content.Context getContext()
 com.zgy.ringforu.view.MyDialog:
     23:24:public MyDialog(android.content.Context)
 com.zgy.ringforu.view.MyDialog$Builder:

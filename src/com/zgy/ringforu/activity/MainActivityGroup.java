@@ -45,16 +45,16 @@ public class MainActivityGroup extends BaseGestureActivityGroup implements OnCli
 
 		RingForUActivityManager.push(this);
 
-		PushMessageUtils.startPushWork(RingForU.getInstance());
+		PushMessageUtils.startPushWork(MainActivityGroup.this);
 
 		MainUtil.checkNewVersion(MainActivityGroup.this);
+		
 		if (MainConfig.getInstance().getPushNewVersionCode() == MainUtil.getAppVersionCode(MainActivityGroup.this)) {
 			// 当前版本为新版本，若更新说明不为空，则提示更新说明，待显示后，清空更新说明
 			if (!StringUtil.isNull(MainConfig.getInstance().getPushNewVersionInfo())) {
 				startActivity(new Intent(MainActivityGroup.this, NewVersionInfoActivity.class));
 			}
 		}
-
 		initMainView();
 		showView(RingForU.getInstance().getSelsectedTabId());
 
@@ -65,6 +65,13 @@ public class MainActivityGroup extends BaseGestureActivityGroup implements OnCli
 
 	}
 
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+		// 如果要统计Push引起的用户使用应用情况，请实现本方法，且加上这一个语句
+		setIntent(intent);
+	}
+	
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 		// TODO Auto-generated method stub

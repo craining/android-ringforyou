@@ -117,6 +117,7 @@ public class SetHideStyleActivity extends BaseGestureActivity implements OnClick
 
 		case R.id.btn_sethidestyle_return_call:
 			RingForUActivityManager.pop(this);
+			overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 			break;
 
 		case R.id.layout_sethidestyle_sms_disreceive:
@@ -129,6 +130,7 @@ public class SetHideStyleActivity extends BaseGestureActivity implements OnClick
 			break;
 		case R.id.btn_sethidestyle_return_sms:
 			RingForUActivityManager.pop(this);
+			overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 			break;
 		default:
 			break;
@@ -196,6 +198,7 @@ public class SetHideStyleActivity extends BaseGestureActivity implements OnClick
 		ViewUtil.onButtonPressedBack(btnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		RingForUActivityManager.pop(this);
+		overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 	}
 
 	@Override

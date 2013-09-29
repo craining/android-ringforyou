@@ -103,23 +103,29 @@ public class FCMenu extends FCPopupWindow implements OnItemClickListener {
 	 * @author: zhuanggy
 	 * @date:2013-9-10
 	 */
-	public void setDatas(List<FCMenuItem> items, int titleSrcId) {
-		mTextTitle.setText(titleSrcId);
+	public void setDatas(List<FCMenuItem> items, int titleSrcId, boolean showTitle) {
+		if (showTitle) {
+			mTextTitle.setVisibility(View.VISIBLE);
+			mTextTitle.setText(titleSrcId);
+		} else {
+			mTextTitle.setVisibility(View.GONE);
+		}
+
 		mAdapter = new MenuAdapter(items);
 		mListView.setAdapter(mAdapter);
 		mListView.setOnItemClickListener(this);
 	}
 
-	public void showMenu() {
+	public void showMenu(int style) {
 		// this.showAtBottom(container);
 
 		// this.showAsDropDown(container, anchor, ViewGroup.LayoutParams.WRAP_CONTENT,
 		// ViewGroup.LayoutParams.WRAP_CONTENT);
 
 		if (mWidthHeight == null) {
-			this.showAsDropDown(container, mViewAnchor, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			this.showAsDropDown(container, mViewAnchor, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, style);
 		} else {
-			this.showAsDropDown(container, mViewAnchor, mWidthHeight[0], mWidthHeight[1]);
+			this.showAsDropDown(container, mViewAnchor, mWidthHeight[0], mWidthHeight[1], style);
 		}
 	}
 

@@ -2,7 +2,6 @@ package com.zgy.ringforu.view;
 
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ public class FCPopupWindow {
 
 	}
 
-	public void showAsDropDown(View contentView, View anchor, int xoff, int yoff, int width, int height) {
+	public void showAsDropDown(View contentView, View anchor, int xoff, int yoff, int width, int height, int style) {
 		
 		if (isShowing()) {
 			mPopupWindow.dismiss();
@@ -30,25 +29,29 @@ public class FCPopupWindow {
 		if (mPopupWindow == null) {
 			mPopupWindow = new PopupWindow(contentView, width, height, true);
 			mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
-			mPopupWindow.setAnimationStyle(R.style.top_menu);
+			if(style!= -1) {
+				mPopupWindow.setAnimationStyle(style);
+			}
 			mPopupWindow.update();
 		}
 
 		mPopupWindow.showAsDropDown(anchor, xoff, yoff);
 	}
 
-	public void showAsDropDown(View contentView, View anchor, int width, int height) {
-		showAsDropDown(contentView, anchor, 0, 0, width, height);
+	public void showAsDropDown(View contentView, View anchor, int width, int height, int style) {
+		showAsDropDown(contentView, anchor, 0, 0, width, height, style);
 	}
 
-	public void showAtBottom(int widthLayoutParams, int heightLayoutParams, View contentView, View parentView, boolean isFocusable, BitmapDrawable bitmapDrawable) {
+	public void showAtBottom(int widthLayoutParams, int heightLayoutParams, View contentView, View parentView, boolean isFocusable, BitmapDrawable bitmapDrawable, int style) {
 		if (isShowing()) {
 			mPopupWindow.dismiss();
 		}
 		if (mPopupWindow == null) {
 			mPopupWindow = new PopupWindow(contentView, widthLayoutParams, heightLayoutParams, isFocusable);
 			mPopupWindow.setBackgroundDrawable(bitmapDrawable);
-			mPopupWindow.setAnimationStyle(R.style.top_menu);
+			if(style!= -1) {
+				mPopupWindow.setAnimationStyle(style);
+			}
 			mPopupWindow.update();
 
 		}
@@ -73,8 +76,8 @@ public class FCPopupWindow {
 
 	}
 
-	public void showAtBottom(View contentView) {
-		showAtBottom(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, contentView, contentView.getRootView(), true, new BitmapDrawable());
+	public void showAtBottom(View contentView, int style) {
+		showAtBottom(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, contentView, contentView.getRootView(), true, new BitmapDrawable(), style);
 	}
 
 	public void setOnDismissListener(OnDismissListener onDismissListener) {

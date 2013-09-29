@@ -93,5 +93,7 @@
     <dimen name="title_padding_lr">80dip</dimen>
     <dimen name="title_content_minh">150dip</dimen>
     <dimen name="title_margin_tn">20dip</dimen>
+    
+    <dimen name="joke_image_wh">50dip</dimen>
 
 </resources>

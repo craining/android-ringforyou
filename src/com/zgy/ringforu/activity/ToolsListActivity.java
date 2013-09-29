@@ -19,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.RingForUActivityManager;
@@ -36,8 +37,10 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 
 	private static final String TAG = "RToolsActivity";
 	private Button btnBack;
-	private RelativeLayout layoutWatermark, layoutBusyMode, layoutSmsLightScreen, layoutDisableGprs, layoutSignalReconnect, layoutTest;
-	private CheckBox checkWatermarkSwitch, checkSmsLightScreenSwitch, checkDisableGprsSwitch, checkSignalReconnectSwitch, checkBusyModeSwitch;
+	private RelativeLayout layoutWatermark, layoutBusyMode, layoutSmsLightScreen, layoutDisableGprs,
+			layoutSignalReconnect, layoutJoke;
+	private CheckBox checkWatermarkSwitch, checkSmsLightScreenSwitch, checkDisableGprsSwitch,
+			checkSignalReconnectSwitch, checkBusyModeSwitch, checkJokeSwitch;
 	private TextView textBusyModeTitle;
 	private TextView textBusyModeInfo;
 
@@ -67,14 +70,15 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 		layoutSmsLightScreen = (RelativeLayout) findViewById(R.id.layout_tool_smslightscreen);
 		layoutDisableGprs = (RelativeLayout) findViewById(R.id.layout_tool_disablegprs);
 		layoutSignalReconnect = (RelativeLayout) findViewById(R.id.layout_tool_signalreconnect);
-		layoutTest = (RelativeLayout) findViewById(R.id.layout_tool_test);
+		layoutJoke = (RelativeLayout) findViewById(R.id.layout_tool_joke);
 
+		checkJokeSwitch = (CheckBox) findViewById(R.id.check_tool_joke);
 		checkBusyModeSwitch = (CheckBox) findViewById(R.id.check_busymode_switch);
 		textBusyModeTitle = (TextView) findViewById(R.id.text_tools_busymode_title);
 		textBusyModeInfo = (TextView) findViewById(R.id.text_tools_busymode_info);
 
 		btnBack.setOnClickListener(this);
-		layoutTest.setOnClickListener(this);
+		layoutJoke.setOnClickListener(this);
 		checkWatermarkSwitch.setOnClickListener(this);
 		layoutWatermark.setOnClickListener(this);
 		layoutBusyMode.setOnClickListener(this);
@@ -105,6 +109,7 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 		switch (v.getId()) {
 		case R.id.btn_tools_return:
 			RingForUActivityManager.pop(this);
+			overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 			break;
 		case R.id.layout_tool_watermark:
 			startActivity(new Intent(ToolsListActivity.this, ToolsWaterMarkActivity.class));
@@ -184,10 +189,10 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 			Intent i = new Intent(ToolsListActivity.this, ToolsBusyModeActivity.class);
 			startActivity(i);
 			break;
-		case R.id.layout_tool_test:
-			i = new Intent(Intent.ACTION_FACTORY_TEST);
-			sendBroadcast(i);
-//			startActivity(i);
+		case R.id.layout_tool_joke:
+			MainConfig mc = MainConfig.getInstance();
+			mc.setPushJokeOn(!mc.isPushJokeOn());
+			refreshSwitch();
 			break;
 		default:
 			break;
@@ -225,6 +230,8 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 		// 忙碌模式是否开启
 		checkBusyModeSwitch.setChecked(BusyModeUtil.isBusyModeOn());
 		BusyModeUtil.checkState(ToolsListActivity.this);
+
+		checkJokeSwitch.setChecked(MainConfig.getInstance().isPushJokeOn());
 	}
 
 	private class ToolsReceiver extends BroadcastReceiver {
@@ -252,6 +259,7 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 		ViewUtil.onButtonPressedBack(btnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		RingForUActivityManager.pop(this);
+		overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 	}
 
 	@Override

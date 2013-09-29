@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.activity.JokeShowActivity;
 import com.zgy.ringforu.activity.ToolsBusyModeActivity;
 import com.zgy.ringforu.activity.ToolsDisableGprsActivity;
 import com.zgy.ringforu.activity.ToolsSignalReconnectActivity;
@@ -50,12 +51,10 @@ public class NotificationReceiver extends BroadcastReceiver {
 			notificationManager.cancel(id);
 		} else if (intent.getAction().equals(NotificationUtil.ACTION_WATERMARK)) {
 			i = new Intent(context, ToolsWaterMarkActivity.class);
-			i.putExtra("fromnotifybar", true);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
 		} else if (intent.getAction().equals(NotificationUtil.ACTION_BUSYMODE)) {
 			i = new Intent(context, ToolsBusyModeActivity.class);
-			i.putExtra("fromnotifybar", true);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
 		} else if (intent.getAction().equals(NotificationUtil.ACTION_DISABLEGPRS)) {
@@ -72,7 +71,18 @@ public class NotificationReceiver extends BroadcastReceiver {
 			context.startActivity(i);
 		} else if (intent.getAction().equals(NotificationUtil.ACTION_NEW_VERSION)) {
 			SelectApplicationUtil.viewHtml(context, intent.getExtras().getString(NotificationUtil.INTENT_ACTION_KEY_DOWNLOAD_URL));
+		} else if (intent.getAction().equals(NotificationUtil.ACTION_JOKE)) {
+			String jokeTitle = intent.getStringExtra(NotificationUtil.INTENT_ACTION_KEY_JOKE_TITLE);
+			String jokeContent = intent.getStringExtra(NotificationUtil.INTENT_ACTION_KEY_JOKE_CONTENT);
+			String tag = intent.getStringExtra(NotificationUtil.INTENT_ACTION_KEY_JOKE_TAG);
+			i = new Intent(context, JokeShowActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_JOKE_TITLE, jokeTitle);
+			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_JOKE_CONTENT, jokeContent);
+			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_JOKE_TAG, tag);
+			context.startActivity(i);
 		}
+
 	}
 
 }

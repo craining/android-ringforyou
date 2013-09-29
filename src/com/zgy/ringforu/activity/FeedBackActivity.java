@@ -113,6 +113,7 @@ public class FeedBackActivity extends BaseGestureActivity implements OnClickList
 			}).start();
 			MyToast.makeText(FeedBackActivity.this, R.string.feedback_subminting, Toast.LENGTH_SHORT, false).show();
 			RingForUActivityManager.pop(this);
+			overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 		} else {
 			NetWorkUtil.setNetConnection(FeedBackActivity.this, FeedBackActivity.super.mVb);
 		}
@@ -124,6 +125,7 @@ public class FeedBackActivity extends BaseGestureActivity implements OnClickList
 		switch (v.getId()) {
 		case R.id.btn_feedback_return:
 			RingForUActivityManager.pop(this);
+			overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 			break;
 
 		case R.id.btn_feedback_ok:
@@ -160,6 +162,7 @@ public class FeedBackActivity extends BaseGestureActivity implements OnClickList
 		ViewUtil.onButtonPressedBack(btnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		RingForUActivityManager.pop(this);
+		overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 	}
 
 	@Override

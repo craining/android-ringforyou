@@ -35,6 +35,10 @@ public class NotificationUtil {
 
 	private static final int NOTIFICATION_ID_NEW_VERSION = 6;// 状态栏通知的id
 	private static final int PENDINGINTENT_ID_NEW_VERSION = 6;
+	
+	
+	private static final int NOTIFICATION_ID_JOKE = 7;
+	private static final int PENDINGINTENT_ID_JOKE = 7;
 
 	private static int NOTIFICATION_ID_BUSYMODE_REFUSED = 20;// 状态栏通知的id
 
@@ -47,13 +51,16 @@ public class NotificationUtil {
 	public static final String ACTION_DISABLEGPRS = "com.zgy.ringforu.ACTION_NOTIFICATION_DISABLEGPRS";
 	public static final String ACTION_SMSLIGHT = "com.zgy.ringforu.ACTION_NOTIFICATION_SMSLIGHT";
 	public static final String ACTION_SIGNALRECONNECT = "com.zgy.ringforu.ACTION_NOTIFICATION_SIGNALRECONNECT";
+	public static final String BUSYMODE_ACTION_CLEAR = "com.zgy.ringforu.ACTION_NOTIFICATION_CLEAR";// 通知栏清除
 	public static final String ACTION_NEW_VERSION = "com.zgy.ringforu.ACTION_NOTIFICATION_NEW_VERSION";
+	public static final String ACTION_JOKE = "com.zgy.ringforu.ACTION_NOTIFICATION_JOKE";
 
 	public static final String INTENT_ACTION_KEY_CALL = "notification_refused_number";
 	public static final String INTENT_ACTION_KEY_DOWNLOAD_URL = "notification_downloadurl";
-
-	public static final String BUSYMODE_ACTION_CLEAR = "com.zgy.ringforu.ACTION_NOTIFICATION_CLEAR";// 通知栏清除
 	public static final String INTENT_ACTION_KEY_CLEAR = "notification_refused_clear";
+	public static final String INTENT_ACTION_KEY_JOKE_TITLE = "notification_joke_title";
+	public static final String INTENT_ACTION_KEY_JOKE_CONTENT = "notification_joke_content";
+	public static final String INTENT_ACTION_KEY_JOKE_TAG = "notification_joke_tag";
 
 	/**
 	 * 显示gprs已经禁用的通知
@@ -377,6 +384,42 @@ public class NotificationUtil {
 			// 启动后删除之前我们定义的通知
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			notificationManager.cancel(NOTIFICATION_ID_NEW_VERSION);// 注意ID号，不能与此程序中的其他通知栏图标相同
+		}
+	}
+	
+	/**
+	 * 显示笑话的通知
+	 * 
+	 * @param con
+	 */
+	public static void showHideJokeNotify(boolean show, Context context, String title, String content, String tag) {
+
+		if (show) {
+			LogRingForu.e("", "显示通知");
+			// 显示
+			// 创建一个NotificationManager的引用
+			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+			// 定义Notification的各种属性
+			Notification notification = new Notification(R.drawable.ic_launcher, context.getString(R.string.joke_title), System.currentTimeMillis());
+			notification.icon = R.drawable.ic_launcher;
+			// notification.flags |= Notification.FLAG_ONGOING_EVENT;
+			notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+			CharSequence contentText = title;
+			CharSequence contentTitle = context.getString(R.string.joke_title);
+
+			Intent notificationIntent = new Intent(ACTION_JOKE);
+			notificationIntent.putExtra(INTENT_ACTION_KEY_JOKE_TITLE, title);
+			notificationIntent.putExtra(INTENT_ACTION_KEY_JOKE_CONTENT, content);
+			notificationIntent.putExtra(INTENT_ACTION_KEY_JOKE_TAG, tag);
+			PendingIntent contentItent = PendingIntent.getBroadcast(context, PENDINGINTENT_ID_JOKE, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
+			// 把Notification传递给NotificationManager
+			notificationManager.notify(NOTIFICATION_ID_JOKE, notification);// 注意ID号，不能与此程序中的其他通知栏图标相同
+		} else {
+			// 启动后删除之前我们定义的通知
+			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+			notificationManager.cancel(NOTIFICATION_ID_JOKE);// 注意ID号，不能与此程序中的其他通知栏图标相同
 		}
 	}
 }

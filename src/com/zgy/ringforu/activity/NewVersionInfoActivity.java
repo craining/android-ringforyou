@@ -13,6 +13,7 @@ import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.PushMessageUtils;
 import com.zgy.ringforu.util.RingForUActivityManager;
+import com.zgy.ringforu.util.StringUtil;
 
 /**
  * 更新说明
@@ -27,7 +28,7 @@ import com.zgy.ringforu.util.RingForUActivityManager;
 
 public class NewVersionInfoActivity extends BaseGestureActivity implements OnClickListener {
 
-	private Button btnOk;
+	// private Button btnOk;
 	private TextView textInfo;
 
 	@Override
@@ -38,13 +39,15 @@ public class NewVersionInfoActivity extends BaseGestureActivity implements OnCli
 
 		RingForUActivityManager.push(this);
 
-		btnOk = (Button) findViewById(R.id.btn_new_version_ok);
+		// btnOk = (Button) findViewById(R.id.btn_new_version_return);
 		textInfo = (TextView) findViewById(R.id.text_new_version_info);
-		
-		textInfo.setText(MainConfig.getInstance().getPushNewVersionInfo().replaceAll(PushMessageUtils.MESSAGE_TAG_VERSION_INFO_BREAKLINE, "\r\n"));
+
+		// textInfo.setText("MainConfig.getInstance().getPushNewVersionInfo().replaceAll(PushMessageUtils.MESSAGE_TAG_BREAKLINE,");
+
+		textInfo.setText(MainConfig.getInstance().getPushNewVersionInfo().replaceAll(PushMessageUtils.MESSAGE_TAG_BREAKLINE, "\r\n"));
 		MainConfig.getInstance().setPushNewVersionInfo("");
 
-		btnOk.setOnClickListener(this);
+		// btnOk.setOnClickListener(this);
 	}
 
 	@Override
@@ -55,15 +58,15 @@ public class NewVersionInfoActivity extends BaseGestureActivity implements OnCli
 	@Override
 	public void onClick(View v) {
 		PhoneUtil.doVibraterNormal(super.mVb);
-		switch (v.getId()) {
-		case R.id.btn_new_version_ok:
+		// switch (v.getId()) {
+		// case R.id.btn_new_version_return:
+		//
+		// RingForUActivityManager.pop(NewVersionInfoActivity.this);
+		// break;
 
-			RingForUActivityManager.pop(NewVersionInfoActivity.this);
-			break;
-
-		default:
-			break;
-		}
+		// default:
+		// break;
+		// }
 
 	}
 

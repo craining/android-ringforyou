@@ -123,6 +123,7 @@ public class AddSlientPerActivity extends BaseGestureActivity implements OnClick
 				// 成功
 				MyToast.makeText(AddSlientPerActivity.this, R.string.add_success, Toast.LENGTH_SHORT, false).show();
 				RingForUActivityManager.pop(this);
+				overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 				break;
 			case -1:
 				// 重复
@@ -140,6 +141,7 @@ public class AddSlientPerActivity extends BaseGestureActivity implements OnClick
 				// 包含
 				MyToast.makeText(AddSlientPerActivity.this, R.string.addslient_contain, Toast.LENGTH_SHORT, false).show();
 				RingForUActivityManager.pop(this);
+				overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 				break;
 
 			default:
@@ -154,6 +156,7 @@ public class AddSlientPerActivity extends BaseGestureActivity implements OnClick
 		switch (v.getId()) {
 		case R.id.btn_add_slient_return:
 			RingForUActivityManager.pop(this);
+			overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 			break;
 		case R.id.btn_add_slient_add:
 			addSlientTime();
@@ -175,6 +178,7 @@ public class AddSlientPerActivity extends BaseGestureActivity implements OnClick
 		ViewUtil.onButtonPressedBack(btnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		RingForUActivityManager.pop(this);
+		overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 	}
 
 	@Override

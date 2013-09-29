@@ -41,6 +41,7 @@ public class AboutActivity extends BaseGestureActivity implements OnClickListene
 		case R.id.btn_about_return:
 
 			RingForUActivityManager.pop(AboutActivity.this);
+			overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 			break;
 
 		default:
@@ -55,6 +56,7 @@ public class AboutActivity extends BaseGestureActivity implements OnClickListene
 		ViewUtil.onButtonPressedBack(btnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
 		RingForUActivityManager.pop(AboutActivity.this);
+		overridePendingTransition(R.anim.alpha_in, R.anim.push_right_out);
 	}
 
 	@Override
