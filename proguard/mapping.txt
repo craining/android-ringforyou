@@ -6549,10 +6549,12 @@ com.zgy.ringforu.activity.JokeShowActivity -> com.zgy.ringforu.activity.JokeShow
     android.widget.Button btnShare -> d
     android.widget.TextView textInfo -> e
     android.widget.TextView textTitle -> f
-    com.zgy.ringforu.view.FCMenu mTopMenu -> g
-    com.zgy.ringforu.activity.JokeShowActivity$OnTopMenuItemClickedListener mTopMenuListener -> h
-    java.lang.String mTitle -> i
-    java.lang.String mContent -> j
+    android.widget.ImageView imgTag -> g
+    com.zgy.ringforu.view.FCMenu mTopMenu -> h
+    com.zgy.ringforu.activity.JokeShowActivity$OnTopMenuItemClickedListener mTopMenuListener -> i
+    java.lang.String mTitle -> j
+    java.lang.String mContent -> k
+    java.lang.String mTag -> l
     void onCreate(android.os.Bundle) -> onCreate
     void onDestroy() -> onDestroy
     void onClick(android.view.View) -> onClick
@@ -6577,6 +6579,7 @@ com.zgy.ringforu.activity.MainActivityGroup -> com.zgy.ringforu.activity.MainAct
     int flag -> l
     com.zgy.ringforu.interfaces.OnGestureChangedListener mListener -> m
     void onCreate(android.os.Bundle) -> onCreate
+    void onNewIntent(android.content.Intent) -> onNewIntent
     boolean dispatchTouchEvent(android.view.MotionEvent) -> dispatchTouchEvent
     void showView(int) -> a
     void onClick(android.view.View) -> onClick
@@ -7205,7 +7208,6 @@ com.zgy.ringforu.util.ImportExportUtil -> com.zgy.ringforu.e.g:
 com.zgy.ringforu.util.MainUtil -> com.zgy.ringforu.e.h:
     boolean isServiceStarted(android.content.Context,java.lang.String) -> a
     void checkAllState(android.content.Context) -> a
-    void mainInitData(android.content.Context) -> b
     void refreshWaterMarkHideApps() -> a
     void refreshNumbersImportant() -> b
     void refreshNumbersCall() -> c
@@ -7213,8 +7215,8 @@ com.zgy.ringforu.util.MainUtil -> com.zgy.ringforu.e.h:
     void refreshImportant(java.lang.String,java.lang.String) -> a
     void refreshCall(java.lang.String,java.lang.String) -> b
     void refreshSms(java.lang.String,java.lang.String) -> c
-    int getAppVersionCode(android.content.Context) -> c
-    void checkNewVersion(android.content.Context) -> d
+    int getAppVersionCode(android.content.Context) -> b
+    void checkNewVersion(android.content.Context) -> c
 com.zgy.ringforu.util.NetWorkUtil -> com.zgy.ringforu.e.i:
     boolean isConnectInternet(android.content.Context) -> a
     void setNetConnection(android.content.Context,android.os.Vibrator) -> a
@@ -7234,7 +7236,7 @@ com.zgy.ringforu.util.NotificationUtil -> com.zgy.ringforu.e.l:
     void showHideSmsLightNotify(boolean,android.content.Context) -> c
     void showHideSignalReconnectNotify(boolean,android.content.Context) -> d
     void showHideNewVersionNotify$b945bcd(android.content.Context,java.lang.String) -> b
-    void showHideJokeNotify$7201473d(android.content.Context,java.lang.String,java.lang.String) -> a
+    void showHideJokeNotify$193bfbc7(android.content.Context,java.lang.String,java.lang.String,java.lang.String) -> a
 com.zgy.ringforu.util.PhoneUtil -> com.zgy.ringforu.e.m:
     void doActionAboutCall(android.content.Context,int) -> a
     void turnUpMost(android.content.Context) -> a

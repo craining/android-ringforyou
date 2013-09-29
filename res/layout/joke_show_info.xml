@@ -36,6 +36,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/title_margin_tn"
             android:layout_marginLeft="@dimen/layout_margin_left_right"
             android:layout_marginRight="@dimen/layout_margin_left_right"
             android:layout_marginTop="@dimen/layout_margin_top_title"
@@ -57,9 +58,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginBottom="@dimen/title_margin_tn"
-                android:layout_marginTop="@dimen/layout_margin_top_title"
                 android:layout_marginRight="@dimen/layout_margin_left_right"
-                android:scaleType="fitCenter"
+                android:layout_marginTop="@dimen/layout_margin_top_title"
+                android:scaleType="fitXY"
                 android:src="@drawable/ic_joke_hand" />
         </LinearLayout>
     </ScrollView>

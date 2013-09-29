@@ -121,6 +121,8 @@ com.zgy.ringforu.activity.FeedBackActivity:
     private static final java.lang.String TAG
 com.zgy.ringforu.activity.JokeShowActivity:
     private static final int ID_MENU_MSG
+    private static final java.lang.String TAG_HAND
+    private static final java.lang.String TAG_PANDA
 com.zgy.ringforu.activity.MainActivityGroup:
     public int[] mWidthHeightTopMenu
 com.zgy.ringforu.activity.PickerApplicationActivity:
@@ -259,6 +261,7 @@ com.zgy.ringforu.util.NotificationUtil:
     public static final java.lang.String INTENT_ACTION_KEY_CLEAR
     public static final java.lang.String INTENT_ACTION_KEY_JOKE_TITLE
     public static final java.lang.String INTENT_ACTION_KEY_JOKE_CONTENT
+    public static final java.lang.String INTENT_ACTION_KEY_JOKE_TAG
     23:23:public NotificationUtil()
 com.zgy.ringforu.util.PhoneUtil:
     private static final java.lang.String TAG
@@ -292,6 +295,7 @@ com.zgy.ringforu.util.PushMessageUtils:
     public static final java.lang.String MESSAGE_CONTENT_JOKE
     public static final java.lang.String MESSAGE_TAG_TITLE
     public static final java.lang.String MESSAGE_TAG_CONTENT
+    public static final java.lang.String MESSAGE_TAG_TAG
     14:14:public PushMessageUtils()
 com.zgy.ringforu.util.RingForUActivityManager:
     15:15:public RingForUActivityManager()

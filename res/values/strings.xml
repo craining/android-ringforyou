@@ -1,7 +1,7 @@
 <resources>
 
     
-    <string name="version_name">1.0.3</string>
+    <string name="version_name">1.0.5</string>
     
     <string name="app_name">Waiter</string>
     <string name="back">Back</string>
