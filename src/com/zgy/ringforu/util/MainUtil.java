@@ -97,13 +97,6 @@ public class MainUtil {
 			new File(MainCanstants.FILE_INNER).mkdirs();
 		}
 
-		if (PhoneUtil.existSDcard()) {
-			File f = new File(MainCanstants.FILE_IN_SDCARD);
-			if (!f.exists()) {
-				f.mkdirs();
-			}
-		}
-
 		checkAllState(context);
 
 		String version = context.getString(R.string.version_name);

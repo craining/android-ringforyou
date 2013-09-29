@@ -90,7 +90,7 @@ public class WaterMarkService extends Service {
 
 		mPackageNameTemp = "";
 		mTempAlpha = 0;
-		
+
 		mActivityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
 
 		// 设置LayoutParams(全局变量）相关参数
@@ -129,7 +129,7 @@ public class WaterMarkService extends Service {
 		// Bitmap bitmap =
 		// BitmapFactory.decodeFile(WaterMarkUtil.FILE_WATERMARK_IMG.getAbsolutePath());
 		DisplayMetrics metric = getResources().getDisplayMetrics();
-		mImageView.setImageBitmap(BitmapUtil.readBitmapAutoSize(MainCanstants.FILE_WATERMARK_IMG.getAbsolutePath(), metric.widthPixels, metric.heightPixels));
+		mImageView.setImageBitmap(BitmapUtil.readBitmapAutoSize(MainCanstants.FILE_WATERMARK_IMG.getAbsolutePath(), metric.widthPixels, metric.heightPixels).getBitMap());
 		// } else {
 		// imgShow.setImageDrawable(null);
 		// stopSelf();
@@ -213,14 +213,14 @@ public class WaterMarkService extends Service {
 	}
 
 	private void show() {
-		if(mTempAlpha < mAlpah) {
+		if (mTempAlpha < mAlpah) {
 			mTempAlpha = 0;
 			mHandler.sendEmptyMessageDelayed(MSG_SHOW, TIME_DELAY_SHOW_HIDE);
 		}
 	}
 
 	private void hide() {
-		if(mTempAlpha > 0) {
+		if (mTempAlpha > 0) {
 			mTempAlpha = mAlpah;
 			mHandler.sendEmptyMessageDelayed(MSG_HIDE, TIME_DELAY_SHOW_HIDE);
 		}

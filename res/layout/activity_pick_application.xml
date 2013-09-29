@@ -16,12 +16,12 @@
         <TextView
             android:id="@+id/text_pick_app_title"
             style="@style/text_top_title"
-            android:text="@string/tab_call" />
+            android:text="@string/water_mark_hide_app_title" />
 
         <Button
             android:id="@+id/btn_pick_app_set"
             style="@style/btn_right_top"
-            android:text="@string/set_str" />
+            android:text="@string/finish" />
     </RelativeLayout>
 
     <TextView

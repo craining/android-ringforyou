@@ -759,7 +759,8 @@ public final class R {
         public static final int tools_test_tip=0x7f0800f1;
         public static final int version_name=0x7f080000;
         public static final int water_mark_hide_app=0x7f0800f2;
-        public static final int water_mark_hide_app_tip=0x7f0800f3;
+        public static final int water_mark_hide_app_tip=0x7f0800f4;
+        public static final int water_mark_hide_app_title=0x7f0800f3;
         public static final int watermark_album=0x7f080044;
         public static final int watermark_camera=0x7f080043;
         public static final int watermark_change=0x7f08004a;

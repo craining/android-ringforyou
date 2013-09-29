@@ -4,16 +4,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Properties;
 
 import org.apache.http.util.EncodingUtils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Log;
 
-import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
-import com.zgy.ringforu.RingForU;
 
 public class FileUtil {
 
@@ -227,18 +228,31 @@ public class FileUtil {
 		return true;
 	}
 
-	
-	
-	
+	/**
+	 * 获取图片的绝对路径
+	 * 
+	 * @param uri
+	 * @return
+	 */
+	public static String getImageAbsolutePath(Context context, Uri uri) {
+		String result = uri.toString();
+		try {
+			String[] proj = { MediaStore.Images.Media.DATA };
+			Cursor cursor = ((Activity) context).managedQuery(uri, proj, null, null, null);
+			int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			cursor.moveToFirst();
+			result = cursor.getString(column_index);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	/**
 	 * 清空缓存（备份文件）
 	 */
 	public static boolean clearData() {
-		
-		if (new File(MainCanstants.FILE_IN_SDCARD).exists()) {
-			FileUtil.delFileDir(new File(MainCanstants.FILE_IN_SDCARD));
-		}
-
+		FileUtil.delFileDir(MainCanstants.getSdFile());
 		return true;
 		// if (FILE_SDCARD_IMPORTANT_NUM.exists()) {
 		// FILE_SDCARD_IMPORTANT_NUM.delete();

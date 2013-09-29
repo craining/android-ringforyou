@@ -183,10 +183,7 @@ public class TabMoreActivity extends Activity implements OnClickListener {
 	private void clearData() {
 
 		if (PhoneUtil.existSDcard()) {
-
-			File file = new File(MainCanstants.FILE_IN_SDCARD);
-
-			String[] files = file.list();
+			String[] files = MainCanstants.getSdFile().list();
 			if (files == null || files.length <= 0) {
 				MyToast.makeText(TabMoreActivity.this, R.string.clear_data_null, Toast.LENGTH_LONG, true).show();
 				return;

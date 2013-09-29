@@ -2,18 +2,19 @@ package com.zgy.ringforu.util;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.math.BigDecimal;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 
 import com.zgy.ringforu.LogRingForu;
-import com.zgy.ringforu.RingForU;
+import com.zgy.ringforu.bean.BitMapInfo;
 
 public class BitmapUtil {
 
 	/**
-	 * ½ÚÊ¡ÄÚ´æ
+	 * èŠ‚çœå†…å­˜
 	 * 
 	 * @Description:
 	 * @param filePath
@@ -25,15 +26,26 @@ public class BitmapUtil {
 	 * @author: zhuanggy
 	 * @date:2013-3-12
 	 */
-	public static Bitmap readBitmapAutoSize(String filePath, int outWidth, int outHeight) {
+	public static BitMapInfo readBitmapAutoSize(String filePath, int outWidth, int outHeight) {
 		FileInputStream fs = null;
 		BufferedInputStream bs = null;
 		try {
 			fs = new FileInputStream(filePath);
 			bs = new BufferedInputStream(fs);
-			BitmapFactory.Options options = setBitmapOption(filePath);
+			BitmapFactory.Options opt = new BitmapFactory.Options();
+
+			opt.inPreferredConfig = Bitmap.Config.RGB_565;
+			opt.inPurgeable = true;
+			opt.inInputShareable = true;
+			// opt.inJustDecodeBounds = true;
+			// è®¾ç½®åªæ˜¯è§£ç å›¾ç‰‡çš„è¾¹è·ï¼Œæ­¤æ“ä½œç›®çš„æ˜¯åº¦é‡å›¾ç‰‡çš„å®é™…å®½åº¦å’Œé«˜åº¦
+			// BitmapFactory.decodeFile(file, opt);
+			// opt.inDither = false;
+			// opt.inPreferredConfig = Bitmap.Config.RGB_565;
+			// opt.inJustDecodeBounds = false;// æœ€åæŠŠæ ‡å¿—å¤åŸ
+
 			// return BitmapFactory.decodeStream(bs, null, options);
-			return getNewBitmap(BitmapFactory.decodeStream(bs, null, options), outWidth, outHeight);
+			return getNewBitmap(BitmapFactory.decodeStream(bs, null, opt), outWidth, outHeight);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -47,24 +59,8 @@ public class BitmapUtil {
 		return null;
 	}
 
-	private static BitmapFactory.Options setBitmapOption(String file) {
-		BitmapFactory.Options opt = new BitmapFactory.Options();
-
-		opt.inPreferredConfig = Bitmap.Config.RGB_565;
-		opt.inPurgeable = true;
-		opt.inInputShareable = true;
-
-		// opt.inJustDecodeBounds = true;
-		// ÉèÖÃÖ»ÊÇ½âÂëÍ¼Æ¬µÄ±ß¾à£¬´Ë²Ù×÷Ä¿µÄÊÇ¶ÈÁ¿Í¼Æ¬µÄÊµ¼Ê¿í¶ÈºÍ¸ß¶È
-		// BitmapFactory.decodeFile(file, opt);
-		// opt.inDither = false;
-		// opt.inPreferredConfig = Bitmap.Config.RGB_565;
-		// opt.inJustDecodeBounds = false;// ×îºó°Ñ±êÖ¾¸´Ô­
-		return opt;
-	}
-
 	/**
-	 * »ñµÃÔ²½ÇÍ¼Æ¬
+	 * è·å¾—åœ†è§’å›¾ç‰‡
 	 * 
 	 * @Description:
 	 * @param bitmap
@@ -75,14 +71,17 @@ public class BitmapUtil {
 	 * @author: zhuanggy
 	 * @date:2013-3-14
 	 */
-	private static Bitmap getNewBitmap(Bitmap bitmap, int width, int height) {
+	private static BitMapInfo getNewBitmap(Bitmap bitmap, int width, int height) {
 		int w = bitmap.getWidth();
 		int h = bitmap.getHeight();
 
-		// Èô¶ÁÈ¡Í¼Æ¬µÄ¿í¶È»ò¸ß¶ÈĞ¡ÓÚImageViewµÄ¿í¶È»ò¸ß¶È£¬Ôò¶ÔÍ¼Æ¬½øĞĞ·Å´ó
+		// è‹¥è¯»å–å›¾ç‰‡çš„å®½åº¦æˆ–é«˜åº¦å°äºImageViewçš„å®½åº¦æˆ–é«˜åº¦ï¼Œåˆ™å¯¹å›¾ç‰‡è¿›è¡Œæ”¾å¤§
 		// if (w < width || h < height) {
 		Matrix matrix = new Matrix();
-		matrix.postScale((float) width / w, (float) height / h); // ³¤ºÍ¿í·Å´óËõĞ¡µÄ±ÈÀı
+		float wScale = (float) width / w;
+		float hScale = (float) height / h;
+		matrix.postScale(wScale, hScale); // é•¿å’Œå®½æ”¾å¤§ç¼©å°çš„æ¯”ä¾‹
+
 		// bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
 		// bitmap.getHeight(), matrix,
 		// false);
@@ -93,7 +92,7 @@ public class BitmapUtil {
 
 		// // GoOutDebug.e(TAG, "w = " + output.getWidth() + "   h = " +
 		// output.getHeight());
-		// // ´´½¨Ò»¸öĞÂµÄbitmap£¬È»ºóÔÚbitmapÀï´´½¨Ò»¸öÔ²½Ç»­²¼£¬½«Ö®Ç°µÄÍ¼Æ¬»­ÔÚÀïÃæ¡£
+		// // åˆ›å»ºä¸€ä¸ªæ–°çš„bitmapï¼Œç„¶ååœ¨bitmapé‡Œåˆ›å»ºä¸€ä¸ªåœ†è§’ç”»å¸ƒï¼Œå°†ä¹‹å‰çš„å›¾ç‰‡ç”»åœ¨é‡Œé¢ã€‚
 		// Bitmap output = Bitmap.createBitmap(width, height, Config.ARGB_8888);
 		// Canvas canvas = new Canvas(output);
 		// final int color = 0xff424242;
@@ -103,11 +102,28 @@ public class BitmapUtil {
 		// paint.setAntiAlias(true);
 		// canvas.drawARGB(0, 0, 0, 0);
 		// paint.setColor(color);
-		// canvas.drawRoundRect(rectF, 10, 10, paint);// Ô²½ÇÆ½»¬¶È
+		// canvas.drawRoundRect(rectF, 10, 10, paint);// åœ†è§’å¹³æ»‘åº¦
 		// paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
 		// canvas.drawBitmap(bitmap, rect, rect, paint);
 
-		return bitmap;
-	}
+		BitMapInfo info = new BitMapInfo();
+		info.setBitMap(bitmap);
 
+		LogRingForu.e("", "wScale=" + wScale + "  hScale=" + hScale);
+
+		// DecimalFormatfnumÂ =Â newÂ DecimalFormat("##0.00");
+		// StringÂ dd=fnum.format(scale);
+
+		BigDecimal ws = new BigDecimal(wScale);
+		BigDecimal hs = new BigDecimal(hScale);
+		
+		if (ws.setScale(1, BigDecimal.ROUND_HALF_UP).floatValue() - hs.setScale(1, BigDecimal.ROUND_HALF_UP).floatValue() == 0) {
+			// é•¿å®½ç¼©æ”¾æ¯”ä¾‹å˜äº†ï¼Œåˆ™å›¾ç‰‡æ¯”ä¾‹å˜äº†
+			info.setScalechanged(false);
+		} else {
+			info.setScalechanged(true);
+		}
+
+		return info;
+	}
 }

@@ -28,6 +28,7 @@ import com.zgy.ringforu.bean.AppInfo;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
+import com.zgy.ringforu.util.StringUtil;
 import com.zgy.ringforu.util.ViewUtil;
 
 public class PickerApplicationActivity extends BaseGestureActivity implements OnClickListener {
@@ -200,16 +201,19 @@ public class PickerApplicationActivity extends BaseGestureActivity implements On
 	}
 
 	private void onSet() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder("");
 		for (AppInfo app : mAppsInfoList) {
 			if (app.getSelected()) {
 				sb.append(app.getPackageName() + ":::");
 			}
 		}
 		String apps = sb.toString();
-		MainUtil.refreshWaterMarkHideApps(apps.substring(0, apps.length() - 3));
+		if (!StringUtil.isNull(apps) && apps.contains(":::")) {
 
-		LogRingForu.e(TAG, "apps=" + apps.substring(0, apps.length() - 3));
+			MainUtil.refreshWaterMarkHideApps(apps.substring(0, apps.length() - 3));
+
+			LogRingForu.e(TAG, "apps=" + apps.substring(0, apps.length() - 3));
+		}
 		RingForUActivityManager.pop(PickerApplicationActivity.this);
 	}
 

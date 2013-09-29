@@ -25,24 +25,76 @@ public class MainCanstants {
 	public static final String FEEDBACK_EMAIL_LABEL = "\r\r\n\r\nEmail:  ";
 
 	public static final int[] INT_ONFLING_LEN = { 100, 70 };
-	
-	public static final int BUTTON_PRESSED_STATUES_SHOW_TIME = 500;//按钮按下状态显示时间，手势触发时的ui显示
-	
+
+	public static final int BUTTON_PRESSED_STATUES_SHOW_TIME = 500;// 按钮按下状态显示时间，手势触发时的ui显示
+
 	public static final String FILE_INNER = "/data/data/com.zgy.ringforu/files/";
-	public static final String FILE_IN_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ringforu/";
+	private static final String FILE_PATH_IN_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ringforu/";
+	private static final File FILE_IN_SDCARD = new File(FILE_PATH_IN_SDCARD);
 
-	public static final File FILE_SDCARD_IMPORTANT_NUM = new File(FILE_IN_SDCARD + "importantnumbers.cfg");
-	public static final File FILE_SDCARD_IMPORTANT_NAME = new File(FILE_IN_SDCARD + "importantnames.cfg");
+	private static final File FILE_SDCARD_IMPORTANT_NUM = new File(FILE_IN_SDCARD + "importantnumbers.cfg");
+	private static final File FILE_SDCARD_IMPORTANT_NAME = new File(FILE_IN_SDCARD + "importantnames.cfg");
 
-	public static final File FILE_SDCARD_CALL_NUM = new File(FILE_IN_SDCARD + "callnumbers.cfg");
-	public static final File FILE_SDCARD_CALL_NAME = new File(FILE_IN_SDCARD + "callnames.cfg");
+	private static final File FILE_SDCARD_CALL_NUM = new File(FILE_IN_SDCARD + "callnumbers.cfg");
+	private static final File FILE_SDCARD_CALL_NAME = new File(FILE_IN_SDCARD + "callnames.cfg");
 
-	public static final File FILE_SDCARD_SMS_NUM = new File(FILE_IN_SDCARD + "smsnumbers.cfg");
-	public static final File FILE_SDCARD_SMS_NAME = new File(FILE_IN_SDCARD + "smsnames.cfg");
-	
+	private static final File FILE_SDCARD_SMS_NUM = new File(FILE_IN_SDCARD + "smsnumbers.cfg");
+	private static final File FILE_SDCARD_SMS_NAME = new File(FILE_IN_SDCARD + "smsnames.cfg");
+
 	public static final File FILE_WATERMARK_IMG = new File("/data/data/com.zgy.ringforu/files/watermark.jpg");
-	public static final String FILE_WATERMARK_IMG_TEMP_CUT = MainCanstants.FILE_IN_SDCARD + "cut";
-	public static final String FILE_WATERMARK_IMG_TEMP_SRC = MainCanstants.FILE_IN_SDCARD + "src";
+	private static final String FILE_WATERMARK_IMG_TEMP_CUT_DES = MainCanstants.FILE_IN_SDCARD + "cut";
+	private static final String FILE_WATERMARK_IMG_TEMP_CUT_SRC = MainCanstants.FILE_IN_SDCARD + "src";
 	public static final String SERVICE_NAME_WATERMARK = "com.zgy.ringforu.service.WaterMarkService";
 	public static final int WATER_MARK_ALPHA_DEF = 50;
+
+	public static File getSdFile() {
+		checkSdFile();
+		return FILE_IN_SDCARD;
+	}
+
+	public static void checkSdFile() {
+		if (!FILE_IN_SDCARD.exists()) {
+			FILE_IN_SDCARD.mkdirs();
+		}
+	}
+
+	public static File getSdFileImportantNum() {
+		checkSdFile();
+		return FILE_SDCARD_IMPORTANT_NUM;
+	}
+
+	public static File getSdFileImportantName() {
+		checkSdFile();
+		return FILE_SDCARD_IMPORTANT_NAME;
+	}
+
+	public static File getSdFileSmsNum() {
+		checkSdFile();
+		return FILE_SDCARD_SMS_NUM;
+	}
+
+	public static File getSdFileSmsName() {
+		checkSdFile();
+		return FILE_SDCARD_SMS_NAME;
+	}
+
+	public static File getSdFileCallNum() {
+		checkSdFile();
+		return FILE_SDCARD_CALL_NUM;
+	}
+
+	public static File getSdFileCallName() {
+		checkSdFile();
+		return FILE_SDCARD_CALL_NAME;
+	}
+
+	public static String getsdFileWaterMarkCutSrcTemp() {
+		checkSdFile();
+		return FILE_WATERMARK_IMG_TEMP_CUT_SRC;
+	}
+	
+	public static String getsdFileWaterMarkCutDesTemp() {
+		checkSdFile();
+		return FILE_WATERMARK_IMG_TEMP_CUT_DES;
+	}
 }

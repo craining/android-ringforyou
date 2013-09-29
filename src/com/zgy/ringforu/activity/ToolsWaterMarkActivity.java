@@ -30,6 +30,7 @@ import android.widget.TextView;
 import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.bean.BitMapInfo;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.service.WaterMarkService;
 import com.zgy.ringforu.util.BitmapUtil;
@@ -147,15 +148,11 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			if (stream != null && type != null) {
 				try {
 					LogRingForu.e(TAG, "stream.getPath()=" + stream.getPath());
-					FileUtil.copyFileTo(new File(getImageAbsolutePath(stream)), MainCanstants.FILE_WATERMARK_IMG);
-					// MyToast.makeText(ToolsWaterMarkActivity.this,
-					// R.string.watermark_ori_tip, MyToast.LENGTH_SHORT,
-					// false).show();
+					FileUtil.copyFileTo(new File(FileUtil.getImageAbsolutePath(ToolsWaterMarkActivity.this, stream)), MainCanstants.FILE_WATERMARK_IMG);
 
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				// startPhotoZoom(stream);
 			}
 		} else if (Intent.ACTION_VIEW.equals(action)) {
 			String type = intent.getType();
@@ -167,29 +164,11 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 				try {
 					LogRingForu.e(TAG, "stream.getPath()=" + stream.getPath());
 					FileUtil.copyFileTo(new File(stream.getPath()), MainCanstants.FILE_WATERMARK_IMG);
-					// MyToast.makeText(ToolsWaterMarkActivity.this,
-					// R.string.watermark_ori_tip, MyToast.LENGTH_SHORT,
-					// false).show();
-
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				// startPhotoZoom(stream);
 			}
 		}
-		refreshViews();
-
-		// else {
-		// Bundle b = intent.getExtras();
-		// if (b != null && b.containsKey("fromnotifybar") &&
-		// b.getBoolean("fromnotifybar")) {
-		// // 从通知栏跳转过来的
-		// fromNotifBar = true;
-		// btnTitleClose.setVisibility(View.VISIBLE);
-		// btnOk.setVisibility(View.GONE);
-		// }
-		// }
-
 	}
 
 	@Override
@@ -248,7 +227,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 
 			if (PhoneUtil.existSDcard()) {
 				try {
-					tempFileSrc = new File(MainCanstants.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
+					tempFileSrc = new File(MainCanstants.getsdFileWaterMarkCutSrcTemp() + TimeUtil.getCurrentTimeMillis());
 					FileUtil.copyFileTo(MainCanstants.FILE_WATERMARK_IMG, tempFileSrc);
 					Uri uriMark = Uri.fromFile(tempFileSrc);
 					startPhotoZoom(uriMark);
@@ -270,16 +249,9 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 				btnOrientation.setText(R.string.watermark_orientation_landscape);
 			}
-
-			if (MainCanstants.FILE_WATERMARK_IMG.exists()) {
-				// MyToast.makeText(ToolsWaterMarkActivity.this,
-				// R.string.watermark_ori_tip, MyToast.LENGTH_SHORT,
-				// false).show();
-			}
 			break;
 
 		// case R.id.layout_watermark_changebg:
-		//
 		// break;
 		case R.id.text_watermark_changebg:
 			setBgAndTextColor();
@@ -337,12 +309,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 					dialog.dismiss();
 					mJumpOutFromPick = true;
 					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-					tempFileSrc = new File(MainCanstants.FILE_WATERMARK_IMG_TEMP_SRC + TimeUtil.getCurrentTimeMillis());
-					File mediaDir = tempFileSrc.getParentFile();
-					if (!mediaDir.exists()) {
-						mediaDir.mkdirs();
-					}
-
+					tempFileSrc = new File(MainCanstants.getsdFileWaterMarkCutSrcTemp() + TimeUtil.getCurrentTimeMillis());
 					Uri tempTakePicUri = Uri.fromFile(tempFileSrc);
 					// 留意一下这个文件路径是按照怎样的规则转换为一个uri的
 					LogRingForu.v(TAG, "根据路径转换的uri为：" + tempTakePicUri.toString());
@@ -357,23 +324,6 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		}).create().show();
 	}
 
-	// private void cropImageUri(Uri uri, int outputX, int outputY, int
-	// requestCode){
-	// Intent intent = new Intent("com.android.camera.action.CROP");
-	// intent.setDataAndType(uri, "image/*");
-	// intent.putExtra("crop", "true");
-	// intent.putExtra("aspectX", 2);
-	// intent.putExtra("aspectY", 1);
-	// intent.putExtra("outputX", outputX);
-	// intent.putExtra("outputY", outputY);
-	// intent.putExtra("scale", true);
-	// intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-	// intent.putExtra("return-data", false);
-	// intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-	// intent.putExtra("noFaceDetection", true); // no face detection
-	// startActivityForResult(intent, requestCode);
-	// }
-
 	/**
 	 * 裁剪图片方法实现
 	 * 
@@ -383,7 +333,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 
 		mJumpOutFromPick = true;
 
-		tempFileCutted = new File(MainCanstants.FILE_WATERMARK_IMG_TEMP_CUT + TimeUtil.getCurrentTimeMillis());
+		tempFileCutted = new File(MainCanstants.getsdFileWaterMarkCutDesTemp() + TimeUtil.getCurrentTimeMillis());
 
 		Uri uriTemp = Uri.fromFile(tempFileCutted);
 		LogRingForu.e(TAG, "after cut uriTemp =" + uriTemp.toString() + "  src uri = " + cutFileUri.toString());
@@ -428,34 +378,9 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		startActivityForResult(intent, REQUEST_CUTPIC);
 	}
 
-	// private void cropImageUri(Uri uri, int outputX, int outputY){
-	// Intent intent = new Intent("com.android.camera.action.CROP");
-	// intent.setDataAndType(uri, "image/*");
-	// intent.putExtra("crop", "true");
-	// intent.putExtra("aspectX", 2);
-	// intent.putExtra("aspectY", 1);
-	// intent.putExtra("outputX", outputX);
-	// intent.putExtra("outputY", outputY);
-	// intent.putExtra("scale", true);
-	// // intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-	// intent.putExtra(MediaStore.EXTRA_OUTPUT,
-	// Uri.parse("file:///sdcard/result.jpg"));
-	// intent.putExtra("return-data", false);
-	// intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-	// intent.putExtra("noFaceDetection", true); // no face detection
-	// startActivityForResult(intent, 0);
-	// }
-
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		LogRingForu.e(TAG, "onConfigurationChanged");
-
-		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-			btnOrientation.setText(R.string.watermark_orientation_portrait);
-		} else {
-			btnOrientation.setText(R.string.watermark_orientation_landscape);
-		}
-
 		super.onConfigurationChanged(newConfig);
 	}
 
@@ -482,7 +407,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 			} else {
 				MyToast.makeText(ToolsWaterMarkActivity.this, "剪裁图片失败！", MyToast.LENGTH_SHORT, true).show();
 			}
-			refreshViews();
+//			refreshViews();
 			break;
 		case REQUEST_PICKPIC_CAMERA:
 
@@ -491,20 +416,15 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 				try {
 					FileUtil.copyFileTo(tempFileSrc, MainCanstants.FILE_WATERMARK_IMG);
 					tempFileSrc.delete();
-					// MyToast.makeText(ToolsWaterMarkActivity.this,
-					// R.string.watermark_ori_tip, MyToast.LENGTH_SHORT,
-					// false).show();
-
-					refreshViews();
+//					refreshViews();
 				} catch (Exception e) {
 					e.printStackTrace();
 					MyToast.makeText(ToolsWaterMarkActivity.this, "获取图片失败！", MyToast.LENGTH_SHORT, true).show();
-					refreshViews();
+//					refreshViews();
 				}
-				// startPhotoZoom(Uri.fromFile(tempFileSrc));
 			} else {
 				MyToast.makeText(ToolsWaterMarkActivity.this, "获取图片失败！", MyToast.LENGTH_SHORT, true).show();
-				refreshViews();
+//				refreshViews();
 			}
 			break;
 
@@ -513,23 +433,12 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 				Uri picPath = data.getData();
 				LogRingForu.e(TAG, "PIC uri=" + picPath);
 				if (picPath != null) {
-					String abPath = getImageAbsolutePath(picPath);
+					String abPath = FileUtil.getImageAbsolutePath(ToolsWaterMarkActivity.this, picPath);
 					if (!StringUtil.isNull(abPath)) {
 						File getFileSrc = new File(abPath);
 						try {
-							// tempFileSrc = new
-							// File(MainCanstants.FILE_WATERMARK_IMG_TEMP_SRC +
-							// TimeUtil.getCurrentTimeMillis());
-							// FileUtil.copyFileTo(getFileSrc, tempFileSrc);
 							FileUtil.copyFileTo(getFileSrc, MainCanstants.FILE_WATERMARK_IMG);
-							// MyToast.makeText(ToolsWaterMarkActivity.this,
-							// R.string.watermark_ori_tip, MyToast.LENGTH_SHORT,
-							// false).show();
-
-							refreshViews();
-							// startPhotoZoom(Uri.fromFile(tempFileSrc));
-							// cropImageUri(Uri.fromFile(tempFileSrc), 2000,
-							// 500);
+//							refreshViews();
 							break;
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -540,33 +449,13 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 
 			}
 			MyToast.makeText(ToolsWaterMarkActivity.this, "获取图片失败！", MyToast.LENGTH_SHORT, true).show();
-			refreshViews();
+//			refreshViews();
 
 			break;
 		default:
 			break;
 		}
 
-	}
-
-	/**
-	 * 获取图片的绝对路径
-	 * 
-	 * @param uri
-	 * @return
-	 */
-	private String getImageAbsolutePath(Uri uri) {
-		String result = uri.toString();
-		try {
-			String[] proj = { MediaStore.Images.Media.DATA };
-			Cursor cursor = managedQuery(uri, proj, null, null, null);
-			int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-			cursor.moveToFirst();
-			result = cursor.getString(column_index);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
 	}
 
 	/**
@@ -581,35 +470,37 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	 * 刷新当前界面
 	 */
 	private void refreshViews() {
+		LogRingForu.e(TAG, "refreshViews!!");
 		mJumpOutFromPick = false;
 		// 显示水印到view
 		if (MainCanstants.FILE_WATERMARK_IMG.exists()) {
 			DisplayMetrics metric = getResources().getDisplayMetrics();
-			imgShow.setImageBitmap(BitmapUtil.readBitmapAutoSize(MainCanstants.FILE_WATERMARK_IMG.getAbsolutePath(), metric.widthPixels, metric.heightPixels));
+			BitMapInfo info = BitmapUtil.readBitmapAutoSize(MainCanstants.FILE_WATERMARK_IMG.getAbsolutePath(), metric.widthPixels, metric.heightPixels);
+			imgShow.setImageBitmap(info.getBitMap());
 			imgShow.setScaleType(ScaleType.FIT_XY);
 			btnOk.setVisibility(View.VISIBLE);
 			btnCut.setVisibility(View.VISIBLE);
 			btnDel.setVisibility(View.VISIBLE);
 			btnHideApp.setVisibility(View.VISIBLE);
-			// btnCancel.setVisibility(View.VISIBLE);
 			seekbarAlpha.setVisibility(View.VISIBLE);
 			textSeekbar.setVisibility(View.VISIBLE);
 			btnChange.setText(R.string.watermark_change);
-			// textChangeTip.setVisibility(View.VISIBLE);
-			// layoutChangeBg.setVisibility(View.VISIBLE);
 			mTextChangeBg.setVisibility(View.VISIBLE);
+			if(info.isScalechanged()) {
+				mTextCutTip.setVisibility(View.VISIBLE);
+			} else {
+				mTextCutTip.setVisibility(View.GONE);
+			}
 		} else {
 			btnOk.setVisibility(View.GONE);
 			btnCut.setVisibility(View.GONE);
 			btnDel.setVisibility(View.GONE);
 			btnHideApp.setVisibility(View.GONE);
-			// btnCancel.setVisibility(View.GONE);
 			seekbarAlpha.setVisibility(View.GONE);
 			textSeekbar.setVisibility(View.GONE);
 			btnChange.setText(R.string.watermark_select_tip);
-			// textChangeTip.setVisibility(View.GONE);
-			// layoutChangeBg.setVisibility(View.GONE);
 			mTextChangeBg.setVisibility(View.GONE);
+			mTextCutTip.setVisibility(View.GONE);
 			pickPic();
 		}
 		// 控制透明度
@@ -618,22 +509,20 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		seekbarAlpha.setProgress(alpha);
 		if (WaterMarkUtil.isWaterMarkSeted()) {
 			btnTitleClose.setVisibility(View.VISIBLE);
-			// btnOk.setVisibility(View.GONE);
 		} else {
 			btnTitleClose.setVisibility(View.GONE);
-			// btnOk.setVisibility(View.VISIBLE);
+		}
+		
+		if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+			btnOrientation.setText(R.string.watermark_orientation_landscape);
+		} else {
+			btnOrientation.setText(R.string.watermark_orientation_portrait);
 		}
 	}
 
 	@Override
 	protected void onDestroy() {
 		LogRingForu.e(TAG, "onDestroy");
-		// WaterMarkService.show = true;
-		// WaterMarkUtil.ctrlWaterMarkBackService(WaterMarkActivity.this, true);
-		// WaterMarkUtil.checkState(ToolsWaterMarkActivity.this);
-		// if (WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.exists()) {
-		// WaterMarkUtil.FILE_WATERMARK_TEMP_IMAGE.delete();
-		// }
 		super.onDestroy();
 	}
 
@@ -641,12 +530,7 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 	protected void onResume() {
 		LogRingForu.e(TAG, "onResume");
 		clearWaterMark();
-		if (PhoneUtil.existSDcard()) {
-			File f = new File(MainCanstants.FILE_IN_SDCARD);
-			if (!f.exists()) {
-				f.mkdirs();
-			}
-		}
+		refreshViews();
 		super.onResume();
 	}
 
@@ -662,9 +546,6 @@ public class ToolsWaterMarkActivity extends BaseGestureActivity implements OnSee
 		if (!mJumpOutFromPick) {
 			LogRingForu.e(TAG, "!mJumpOutFromPick");
 			WaterMarkUtil.checkState(ToolsWaterMarkActivity.this);
-			// WaterMarkService.show = true;
-			// WaterMarkUtil.ctrlWaterMarkBackService(ToolsWaterMarkActivity.this,
-			// true);
 		}
 		super.onStop();
 	}
