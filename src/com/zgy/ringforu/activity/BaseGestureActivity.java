@@ -40,16 +40,15 @@ public class BaseGestureActivity extends Activity implements OnGestureListener {
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 
-		if(RingForU.getInstance().isbIsGestureOn()) {
-			if (ev.getAction() == MotionEvent.ACTION_UP) {
+		if (RingForU.getInstance().isbIsGestureOn()) {
+			if(mGetResult && ev.getAction() == MotionEvent.ACTION_UP) {
 				mGetResult = false;
+				return true;
 			}
-
 			if (!mGetResult) {
 				mGestureDetector.onTouchEvent(ev);
 			}
 		}
-		
 
 		return super.dispatchTouchEvent(ev);
 	}

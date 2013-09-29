@@ -56,31 +56,39 @@ public class JokeShowActivity extends BaseGestureActivity implements OnClickList
 
 	private static final String TAG_HAND = "hand";
 	private static final String TAG_PANDA = "panda";
+	private static final String TAG_CAT = "cat";
+	private static final String TAG_CAT1 = "cat1";
+	private static final String TAG_CAT2 = "cat2";
+	private static final String TAG_CAT3 = "cat3";
+	private static final String TAG_CAT4 = "cat4";
+	private static final String TAG_CAT5 = "cat5";
+	private static final String TAG_CAT6 = "cat6";
+	private static final String TAG_CAT7 = "cat7";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.joke_show_info);
+		setContentView(R.layout.push_msg_show_info);
 
 		RingForUActivityManager.push(this);
 
 		Bundle b = getIntent().getExtras();
 		if (b == null) {
 			RingForUActivityManager.pop(this);
-			MyToast.makeText(this, R.string.joke_get_failed, Toast.LENGTH_SHORT, true).show();
+			MyToast.makeText(this, R.string.msg_get_failed, Toast.LENGTH_SHORT, true).show();
 			return;
 		}
 
-		mTitle = b.getString(NotificationUtil.INTENT_ACTION_KEY_JOKE_TITLE);
-		mContent = b.getString(NotificationUtil.INTENT_ACTION_KEY_JOKE_CONTENT);
-		mTag = b.getString(NotificationUtil.INTENT_ACTION_KEY_JOKE_TAG);
+		mTitle = b.getString(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TITLE);
+		mContent = b.getString(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_CONTENT);
+		mTag = b.getString(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TAG);
 
-		btnBack = (Button) findViewById(R.id.btn_joke_return);
-		btnShare = (Button) findViewById(R.id.btn_joke_share);
-		textInfo = (TextView) findViewById(R.id.text_joke_info);
-		textTitle = (TextView) findViewById(R.id.text_joke_title);
-		imgTag = (ImageView) findViewById(R.id.img_joke_show);
+		btnBack = (Button) findViewById(R.id.btn_push_msg_return);
+		btnShare = (Button) findViewById(R.id.btn_push_msg_share);
+		textInfo = (TextView) findViewById(R.id.text_push_msg_info);
+		textTitle = (TextView) findViewById(R.id.text_push_msg_title);
+		imgTag = (ImageView) findViewById(R.id.img_push_msg_show);
 
 		if (!StringUtil.isNull(mTitle)) {
 			textTitle.setText(mTitle);
@@ -88,7 +96,7 @@ public class JokeShowActivity extends BaseGestureActivity implements OnClickList
 
 		if (StringUtil.isNull(mContent)) {
 			RingForUActivityManager.pop(this);
-			MyToast.makeText(this, R.string.joke_get_failed, Toast.LENGTH_SHORT, true).show();
+			MyToast.makeText(this, R.string.msg_get_failed, Toast.LENGTH_SHORT, true).show();
 			return;
 		}
 		textInfo.setText(mContent.replaceAll(PushMessageUtils.MESSAGE_TAG_BREAKLINE, "\r\n"));
@@ -112,6 +120,22 @@ public class JokeShowActivity extends BaseGestureActivity implements OnClickList
 				return R.drawable.ic_joke_hand;
 			} else if (tag.equals(TAG_PANDA)) {
 				return R.drawable.ic_joke_panda;
+			} else if (tag.equals(TAG_CAT)) {
+				return R.drawable.ic_joke_cat;
+			} else if (tag.equals(TAG_CAT1)) {
+				return R.drawable.ic_joke_cat1;
+			} else if (tag.equals(TAG_CAT2)) {
+				return R.drawable.ic_joke_cat2;
+			} else if (tag.equals(TAG_CAT3)) {
+				return R.drawable.ic_joke_cat3;
+			} else if (tag.equals(TAG_CAT4)) {
+				return R.drawable.ic_joke_cat4;
+			} else if (tag.equals(TAG_CAT5)) {
+				return R.drawable.ic_joke_cat5;
+			} else if (tag.equals(TAG_CAT6)) {
+				return R.drawable.ic_joke_cat6;
+			} else if (tag.equals(TAG_CAT7)) {
+				return R.drawable.ic_joke_cat7;
 			}
 		}
 
@@ -126,12 +150,12 @@ public class JokeShowActivity extends BaseGestureActivity implements OnClickList
 		// widthHeight[1] = dMetrics.heightPixels / 2;
 		widthHeight[1] = ViewGroup.LayoutParams.FILL_PARENT;
 
-		mTopMenu = new FCMenu(JokeShowActivity.this, widthHeight, findViewById(R.id.view_joke_anchor));
+		mTopMenu = new FCMenu(JokeShowActivity.this, widthHeight, findViewById(R.id.view_push_msg_anchor));
 		mTopMenuListener = new OnTopMenuItemClickedListener();
 		mTopMenu.setMenuItemOnclickListener(mTopMenuListener);
 
 		List<FCMenuItem> items = new ArrayList<FCMenuItem>();
-		items.add(new FCMenuItem(ID_MENU_MSG, -1, R.string.joke_share_msg));
+		items.add(new FCMenuItem(ID_MENU_MSG, -1, R.string.msg_share_msg));
 		mTopMenu.setDatas(items, -1, false);
 	}
 
@@ -174,10 +198,10 @@ public class JokeShowActivity extends BaseGestureActivity implements OnClickList
 	public void onClick(View v) {
 		PhoneUtil.doVibraterNormal(super.mVb);
 		switch (v.getId()) {
-		case R.id.btn_joke_return:
+		case R.id.btn_push_msg_return:
 			RingForUActivityManager.pop(JokeShowActivity.this);
 			break;
-		case R.id.btn_joke_share:
+		case R.id.btn_push_msg_share:
 			mTopMenu.showMenu(-1);
 			break;
 		default:

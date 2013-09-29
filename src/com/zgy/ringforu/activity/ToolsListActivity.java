@@ -191,7 +191,7 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 			break;
 		case R.id.layout_tool_joke:
 			MainConfig mc = MainConfig.getInstance();
-			mc.setPushJokeOn(!mc.isPushJokeOn());
+			mc.setPushJokeOn(!mc.isPushMsgOn());
 			refreshSwitch();
 			break;
 		default:
@@ -231,7 +231,7 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 		checkBusyModeSwitch.setChecked(BusyModeUtil.isBusyModeOn());
 		BusyModeUtil.checkState(ToolsListActivity.this);
 
-		checkJokeSwitch.setChecked(MainConfig.getInstance().isPushJokeOn());
+		checkJokeSwitch.setChecked(MainConfig.getInstance().isPushMsgOn());
 	}
 
 	private class ToolsReceiver extends BroadcastReceiver {

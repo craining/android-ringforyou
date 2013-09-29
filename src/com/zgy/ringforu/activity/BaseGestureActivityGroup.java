@@ -40,8 +40,9 @@ public class BaseGestureActivityGroup extends ActivityGroup implements OnGesture
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 		if (RingForU.getInstance().isbIsGestureOn()) {
-			if (ev.getAction() == MotionEvent.ACTION_UP) {
+			if (mGetResult && ev.getAction() == MotionEvent.ACTION_UP) {
 				mGetResult = false;
+				return true;
 			}
 			if (!mGetResult) {
 				mGestureDetector.onTouchEvent(ev);

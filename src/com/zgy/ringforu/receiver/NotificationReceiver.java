@@ -72,14 +72,14 @@ public class NotificationReceiver extends BroadcastReceiver {
 		} else if (intent.getAction().equals(NotificationUtil.ACTION_NEW_VERSION)) {
 			SelectApplicationUtil.viewHtml(context, intent.getExtras().getString(NotificationUtil.INTENT_ACTION_KEY_DOWNLOAD_URL));
 		} else if (intent.getAction().equals(NotificationUtil.ACTION_JOKE)) {
-			String jokeTitle = intent.getStringExtra(NotificationUtil.INTENT_ACTION_KEY_JOKE_TITLE);
-			String jokeContent = intent.getStringExtra(NotificationUtil.INTENT_ACTION_KEY_JOKE_CONTENT);
-			String tag = intent.getStringExtra(NotificationUtil.INTENT_ACTION_KEY_JOKE_TAG);
+			String jokeTitle = intent.getStringExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TITLE);
+			String jokeContent = intent.getStringExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_CONTENT);
+			String tag = intent.getStringExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TAG);
 			i = new Intent(context, JokeShowActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_JOKE_TITLE, jokeTitle);
-			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_JOKE_CONTENT, jokeContent);
-			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_JOKE_TAG, tag);
+			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TITLE, jokeTitle);
+			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_CONTENT, jokeContent);
+			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TAG, tag);
 			context.startActivity(i);
 		}
 

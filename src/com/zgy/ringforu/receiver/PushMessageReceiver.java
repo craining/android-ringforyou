@@ -56,7 +56,7 @@ public class PushMessageReceiver extends BroadcastReceiver {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			} else if (message.contains(PushMessageUtils.MESSAGE_CONTENT_JOKE)) {
+			} else if (message.contains(PushMessageUtils.MESSAGE_CONTENT_PUSH_MSG)) {
 
 				try {
 					String extras = intent.getStringExtra(PushConstants.EXTRA_EXTRA);
@@ -64,7 +64,7 @@ public class PushMessageReceiver extends BroadcastReceiver {
 					LogRingForu.d(TAG, "EXTRA_EXTRA = " + extras);
 					JSONObject json = new JSONObject(extras);
 					// –¶ª∞Ã· æ
-					if (MainConfig.getInstance().isPushJokeOn()) {
+					if (MainConfig.getInstance().isPushMsgOn()) {
 						NotificationUtil.showHideJokeNotify(true, context, json.getString(PushMessageUtils.MESSAGE_TAG_TITLE), json.getString(PushMessageUtils.MESSAGE_TAG_CONTENT), json.getString(PushMessageUtils.MESSAGE_TAG_TAG));
 					}
 				} catch (Exception e) {

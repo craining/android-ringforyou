@@ -58,9 +58,9 @@ public class NotificationUtil {
 	public static final String INTENT_ACTION_KEY_CALL = "notification_refused_number";
 	public static final String INTENT_ACTION_KEY_DOWNLOAD_URL = "notification_downloadurl";
 	public static final String INTENT_ACTION_KEY_CLEAR = "notification_refused_clear";
-	public static final String INTENT_ACTION_KEY_JOKE_TITLE = "notification_joke_title";
-	public static final String INTENT_ACTION_KEY_JOKE_CONTENT = "notification_joke_content";
-	public static final String INTENT_ACTION_KEY_JOKE_TAG = "notification_joke_tag";
+	public static final String INTENT_ACTION_KEY_PUSH_MSG_TITLE = "notification_joke_title";
+	public static final String INTENT_ACTION_KEY_PUSH_MSG_CONTENT = "notification_joke_content";
+	public static final String INTENT_ACTION_KEY_PUSH_MSG_TAG = "notification_joke_tag";
 
 	/**
 	 * 显示gprs已经禁用的通知
@@ -400,18 +400,18 @@ public class NotificationUtil {
 			// 创建一个NotificationManager的引用
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 			// 定义Notification的各种属性
-			Notification notification = new Notification(R.drawable.ic_launcher, context.getString(R.string.joke_title), System.currentTimeMillis());
+			Notification notification = new Notification(R.drawable.ic_launcher, context.getString(R.string.msg_title), System.currentTimeMillis());
 			notification.icon = R.drawable.ic_launcher;
 			// notification.flags |= Notification.FLAG_ONGOING_EVENT;
 			notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
 			CharSequence contentText = title;
-			CharSequence contentTitle = context.getString(R.string.joke_title);
+			CharSequence contentTitle = context.getString(R.string.msg_title);
 
 			Intent notificationIntent = new Intent(ACTION_JOKE);
-			notificationIntent.putExtra(INTENT_ACTION_KEY_JOKE_TITLE, title);
-			notificationIntent.putExtra(INTENT_ACTION_KEY_JOKE_CONTENT, content);
-			notificationIntent.putExtra(INTENT_ACTION_KEY_JOKE_TAG, tag);
+			notificationIntent.putExtra(INTENT_ACTION_KEY_PUSH_MSG_TITLE, title);
+			notificationIntent.putExtra(INTENT_ACTION_KEY_PUSH_MSG_CONTENT, content);
+			notificationIntent.putExtra(INTENT_ACTION_KEY_PUSH_MSG_TAG, tag);
 			PendingIntent contentItent = PendingIntent.getBroadcast(context, PENDINGINTENT_ID_JOKE, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
 			// 把Notification传递给NotificationManager

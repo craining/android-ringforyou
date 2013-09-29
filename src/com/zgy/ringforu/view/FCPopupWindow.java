@@ -60,14 +60,16 @@ public class FCPopupWindow {
 
 	}
 
-	public void showAtBottom(View contentView, View parent, int y) {
+	public void showAtBottom(View contentView, View parent, int y, int style) {
 		if (isShowing()) {
 			mPopupWindow.dismiss();
 		}
 		if (mPopupWindow == null) {
 			mPopupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
 			mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
-			mPopupWindow.setAnimationStyle(R.style.top_menu);
+			if(style!= -1) {
+				mPopupWindow.setAnimationStyle(style);
+			}
 			mPopupWindow.update();
 
 		}

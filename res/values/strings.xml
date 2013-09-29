@@ -1,7 +1,7 @@
 <resources>
 
     
-    <string name="version_name">1.0.5</string>
+    <string name="version_name">1.0.6</string>
     
     <string name="app_name">Waiter</string>
     <string name="back">Back</string>
@@ -270,11 +270,11 @@
     <string name="water_mark_hide_app_title">选择屏蔽应用</string>
     <string name="water_mark_hide_app_tip">当被勾选的应用启动时，不显示屏幕水印</string>
     
-    <string name="joke_title">一笑而过【Waiter】</string>
-    <string name="joke_title_title">一笑而过</string>
-    <string name="joke_get_failed">读取笑话失败</string>
-    <string name="joke_share_msg">手机短信</string>
-    <string name="joke_tip">接收笑话推送</string>
+    <string name="msg_title">消息推送【Waiter】</string>
+    <string name="msg_title_title">消息推送</string>
+    <string name="msg_get_failed">读取消息失败</string>
+    <string name="msg_share_msg">手机短信</string>
+    <string name="msg_tip">接收笑话、生活窍门、健康知识等消息推送</string>
     
 
 </resources>

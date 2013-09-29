@@ -6720,8 +6720,8 @@ com.zgy.ringforu.activity.TabCallActivity -> com.zgy.ringforu.activity.TabCallAc
     void onResume() -> onResume
     void onClick(android.view.View) -> onClick
     android.widget.Button access$0(com.zgy.ringforu.activity.TabCallActivity) -> a
-    com.zgy.ringforu.view.FCMenu access$1(com.zgy.ringforu.activity.TabCallActivity) -> b
-    android.widget.Button access$2(com.zgy.ringforu.activity.TabCallActivity) -> c
+    android.widget.Button access$1(com.zgy.ringforu.activity.TabCallActivity) -> b
+    com.zgy.ringforu.view.FCMenu access$2(com.zgy.ringforu.activity.TabCallActivity) -> c
     void access$3(com.zgy.ringforu.activity.TabCallActivity) -> d
     android.widget.SimpleAdapter access$4(com.zgy.ringforu.activity.TabCallActivity) -> e
     void access$5(com.zgy.ringforu.activity.TabCallActivity) -> f
@@ -7110,7 +7110,7 @@ com.zgy.ringforu.config.MainConfig -> com.zgy.ringforu.c.a:
     void setPushNewVersionInfo(java.lang.String) -> k
     java.lang.String getWaterMarkHideApps() -> A
     void setWaterMarkHideApps(java.lang.String) -> l
-    boolean isPushJokeOn() -> B
+    boolean isPushMsgOn() -> B
     void setPushJokeOn(boolean) -> i
 com.zgy.ringforu.interfaces.OnGestureChangedListener -> com.zgy.ringforu.d.a:
     void onSlideToLeft() -> b

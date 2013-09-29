@@ -54,7 +54,7 @@ public class PushMessageUtils {
 	public static final String MESSAGE_TAG_DOWNLOAD_URL = "download_url";
 	public static final String MESSAGE_TAG_VERSION_INFO = "version_info";
 	
-	public static final String MESSAGE_CONTENT_JOKE = "joke";
+	public static final String MESSAGE_CONTENT_PUSH_MSG = "push_msg";
 	public static final String MESSAGE_TAG_TITLE = "title";
 	public static final String MESSAGE_TAG_CONTENT = "content";
 	public static final String MESSAGE_TAG_TAG = "tag";

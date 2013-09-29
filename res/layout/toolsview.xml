@@ -171,11 +171,11 @@
 
                 <TextView
                     style="@style/text_set_item_content_left_top"
-                    android:text="@string/joke_title_title" />
+                    android:text="@string/msg_title_title" />
 
                 <TextView
                     style="@style/text_set_item_content_left_bottom"
-                    android:text="@string/joke_tip" />
+                    android:text="@string/msg_tip" />
             </LinearLayout>
 
             <CheckBox

@@ -172,11 +172,7 @@ public class TabCallActivity extends Activity implements OnClickListener {
 			finish();
 			break;
 		case R.id.btn_call_set:
-			if (mTopMenu.isShowing()) {
-				mTopMenu.closeMenu();
-			} else {
-				mTopMenu.showMenu(R.style.top_menu);
-			}
+			mTopMenu.showMenu(R.style.top_menu);
 			break;
 		default:
 			break;
@@ -281,19 +277,14 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		public void onSlideToRight() {
 			ViewUtil.onButtonPressedBlue(btnExit);
 			PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
-			if (mTopMenu.isShowing()) {
-				mTopMenu.closeMenu();
-			}
 			finish();
 		}
 
 		@Override
 		public void onSlideToLeft() {
-			if (!mTopMenu.isShowing()) {
-				ViewUtil.onButtonPressedBlue(btnSet);
-				PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
-				mTopMenu.showMenu(R.style.top_menu);
-			}
+			ViewUtil.onButtonPressedBlue(btnSet);
+			PhoneUtil.doVibraterNormal(((MainActivityGroup) getParent()).mVb);
+			mTopMenu.showMenu(R.style.top_menu);
 		}
 	};
 

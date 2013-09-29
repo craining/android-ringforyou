@@ -123,6 +123,14 @@ com.zgy.ringforu.activity.JokeShowActivity:
     private static final int ID_MENU_MSG
     private static final java.lang.String TAG_HAND
     private static final java.lang.String TAG_PANDA
+    private static final java.lang.String TAG_CAT
+    private static final java.lang.String TAG_CAT1
+    private static final java.lang.String TAG_CAT2
+    private static final java.lang.String TAG_CAT3
+    private static final java.lang.String TAG_CAT4
+    private static final java.lang.String TAG_CAT5
+    private static final java.lang.String TAG_CAT6
+    private static final java.lang.String TAG_CAT7
 com.zgy.ringforu.activity.MainActivityGroup:
     public int[] mWidthHeightTopMenu
 com.zgy.ringforu.activity.PickerApplicationActivity:
@@ -259,9 +267,9 @@ com.zgy.ringforu.util.NotificationUtil:
     public static final java.lang.String INTENT_ACTION_KEY_CALL
     public static final java.lang.String INTENT_ACTION_KEY_DOWNLOAD_URL
     public static final java.lang.String INTENT_ACTION_KEY_CLEAR
-    public static final java.lang.String INTENT_ACTION_KEY_JOKE_TITLE
-    public static final java.lang.String INTENT_ACTION_KEY_JOKE_CONTENT
-    public static final java.lang.String INTENT_ACTION_KEY_JOKE_TAG
+    public static final java.lang.String INTENT_ACTION_KEY_PUSH_MSG_TITLE
+    public static final java.lang.String INTENT_ACTION_KEY_PUSH_MSG_CONTENT
+    public static final java.lang.String INTENT_ACTION_KEY_PUSH_MSG_TAG
     23:23:public NotificationUtil()
 com.zgy.ringforu.util.PhoneUtil:
     private static final java.lang.String TAG
@@ -292,7 +300,7 @@ com.zgy.ringforu.util.PushMessageUtils:
     public static final java.lang.String MESSAGE_TAG_VERSION_CODE
     public static final java.lang.String MESSAGE_TAG_DOWNLOAD_URL
     public static final java.lang.String MESSAGE_TAG_VERSION_INFO
-    public static final java.lang.String MESSAGE_CONTENT_JOKE
+    public static final java.lang.String MESSAGE_CONTENT_PUSH_MSG
     public static final java.lang.String MESSAGE_TAG_TITLE
     public static final java.lang.String MESSAGE_TAG_CONTENT
     public static final java.lang.String MESSAGE_TAG_TAG
@@ -337,10 +345,10 @@ com.zgy.ringforu.view.FCMenuItem:
     40:41:public void setTextRes(int)
 com.zgy.ringforu.view.FCPopupWindow:
     46:61:public void showAtBottom(int,int,android.view.View,android.view.View,boolean,android.graphics.drawable.BitmapDrawable,int)
-    64:77:public void showAtBottom(android.view.View,android.view.View,int)
-    80:81:public void showAtBottom(android.view.View,int)
-    84:85:public void setOnDismissListener(android.widget.PopupWindow$OnDismissListener)
-    98:98:public android.content.Context getContext()
+    64:79:public void showAtBottom(android.view.View,android.view.View,int,int)
+    82:83:public void showAtBottom(android.view.View,int)
+    86:87:public void setOnDismissListener(android.widget.PopupWindow$OnDismissListener)
+    100:100:public android.content.Context getContext()
 com.zgy.ringforu.view.MyDialog:
     23:24:public MyDialog(android.content.Context)
 com.zgy.ringforu.view.MyDialog$Builder:

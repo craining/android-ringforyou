@@ -15,6 +15,7 @@ import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.interfaces.OnGestureChangedListener;
 import com.zgy.ringforu.util.MainUtil;
+import com.zgy.ringforu.util.NotificationUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.PushMessageUtils;
 import com.zgy.ringforu.util.RingForUActivityManager;
@@ -44,10 +45,10 @@ public class MainActivityGroup extends BaseGestureActivityGroup implements OnCli
 		setContentView(R.layout.main_group);
 
 		RingForUActivityManager.push(this);
+		
+		MainUtil.checkNewVersion(MainActivityGroup.this);
 
 		PushMessageUtils.startPushWork(MainActivityGroup.this);
-
-		MainUtil.checkNewVersion(MainActivityGroup.this);
 		
 		if (MainConfig.getInstance().getPushNewVersionCode() == MainUtil.getAppVersionCode(MainActivityGroup.this)) {
 			// 当前版本为新版本，若更新说明不为空，则提示更新说明，待显示后，清空更新说明
@@ -63,15 +64,23 @@ public class MainActivityGroup extends BaseGestureActivityGroup implements OnCli
 		tabSms.setOnClickListener(this);
 		tabMore.setOnClickListener(this);
 
+		// test
+		// Intent i = new Intent(MainActivityGroup.this,
+		// JokeShowActivity.class);
+		// i.putExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TITLE, "hah");
+		// i.putExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_CONTENT,
+		// "哈哈");
+		// i.putExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TAG, "hand");
+		// startActivity(i);
+
 	}
 
-	
 	@Override
 	protected void onNewIntent(Intent intent) {
 		// 如果要统计Push引起的用户使用应用情况，请实现本方法，且加上这一个语句
 		setIntent(intent);
 	}
-	
+
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 		// TODO Auto-generated method stub

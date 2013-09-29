@@ -236,7 +236,7 @@ public class MainConfig extends PreferenceUtil {
 		putString(ConfigCanstants.PUSH_WATERMARK_HIDE_APP, names);
 	}
 
-	public synchronized boolean isPushJokeOn() {
+	public synchronized boolean isPushMsgOn() {
 		return getBool(ConfigCanstants.SWITCH_PUSH_JOKE, true);
 	}
 
