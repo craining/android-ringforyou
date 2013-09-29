@@ -38,7 +38,7 @@ public class PushMessageReceiver extends BroadcastReceiver {
 			LogRingForu.i(TAG, "onMessage: " + message);
 
 			// 用户在此自定义处理消息,以下代码为demo界面展示用
-			if (message.equals(PushMessageUtils.MESSAGE_CONTENT_NEW_VERSION)) {
+			if (message.contains(PushMessageUtils.MESSAGE_CONTENT_NEW_VERSION)) {
 				// 版本更新提示
 				try {
 					String extras = intent.getStringExtra(PushConstants.EXTRA_EXTRA);
@@ -56,7 +56,7 @@ public class PushMessageReceiver extends BroadcastReceiver {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			} else if (message.equals(PushMessageUtils.MESSAGE_CONTENT_JOKE)) {
+			} else if (message.contains(PushMessageUtils.MESSAGE_CONTENT_JOKE)) {
 
 				try {
 					String extras = intent.getStringExtra(PushConstants.EXTRA_EXTRA);
