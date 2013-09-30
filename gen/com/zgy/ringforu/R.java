@@ -59,7 +59,7 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f070056;
+        public static final int activity_horizontal_margin=0x7f070052;
         public static final int btn_height_top=0x7f070001;
         public static final int btn_main_add_height=0x7f070022;
         public static final int btn_margin_left_right_top=0x7f070002;
@@ -80,10 +80,10 @@ public final class R {
 
 
 
+
     
          */
         public static final int btn_width_top=0x7f070000;
-        public static final int eidt_conner=0x7f070052;
         public static final int height_text=0x7f07004b;
         public static final int height_title=0x7f07004d;
         /**  top menu 
@@ -120,8 +120,6 @@ public final class R {
         public static final int layout_big_less=0x7f07003a;
         public static final int layout_big_less_less=0x7f070038;
         public static final int layout_big_less_less_less=0x7f070039;
-        public static final int layout_conner=0x7f070053;
-        public static final int layout_conner_padding=0x7f070054;
         public static final int layout_height_double=0x7f07003b;
         public static final int layout_height_five=0x7f07003c;
         public static final int layout_height_row=0x7f07002a;
@@ -137,7 +135,6 @@ public final class R {
         public static final int layout_set_item_height=0x7f07000b;
         public static final int layout_set_item_margin_left=0x7f07000c;
         public static final int layout_set_item_margin_right=0x7f07000d;
-        public static final int layout_stoke=0x7f070055;
         public static final int layout_top_height=0x7f070006;
         public static final int line_set_child_item_div_height=0x7f070011;
         public static final int line_set_item_div_height=0x7f070010;
@@ -237,43 +234,44 @@ public final class R {
         public static final int ic_joke_panda=0x7f02003a;
         public static final int ic_launcher=0x7f02003b;
         public static final int ic_list_arrow=0x7f02003c;
-        public static final int ic_notification_busymode_on=0x7f02003d;
-        public static final int ic_notification_busymode_refused=0x7f02003e;
-        public static final int ic_notification_disablegprs_on=0x7f02003f;
-        public static final int ic_notification_signalreconnect_on=0x7f020040;
-        public static final int ic_notification_smslight_on=0x7f020041;
-        public static final int ic_notification_watermark_on=0x7f020042;
-        public static final int ic_off=0x7f020043;
-        public static final int ic_off_check=0x7f020044;
-        public static final int ic_on=0x7f020045;
-        public static final int ic_on_check=0x7f020046;
-        public static final int ic_search=0x7f020047;
-        public static final int ic_selected=0x7f020048;
-        public static final int ic_set_n=0x7f020049;
-        public static final int ic_set_p=0x7f02004a;
-        public static final int ic_tab_call_normal=0x7f02004b;
-        public static final int ic_tab_call_pressed=0x7f02004c;
-        public static final int ic_tab_important_normal=0x7f02004d;
-        public static final int ic_tab_important_pressed=0x7f02004e;
-        public static final int ic_tab_more_normal=0x7f02004f;
-        public static final int ic_tab_more_pressed=0x7f020050;
-        public static final int ic_tab_sms_normal=0x7f020051;
-        public static final int ic_tab_sms_pressed=0x7f020052;
-        public static final int icon_apk=0x7f020053;
-        public static final int seekbar_define_style=0x7f020054;
-        public static final int seekbar_line_back=0x7f020055;
-        public static final int seekbar_line_top=0x7f020056;
-        public static final int seekbar_point_back=0x7f020057;
-        public static final int seekbar_point_top=0x7f020058;
-        public static final int seekbar_thumb=0x7f020059;
-        public static final int selector_checkbox_setting=0x7f02005a;
-        public static final int selector_checkbox_setting_check=0x7f02005b;
-        public static final int shape_rounded_edittext=0x7f02005c;
-        public static final int shape_rounded_layout=0x7f02005d;
-        public static final int tab_bg=0x7f02005e;
-        public static final int tab_selected=0x7f02005f;
-        public static final int wheel_bg=0x7f020060;
-        public static final int wheel_val=0x7f020061;
+        public static final int ic_notification=0x7f02003d;
+        public static final int ic_notification_busymode_on=0x7f02003e;
+        public static final int ic_notification_busymode_refused=0x7f02003f;
+        public static final int ic_notification_disablegprs_on=0x7f020040;
+        public static final int ic_notification_signalreconnect_on=0x7f020041;
+        public static final int ic_notification_smslight_on=0x7f020042;
+        public static final int ic_notification_watermark_on=0x7f020043;
+        public static final int ic_off=0x7f020044;
+        public static final int ic_off_check=0x7f020045;
+        public static final int ic_on=0x7f020046;
+        public static final int ic_on_check=0x7f020047;
+        public static final int ic_search=0x7f020048;
+        public static final int ic_selected=0x7f020049;
+        public static final int ic_set_n=0x7f02004a;
+        public static final int ic_set_p=0x7f02004b;
+        public static final int ic_tab_call_normal=0x7f02004c;
+        public static final int ic_tab_call_pressed=0x7f02004d;
+        public static final int ic_tab_important_normal=0x7f02004e;
+        public static final int ic_tab_important_pressed=0x7f02004f;
+        public static final int ic_tab_more_normal=0x7f020050;
+        public static final int ic_tab_more_pressed=0x7f020051;
+        public static final int ic_tab_sms_normal=0x7f020052;
+        public static final int ic_tab_sms_pressed=0x7f020053;
+        public static final int icon_apk=0x7f020054;
+        public static final int seekbar_define_style=0x7f020055;
+        public static final int seekbar_line_back=0x7f020056;
+        public static final int seekbar_line_top=0x7f020057;
+        public static final int seekbar_point_back=0x7f020058;
+        public static final int seekbar_point_top=0x7f020059;
+        public static final int seekbar_thumb=0x7f02005a;
+        public static final int selector_checkbox_setting=0x7f02005b;
+        public static final int selector_checkbox_setting_check=0x7f02005c;
+        public static final int shape_rounded_edittext=0x7f02005d;
+        public static final int shape_rounded_layout=0x7f02005e;
+        public static final int tab_bg=0x7f02005f;
+        public static final int tab_selected=0x7f020060;
+        public static final int wheel_bg=0x7f020061;
+        public static final int wheel_val=0x7f020062;
     }
     public static final class id {
         public static final int autocomplete_diver=0x7f0b0087;

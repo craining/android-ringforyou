@@ -6,6 +6,8 @@ import android.os.Environment;
 
 public class MainCanstants {
 
+	
+	
 	public static final int TYPE_IMPORTANT = 0;
 	public static final int TYPE_INTECEPT_CALL = 1;
 	public static final int TYPE_INTECEPT_SMS = 2;
@@ -47,6 +49,19 @@ public class MainCanstants {
 	public static final String SERVICE_NAME_WATERMARK = "com.zgy.ringforu.service.WaterMarkService";
 	public static final int WATER_MARK_ALPHA_DEF = 50;
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	////////////////////////////////////////////
 	public static File getSdFile() {
 		checkSdFile();
 		return FILE_IN_SDCARD;

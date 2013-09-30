@@ -250,7 +250,7 @@
                 <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_SMSLIGHT" />
                 <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_SIGNALRECONNECT" />
                 <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_NEW_VERSION" />
-                <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_JOKE" />
+                <action android:name="com.zgy.ringforu.ACTION_NOTIFICATION_PUSH_MSG" />
             </intent-filter>
         </receiver>
         <receiver android:name=".receiver.PushMessageReceiver" >

@@ -85,15 +85,14 @@
     <!-- top menu -->
     <dimen name="icon_w_h">26dip</dimen>
     <dimen name="height_text">46dip</dimen>
- <!-- 26+10+10 -->
+    <!-- 26+10+10 -->
     <dimen name="text_size_menu">14sp</dimen>
     <dimen name="height_title">40dip</dimen>
-    
+
     <!-- new version info -->
     <dimen name="title_padding_lr">80dip</dimen>
     <dimen name="title_content_minh">150dip</dimen>
     <dimen name="title_margin_tn">20dip</dimen>
-    
     <dimen name="joke_image_wh">50dip</dimen>
 
 </resources>

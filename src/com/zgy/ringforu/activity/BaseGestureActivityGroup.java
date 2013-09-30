@@ -70,8 +70,8 @@ public class BaseGestureActivityGroup extends ActivityGroup implements OnGesture
 
 	@Override
 	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-		LogRingForu.v("", "e1.getY() - e2.getY()=" + (e1.getY() - e2.getY()));
-		LogRingForu.v("", "e1.getx() - e2.getx()=" + (e1.getX() - e2.getX()));
+//		LogRingForu.v("", "e1.getY() - e2.getY()=" + (e1.getY() - e2.getY()));
+//		LogRingForu.v("", "e1.getx() - e2.getx()=" + (e1.getX() - e2.getX()));
 		if ((Math.abs(e1.getY() - e2.getY()) - MainCanstants.INT_ONFLING_LEN[1]) < 0) {
 
 			if (e1.getX() - e2.getX() - MainCanstants.INT_ONFLING_LEN[0] > 0) {

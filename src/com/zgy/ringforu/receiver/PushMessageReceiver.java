@@ -8,11 +8,14 @@ import android.content.Intent;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.zgy.ringforu.LogRingForu;
-import com.zgy.ringforu.activity.MainActivityGroup;
+import com.zgy.ringforu.bean.PushMessage;
 import com.zgy.ringforu.config.MainConfig;
+import com.zgy.ringforu.interfaces.PushMessageCallBack;
+import com.zgy.ringforu.logic.PushMessageController;
 import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.NotificationUtil;
 import com.zgy.ringforu.util.PushMessageUtils;
+import com.zgy.ringforu.util.TimeUtil;
 
 public class PushMessageReceiver extends BroadcastReceiver {
 
@@ -63,10 +66,16 @@ public class PushMessageReceiver extends BroadcastReceiver {
 					// 自定义内容的json串
 					LogRingForu.d(TAG, "EXTRA_EXTRA = " + extras);
 					JSONObject json = new JSONObject(extras);
-					// 笑话提示
-					if (MainConfig.getInstance().isPushMsgOn()) {
-						NotificationUtil.showHideJokeNotify(true, context, json.getString(PushMessageUtils.MESSAGE_TAG_TITLE), json.getString(PushMessageUtils.MESSAGE_TAG_CONTENT), json.getString(PushMessageUtils.MESSAGE_TAG_TAG));
-					}
+
+					PushMessage msg = new PushMessage();
+					msg.setTitle(json.getString(PushMessageUtils.MESSAGE_TAG_TITLE));
+					msg.setContent(json.getString(PushMessageUtils.MESSAGE_TAG_CONTENT));
+					msg.setTag(json.getString(PushMessageUtils.MESSAGE_TAG_TAG));
+					msg.setReceiveTime(TimeUtil.getCurrentTimeMillis());
+					
+					PushMessageController controller = PushMessageController.getInstence();
+					controller.addCallBack(new MyPushMessageCallBack(context));
+					controller.insertPushMessage(msg);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -99,6 +108,29 @@ public class PushMessageReceiver extends BroadcastReceiver {
 			// Toast.makeText(context, "method : " + method + "\n result: " + errorCode + "\n content = " +
 			// content, Toast.LENGTH_SHORT).show();
 
+		}
+	}
+
+	private class MyPushMessageCallBack extends PushMessageCallBack {
+
+		private Context contex;
+
+		// private PushMessage message;
+		//
+		//
+		public MyPushMessageCallBack(Context context ) {
+			this.contex = context;
+			// this.message = message;
+		}
+
+		@Override
+		public void insertPushMessageFinished(boolean result, PushMessage message) {
+			super.insertPushMessageFinished(result, message);
+
+			// 消息提示
+			if (MainConfig.getInstance().isPushMsgOn()) {
+				NotificationUtil.showHidePushMessageNotify(true, contex, message);
+			}
 		}
 	}
 

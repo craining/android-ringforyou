@@ -15,7 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.bean.PushMessage;
+import com.zgy.ringforu.interfaces.PushMessageCallBack;
+import com.zgy.ringforu.logic.PushMessageController;
 import com.zgy.ringforu.util.NotificationUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.PushMessageUtils;
@@ -40,6 +44,8 @@ import com.zgy.ringforu.view.MyToast;
 
 public class JokeShowActivity extends BaseGestureActivity implements OnClickListener {
 
+	private static final String TAG = "JokeShowActivity";
+
 	private Button btnBack;
 	private Button btnShare;
 	private TextView textInfo;
@@ -53,6 +59,7 @@ public class JokeShowActivity extends BaseGestureActivity implements OnClickList
 	private String mTitle;
 	private String mContent;
 	private String mTag;
+	private long mReceiveTime;
 
 	private static final String TAG_HAND = "hand";
 	private static final String TAG_PANDA = "panda";
@@ -64,6 +71,8 @@ public class JokeShowActivity extends BaseGestureActivity implements OnClickList
 	private static final String TAG_CAT5 = "cat5";
 	private static final String TAG_CAT6 = "cat6";
 	private static final String TAG_CAT7 = "cat7";
+
+	private PushMessageController mController;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +92,13 @@ public class JokeShowActivity extends BaseGestureActivity implements OnClickList
 		mTitle = b.getString(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TITLE);
 		mContent = b.getString(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_CONTENT);
 		mTag = b.getString(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TAG);
+		mReceiveTime = b.getLong(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_RECIEVE_TIME);
+
+		if (StringUtil.isNull(mContent) || mReceiveTime == -1) {
+			RingForUActivityManager.pop(this);
+			MyToast.makeText(this, R.string.msg_get_failed, Toast.LENGTH_SHORT, true).show();
+			return;
+		}
 
 		btnBack = (Button) findViewById(R.id.btn_push_msg_return);
 		btnShare = (Button) findViewById(R.id.btn_push_msg_share);
@@ -94,11 +110,11 @@ public class JokeShowActivity extends BaseGestureActivity implements OnClickList
 			textTitle.setText(mTitle);
 		}
 
-		if (StringUtil.isNull(mContent)) {
-			RingForUActivityManager.pop(this);
-			MyToast.makeText(this, R.string.msg_get_failed, Toast.LENGTH_SHORT, true).show();
-			return;
-		}
+		mController = PushMessageController.getInstence();
+		mController.addCallBack(mPushMessageCallback);
+
+		mController.setPushMessageReadStatue(mReceiveTime, PushMessage.READ);
+
 		textInfo.setText(mContent.replaceAll(PushMessageUtils.MESSAGE_TAG_BREAKLINE, "\r\n"));
 
 		int srcId = getImageSrcIdByTag(mTag);
@@ -180,6 +196,7 @@ public class JokeShowActivity extends BaseGestureActivity implements OnClickList
 				it.setType("vnd.android-dir/mms-sms");
 				startActivity(it);
 
+				mController.addShareTimesLog(mReceiveTime);
 				break;
 
 			default:
@@ -230,5 +247,15 @@ public class JokeShowActivity extends BaseGestureActivity implements OnClickList
 			mTopMenu.showMenu(-1);
 		}
 	}
+
+	private PushMessageCallBack mPushMessageCallback = new PushMessageCallBack() {
+
+		@Override
+		public void setPushMessageReadStatueFinished(boolean result) {
+			super.setPushMessageReadStatueFinished(result);
+			LogRingForu.e(TAG, "setPushMessageReadStatueFinished result=" + result);
+		}
+
+	};
 
 }
