@@ -76,8 +76,7 @@ public class PushMessageReceiver extends BroadcastReceiver {
 						msg.setReceiveTime(TimeUtil.getCurrentTimeMillis());
 
 						PushMessageController controller = PushMessageController.getInstence();
-						controller.addCallBack(new MyPushMessageCallBack(context));
-						controller.insertPushMessage(msg);
+						controller.insertPushMessage(msg, new MyPushMessageCallBack(context));
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

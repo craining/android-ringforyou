@@ -111,9 +111,8 @@ public class PushMessageShowActivity extends BaseGestureActivity implements OnCl
 		}
 
 		mController = PushMessageController.getInstence();
-		mController.addCallBack(mPushMessageCallback);
 
-		mController.setPushMessageReadStatue(mReceiveTime, PushMessage.READ);
+		mController.setPushMessageReadStatue(mReceiveTime, PushMessage.READ, mPushMessageCallback);
 
 		textInfo.setText(mContent.replaceAll(PushMessageUtils.MESSAGE_TAG_BREAKLINE, "\r\n"));
 
@@ -196,7 +195,7 @@ public class PushMessageShowActivity extends BaseGestureActivity implements OnCl
 				it.setType("vnd.android-dir/mms-sms");
 				startActivity(it);
 
-				mController.addShareTimesLog(mReceiveTime);
+				mController.addShareTimesLog(mReceiveTime, mPushMessageCallback);
 				break;
 
 			default:
@@ -208,7 +207,6 @@ public class PushMessageShowActivity extends BaseGestureActivity implements OnCl
 
 	@Override
 	protected void onDestroy() {
-		mController.remoeCallBack(mPushMessageCallback);
 		super.onDestroy();
 	}
 

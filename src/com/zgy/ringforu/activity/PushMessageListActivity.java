@@ -67,9 +67,8 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 		initViews();
 
 		mController = PushMessageController.getInstence();
-		mController.addCallBack(mCallBack);
 
-		mController.getPushMessageList(0, LIMIT);
+		mController.getPushMessageList(0, LIMIT, mCallBack);
 
 		IntentFilter counterActionFilter = new IntentFilter(INTENT_INSERT_MESSAGE);
 		mReciever = new MyBroadcastReceiver();
@@ -119,7 +118,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 			LogRingForu.e(TAG, "onItemClick id=" + pos);
 			PushMessage msg = mPushmessageList.get(pos);
 			msg.setReadStatue(PushMessage.READ);
-			mController.setPushMessageReadStatue(msg.getReceiveTime(), PushMessage.READ);
+			mController.setPushMessageReadStatue(msg.getReceiveTime(), PushMessage.READ, mCallBack);
 
 			Intent i = new Intent(PushMessageListActivity.this, PushMessageShowActivity.class);
 			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TITLE, msg.getTitle());
@@ -179,7 +178,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(INTENT_INSERT_MESSAGE)) {
-				mController.getPushMessageList(0, mPushmessageList.size() + 1);
+				mController.getPushMessageList(0, mPushmessageList.size() + 1, mCallBack);
 				MyToast.makeText(context, R.string.push_message_receive_one, Toast.LENGTH_LONG, false).show();
 
 				// 若在当前activity正在显示，则清除通知
@@ -204,7 +203,6 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 	protected void onDestroy() {
 		super.onDestroy();
 		unregisterReceiver(mReciever);
-		mController.remoeCallBack(mCallBack);
 	}
 
 	@Override
