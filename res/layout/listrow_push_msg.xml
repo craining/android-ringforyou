@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:paddingRight="@dimen/layout_margin_left_right"
+    android:layout_height="wrap_content" >
+
+    <View
+        android:id="@+id/view_push_message_item_top"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/layout_margin_title"
+        android:background="@drawable/bg_translation"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/layout_push_message_item_middle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_push_message_item_top"
+        android:duplicateParentState="true"
+        android:padding="@dimen/layout_little_margin" >
+
+        <TextView
+            android:id="@+id/text_push_message_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/layout_little_margin"
+            android:textSize="@dimen/textsize_tip" />
+
+        <TextView
+            android:id="@+id/text_push_message_title"
+            style="@style/text_set_item_content_left_top"
+            android:layout_below="@id/text_push_message_time"
+            android:layout_marginTop="@dimen/layout_little_margin"
+            android:text="@string/set_hidestyle_call" />
+
+        <TextView
+            android:id="@+id/text_push_message_content"
+            style="@style/text_set_item_content_left_bottom"
+            android:layout_below="@id/text_push_message_title"
+            android:layout_marginBottom="@dimen/layout_little_margin"
+            android:layout_marginTop="@dimen/layout_little_margin" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_push_message_item_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/layout_margin_title"
+        android:layout_below="@id/layout_push_message_item_middle"
+        android:background="@drawable/bg_translation"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -8,6 +8,7 @@ import android.content.Intent;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.activity.PushMessageListActivity;
 import com.zgy.ringforu.bean.PushMessage;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.interfaces.PushMessageCallBack;
@@ -50,7 +51,8 @@ public class PushMessageReceiver extends BroadcastReceiver {
 					JSONObject json = new JSONObject(extras);
 					int newVersionCode = Integer.parseInt(json.getString(PushMessageUtils.MESSAGE_TAG_VERSION_CODE));
 					LogRingForu.v(TAG, "newVersionCode = " + newVersionCode + "   now version=" + MainUtil.getAppVersionCode(context));
-					// if (newVersionCode > MainUtil.getAppVersionCode(context)) {
+					// if (newVersionCode > MainUtil.getAppVersionCode(context))
+					// {
 					MainConfig.getInstance().setPushNewVersionCode(newVersionCode);
 					MainConfig.getInstance().setPushNewVersionDownloadUrl(json.getString(PushMessageUtils.MESSAGE_TAG_DOWNLOAD_URL));
 					MainConfig.getInstance().setPushNewVersionInfo(json.getString(PushMessageUtils.MESSAGE_TAG_VERSION_INFO));
@@ -60,26 +62,26 @@ public class PushMessageReceiver extends BroadcastReceiver {
 					e.printStackTrace();
 				}
 			} else if (message.contains(PushMessageUtils.MESSAGE_CONTENT_PUSH_MSG)) {
+				if (MainConfig.getInstance().isPushMsgOn()) {
+					try {
+						String extras = intent.getStringExtra(PushConstants.EXTRA_EXTRA);
+						// 自定义内容的json串
+						LogRingForu.d(TAG, "EXTRA_EXTRA = " + extras);
+						JSONObject json = new JSONObject(extras);
 
-				try {
-					String extras = intent.getStringExtra(PushConstants.EXTRA_EXTRA);
-					// 自定义内容的json串
-					LogRingForu.d(TAG, "EXTRA_EXTRA = " + extras);
-					JSONObject json = new JSONObject(extras);
+						PushMessage msg = new PushMessage();
+						msg.setTitle(json.getString(PushMessageUtils.MESSAGE_TAG_TITLE));
+						msg.setContent(json.getString(PushMessageUtils.MESSAGE_TAG_CONTENT));
+						msg.setTag(json.getString(PushMessageUtils.MESSAGE_TAG_TAG));
+						msg.setReceiveTime(TimeUtil.getCurrentTimeMillis());
 
-					PushMessage msg = new PushMessage();
-					msg.setTitle(json.getString(PushMessageUtils.MESSAGE_TAG_TITLE));
-					msg.setContent(json.getString(PushMessageUtils.MESSAGE_TAG_CONTENT));
-					msg.setTag(json.getString(PushMessageUtils.MESSAGE_TAG_TAG));
-					msg.setReceiveTime(TimeUtil.getCurrentTimeMillis());
-					
-					PushMessageController controller = PushMessageController.getInstence();
-					controller.addCallBack(new MyPushMessageCallBack(context));
-					controller.insertPushMessage(msg);
-				} catch (Exception e) {
-					e.printStackTrace();
+						PushMessageController controller = PushMessageController.getInstence();
+						controller.addCallBack(new MyPushMessageCallBack(context));
+						controller.insertPushMessage(msg);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
-
 			}
 
 		}
@@ -105,22 +107,18 @@ public class PushMessageReceiver extends BroadcastReceiver {
 			LogRingForu.d(TAG, "onMessage: method : " + method);
 			LogRingForu.d(TAG, "onMessage: result : " + errorCode);
 			LogRingForu.d(TAG, "onMessage: content : " + content);
-			// Toast.makeText(context, "method : " + method + "\n result: " + errorCode + "\n content = " +
+			// Toast.makeText(context, "method : " + method + "\n result: " +
+			// errorCode + "\n content = " +
 			// content, Toast.LENGTH_SHORT).show();
 
 		}
 	}
 
 	private class MyPushMessageCallBack extends PushMessageCallBack {
-
 		private Context contex;
 
-		// private PushMessage message;
-		//
-		//
-		public MyPushMessageCallBack(Context context ) {
+		public MyPushMessageCallBack(Context context) {
 			this.contex = context;
-			// this.message = message;
 		}
 
 		@Override
@@ -128,9 +126,11 @@ public class PushMessageReceiver extends BroadcastReceiver {
 			super.insertPushMessageFinished(result, message);
 
 			// 消息提示
-			if (MainConfig.getInstance().isPushMsgOn()) {
-				NotificationUtil.showHidePushMessageNotify(true, contex, message);
-			}
+			int notifyId = NotificationUtil.showHidePushMessageNotify(true, contex, message, -1);
+
+			Intent i = new Intent(PushMessageListActivity.INTENT_INSERT_MESSAGE);
+			i.putExtra(PushMessageListActivity.INTENT_INSERT_MESSAGE_EXTRA, notifyId);
+			contex.sendBroadcast(i);
 		}
 	}
 

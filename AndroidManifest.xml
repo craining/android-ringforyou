@@ -99,7 +99,7 @@
                 <action android:name="android.intent.action.PICK_ACTIVITY" />
                 <action android:name="android.intent.action.SET_WALLPAPER" />
                 <action android:name="android.intent.action.DIAL"/>
-                <action android:name="android.intent.action.SENDTO"/>
+                <action android:name="android.intent.action.SENDTO"/>
                 -->
                 <action android:name="android.intent.action.SEND" />
                 <!-- 分享到 -->
@@ -180,7 +180,11 @@
             android:launchMode="singleTask"
             android:theme="@style/dialog" />
         <activity
-            android:name=".activity.JokeShowActivity"
+            android:name=".activity.PushMessageShowActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.PushMessageListActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask" />
         <activity

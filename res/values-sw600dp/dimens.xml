@@ -6,6 +6,7 @@
     -->
     <dimen name="btn_width_top">68dip</dimen>
     <dimen name="btn_height_top">45dip</dimen>
+    <dimen name="text_margin_btn_top">83dip</dimen>
     <dimen name="btn_margin_left_right_top">8dip</dimen>
     <dimen name="btn_padding_left_top_back">5dip</dimen>
     <dimen name="btn_textsize_top_title">21sp</dimen>

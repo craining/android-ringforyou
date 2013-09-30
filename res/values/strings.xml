@@ -1,8 +1,6 @@
 <resources>
 
-    
     <string name="version_name">1.0.6</string>
-    
     <string name="app_name">Waiter</string>
     <string name="back">Back</string>
     <string name="clear_all">Clear</string>
@@ -97,7 +95,6 @@
     <string name="notify_new_version">版本更新【Waiter】</string>
     <string name="notify_new_version_tip">点击进入新版本下载页面</string>
     <string name="newversion_title_info">更新说明</string>
-    
 
     <!-- new -->
     <!-- The important contact has not yet been added, please add. -->
@@ -247,7 +244,6 @@
     <string name="title_setting_important">重要联系人设置</string>
     <string name="title_setting_sms">短信屏蔽设置</string>
     <string name="title_setting_call">来电屏蔽设置</string>
-    
     <string name="clear_null">没有数据</string>
     <string name="export_data">创建备份</string>
     <string name="import_data">还原备份</string>
@@ -258,23 +254,21 @@
     <!-- 向右滑动触发标题栏上最左侧按钮，向左滑动触发标题栏最上右侧按钮 -->
     <string name="gesture_info">在页面上向左、向右滑动分别触发标题栏上最右侧、最左侧按钮</string>
     <string name="str_change_bg_color">"切换背景\r\n查看效果"</string>
-    
     <string name="str_opera">操作</string>
     <string name="str_exit">退出</string>
-      <string name="str_share">分享</string>
-    
+    <string name="str_share">分享</string>
     <string name="tools_test">工程测试</string>
     <string name="tools_test_tip">进入系统隐含的测试模块</string>
-    
     <string name="water_mark_hide_app">屏蔽列表</string>
     <string name="water_mark_hide_app_title">选择屏蔽应用</string>
     <string name="water_mark_hide_app_tip">当被勾选的应用启动时，不显示屏幕水印</string>
-    
     <string name="msg_title">消息推送【Waiter】</string>
     <string name="msg_title_title">消息推送</string>
     <string name="msg_get_failed">读取消息失败</string>
     <string name="msg_share_msg">手机短信</string>
     <string name="msg_tip">接收笑话、生活窍门、健康知识等消息推送</string>
-    
+    <string name="push_message_title">历史消息列表</string>
+    <string name="push_message_null">没有接收到推送消息</string>
+    <string name="push_message_receive_one">收到一条新消息</string>
 
 </resources>

@@ -8,6 +8,7 @@ import android.content.Intent;
 
 import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.R;
+import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.bean.PushMessage;
 
 /**
@@ -52,6 +53,7 @@ public class NotificationUtil {
 	public static final String INTENT_ACTION_KEY_PUSH_MSG_CONTENT = "notification_msg_content";
 	public static final String INTENT_ACTION_KEY_PUSH_MSG_TAG = "notification_msg_tag";
 	public static final String INTENT_ACTION_KEY_PUSH_MSG_RECIEVE_TIME = "notification_msg_receive_time";
+	public static final String INTENT_ACTION_KEY_PUSH_MSG_ID = "notification_msg_receive_id";
 
 	/**
 	 * 显示gprs已经禁用的通知
@@ -383,7 +385,7 @@ public class NotificationUtil {
 	 * 
 	 * @param con
 	 */
-	public static void showHidePushMessageNotify(boolean show, Context context, PushMessage message) {
+	public static int showHidePushMessageNotify(boolean show, Context context, PushMessage message, int notifyId) {
 
 		if (show) {
 			NOTIFICATION_ID_PUSH_MSG += 1;
@@ -405,14 +407,34 @@ public class NotificationUtil {
 			notificationIntent.putExtra(INTENT_ACTION_KEY_PUSH_MSG_CONTENT, message.getContent());
 			notificationIntent.putExtra(INTENT_ACTION_KEY_PUSH_MSG_TAG, message.getTag());
 			notificationIntent.putExtra(INTENT_ACTION_KEY_PUSH_MSG_RECIEVE_TIME, message.getReceiveTime());
+			notificationIntent.putExtra(INTENT_ACTION_KEY_PUSH_MSG_ID, NOTIFICATION_ID_PUSH_MSG);
 			PendingIntent contentItent = PendingIntent.getBroadcast(context, NOTIFICATION_ID_PUSH_MSG, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			notification.setLatestEventInfo(context, contentTitle, contentText, contentItent);
 			// 把Notification传递给NotificationManager
 			notificationManager.notify(NOTIFICATION_ID_PUSH_MSG, notification);// 注意ID号，不能与此程序中的其他通知栏图标相同
+
+			RingForU.getInstance().putOneInmAllPushMessageNotificationIds(NOTIFICATION_ID_PUSH_MSG);
 		} else {
 			// 启动后删除之前我们定义的通知
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-			notificationManager.cancel(NOTIFICATION_ID_PUSH_MSG);// 注意ID号，不能与此程序中的其他通知栏图标相同
+			notificationManager.cancel(notifyId);// 注意ID号，不能与此程序中的其他通知栏图标相同
+		}
+
+		return NOTIFICATION_ID_PUSH_MSG;
+	}
+
+	/**
+	 * 清除所有push消息通知
+	 * @param context
+	 */
+	public static void hideAllPushMessageNotifications(Context context) {
+
+		NotificationManager notificationManager = (NotificationManager) context.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+
+		for (int i : RingForU.getInstance().getmAllPushMessageNotificationIds()) {
+			if (i >= 500) {
+				notificationManager.cancel(i);
+			}
 		}
 	}
 }

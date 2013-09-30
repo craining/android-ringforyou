@@ -1,16 +1,19 @@
 package com.zgy.ringforu.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
+import java.util.Date;
 
 public class TimeUtil {
 
+	private static String TIME_DATE_TIME_STRING_FORMAT = "yyyy-MM-dd HH:mm:ss";
+	private static String TIME_DATE_STRING_FORMAT = "yyyy-MM-dd";//
 
 	public static long getCurrentTimeMillis() {
-		return (System.currentTimeMillis() / 1000) * 1000;
+		return System.currentTimeMillis();
 	}
-	
+
 	/**
 	 * 判断当前时间是否在闲时内
 	 * 
@@ -69,7 +72,6 @@ public class TimeUtil {
 		return isIn;
 	}
 
-	
 	/**
 	 * 获得日期或时间字符串
 	 * 
@@ -114,4 +116,41 @@ public class TimeUtil {
 			return "" + mmm;
 		}
 	}
+
+	public static long dateTimeStringToLong(String dateTime) {
+		SimpleDateFormat sdf = new SimpleDateFormat(TIME_DATE_TIME_STRING_FORMAT);
+		Date dt2;
+		try {
+			dt2 = sdf.parse(dateTime);
+			return dt2.getTime();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	public static String longToDateTimeString(long dateTimeMillis) {
+		SimpleDateFormat sdf = new SimpleDateFormat(TIME_DATE_TIME_STRING_FORMAT);
+		Date dt = new Date(dateTimeMillis);
+		return sdf.format(dt);
+	}
+
+	public static long dateStringToLong(String date) {
+		SimpleDateFormat sdf = new SimpleDateFormat(TIME_DATE_STRING_FORMAT);
+		Date dt2;
+		try {
+			dt2 = sdf.parse(date);
+			return dt2.getTime();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	public static String longToDateString(long dateMillis) {
+		SimpleDateFormat sdf = new SimpleDateFormat(TIME_DATE_STRING_FORMAT);
+		Date dt = new Date(dateMillis);
+		return sdf.format(dt);
+	}
+
 }

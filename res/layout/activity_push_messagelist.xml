@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_light"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/layout_push_messagelist_title"
+        style="@style/layout_top_title" >
+
+        <Button
+            android:id="@+id/btn_push_messagelist_back"
+            style="@style/btn_left_top_back" />
+
+        <TextView
+            android:id="@+id/text_push_messagelist_title"
+            style="@style/text_top_title"
+            android:text="@string/push_message_title" />
+
+        <Button
+            android:id="@+id/btn_push_messagelist_set"
+            style="@style/btn_right_top"
+            android:text="@string/finish"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_push_messagelist_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_push_messagelist_title"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:layout_marginRight="@dimen/layout_margin_left_right"
+        android:layout_marginTop="@dimen/search_layout_padding_tb"
+        android:textColor="@color/textblue"
+        android:textSize="@dimen/textsize_content"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/img_push_messagelist_animation"
+        android:layout_width="@dimen/img_loading_hw"
+        android:layout_height="@dimen/img_loading_hw"
+        android:layout_below="@id/text_push_messagelist_tip"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/search_layout_padding_tb"
+        android:scaleType="fitCenter"
+        android:src="@anim/loading" />
+
+    <ListView
+        android:id="@+id/list_push_messagelist"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/img_push_messagelist_animation"
+        android:layout_marginLeft="@dimen/layout_margin_left_right"
+        android:cacheColorHint="#00000000"
+        android:dividerHeight="@dimen/layout_margin_title"
+        android:divider="@drawable/bg_translation"
+        android:listSelector="#00000000" />
+
+</RelativeLayout>

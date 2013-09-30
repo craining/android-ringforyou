@@ -7,7 +7,8 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.zgy.ringforu.LogRingForu;
-import com.zgy.ringforu.activity.JokeShowActivity;
+import com.zgy.ringforu.RingForU;
+import com.zgy.ringforu.activity.PushMessageShowActivity;
 import com.zgy.ringforu.activity.ToolsBusyModeActivity;
 import com.zgy.ringforu.activity.ToolsDisableGprsActivity;
 import com.zgy.ringforu.activity.ToolsSignalReconnectActivity;
@@ -75,13 +76,15 @@ public class NotificationReceiver extends BroadcastReceiver {
 			String title = intent.getStringExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TITLE);
 			String content = intent.getStringExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_CONTENT);
 			String tag = intent.getStringExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TAG);
+			Integer id = intent.getIntExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_ID, 0);
 			long receiveTime = intent.getLongExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_RECIEVE_TIME, -1);
-			i = new Intent(context, JokeShowActivity.class);
+			i = new Intent(context, PushMessageShowActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TITLE, title);
 			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_CONTENT, content);
 			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_TAG, tag);
 			i.putExtra(NotificationUtil.INTENT_ACTION_KEY_PUSH_MSG_RECIEVE_TIME, receiveTime);
+			RingForU.getInstance().removeOneInmAllPushMessageNotificationIds(id);
 			context.startActivity(i);
 		}
 

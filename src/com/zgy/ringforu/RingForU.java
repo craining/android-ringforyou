@@ -1,5 +1,8 @@
 package com.zgy.ringforu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Application;
 import android.view.WindowManager;
 
@@ -8,8 +11,8 @@ import com.zgy.ringforu.util.StringUtil;
 
 public class RingForU extends Application {
 
-	public static boolean DEBUG = false;
-	public static boolean DB_SAVE_SDCARD = false;
+	public static boolean DEBUG = true;
+	public static boolean DB_SAVE_SDCARD = true;
 
 	private boolean bIsVerbOn = true;
 	private boolean bIsGestureOn = true;
@@ -23,8 +26,11 @@ public class RingForU extends Application {
 
 	private String packageNameHideWaterMark;
 
+	private List<Integer> mAllPushMessageNotificationIds = new ArrayList<Integer>();
+
 	/**
-	 * 创建全局变量 全局变量一般都比较倾向于创建一个单独的数据类文件，并使用static静态变量 这里使用了在Application中添加数据的方法实现全局变量
+	 * 创建全局变量 全局变量一般都比较倾向于创建一个单独的数据类文件，并使用static静态变量
+	 * 这里使用了在Application中添加数据的方法实现全局变量
 	 * 注意在AndroidManifest.xml中的Application节点添加android:name=".MyApplication"属性
 	 */
 	private static WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
@@ -124,4 +130,15 @@ public class RingForU extends Application {
 		this.packageNameHideWaterMark = packageNameHideWaterMark;
 	}
 
+	public List<Integer> getmAllPushMessageNotificationIds() {
+		return mAllPushMessageNotificationIds;
+	}
+
+	public void putOneInmAllPushMessageNotificationIds(Integer i) {
+		mAllPushMessageNotificationIds.add(i);
+	}
+
+	public void removeOneInmAllPushMessageNotificationIds(Integer i) {
+		mAllPushMessageNotificationIds.remove(i);
+	}
 }

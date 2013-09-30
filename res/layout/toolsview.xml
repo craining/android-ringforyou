@@ -162,7 +162,7 @@
         android:layout_below="@id/layout_tools_part_two" >
 
         <RelativeLayout
-            android:id="@+id/layout_tool_joke"
+            android:id="@+id/layout_tool_pushmessage"
             style="@style/layout_set_item"
             android:background="@drawable/bg_list_item"
             android:clickable="true" >
@@ -179,8 +179,8 @@
             </LinearLayout>
 
             <CheckBox
-                android:id="@+id/check_tool_joke"
-                style="@style/checkbox_set_item_check" />
+                android:id="@+id/check_tool_pushmessage"
+                style="@style/checkbox_set_item_switch" />
         </RelativeLayout>
     </LinearLayout>
 

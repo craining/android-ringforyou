@@ -37,10 +37,8 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 
 	private static final String TAG = "RToolsActivity";
 	private Button btnBack;
-	private RelativeLayout layoutWatermark, layoutBusyMode, layoutSmsLightScreen, layoutDisableGprs,
-			layoutSignalReconnect, layoutJoke;
-	private CheckBox checkWatermarkSwitch, checkSmsLightScreenSwitch, checkDisableGprsSwitch,
-			checkSignalReconnectSwitch, checkBusyModeSwitch, checkJokeSwitch;
+	private RelativeLayout layoutWatermark, layoutBusyMode, layoutSmsLightScreen, layoutDisableGprs, layoutSignalReconnect, layoutPushMessage;
+	private CheckBox checkWatermarkSwitch, checkSmsLightScreenSwitch, checkDisableGprsSwitch, checkSignalReconnectSwitch, checkBusyModeSwitch, checkPushMessageSwitch;
 	private TextView textBusyModeTitle;
 	private TextView textBusyModeInfo;
 
@@ -70,15 +68,16 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 		layoutSmsLightScreen = (RelativeLayout) findViewById(R.id.layout_tool_smslightscreen);
 		layoutDisableGprs = (RelativeLayout) findViewById(R.id.layout_tool_disablegprs);
 		layoutSignalReconnect = (RelativeLayout) findViewById(R.id.layout_tool_signalreconnect);
-		layoutJoke = (RelativeLayout) findViewById(R.id.layout_tool_joke);
+		layoutPushMessage = (RelativeLayout) findViewById(R.id.layout_tool_pushmessage);
 
-		checkJokeSwitch = (CheckBox) findViewById(R.id.check_tool_joke);
+		checkPushMessageSwitch = (CheckBox) findViewById(R.id.check_tool_pushmessage);
 		checkBusyModeSwitch = (CheckBox) findViewById(R.id.check_busymode_switch);
 		textBusyModeTitle = (TextView) findViewById(R.id.text_tools_busymode_title);
 		textBusyModeInfo = (TextView) findViewById(R.id.text_tools_busymode_info);
 
 		btnBack.setOnClickListener(this);
-		layoutJoke.setOnClickListener(this);
+		layoutPushMessage.setOnClickListener(this);
+		checkPushMessageSwitch.setOnClickListener(this);
 		checkWatermarkSwitch.setOnClickListener(this);
 		layoutWatermark.setOnClickListener(this);
 		layoutBusyMode.setOnClickListener(this);
@@ -189,11 +188,16 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 			Intent i = new Intent(ToolsListActivity.this, ToolsBusyModeActivity.class);
 			startActivity(i);
 			break;
-		case R.id.layout_tool_joke:
+		case R.id.layout_tool_pushmessage:
+			Intent intent = new Intent(ToolsListActivity.this, PushMessageListActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.check_tool_pushmessage:
 			MainConfig mc = MainConfig.getInstance();
 			mc.setPushJokeOn(!mc.isPushMsgOn());
 			refreshSwitch();
 			break;
+
 		default:
 			break;
 		}
@@ -231,7 +235,7 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 		checkBusyModeSwitch.setChecked(BusyModeUtil.isBusyModeOn());
 		BusyModeUtil.checkState(ToolsListActivity.this);
 
-		checkJokeSwitch.setChecked(MainConfig.getInstance().isPushMsgOn());
+		checkPushMessageSwitch.setChecked(MainConfig.getInstance().isPushMsgOn());
 	}
 
 	private class ToolsReceiver extends BroadcastReceiver {

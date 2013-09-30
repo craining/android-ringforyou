@@ -170,7 +170,7 @@ public class PickerApplicationActivity extends BaseGestureActivity implements On
 	private OnItemClickListener mLsnListItemClick = new OnItemClickListener() {
 
 		public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
-			//
+			PhoneUtil.doVibraterNormal(PickerApplicationActivity.super.mVb);
 			LogRingForu.e(TAG, "onItemClick id=" + pos);
 			if (mAppsInfoList.get(pos).getSelected()) {
 				mAppsInfoList.get(pos).setSelected(false);

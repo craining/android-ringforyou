@@ -34,7 +34,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/layout_call_title"
-        android:layout_marginBottom="@dimen/layout_big_less_less"
+        android:layout_marginBottom="@dimen/layout_big_less_less_less"
         android:orientation="vertical" >
 
         <TextView
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/layout_margin_left_right"
             android:layout_marginRight="@dimen/layout_margin_left_right"
-            android:layout_marginTop="@dimen/layout_little_margin"
+            android:layout_marginTop="@dimen/layout_margin_top_title"
             android:text="@string/how_deleteitem"
             android:textColor="@color/textblue"
             android:textSize="@dimen/textsize_content" />

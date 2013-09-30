@@ -51,9 +51,9 @@ public class DbHelper extends SQLiteHelper {
 
 		.append(Columns.Tb_PushMessage.RECEIVE_TIME).append(" LONG, ")
 
-		.append(Columns.Tb_PushMessage.SHARED_TIMES).append(" INT DEFAULE -1, ")
+		.append(Columns.Tb_PushMessage.SHARED_TIMES).append(" INT DEFAULT 0, ")
 
-		.append(Columns.Tb_PushMessage.READ_STATUE).append(" INT DEFAULE 0);");
+		.append(Columns.Tb_PushMessage.READ_STATUE).append(" INT DEFAULT 0);");
 
 		CREATE_TB_INFO = sb.toString();
 	}

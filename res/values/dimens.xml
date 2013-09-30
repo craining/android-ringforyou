@@ -3,6 +3,7 @@
     <!-- 顶部标题栏相关 -->
     <dimen name="btn_width_top">45dip</dimen>
     <dimen name="btn_height_top">30dip</dimen>
+    <dimen name="text_margin_btn_top">55dip</dimen>
     <dimen name="btn_margin_left_right_top">5dip</dimen>
     <dimen name="btn_padding_left_top_back">3dip</dimen>
     <dimen name="btn_textsize_top_title">14sp</dimen>

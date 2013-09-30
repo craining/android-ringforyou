@@ -21,6 +21,8 @@
         <TextView
             android:id="@+id/text_push_msg_title"
             style="@style/text_top_title"
+            android:layout_marginLeft="@dimen/text_margin_btn_top"
+            android:layout_marginRight="@dimen/text_margin_btn_top"
             android:text="@string/msg_title_title" />
 
         <Button

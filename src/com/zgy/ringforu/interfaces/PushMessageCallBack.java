@@ -1,6 +1,6 @@
 package com.zgy.ringforu.interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.zgy.ringforu.bean.PushMessage;
 
@@ -14,7 +14,7 @@ public class PushMessageCallBack {
 
 	}
 
-	public void getPushMessageListFinished(boolean result, ArrayList<PushMessage> pushMessages) {
+	public void getPushMessageListFinished(boolean result, List<PushMessage> pushMessages) {
 
 	}
 
