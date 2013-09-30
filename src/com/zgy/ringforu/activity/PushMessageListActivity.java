@@ -204,6 +204,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 	protected void onDestroy() {
 		super.onDestroy();
 		unregisterReceiver(mReciever);
+		mController.remoeCallBack(mCallBack);
 	}
 
 	@Override

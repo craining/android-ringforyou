@@ -44,7 +44,7 @@ import com.zgy.ringforu.view.MyToast;
 
 public class PushMessageShowActivity extends BaseGestureActivity implements OnClickListener {
 
-	private static final String TAG = "JokeShowActivity";
+	private static final String TAG = "PushMessageShowActivity";
 
 	private Button btnBack;
 	private Button btnShare;
@@ -208,6 +208,7 @@ public class PushMessageShowActivity extends BaseGestureActivity implements OnCl
 
 	@Override
 	protected void onDestroy() {
+		mController.remoeCallBack(mPushMessageCallback);
 		super.onDestroy();
 	}
 
