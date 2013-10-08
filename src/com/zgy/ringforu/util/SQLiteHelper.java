@@ -10,13 +10,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 
 /**
- * 数据库操作util
+ * 鏁版嵁搴撴搷浣渦til
  * 
  * @Description:
  * @author:huangyx2
  * @see:
  * @since:
- * @copyright © 35.com
+ * @copyright 漏 35.com
  * @Date:2013-7-24
  */
 public abstract class SQLiteHelper extends SQLiteOpenHelper {
@@ -26,7 +26,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 插入数据（替换或忽略�?
+	 * 鎻掑叆鏁版嵁锛堟浛鎹㈡垨蹇界暐锛?
 	 * 
 	 * @Description:
 	 * @param tableName
@@ -54,7 +54,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 执行插入操作, 如果已经存在相关记录(插入时发生约束冲�?, 则进行整行更�?替换)
+	 * 鎵ц鎻掑叆鎿嶄綔, 濡傛灉宸茬粡瀛樺湪鐩稿叧璁板綍(鎻掑叆鏃跺彂鐢熺害鏉熷啿绐?, 鍒欒繘琛屾暣琛屾洿鏂?鏇挎崲)
 	 * 
 	 * @param tableName
 	 * @param values
@@ -65,7 +65,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 添加
+	 * 娣诲姞
 	 * 
 	 * @Description:
 	 * @param tableName
@@ -92,7 +92,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 执行插入操作, 如果插入过程中发生了数据库约束冲�? 则不做任何事�?
+	 * 鎵ц鎻掑叆鎿嶄綔, 濡傛灉鎻掑叆杩囩▼涓彂鐢熶簡鏁版嵁搴撶害鏉熷啿绐? 鍒欎笉鍋氫换浣曚簨鎯?
 	 * 
 	 * @param tableName
 	 * @param values
@@ -103,7 +103,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 更新, 捕获异常并关闭数据库
+	 * 鏇存柊, 鎹曡幏寮傚父骞跺叧闂暟鎹簱
 	 * 
 	 * @param table
 	 * @param values
@@ -126,7 +126,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 通过行号删除数据
+	 * 閫氳繃琛屽彿鍒犻櫎鏁版嵁
 	 * 
 	 * @Description:
 	 * @param tableName
@@ -153,7 +153,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 执行删除操作
+	 * 鎵ц鍒犻櫎鎿嶄綔
 	 * 
 	 * @param tableName
 	 * @param where
@@ -176,7 +176,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 统计记录�?
+	 * 缁熻璁板綍鏁?
 	 * 
 	 * @Description:
 	 * @param table
@@ -198,7 +198,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 统计记录�?
+	 * 缁熻璁板綍鏁?
 	 * 
 	 * @Description:
 	 * @param table
@@ -223,7 +223,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 查询
+	 * 鏌ヨ
 	 * 
 	 * @Description:
 	 * @param table
@@ -239,7 +239,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 查询指定�?
+	 * 鏌ヨ鎸囧畾鍒?
 	 * 
 	 * @Description:
 	 * @param table
@@ -256,7 +256,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 条件查询指定�?
+	 * 鏉′欢鏌ヨ鎸囧畾鍒?
 	 * 
 	 * @Description:
 	 * @param table
@@ -275,7 +275,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 条件查询指定列并排序
+	 * 鏉′欢鏌ヨ鎸囧畾鍒楀苟鎺掑簭
 	 * 
 	 * @Description:
 	 * @param table
@@ -295,7 +295,7 @@ public abstract class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 条件查询指定列的几条数据并排�?
+	 * 鏉′欢鏌ヨ鎸囧畾鍒楃殑鍑犳潯鏁版嵁骞舵帓搴?
 	 * 
 	 * @Description:
 	 * @param table

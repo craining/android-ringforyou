@@ -270,5 +270,11 @@
     <string name="push_message_title">历史消息列表</string>
     <string name="push_message_null">没有接收到推送消息</string>
     <string name="push_message_receive_one">收到一条新消息</string>
+    
+    
+    <string name="delete_str">删除</string>
+    <string name="str_cancel_selected">取消选择</string>
+    <string name="delete_success">删除成功</string>
+    <string name="delete_failed">删除失败</string>
 
 </resources>

@@ -156,4 +156,31 @@ public class DbOpera extends DbHelper {
 		LogRingForu.e("", "setPushMessageSharedTime sql=" + sql.toString());
 		getWritableDatabase().execSQL(sql.toString(), new Object[] { receiveTime });
 	}
+
+	/**
+	 * É¾³ýÐÅÏ¢
+	 * 
+	 * @Description:
+	 * @param uids
+	 * @see:
+	 * @since:
+	 * @author: zhuanggy
+	 * @date:2013-10-8
+	 */
+	public boolean deletePushMessage(int[] ids) {
+		SQLiteDatabase db = getWritableDatabase();
+		db.beginTransaction();
+		try {
+			for (int id : ids) {
+				db.delete(Tb_PushMessage.TB_NAME, Tb_PushMessage.ID + "=?", new String[] { id + "" });
+			}
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			db.endTransaction();
+		}
+		return true;
+	}
 }

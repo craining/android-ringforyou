@@ -168,4 +168,37 @@ public class PushMessageController {
 			}
 		}).start();
 	}
+
+	/**
+	 * 删除多条信息
+	 * 
+	 * @Description:
+	 * @param ids
+	 * @param callback
+	 * @see:
+	 * @since:
+	 * @author: zhuanggy
+	 * @date:2013-10-8
+	 */
+	public void deletePushMessages(final int[] ids, final PushMessageCallBack callback) {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+
+					if (mDbOpera.deletePushMessage(ids)) {
+						callback.deletePushMessagesFinished(ids, true);
+					} else {
+						callback.deletePushMessagesFinished(ids, false);
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					callback.deletePushMessagesFinished(ids, false);
+				}
+
+			}
+		}).start();
+	}
 }

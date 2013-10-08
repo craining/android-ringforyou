@@ -11,11 +11,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -40,8 +42,9 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 	private static final String TAG = "DirectoryPicker";
 
 	private ListView mListView;
-	// private Button mBtnOk;
 	private Button mBtnBack;
+	private Button mBtnDelete;
+	private Button mBtnCancelSelect;
 	private ImageView imgLoading;
 	private AnimationDrawable animationDrawable;
 
@@ -87,22 +90,69 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 
 	private void initViews() {
 		mListView = (ListView) findViewById(R.id.list_push_messagelist);
-		// mBtnOk = (Button) findViewById(R.id.btn_pick_app_set);
+		mBtnDelete = (Button) findViewById(R.id.btn_push_messagelist_delete);
 		mBtnBack = (Button) findViewById(R.id.btn_push_messagelist_back);
+		mBtnCancelSelect = (Button) findViewById(R.id.btn_push_messagelist_cancel_select);
 		imgLoading = (ImageView) findViewById(R.id.img_push_messagelist_animation);
 		animationDrawable = (AnimationDrawable) imgLoading.getDrawable();
 		animationDrawable.start();
 
-		// mBtnOk.setOnClickListener(this);
+		mBtnDelete.setOnClickListener(this);
 		mBtnBack.setOnClickListener(this);
+		mBtnCancelSelect.setOnClickListener(this);
+		mBtnDelete.setVisibility(View.GONE);
+		mBtnCancelSelect.setVisibility(View.GONE);
 	}
 
 	private void refreshListView() {
 		PushMessageListAdapter a = (PushMessageListAdapter) mListView.getAdapter();
 		if (a != null) {
 			a.notifyDataSetChanged();
+			refreshButtonViews();
 		}
 
+	}
+
+	private void refreshButtonViews() {
+		boolean hasSelected = false;
+		for (PushMessage msg : mPushmessageList) {
+			if (msg.isSelected()) {
+				hasSelected = true;
+				break;
+			}
+		}
+		if (hasSelected) {
+			mBtnDelete.setVisibility(View.VISIBLE);
+			mBtnBack.setVisibility(View.GONE);
+			mBtnCancelSelect.setVisibility(View.VISIBLE);
+		} else {
+			mBtnDelete.setVisibility(View.GONE);
+			mBtnBack.setVisibility(View.VISIBLE);
+			mBtnCancelSelect.setVisibility(View.GONE);
+		}
+	}
+
+	private void cancelSelected() {
+		for (PushMessage msg : mPushmessageList) {
+			msg.setSelected(false);
+		}
+		refreshListView();
+	}
+
+	private void onDeleteSelected() {
+		List<Integer> messages = new ArrayList<Integer>();
+		for (PushMessage msg : mPushmessageList) {
+			if (msg.isSelected()) {
+				messages.add(msg.getId());
+			}
+		}
+
+		int[] ids = new int[messages.size()];
+		for (int i = 0; i < messages.size(); i++) {
+			ids[i] = messages.get(i);
+		}
+
+		mController.deletePushMessages(ids, mCallBack);
 	}
 
 	@Override
@@ -129,6 +179,23 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 		}
 	};
 
+	private OnItemLongClickListener mLsnListItemLongClick = new OnItemLongClickListener() {
+
+		@Override
+		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+			// 长按，选中或不选中
+			PhoneUtil.doVibraterNormal(PushMessageListActivity.super.mVb);
+			LogRingForu.e(TAG, "onItemLongClick id=" + position);
+			PushMessage msg = mPushmessageList.get(position);
+			msg.setSelected(!msg.isSelected());
+			refreshListView();
+
+			return true;
+		}
+
+	};
+
 	@Override
 	public void onClick(View v) {
 		PhoneUtil.doVibraterNormal(PushMessageListActivity.super.mVb);
@@ -137,10 +204,31 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 		case R.id.btn_push_messagelist_back:
 			RingForUActivityManager.pop(PushMessageListActivity.this);
 			break;
+		case R.id.btn_push_messagelist_delete:
+			onDeleteSelected();
+			break;
+
+		case R.id.btn_push_messagelist_cancel_select:
+			cancelSelected();
+			break;
+
 		default:
 			break;
 		}
 
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if (mBtnCancelSelect.getVisibility() == View.VISIBLE) {
+				cancelSelected();
+			} else {
+				RingForUActivityManager.pop(PushMessageListActivity.this);
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 	private PushMessageCallBack mCallBack = new PushMessageCallBack() {
@@ -164,11 +252,33 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 						} else {
 							mListView.setAdapter(new PushMessageListAdapter(PushMessageListActivity.this, mPushmessageList));
 							mListView.setOnItemClickListener(mLsnListItemClick);
+							mListView.setOnItemLongClickListener(mLsnListItemLongClick);
+							refreshButtonViews();
 						}
 
 					}
 				});
 			}
+		}
+
+		@Override
+		public void deletePushMessagesFinished(final int[] ids, final boolean result) {
+			super.deletePushMessagesFinished(ids, result);
+
+			runOnUiThread(new Runnable() {
+
+				@Override
+				public void run() {
+					if (result) {
+						MyToast.makeText(PushMessageListActivity.this, R.string.delete_success, Toast.LENGTH_SHORT, false).show();
+						mController.getPushMessageList(0, mPushmessageList.size() - ids.length, mCallBack);
+					} else {
+						MyToast.makeText(PushMessageListActivity.this, R.string.delete_failed, Toast.LENGTH_SHORT, false).show();
+						refreshListView();
+					}
+				}
+			});
+
 		}
 
 	};

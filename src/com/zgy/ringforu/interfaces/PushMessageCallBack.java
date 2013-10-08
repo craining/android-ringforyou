@@ -25,4 +25,8 @@ public class PushMessageCallBack {
 	public void addPushMessageSharedTimesFinished(boolean result) {
 
 	}
+
+	public void deletePushMessagesFinished(int[] ids, boolean result) {
+
+	}
 }

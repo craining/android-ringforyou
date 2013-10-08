@@ -11,7 +11,8 @@
 
         <Button
             android:id="@+id/btn_more_exit"
-            style="@style/btn_left_top_exit" />
+            style="@style/btn_left_top"
+            android:text="@string/str_exit" />
 
         <TextView
             android:id="@+id/text_more_title"

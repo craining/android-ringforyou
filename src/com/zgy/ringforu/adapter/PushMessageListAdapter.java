@@ -3,6 +3,7 @@ package com.zgy.ringforu.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,12 +61,35 @@ public class PushMessageListAdapter extends BaseAdapter {
 		convertView.findViewById(R.id.view_push_message_item_top).setVisibility(position == 0 ? View.VISIBLE : View.GONE);
 		convertView.findViewById(R.id.view_push_message_item_bottom).setVisibility(position == mMessages.size() - 1 ? View.VISIBLE : View.GONE);
 
-		holder.textTitle.setText(mMessages.get(position).getTitle());
-		holder.textContent.setText(mMessages.get(position).getContent().replaceAll(PushMessageUtils.MESSAGE_TAG_BREAKLINE, "\r\n"));
-		holder.textReceiveTime.setText(TimeUtil.longToDateTimeString(mMessages.get(position).getReceiveTime()));
+		PushMessage msg = mMessages.get(position);
 
-		((RelativeLayout) convertView.findViewById(R.id.layout_push_message_item_middle))
-				.setBackgroundResource(mMessages.get(position).getReadStatue() == PushMessage.READ ? R.drawable.selector_rounded_layout_read : R.drawable.selector_rounded_layout_unread);
+		holder.textTitle.setText(msg.getTitle());
+		holder.textContent.setText(msg.getContent().replaceAll(PushMessageUtils.MESSAGE_TAG_BREAKLINE, "\r\n"));
+		holder.textReceiveTime.setText(TimeUtil.longToDateTimeString(msg.getReceiveTime()));
+
+		if (msg.getReadStatue() == PushMessage.READ) {
+			holder.textReceiveTime.setTypeface(Typeface.DEFAULT);
+			holder.textReceiveTime.getPaint().setFakeBoldText(false);
+			holder.textTitle.setTypeface(Typeface.DEFAULT);
+			holder.textTitle.getPaint().setFakeBoldText(false);
+			// holder.textTitle.setTextColor(getResources().getColor(R.color.black));
+		} else {
+			holder.textReceiveTime.setTypeface(Typeface.DEFAULT_BOLD);
+			holder.textReceiveTime.getPaint().setFakeBoldText(true);
+			holder.textTitle.setTypeface(Typeface.DEFAULT_BOLD);
+			holder.textTitle.getPaint().setFakeBoldText(true);
+		}
+
+		// ±³¾°
+		if (msg.isSelected()) {
+			((RelativeLayout) convertView.findViewById(R.id.layout_push_message_item_middle)).setBackgroundResource(R.drawable.shape_rounded_layout_p);
+		} else {
+			if (msg.getReadStatue() == PushMessage.READ) {
+				((RelativeLayout) convertView.findViewById(R.id.layout_push_message_item_middle)).setBackgroundResource(R.drawable.selector_rounded_layout_read);
+			} else {
+				((RelativeLayout) convertView.findViewById(R.id.layout_push_message_item_middle)).setBackgroundResource(R.drawable.selector_rounded_layout_unread);
+			}
+		}
 
 		return convertView;
 	}

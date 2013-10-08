@@ -98,10 +98,11 @@ public class WaterMarkService extends Service {
 		wm = (WindowManager) getApplicationContext().getSystemService("window");
 		wmParams = RingForU.getMywmParams();
 		wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;// 该类型提供与用户交互，置于所有应用程序上方，但是在状态栏后面
-		wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-				| WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;// 不接受任何按键事件
-		// wmParams.gravity = Gravity.LEFT | Gravity.TOP; //
-		// 调整悬浮窗口至左上角WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES |
+		wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN 
+				| WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES;// 不接受任何按键事件
+		
+		//| WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+		// 调整悬浮窗口至左上角 |
 		// WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
 		wmParams.gravity = Gravity.FILL;
 
