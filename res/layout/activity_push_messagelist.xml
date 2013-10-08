@@ -16,6 +16,8 @@
         <Button
             android:id="@+id/btn_push_messagelist_cancel_select"
             style="@style/btn_left_top"
+            android:paddingLeft="@dimen/layout_height_five"
+            android:paddingRight="@dimen/layout_height_five"
             android:text="@string/str_cancel_selected" />
 
         <TextView
@@ -25,7 +27,7 @@
 
         <Button
             android:id="@+id/btn_push_messagelist_delete"
-            style="@style/btn_right_top"
+            style="@style/btn_right_top_delete"
             android:text="@string/delete_str" />
     </RelativeLayout>
 

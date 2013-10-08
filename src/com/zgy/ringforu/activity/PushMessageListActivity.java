@@ -7,6 +7,7 @@ import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.AnimationDrawable;
@@ -31,10 +32,12 @@ import com.zgy.ringforu.adapter.PushMessageListAdapter;
 import com.zgy.ringforu.bean.PushMessage;
 import com.zgy.ringforu.interfaces.PushMessageCallBack;
 import com.zgy.ringforu.logic.PushMessageController;
+import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.NotificationUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.ViewUtil;
+import com.zgy.ringforu.view.MyDialog;
 import com.zgy.ringforu.view.MyToast;
 
 public class PushMessageListActivity extends BaseGestureActivity implements OnClickListener {
@@ -139,7 +142,28 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 		refreshListView();
 	}
 
+	private void showDeleteDlg() {
+
+		MyDialog.Builder builder = new MyDialog.Builder(PushMessageListActivity.this);
+		builder.setTitle(R.string.str_tip).setMessage(R.string.delete_pushmsg_alert).setPositiveButton(R.string.str_ok, new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface dialog, int whichButton) {
+				dialog.dismiss();
+				PhoneUtil.doVibraterNormal(PushMessageListActivity.super.mVb);
+				// 删除
+				onDeleteSelected();
+			}
+		}).setNegativeButton(R.string.str_cancel, new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface dialog, int whichButton) {
+				dialog.dismiss();
+				PhoneUtil.doVibraterNormal(PushMessageListActivity.super.mVb);
+			}
+		}).create().show();
+	}
+
 	private void onDeleteSelected() {
+
 		List<Integer> messages = new ArrayList<Integer>();
 		for (PushMessage msg : mPushmessageList) {
 			if (msg.isSelected()) {
@@ -205,7 +229,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 			RingForUActivityManager.pop(PushMessageListActivity.this);
 			break;
 		case R.id.btn_push_messagelist_delete:
-			onDeleteSelected();
+			showDeleteDlg();
 			break;
 
 		case R.id.btn_push_messagelist_cancel_select:
@@ -318,15 +342,27 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 	@Override
 	public void onSlideToRight() {
 		super.onSlideToRight();
-		ViewUtil.onButtonPressedBack(mBtnBack);
 		PhoneUtil.doVibraterNormal(super.mVb);
-		RingForUActivityManager.pop(this);
+		if (mBtnCancelSelect.getVisibility() == View.VISIBLE) {
+			ViewUtil.onButtonPressedBlue(mBtnCancelSelect);
+			cancelSelected();
+		} else {
+			ViewUtil.onButtonPressedBack(mBtnBack);
+			RingForUActivityManager.pop(this);
+		}
 
 	}
 
 	@Override
 	public void onSlideToLeft() {
 		super.onSlideToLeft();
+
+		if (mBtnCancelSelect.getVisibility() == View.VISIBLE) {
+			ViewUtil.onButtonPressedRed(mBtnDelete);
+			PhoneUtil.doVibraterNormal(super.mVb);
+			showDeleteDlg();
+		}
+
 	}
 
 }
