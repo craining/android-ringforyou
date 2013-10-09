@@ -21,7 +21,8 @@ public class WaterMarkUtil {
 	// TODO getstate , check ,
 
 	public static boolean isWaterMarkShowing(Context context) {
-		if (isWaterMarkSeted() && MainUtil.isServiceStarted(context, MainCanstants.SERVICE_NAME_WATERMARK)) {
+		//&& MainUtil.isServiceStarted(context, MainCanstants.SERVICE_NAME_WATERMARK)
+		if (isWaterMarkSeted() ) {
 			return true;
 		} else {
 			return false;

@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.config.MainConfig;
+import com.zgy.ringforu.util.MainUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
 import com.zgy.ringforu.util.BusyModeUtil;
 import com.zgy.ringforu.util.DisableGprsUtil;
@@ -92,6 +93,8 @@ public class ToolsListActivity extends BaseGestureActivity implements OnClickLis
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(ACTION_WATERMARK_ON);
 		registerReceiver(mReceiver, filter);
+		
+		MainUtil.checkAllState(ToolsListActivity.this);
 	}
 
 	@Override

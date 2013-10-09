@@ -154,7 +154,7 @@ public class WaterMarkService extends Service {
 		// imgShow.setImageDrawable(null);
 		// stopSelf();
 		// }
-		wm.addView(view, wmParams);
+//		wm.addView(view, wmParams);
 
 		mHandler = new ListenerHandler();
 		mHandler.sendEmptyMessageDelayed(MSG_NOOP, TIME_DELAY);
@@ -205,7 +205,7 @@ public class WaterMarkService extends Service {
 			case MSG_HIDE:
 				mHandler.removeMessages(MSG_HIDE);
 				if (mTempAlpha > 0) {
-					mTempAlpha -= 8;
+					mTempAlpha -= 10;
 					mTempAlpha = mTempAlpha < 0 ? 0 : mTempAlpha;
 					mImageView.setAlpha(mTempAlpha);
 
@@ -224,7 +224,7 @@ public class WaterMarkService extends Service {
 			case MSG_SHOW:
 				mHandler.removeMessages(MSG_SHOW);
 				if (mTempAlpha < mAlpah) {
-					mTempAlpha += 8;
+					mTempAlpha += 10;
 					mTempAlpha = mTempAlpha >= mAlpah ? mAlpah : mTempAlpha;
 					mImageView.setAlpha(mTempAlpha);
 
