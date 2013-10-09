@@ -157,7 +157,7 @@ public class WaterMarkService extends Service {
 //		wm.addView(view, wmParams);
 
 		mHandler = new ListenerHandler();
-		mHandler.sendEmptyMessageDelayed(MSG_NOOP, TIME_DELAY);
+		mHandler.sendEmptyMessage(MSG_NOOP);
 		// LogRingForu.v(TAG, "imgShow h=" + imgShow.getMeasuredHeight() +
 		// "  w=" + imgShow.getMeasuredWidth());
 	}
