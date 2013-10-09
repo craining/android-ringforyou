@@ -97,13 +97,32 @@ public class WaterMarkService extends Service {
 		view = LayoutInflater.from(this).inflate(R.layout.watermark_floating, null);
 		wm = (WindowManager) getApplicationContext().getSystemService("window");
 		wmParams = RingForU.getMywmParams();
+
 		wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;// 该类型提供与用户交互，置于所有应用程序上方，但是在状态栏后面
-		wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN 
-				| WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS | WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES;// 不接受任何按键事件
-		
-		//| WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-		// 调整悬浮窗口至左上角 |
-		// WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+		// wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;// 系统提示。它总是出现在应用程序窗口之上
+		// wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;// 系统内部错误提示，显示于所有内容之上
+		// wmParams.type = WindowManager.LayoutParams.TYPE_PRIORITY_PHONE;// 电话优先，当锁屏时显示。此窗口不能获得输入焦点，否则影响锁屏
+		// wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;// 电话优先，当锁屏时显示。此窗口不能获得输入焦点，否则影响锁屏
+
+		wmParams.flags =
+
+		WindowManager.LayoutParams.FLAG_FULLSCREEN
+
+		| WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+
+		| WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN // 让window占满整个手机屏幕，不留任何边界（border）
+
+		// | WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES// 不接受任何按键事件
+
+		| WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE // 让window不能获得焦点，这样用户快就不能向该window发送按键事件及按钮事件
+
+		| WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE // 让该window不接受触摸屏事件
+		// | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH //让该window不接受触摸屏事件
+
+		// | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+		// //即使在该window在可获得焦点情况下，仍然把该window之外的任何event发送到该window之后的其他window.
+
+		;
 		wmParams.gravity = Gravity.FILL;
 
 		// Rect frame = new Rect();
@@ -165,13 +184,14 @@ public class WaterMarkService extends Service {
 					// String shortClassName =
 					// info.topActivity.getShortClassName(); //
 					// 类名
-					// String className = info.topActivity.getClassName(); //
+					String className = info.topActivity.getClassName(); //
 					// 完整类名
 					String packageName = info.topActivity.getPackageName(); // 包名
+					// LogRingForu.v(TAG, "top app className=" + className);
 					if (!packageName.equals(mPackageNameTemp)) {
 						// 仅当切换时，才控制
 						mPackageNameTemp = packageName;
-						if (RingForU.getInstance().getPackageNameHideWaterMark().contains(packageName)) {
+						if (RingForU.getInstance().getPackageNameHideWaterMark().contains(packageName) || MainCanstants.ACTIVITY_NAME_INSTALLAPP.equals(className)) {
 							hide();
 						} else {
 							show();
@@ -190,6 +210,13 @@ public class WaterMarkService extends Service {
 					mImageView.setAlpha(mTempAlpha);
 
 					mHandler.sendEmptyMessageDelayed(MSG_HIDE, TIME_DELAY_SHOW_HIDE);
+				} else {
+
+					try {
+						wm.removeView(view);
+					} catch (Exception e) {
+						// e.printStackTrace();
+					}
 				}
 
 				break;
@@ -214,6 +241,12 @@ public class WaterMarkService extends Service {
 	}
 
 	private void show() {
+		try {
+			wm.addView(view, wmParams);
+		} catch (Exception e) {
+			// e.printStackTrace();
+		}
+
 		if (mTempAlpha < mAlpah) {
 			mTempAlpha = 0;
 			mHandler.sendEmptyMessageDelayed(MSG_SHOW, TIME_DELAY_SHOW_HIDE);

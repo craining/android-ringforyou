@@ -41,6 +41,7 @@
         android:layout_marginLeft="@dimen/layout_margin_left_right"
         android:layout_marginRight="@dimen/layout_margin_left_right"
         android:layout_marginTop="@dimen/layout_margin_left_right"
+        android:gravity="center_horizontal"
         android:orientation="horizontal" >
 
         <TextView
@@ -64,6 +65,7 @@
         android:layout_marginLeft="@dimen/layout_margin_left_right"
         android:layout_marginRight="@dimen/layout_margin_left_right"
         android:layout_marginTop="@dimen/layout_margin_top_title"
+        android:gravity="center_horizontal"
         android:orientation="horizontal" >
 
         <TextView
@@ -87,6 +89,7 @@
         android:layout_marginLeft="@dimen/layout_margin_left_right"
         android:layout_marginRight="@dimen/layout_margin_left_right"
         android:layout_marginTop="@dimen/layout_margin_top_title"
+        android:gravity="center_horizontal"
         android:orientation="horizontal" >
 
         <TextView

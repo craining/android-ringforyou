@@ -18,7 +18,7 @@ public class MainCanstants {
 	// 最多可添加10个
 	public static final int MAX_NUMS = 10;
 	// 消息列表，
-	public static final int LIMIT = 2;
+	public static final int LIMIT = 5;
 
 	public static final String FEEDBACK_EMAIL_TO = "craining@163.com";
 	public static final String FEEDBACK_TITLE = "RingForYou反馈";
@@ -54,6 +54,9 @@ public class MainCanstants {
 	public static final int WATER_MARK_ALPHA_DEF = 50;
 
 	public static final String SPLIT_TAG = ":::";// 分隔符
+	
+	public static final String ACTIVITY_NAME_INSTALLAPP = "com.android.packageinstaller.PackageInstallerActivity";
+	public static final String PACKAGE_NAME_INSTALLAPP = "com.android.packageinstaller";
 
 	// //////////////////////////////////////////
 	public static File getSdFile() {
