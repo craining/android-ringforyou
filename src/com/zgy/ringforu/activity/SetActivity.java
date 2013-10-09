@@ -169,8 +169,8 @@ public class SetActivity extends BaseGestureActivity implements OnClickListener 
 			} else {
 				LogRingForu.v(TAG, strSlient + "<-- strSlientP");
 
-				if (strSlient.contains(":::")) {
-					String[] ps = strSlient.split(":::");
+				if (strSlient.contains(MainCanstants.SPLIT_TAG)) {
+					String[] ps = strSlient.split(MainCanstants.SPLIT_TAG);
 					// 添加了两个安静时段
 					imgImportantAddClam.setVisibility(View.GONE);
 					layoutImportantClam1.setVisibility(View.VISIBLE);
@@ -262,7 +262,7 @@ public class SetActivity extends BaseGestureActivity implements OnClickListener 
 		case R.id.img_del_calm_1_important:
 			// 删除第一个安静时段
 			String strSlientP = mMainConfig.getSlientTime();
-			String[] ps = strSlientP.split(":::");
+			String[] ps = strSlientP.split(MainCanstants.SPLIT_TAG);
 			if (ps.length == 1) {
 				mMainConfig.setSlientTime("");// TODO delete key?
 			} else if (ps.length == 2) {
@@ -273,7 +273,7 @@ public class SetActivity extends BaseGestureActivity implements OnClickListener 
 			break;
 		case R.id.img_del_calm_2_important:
 			// 删除第二个安静时段
-			String[] ps2 = mMainConfig.getSlientTime().split(":::");
+			String[] ps2 = mMainConfig.getSlientTime().split(MainCanstants.SPLIT_TAG);
 			mMainConfig.setSlientTime(ps2[0]);
 			refreshView();
 			break;

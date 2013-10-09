@@ -131,13 +131,16 @@
 
         <!-- 无信号时自动寻找信号 -->
 
-        <View style="@style/line_set_item_diver" />
+        <View
+            style="@style/line_set_item_diver"
+            android:visibility="gone" />
 
         <RelativeLayout
             android:id="@+id/layout_tool_signalreconnect"
             style="@style/layout_set_item"
             android:background="@drawable/bg_list_item"
-            android:clickable="true" >
+            android:clickable="true"
+            android:visibility="gone" >
 
             <LinearLayout style="@style/layout_set_item_content_left" >
 
@@ -173,8 +176,11 @@
                     style="@style/text_set_item_content_left_top"
                     android:text="@string/msg_title_title" />
 
-                <TextView
+                <com.zgy.ringforu.view.MarqueeTextView
                     style="@style/text_set_item_content_left_bottom"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
                     android:text="@string/msg_tip" />
             </LinearLayout>
 

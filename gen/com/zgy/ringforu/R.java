@@ -567,13 +567,13 @@ public final class R {
         public static final int about_programer_name=0x7f0900d6;
         public static final int about_qa=0x7f0900d7;
         public static final int about_qa_name=0x7f0900d8;
-        public static final int add=0x7f09000d;
-        public static final int add_byhand=0x7f090006;
+        public static final int add=0x7f09000e;
+        public static final int add_byhand=0x7f090007;
         public static final int add_cannot_more=0x7f090020;
         public static final int add_error=0x7f09001e;
         public static final int add_fail=0x7f090023;
-        public static final int add_fromcontacts=0x7f090005;
-        public static final int add_help=0x7f09000f;
+        public static final int add_fromcontacts=0x7f090006;
+        public static final int add_help=0x7f090010;
         public static final int add_null=0x7f09001d;
         public static final int add_repeat=0x7f090021;
         public static final int add_success=0x7f09001f;
@@ -584,8 +584,8 @@ public final class R {
         public static final int addslient_fail_repeat=0x7f090038;
         public static final int addslient_fail_same=0x7f09003a;
         public static final int addslient_start=0x7f090034;
-        public static final int app_name=0x7f090001;
-        public static final int back=0x7f090002;
+        public static final int app_name=0x7f090002;
+        public static final int back=0x7f090003;
         public static final int btn_close_state=0x7f0900de;
         public static final int btn_open_state=0x7f0900df;
         public static final int busymode_info=0x7f09009e;
@@ -627,14 +627,14 @@ public final class R {
         public static final int clam_info=0x7f090015;
         public static final int clam_per=0x7f090014;
         public static final int clear_alert=0x7f090096;
-        public static final int clear_all=0x7f090003;
+        public static final int clear_all=0x7f090004;
         public static final int clear_data_null=0x7f090098;
         public static final int clear_data_over=0x7f090097;
         public static final int clear_null=0x7f0900e5;
         public static final int clear_str=0x7f090094;
         public static final int clear_str_info=0x7f090095;
         public static final int clear_success=0x7f09002b;
-        public static final int copyright=0x7f090010;
+        public static final int copyright=0x7f090001;
         /**  2.0 
  2.0 
  2.0 
@@ -654,7 +654,7 @@ public final class R {
         public static final int disable_gprs_title=0x7f090088;
         public static final int export_data=0x7f0900e6;
         public static final int export_fail=0x7f090027;
-        public static final int export_items=0x7f09000b;
+        public static final int export_items=0x7f09000c;
         public static final int export_success=0x7f090026;
         public static final int feedback=0x7f090016;
         public static final int feedback_content=0x7f090083;
@@ -682,15 +682,15 @@ public final class R {
         public static final int help_title_important_info=0x7f090085;
         public static final int help_verb=0x7f090012;
         public static final int help_verb_info=0x7f090013;
-        public static final int how_additem=0x7f090007;
-        public static final int how_deleteitem=0x7f090008;
+        public static final int how_additem=0x7f090008;
+        public static final int how_deleteitem=0x7f090009;
         public static final int import_data=0x7f0900e7;
         public static final int import_fail=0x7f090029;
-        public static final int import_items=0x7f09000a;
+        public static final int import_items=0x7f09000b;
         public static final int import_sueccess=0x7f090028;
         public static final int left_bottom=0x7f090025;
         public static final int left_top=0x7f090024;
-        public static final int main_title=0x7f090004;
+        public static final int main_title=0x7f090005;
         public static final int menu_title_call=0x7f0900ea;
         public static final int menu_title_important=0x7f0900e8;
         public static final int menu_title_sms=0x7f0900e9;
@@ -699,7 +699,7 @@ public final class R {
         public static final int msg_tip=0x7f0900fa;
         public static final int msg_title=0x7f0900f6;
         public static final int msg_title_title=0x7f0900f7;
-        public static final int name=0x7f09000c;
+        public static final int name=0x7f09000d;
         public static final int name_null=0x7f090022;
         public static final int newversion_title_info=0x7f090059;
         public static final int no_sdcard=0x7f0900d2;
@@ -712,11 +712,11 @@ public final class R {
         public static final int none_addnull_important_title=0x7f09005a;
         public static final int none_addnull_sms_text=0x7f09005f;
         public static final int none_addnull_sms_title=0x7f09005e;
-        public static final int none_contact=0x7f090009;
+        public static final int none_contact=0x7f09000a;
         public static final int nonet_tip=0x7f090032;
         public static final int notify_new_version=0x7f090057;
         public static final int notify_new_version_tip=0x7f090058;
-        public static final int phonenumber=0x7f09000e;
+        public static final int phonenumber=0x7f09000f;
         public static final int push_message_null=0x7f0900fc;
         public static final int push_message_receive_one=0x7f0900fd;
         public static final int push_message_title=0x7f0900fb;

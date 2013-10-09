@@ -16,8 +16,6 @@
         <Button
             android:id="@+id/btn_push_messagelist_cancel_select"
             style="@style/btn_left_top"
-            android:paddingLeft="@dimen/layout_height_five"
-            android:paddingRight="@dimen/layout_height_five"
             android:text="@string/str_cancel_selected" />
 
         <TextView

@@ -9,7 +9,7 @@ import com.zgy.ringforu.util.SQLiteHelper;
 public class DbHelper extends SQLiteHelper {
 
 	private static final String DB_NAME = "dbname";
-	private static final int DB_VERSION = 1;
+	private static final int DB_VERSION = 2;
 
 	private static String CREATE_TB_INFO;
 	private static String DROP_TB_INFO = "DROP TABLE IF EXISTS " + Columns.Tb_PushMessage.TB_NAME;;

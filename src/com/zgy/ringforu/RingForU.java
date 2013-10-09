@@ -11,8 +11,8 @@ import com.zgy.ringforu.util.StringUtil;
 
 public class RingForU extends Application {
 
-	public static boolean DEBUG = true;
-	public static boolean DB_SAVE_SDCARD = true;
+	public static boolean DEBUG = false;
+	public static boolean DB_SAVE_SDCARD = false;
 
 	private boolean bIsVerbOn = true;
 	private boolean bIsGestureOn = true;

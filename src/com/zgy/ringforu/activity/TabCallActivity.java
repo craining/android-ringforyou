@@ -117,8 +117,8 @@ public class TabCallActivity extends Activity implements OnClickListener {
 		allNumbersSelected = RingForU.getInstance().getNumbersCall();
 		allNameSelected = mainConfig.getInterceptCallNames();
 		if (!StringUtil.isNull(allNumbersSelected) && !StringUtil.isNull(allNameSelected)) {
-			String[] allNums = allNumbersSelected.split(":::");
-			String[] allNames = allNameSelected.split(":::");
+			String[] allNums = allNumbersSelected.split(MainCanstants.SPLIT_TAG);
+			String[] allNames = allNameSelected.split(MainCanstants.SPLIT_TAG);
 			for (int i = 0; i < allNums.length; i++) {
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put("name", allNames[i]);

@@ -55,7 +55,7 @@ public class MainCanstants {
 
 	
 	
-	
+	public static final String SPLIT_TAG = ":::";//·Ö¸ô·û
 	
 	
 	

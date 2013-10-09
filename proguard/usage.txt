@@ -70,15 +70,14 @@ com.baidu.loctp.str.BDLocManager:
     public boolean startWifiScan()
 com.zgy.ringforu.BuildConfig
 com.zgy.ringforu.LogRingForu:
-    private static final boolean LOG
     private static final java.lang.String NULL_STR
-    6:6:public LogRingForu()
-    21:21:public static void d(java.lang.String,java.lang.String,java.lang.Throwable)
-    31:31:public static void e(java.lang.String,java.lang.String,java.lang.Throwable)
-    42:42:public static void v(java.lang.String,java.lang.String,java.lang.Throwable)
-    52:52:public static void i(java.lang.String,java.lang.String,java.lang.Throwable)
-    57:57:public static void w(java.lang.String,java.lang.String)
-    62:62:public static void w(java.lang.String,java.lang.String,java.lang.Throwable)
+    5:5:public LogRingForu()
+    16:18:public static void d(java.lang.String,java.lang.String,java.lang.Throwable)
+    26:28:public static void e(java.lang.String,java.lang.String,java.lang.Throwable)
+    37:39:public static void v(java.lang.String,java.lang.String,java.lang.Throwable)
+    47:49:public static void i(java.lang.String,java.lang.String,java.lang.Throwable)
+    52:54:public static void w(java.lang.String,java.lang.String)
+    57:59:public static void w(java.lang.String,java.lang.String,java.lang.Throwable)
 com.zgy.ringforu.MainCanstants:
     public static final int TYPE_IMPORTANT
     public static final int TYPE_INTECEPT_CALL
@@ -95,7 +94,10 @@ com.zgy.ringforu.MainCanstants:
     public static final int BUTTON_PRESSED_STATUES_SHOW_TIME
     public static final java.lang.String FILE_INNER
     public static final java.lang.String SERVICE_NAME_WATERMARK
+    public static final java.lang.String ACTIVITY_NAME_PUSHMESSAGE_LIST
+    public static final java.lang.String PACKAGE_NAME
     public static final int WATER_MARK_ALPHA_DEF
+    public static final java.lang.String SPLIT_TAG
     7:7:public MainCanstants()
 com.zgy.ringforu.R
 com.zgy.ringforu.R$anim
@@ -119,7 +121,17 @@ com.zgy.ringforu.activity.AddSlientPerActivity:
     private static final java.lang.String TAG
 com.zgy.ringforu.activity.FeedBackActivity:
     private static final java.lang.String TAG
-com.zgy.ringforu.activity.JokeShowActivity:
+com.zgy.ringforu.activity.MainActivityGroup:
+    public int[] mWidthHeightTopMenu
+com.zgy.ringforu.activity.PickerApplicationActivity:
+    private static final java.lang.String TAG
+    144:181:public void queryAppInfo()
+com.zgy.ringforu.activity.PushMessageListActivity:
+    private static final java.lang.String TAG
+    private static final int LIMIT
+    public static final java.lang.String INTENT_INSERT_MESSAGE
+    public static final java.lang.String INTENT_INSERT_MESSAGE_EXTRA
+com.zgy.ringforu.activity.PushMessageShowActivity:
     private static final java.lang.String TAG
     private static final int ID_MENU_MSG
     private static final java.lang.String TAG_HAND
@@ -132,11 +144,6 @@ com.zgy.ringforu.activity.JokeShowActivity:
     private static final java.lang.String TAG_CAT5
     private static final java.lang.String TAG_CAT6
     private static final java.lang.String TAG_CAT7
-com.zgy.ringforu.activity.MainActivityGroup:
-    public int[] mWidthHeightTopMenu
-com.zgy.ringforu.activity.PickerApplicationActivity:
-    private static final java.lang.String TAG
-    131:168:public void queryAppInfo()
 com.zgy.ringforu.activity.SetActivity:
     private static final java.lang.String TAG
 com.zgy.ringforu.activity.TabCallActivity:
@@ -190,18 +197,13 @@ com.zgy.ringforu.bean.ContactInfo:
 com.zgy.ringforu.bean.PushMessage:
     public static final int READ
     public static final int UNREAD
-    private int id
-    17:17:public int getId()
-    21:22:public void setId(int)
-    61:62:public void setReadStatue(int)
-    69:70:public void setSharedTimes(int)
 com.zgy.ringforu.config.ConfigCanstants
 com.zgy.ringforu.config.ConfigFileOpera
 com.zgy.ringforu.config.MainConfig:
     private static final java.lang.String PREFERENCE_NAME
-    176:176:public synchronized boolean isNotificationOn()
-    180:181:public synchronized void setNotificationOnOff(boolean)
-    192:192:public synchronized boolean isUserGuideShown()
+    177:177:public synchronized boolean isNotificationOn()
+    181:182:public synchronized void setNotificationOnOff(boolean)
+    193:193:public synchronized boolean isUserGuideShown()
 com.zgy.ringforu.db.Columns
 com.zgy.ringforu.db.Columns$Tb_PushMessage
 com.zgy.ringforu.db.DbHelper:
@@ -209,12 +211,8 @@ com.zgy.ringforu.db.DbHelper:
     private static final int DB_VERSION
 com.zgy.ringforu.db.DbOpera:
     68:82:public int getPushMessageTotalCount()
-    97:121:public java.util.List getPushMessageList(java.lang.String)
 com.zgy.ringforu.interfaces.PushMessageCallBack:
     15:15:public void getPushMessageTotalCountFinished(boolean,int)
-    19:19:public void getPushMessageListFinished(boolean,java.util.ArrayList)
-com.zgy.ringforu.logic.PushMessageController:
-    22:23:public void remoeCallBack(com.zgy.ringforu.interfaces.PushMessageCallBack)
 com.zgy.ringforu.receiver.CallReceiver:
     private static final java.lang.String TAG
 com.zgy.ringforu.receiver.DisableGprsRecerver:
@@ -281,7 +279,8 @@ com.zgy.ringforu.util.NotificationUtil:
     public static final java.lang.String INTENT_ACTION_KEY_PUSH_MSG_CONTENT
     public static final java.lang.String INTENT_ACTION_KEY_PUSH_MSG_TAG
     public static final java.lang.String INTENT_ACTION_KEY_PUSH_MSG_RECIEVE_TIME
-    23:23:public NotificationUtil()
+    public static final java.lang.String INTENT_ACTION_KEY_PUSH_MSG_ID
+    24:24:public NotificationUtil()
 com.zgy.ringforu.util.PhoneUtil:
     private static final java.lang.String TAG
     public static final int ANSWER_RINGING_CALL
@@ -328,7 +327,6 @@ com.zgy.ringforu.util.SQLiteHelper:
     254:255:public android.database.Cursor query(java.lang.String,java.lang.String[])
     273:274:public android.database.Cursor query(java.lang.String,java.lang.String[],java.lang.String,java.lang.String[])
     293:294:public android.database.Cursor query(java.lang.String,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)
-    314:315:public android.database.Cursor query(java.lang.String,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String,java.lang.String)
 com.zgy.ringforu.util.SelectApplicationUtil:
     7:7:public SelectApplicationUtil()
 com.zgy.ringforu.util.SendEmailUtil:
@@ -339,7 +337,7 @@ com.zgy.ringforu.util.SignalReconnectUtil:
     12:12:public SignalReconnectUtil()
 com.zgy.ringforu.util.SlientTimeUtil:
     private static final java.lang.String TAG
-    8:8:public SlientTimeUtil()
+    9:9:public SlientTimeUtil()
 com.zgy.ringforu.util.SmsLightScreenUtil:
     private static final java.lang.String TAG
     12:12:public SmsLightScreenUtil()
@@ -347,8 +345,11 @@ com.zgy.ringforu.util.StringUtil:
     3:3:public StringUtil()
     81:97:public static java.lang.String getRidofSpecialOfFileName(java.lang.String)
 com.zgy.ringforu.util.TimeUtil:
-    7:7:public TimeUtil()
-    80:96:public static java.lang.String returnDateOrTime(int)
+    8:8:public TimeUtil()
+    82:98:public static java.lang.String returnDateOrTime(int)
+    121:129:public static long dateTimeStringToLong(java.lang.String)
+    139:147:public static long dateStringToLong(java.lang.String)
+    151:153:public static java.lang.String longToDateString(long)
 com.zgy.ringforu.util.ViewUtil:
     9:9:public ViewUtil()
 com.zgy.ringforu.util.WaterMarkUtil:

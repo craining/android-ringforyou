@@ -43,7 +43,7 @@ public class AddContactUtil {
 				} else {
 					if (!numbersImportant.contains(strNum)) {
 						String namesImportant = mainConfig.getImporantNames();
-						MainUtil.refreshImportant(numbersImportant + ":::" + strNum, namesImportant + ":::" + strName);
+						MainUtil.refreshImportant(numbersImportant + MainCanstants.SPLIT_TAG + strNum, namesImportant + MainCanstants.SPLIT_TAG + strName);
 						result = 1;
 					} else {
 						result = 0;
@@ -63,7 +63,7 @@ public class AddContactUtil {
 				} else {
 					if (!numbersCall.contains(strNum)) {
 						String namesCall = mainConfig.getInterceptCallNames();
-						MainUtil.refreshCall(numbersCall + ":::" + strNum, namesCall + ":::" + strName);
+						MainUtil.refreshCall(numbersCall + MainCanstants.SPLIT_TAG + strNum, namesCall + MainCanstants.SPLIT_TAG + strName);
 						result = 1;
 					} else {
 						result = 0;
@@ -83,7 +83,7 @@ public class AddContactUtil {
 				} else {
 					if (!numbersSms.contains(strNum)) {
 						String namesSms = mainConfig.getInterceptSmsNames();
-						MainUtil.refreshSms(numbersSms + ":::" + strNum, namesSms + ":::" + strName);
+						MainUtil.refreshSms(numbersSms + MainCanstants.SPLIT_TAG + strNum, namesSms + MainCanstants.SPLIT_TAG + strName);
 						result = 1;
 					} else {
 						result = 0;
@@ -119,7 +119,7 @@ public class AddContactUtil {
 		case MainCanstants.TYPE_IMPORTANT:
 			String numbersImportant = RingForU.getInstance().getNumbersImportant();
 			if (!StringUtil.isNull(numbersImportant)) {
-				String[] arry = numbersImportant.split(":::");
+				String[] arry = numbersImportant.split(MainCanstants.SPLIT_TAG);
 
 				LogRingForu.v(TAG, " arry.length" + arry.length);
 				result = MainCanstants.MAX_NUMS - arry.length;
@@ -128,7 +128,7 @@ public class AddContactUtil {
 		case MainCanstants.TYPE_INTECEPT_CALL:
 			String numbersCall = RingForU.getInstance().getNumbersCall();
 			if (!StringUtil.isNull(numbersCall)) {
-				String[] arry = numbersCall.split(":::");
+				String[] arry = numbersCall.split(MainCanstants.SPLIT_TAG);
 
 				LogRingForu.v(TAG, " arry.length" + arry.length);
 				result = MainCanstants.MAX_NUMS - arry.length;
@@ -137,7 +137,7 @@ public class AddContactUtil {
 		case MainCanstants.TYPE_INTECEPT_SMS:
 			String numbersSms = RingForU.getInstance().getNumbersSms();
 			if (!StringUtil.isNull(numbersSms)) {
-				String[] arry = numbersSms.split(":::");
+				String[] arry = numbersSms.split(MainCanstants.SPLIT_TAG);
 
 				LogRingForu.v(TAG, " arry.length" + arry.length);
 				result = MainCanstants.MAX_NUMS - arry.length;

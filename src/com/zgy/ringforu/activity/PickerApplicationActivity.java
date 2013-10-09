@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.R;
 import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.adapter.PickerAdapter;
@@ -109,9 +110,21 @@ public class PickerApplicationActivity extends BaseGestureActivity implements On
 					}
 					apps.add(appInfo);
 				}
+
 				for (AppInfo app : apps) {
 					mAppsInfoList.add(app);
 				}
+
+				// //对之前保存的app进行过滤，若列表已不存在，则删除
+				// if(selectedApps.contains(MainCanstants.SPLIT_TAG)) {
+				// String[] selectedAppsA = selectedApps.split(MainCanstants.SPLIT_TAG);
+				//
+				// for(String app : selectedAppsA) {
+				// if(!StringUtil.isNull(app)) {
+				//
+				// }
+				// }
+				// }
 
 				runOnUiThread(new Runnable() {
 
@@ -204,11 +217,11 @@ public class PickerApplicationActivity extends BaseGestureActivity implements On
 		StringBuilder sb = new StringBuilder("");
 		for (AppInfo app : mAppsInfoList) {
 			if (app.getSelected()) {
-				sb.append(app.getPackageName() + ":::");
+				sb.append(app.getPackageName() + MainCanstants.SPLIT_TAG);
 			}
 		}
 		String apps = sb.toString();
-		if (!StringUtil.isNull(apps) && apps.contains(":::")) {
+		if (!StringUtil.isNull(apps) && apps.contains(MainCanstants.SPLIT_TAG)) {
 
 			MainUtil.refreshWaterMarkHideApps(apps.substring(0, apps.length() - 3));
 

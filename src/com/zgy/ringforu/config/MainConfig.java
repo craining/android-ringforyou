@@ -141,7 +141,8 @@ public class MainConfig extends PreferenceUtil {
 	}
 
 	public synchronized boolean isSignalReconnectOn() {
-		return getBool(ConfigCanstants.SWITCH_SIGNAL_RECONNECT, false);
+		// return getBool(ConfigCanstants.SWITCH_SIGNAL_RECONNECT, false);
+		return false;
 	}
 
 	public synchronized void setSignalReconnectOnOff(boolean on) {

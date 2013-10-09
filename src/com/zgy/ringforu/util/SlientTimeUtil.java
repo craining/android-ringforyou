@@ -3,6 +3,7 @@ package com.zgy.ringforu.util;
 import android.content.Context;
 
 import com.zgy.ringforu.LogRingForu;
+import com.zgy.ringforu.MainCanstants;
 import com.zgy.ringforu.config.MainConfig;
 
 public class SlientTimeUtil {
@@ -29,7 +30,6 @@ public class SlientTimeUtil {
 			if (preTimePer.contains(per)) {
 				return -1;// ÷ÿ∏¥
 			} else {
-				// String[] a = preTimePer.split(":::");
 				String[] pretimes = preTimePer.split("-");
 				String[] newtimes = per.split("-");
 
@@ -76,7 +76,7 @@ public class SlientTimeUtil {
 			MainConfig.getInstance().setSlientTime(per);
 		}
 		if (result == 2) {
-			MainConfig.getInstance().setSlientTime(StringUtil.isNull(preTimePer) ? per : preTimePer + ":::" + per);
+			MainConfig.getInstance().setSlientTime(StringUtil.isNull(preTimePer) ? per : preTimePer + MainCanstants.SPLIT_TAG + per);
 		}
 		return result;
 	}
@@ -92,8 +92,8 @@ public class SlientTimeUtil {
 		String strSlientP = MainConfig.getInstance().getSlientTime();
 
 		if (!StringUtil.isNull(strSlientP)) {
-			if (strSlientP.contains(":::")) {
-				String[] a = strSlientP.split(":::");
+			if (strSlientP.contains(MainCanstants.SPLIT_TAG)) {
+				String[] a = strSlientP.split(MainCanstants.SPLIT_TAG);
 				for (String a_item : a) {
 					if (a_item != null && a_item.contains("-")) {
 						String[] times = a_item.split("-");

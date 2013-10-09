@@ -126,7 +126,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_centerHorizontal="true"
                                     android:layout_centerVertical="true"
-                                    android:text="6"
+                                    android:text="5"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/text_size_little" />
                             </RelativeLayout>
