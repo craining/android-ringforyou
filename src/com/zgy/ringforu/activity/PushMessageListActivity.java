@@ -22,6 +22,8 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.zgy.ringforu.LogRingForu;
@@ -32,7 +34,6 @@ import com.zgy.ringforu.adapter.PushMessageListAdapter;
 import com.zgy.ringforu.bean.PushMessage;
 import com.zgy.ringforu.interfaces.PushMessageCallBack;
 import com.zgy.ringforu.logic.PushMessageController;
-import com.zgy.ringforu.util.FileUtil;
 import com.zgy.ringforu.util.NotificationUtil;
 import com.zgy.ringforu.util.PhoneUtil;
 import com.zgy.ringforu.util.RingForUActivityManager;
@@ -50,18 +51,20 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 	private Button mBtnCancelSelect;
 	private ImageView imgLoading;
 	private AnimationDrawable animationDrawable;
+	private View mViewLoadMore;
+	private RelativeLayout mLayoutLoadMore;
+	private ProgressBar mProgressbarLoadMore;
 
 	private List<PushMessage> mPushmessageList = new ArrayList<PushMessage>();
 
 	private PushMessageController mController;
-
-	private static final int LIMIT = 10;
 
 	public static final String INTENT_INSERT_MESSAGE = "com.zgy.ringforu.PUSH_MESSAGE_INSERT";
 	public static final String INTENT_INSERT_MESSAGE_EXTRA = "notificationId";
 
 	private BroadcastReceiver mReciever;
 	private ActivityManager mActivityManager;
+	private PushMessageListAdapter mAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +77,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 
 		mController = PushMessageController.getInstence();
 
-		mController.getPushMessageList(0, LIMIT, mCallBack);
+		mController.getPushMessageList(0, MainCanstants.LIMIT, mCallBack);
 
 		IntentFilter counterActionFilter = new IntentFilter(INTENT_INSERT_MESSAGE);
 		mReciever = new MyBroadcastReceiver();
@@ -97,23 +100,43 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 		mBtnBack = (Button) findViewById(R.id.btn_push_messagelist_back);
 		mBtnCancelSelect = (Button) findViewById(R.id.btn_push_messagelist_cancel_select);
 		imgLoading = (ImageView) findViewById(R.id.img_push_messagelist_animation);
+
+		mViewLoadMore = getLayoutInflater().inflate(R.layout.list_tail_loadmore, mListView, false);
+		mLayoutLoadMore = (RelativeLayout) mViewLoadMore.findViewById(R.id.layout_footerview_loadmore);
+		mProgressbarLoadMore = (ProgressBar) mViewLoadMore.findViewById(R.id.progress_footerview_loadmore);
+		mLayoutLoadMore.setVisibility(View.GONE);
+		mListView.addFooterView(mViewLoadMore);
+
 		animationDrawable = (AnimationDrawable) imgLoading.getDrawable();
 		animationDrawable.start();
 
 		mBtnDelete.setOnClickListener(this);
 		mBtnBack.setOnClickListener(this);
 		mBtnCancelSelect.setOnClickListener(this);
+		mLayoutLoadMore.setOnClickListener(this);
 		mBtnDelete.setVisibility(View.GONE);
 		mBtnCancelSelect.setVisibility(View.GONE);
 	}
 
 	private void refreshListView() {
-		PushMessageListAdapter a = (PushMessageListAdapter) mListView.getAdapter();
-		if (a != null) {
-			a.notifyDataSetChanged();
+		if (mAdapter != null) {
+			mAdapter.notifyDataChanged(mPushmessageList);
 			refreshButtonViews();
-		}
 
+			if (mProgressbarLoadMore.getVisibility() == View.VISIBLE) {
+				mProgressbarLoadMore.setVisibility(View.GONE);
+				mLayoutLoadMore.setEnabled(true);
+			}
+		} else {
+			if (mPushmessageList != null && mPushmessageList.size() > 0) {
+				mAdapter = new PushMessageListAdapter(PushMessageListActivity.this, mPushmessageList);
+				mListView.setAdapter(mAdapter);
+				mListView.setOnItemClickListener(mLsnListItemClick);
+				mListView.setOnItemLongClickListener(mLsnListItemLongClick);
+				refreshButtonViews();
+			}
+
+		}
 	}
 
 	private void refreshButtonViews() {
@@ -132,6 +155,22 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 			mBtnDelete.setVisibility(View.GONE);
 			mBtnBack.setVisibility(View.VISIBLE);
 			mBtnCancelSelect.setVisibility(View.GONE);
+		}
+	}
+
+	private void refreshFooterView(int allCount) {
+		LogRingForu.v(TAG, "refreshFooterView allCount=" + allCount);
+		if (mPushmessageList.size() >= allCount) {
+			LogRingForu.v(TAG, "remove FooterView ");
+			mLayoutLoadMore.setVisibility(View.GONE);
+
+			// 当超过limit时，是加载更多造成的，吐丝提示没有更多了
+			if (allCount > MainCanstants.LIMIT) {
+				MyToast.makeText(PushMessageListActivity.this, R.string.str_load_more_no, Toast.LENGTH_LONG, false).show();
+			}
+		} else {
+			mLayoutLoadMore.setVisibility(View.VISIBLE);
+			LogRingForu.v(TAG, "add FooterView ");
 		}
 	}
 
@@ -235,7 +274,12 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 		case R.id.btn_push_messagelist_cancel_select:
 			cancelSelected();
 			break;
-
+		case R.id.layout_footerview_loadmore:
+			// 载入更多
+			mProgressbarLoadMore.setVisibility(View.VISIBLE);
+			mLayoutLoadMore.setEnabled(false);
+			mController.getPushMessageList(0, mPushmessageList.size() + MainCanstants.LIMIT, mCallBack);
+			break;
 		default:
 			break;
 		}
@@ -258,9 +302,9 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 	private PushMessageCallBack mCallBack = new PushMessageCallBack() {
 
 		@Override
-		public void getPushMessageListFinished(boolean result, final List<PushMessage> pushMessages) {
+		public void getPushMessageListFinished(boolean result, final List<PushMessage> pushMessages, final int allCount) {
 
-			super.getPushMessageListFinished(result, pushMessages);
+			super.getPushMessageListFinished(result, pushMessages, allCount);
 
 			if (result) {
 				mPushmessageList = pushMessages;
@@ -268,18 +312,17 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 
 					@Override
 					public void run() {
-						animationDrawable.stop();
-						imgLoading.setVisibility(View.GONE);
+						if (imgLoading.getVisibility() == View.VISIBLE) {
+							animationDrawable.stop();
+							imgLoading.setVisibility(View.GONE);
+						}
 
 						if (pushMessages == null || pushMessages.size() <= 0) {
 							MyToast.makeText(RingForU.getInstance(), R.string.push_message_null, Toast.LENGTH_LONG, true).show();
 						} else {
-							mListView.setAdapter(new PushMessageListAdapter(PushMessageListActivity.this, mPushmessageList));
-							mListView.setOnItemClickListener(mLsnListItemClick);
-							mListView.setOnItemLongClickListener(mLsnListItemLongClick);
-							refreshButtonViews();
+							refreshListView();
+							refreshFooterView(allCount);
 						}
-
 					}
 				});
 			}

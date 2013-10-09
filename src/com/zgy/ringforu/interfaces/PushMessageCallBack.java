@@ -14,7 +14,7 @@ public class PushMessageCallBack {
 
 	}
 
-	public void getPushMessageListFinished(boolean result, List<PushMessage> pushMessages) {
+	public void getPushMessageListFinished(boolean result, List<PushMessage> pushMessages, int allCount) {
 
 	}
 

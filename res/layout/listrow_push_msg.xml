@@ -42,12 +42,4 @@
             android:layout_marginTop="@dimen/layout_little_margin" />
     </RelativeLayout>
 
-    <View
-        android:id="@+id/view_push_message_item_bottom"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/layout_margin_title"
-        android:layout_below="@id/layout_push_message_item_middle"
-        android:background="@drawable/bg_translation"
-        android:visibility="gone" />
-
 </RelativeLayout>

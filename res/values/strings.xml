@@ -278,5 +278,8 @@
     <string name="delete_pushmsg_alert">确定要删除选中的消息吗？</string>
     <string name="delete_success">删除成功</string>
     <string name="delete_failed">删除失败</string>
+    
+    <string name="str_load_more">更多</string>
+    <string name="str_load_more_no">没有更多消息了</string>
 
 </resources>

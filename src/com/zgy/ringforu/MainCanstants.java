@@ -6,8 +6,6 @@ import android.os.Environment;
 
 public class MainCanstants {
 
-	
-	
 	public static final int TYPE_IMPORTANT = 0;
 	public static final int TYPE_INTECEPT_CALL = 1;
 	public static final int TYPE_INTECEPT_SMS = 2;
@@ -19,6 +17,8 @@ public class MainCanstants {
 	public static final long[] VIBRATE_STREGTH_ERROR = new long[] { 0, 20, 100, 20 };// 振动强度
 	// 最多可添加10个
 	public static final int MAX_NUMS = 10;
+	// 消息列表，
+	public static final int LIMIT = 2;
 
 	public static final String FEEDBACK_EMAIL_TO = "craining@163.com";
 	public static final String FEEDBACK_TITLE = "RingForYou反馈";
@@ -47,25 +47,15 @@ public class MainCanstants {
 	private static final String FILE_WATERMARK_IMG_TEMP_CUT_DES = MainCanstants.FILE_PATH_IN_SDCARD + "cut";
 	private static final String FILE_WATERMARK_IMG_TEMP_CUT_SRC = MainCanstants.FILE_PATH_IN_SDCARD + "src";
 	public static final String SERVICE_NAME_WATERMARK = "com.zgy.ringforu.service.WaterMarkService";
-	
+
 	public static final String ACTIVITY_NAME_PUSHMESSAGE_LIST = "com.zgy.ringforu.activity.PushMessageListActivity";
 	public static final String PACKAGE_NAME = "com.zgy.ringforu";
-	
+
 	public static final int WATER_MARK_ALPHA_DEF = 50;
 
-	
-	
-	public static final String SPLIT_TAG = ":::";//分隔符
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	////////////////////////////////////////////
+	public static final String SPLIT_TAG = ":::";// 分隔符
+
+	// //////////////////////////////////////////
 	public static File getSdFile() {
 		checkSdFile();
 		return FILE_IN_SDCARD;
@@ -111,7 +101,7 @@ public class MainCanstants {
 		checkSdFile();
 		return FILE_WATERMARK_IMG_TEMP_CUT_SRC;
 	}
-	
+
 	public static String getsdFileWaterMarkCutDesTemp() {
 		checkSdFile();
 		return FILE_WATERMARK_IMG_TEMP_CUT_DES;

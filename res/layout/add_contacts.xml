@@ -100,7 +100,7 @@
         android:layout_marginLeft="@dimen/layout_margin_left_right"
         android:layout_marginRight="@dimen/layout_margin_left_right"
         android:layout_marginTop="@dimen/search_layout_padding_tb"
-        android:background="@drawable/shape_rounded_layout"
+        android:background="@drawable/shape_rounded_layout_white"
         android:cacheColorHint="#00000000"
         android:dividerHeight="1dip"
         android:fadingEdge="none"

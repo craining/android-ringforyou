@@ -59,10 +59,9 @@ public class PushMessageController {
 			@Override
 			public void run() {
 				try {
-					mDbOpera.insertPushMessage(msg);
-
+					boolean result = mDbOpera.insertPushMessage(msg);
 					// for (PushMessageCallBack callback : getCallBacks()) {
-					callback.insertPushMessageFinished(true, msg);
+					callback.insertPushMessageFinished(result, msg);
 					// }
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -153,15 +152,19 @@ public class PushMessageController {
 			public void run() {
 				try {
 					List<PushMessage> messages = new ArrayList<PushMessage>();
-					messages = mDbOpera.getPushMessageList(String.valueOf(start + "," + end));
-
+					int allCount = mDbOpera.getPushMessageTotalCount();
+					if (end > allCount) {
+						messages = mDbOpera.getPushMessageList(String.valueOf(start + "," + allCount));
+					} else {
+						messages = mDbOpera.getPushMessageList(String.valueOf(start + "," + end));
+					}
 					// for (PushMessageCallBack callback : getCallBacks()) {
-					callback.getPushMessageListFinished(true, messages);
+					callback.getPushMessageListFinished(true, messages, allCount);
 					// }
 				} catch (Exception e) {
 					e.printStackTrace();
 					// for (PushMessageCallBack callback : getCallBacks()) {
-					callback.getPushMessageListFinished(false, null);
+					callback.getPushMessageListFinished(false, null, -1);
 					// }
 				}
 
@@ -187,11 +190,8 @@ public class PushMessageController {
 			public void run() {
 				try {
 
-					if (mDbOpera.deletePushMessage(ids)) {
-						callback.deletePushMessagesFinished(ids, true);
-					} else {
-						callback.deletePushMessagesFinished(ids, false);
-					}
+					boolean result = mDbOpera.deletePushMessage(ids);
+					callback.deletePushMessagesFinished(ids, result);
 
 				} catch (Exception e) {
 					e.printStackTrace();

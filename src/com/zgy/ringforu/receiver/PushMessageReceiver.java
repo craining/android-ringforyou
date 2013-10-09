@@ -114,6 +114,7 @@ public class PushMessageReceiver extends BroadcastReceiver {
 	}
 
 	private class MyPushMessageCallBack extends PushMessageCallBack {
+
 		private Context contex;
 
 		public MyPushMessageCallBack(Context context) {
@@ -124,12 +125,15 @@ public class PushMessageReceiver extends BroadcastReceiver {
 		public void insertPushMessageFinished(boolean result, PushMessage message) {
 			super.insertPushMessageFinished(result, message);
 
-			// 消息提示
-			int notifyId = NotificationUtil.showHidePushMessageNotify(true, contex, message, -1);
+			if (result) {
+				// 消息提示
+				int notifyId = NotificationUtil.showHidePushMessageNotify(true, contex, message, -1);
 
-			Intent i = new Intent(PushMessageListActivity.INTENT_INSERT_MESSAGE);
-			i.putExtra(PushMessageListActivity.INTENT_INSERT_MESSAGE_EXTRA, notifyId);
-			contex.sendBroadcast(i);
+				Intent i = new Intent(PushMessageListActivity.INTENT_INSERT_MESSAGE);
+				i.putExtra(PushMessageListActivity.INTENT_INSERT_MESSAGE_EXTRA, notifyId);
+				contex.sendBroadcast(i);
+			}
+
 		}
 	}
 

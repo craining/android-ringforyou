@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.zgy.ringforu.LogRingForu;
 import com.zgy.ringforu.bean.PushMessage;
 import com.zgy.ringforu.db.Columns.Tb_PushMessage;
+import com.zgy.ringforu.util.StringUtil;
 
 public class DbOpera extends DbHelper {
 
@@ -42,16 +43,54 @@ public class DbOpera extends DbHelper {
 	 * @author: zhuanggy
 	 * @date:2013-9-30
 	 */
-	public void insertPushMessage(PushMessage msg) {
-		ContentValues value = new ContentValues();
-		value.put(Columns.Tb_PushMessage.TITLE, msg.getTitle());
-		value.put(Columns.Tb_PushMessage.CONTENT, msg.getContent());
-		value.put(Columns.Tb_PushMessage.TAG, msg.getTag());
-		value.put(Columns.Tb_PushMessage.RECEIVE_TIME, msg.getReceiveTime());
-		value.put(Columns.Tb_PushMessage.READ_STATUE, msg.getReadStatue());
-		value.put(Columns.Tb_PushMessage.SHARED_TIMES, msg.getSharedTimes());
+	public boolean insertPushMessage(PushMessage msg) {
 
-		insertOrIgnore(Tb_PushMessage.TB_NAME, value);
+		// LogRingForu.e("insertPushMessage", "insertPushMessage content = " + msg.getContent());
+
+		Cursor cursor = null;
+		boolean contain = false;
+		try {
+			cursor = query(Columns.Tb_PushMessage.TB_NAME, null, null, null);
+			if (cursor != null && cursor.getCount() > 0) {
+				cursor.moveToFirst();
+
+				do {
+					String content = cursor.getString(cursor.getColumnIndex(Columns.Tb_PushMessage.CONTENT));
+
+					// LogRingForu.v("insertPushMessage", "insertPushMessage content = " + content);
+					if (!StringUtil.isNull(content)) {
+						if (content.equals(msg.getContent())) {
+							contain = true;
+							LogRingForu.e("insertPushMessage", "insertPushMessage already exist");
+							break;
+						}
+					}
+				} while (cursor.moveToNext());
+
+			}
+
+			if (!contain) {
+				ContentValues value = new ContentValues();
+				value.put(Columns.Tb_PushMessage.TITLE, msg.getTitle());
+				value.put(Columns.Tb_PushMessage.CONTENT, msg.getContent());
+				value.put(Columns.Tb_PushMessage.TAG, msg.getTag());
+				value.put(Columns.Tb_PushMessage.RECEIVE_TIME, msg.getReceiveTime());
+				value.put(Columns.Tb_PushMessage.READ_STATUE, msg.getReadStatue());
+				value.put(Columns.Tb_PushMessage.SHARED_TIMES, msg.getSharedTimes());
+
+				insertOrIgnore(Tb_PushMessage.TB_NAME, value);
+				return true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (cursor != null) {
+				cursor.close();
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -98,18 +137,22 @@ public class DbOpera extends DbHelper {
 		List<PushMessage> pushMessages = new ArrayList<PushMessage>();
 		PushMessage msg = null;
 		try {
-			// ²éÑ¯ÎÄ¼þ¼Ð
 			cursor = query(Columns.Tb_PushMessage.TB_NAME, null, null, null, Columns.Tb_PushMessage.RECEIVE_TIME + " desc", limit);
-			while (cursor.moveToNext()) {
-				msg = new PushMessage();
-				msg.setId(cursor.getInt(cursor.getColumnIndex(Columns.Tb_PushMessage.ID)));
-				msg.setTitle(cursor.getString(cursor.getColumnIndex(Columns.Tb_PushMessage.TITLE)));
-				msg.setContent(cursor.getString(cursor.getColumnIndex(Columns.Tb_PushMessage.CONTENT)));
-				msg.setTag(cursor.getString(cursor.getColumnIndex(Columns.Tb_PushMessage.TAG)));
-				msg.setReceiveTime(cursor.getLong(cursor.getColumnIndex(Columns.Tb_PushMessage.RECEIVE_TIME)));
-				msg.setReadStatue(cursor.getInt(cursor.getColumnIndex(Columns.Tb_PushMessage.READ_STATUE)));
-				msg.setSharedTimes(cursor.getInt(cursor.getColumnIndex(Columns.Tb_PushMessage.SHARED_TIMES)));
-				pushMessages.add(msg);
+
+			if (cursor != null && cursor.getCount() > 0) {
+
+				cursor.moveToFirst();
+				do {
+					msg = new PushMessage();
+					msg.setId(cursor.getInt(cursor.getColumnIndex(Columns.Tb_PushMessage.ID)));
+					msg.setTitle(cursor.getString(cursor.getColumnIndex(Columns.Tb_PushMessage.TITLE)));
+					msg.setContent(cursor.getString(cursor.getColumnIndex(Columns.Tb_PushMessage.CONTENT)));
+					msg.setTag(cursor.getString(cursor.getColumnIndex(Columns.Tb_PushMessage.TAG)));
+					msg.setReceiveTime(cursor.getLong(cursor.getColumnIndex(Columns.Tb_PushMessage.RECEIVE_TIME)));
+					msg.setReadStatue(cursor.getInt(cursor.getColumnIndex(Columns.Tb_PushMessage.READ_STATUE)));
+					msg.setSharedTimes(cursor.getInt(cursor.getColumnIndex(Columns.Tb_PushMessage.SHARED_TIMES)));
+					pushMessages.add(msg);
+				} while (cursor.moveToNext());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

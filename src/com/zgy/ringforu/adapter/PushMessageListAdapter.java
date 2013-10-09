@@ -26,6 +26,12 @@ public class PushMessageListAdapter extends BaseAdapter {
 		this.mMessages = messages;
 		mInflater = LayoutInflater.from(context);
 	}
+	
+	
+	public void notifyDataChanged(List<PushMessage> messages) {
+		this.mMessages = messages;
+		notifyDataSetChanged();
+	}
 
 	@Override
 	public int getCount() {
@@ -59,7 +65,7 @@ public class PushMessageListAdapter extends BaseAdapter {
 		}
 
 		convertView.findViewById(R.id.view_push_message_item_top).setVisibility(position == 0 ? View.VISIBLE : View.GONE);
-		convertView.findViewById(R.id.view_push_message_item_bottom).setVisibility(position == mMessages.size() - 1 ? View.VISIBLE : View.GONE);
+//		convertView.findViewById(R.id.view_push_message_item_bottom).setVisibility(position == mMessages.size() - 1 ? View.VISIBLE : View.GONE);
 
 		PushMessage msg = mMessages.get(position);
 
@@ -82,7 +88,7 @@ public class PushMessageListAdapter extends BaseAdapter {
 
 		// ±³¾°
 		if (msg.isSelected()) {
-			((RelativeLayout) convertView.findViewById(R.id.layout_push_message_item_middle)).setBackgroundResource(R.drawable.shape_rounded_layout_p);
+			((RelativeLayout) convertView.findViewById(R.id.layout_push_message_item_middle)).setBackgroundResource(R.drawable.shape_rounded_layout_blue);
 		} else {
 			if (msg.getReadStatue() == PushMessage.READ) {
 				((RelativeLayout) convertView.findViewById(R.id.layout_push_message_item_middle)).setBackgroundResource(R.drawable.selector_rounded_layout_read);
