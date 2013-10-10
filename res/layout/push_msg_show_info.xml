@@ -66,8 +66,8 @@
                     android:layout_marginBottom="@dimen/title_margin_tn"
                     android:layout_marginRight="@dimen/layout_margin_left_right"
                     android:layout_marginTop="@dimen/layout_margin_top_title"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/ic_joke_hand" />
+                    android:visibility="gone"
+                    android:scaleType="centerInside"/>
             </LinearLayout>
 
             <View

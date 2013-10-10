@@ -571,7 +571,7 @@ public final class R {
         public static final int about_programer_name=0x7f0900d6;
         public static final int about_qa=0x7f0900d7;
         public static final int about_qa_name=0x7f0900d8;
-        public static final int add=0x7f09000e;
+        public static final int add=0x7f09000b;
         public static final int add_byhand=0x7f090007;
         public static final int add_cannot_more=0x7f090020;
         public static final int add_error=0x7f09001e;
@@ -588,7 +588,7 @@ public final class R {
         public static final int addslient_fail_repeat=0x7f090038;
         public static final int addslient_fail_same=0x7f09003a;
         public static final int addslient_start=0x7f090034;
-        public static final int app_name=0x7f090002;
+        public static final int app_name=0x7f090000;
         public static final int back=0x7f090003;
         public static final int btn_close_state=0x7f0900de;
         public static final int btn_open_state=0x7f0900df;
@@ -628,6 +628,9 @@ public final class R {
         public static final int busymode_title_7=0x7f0900b2;
         public static final int busymode_title_8=0x7f0900b3;
         public static final int busymode_title_9=0x7f0900b4;
+        public static final int chinese_huoxing=0x7f090107;
+        public static final int chinese_sim=0x7f090105;
+        public static final int chinese_tw=0x7f090106;
         public static final int clam_info=0x7f090015;
         public static final int clam_per=0x7f090014;
         public static final int clear_alert=0x7f090096;
@@ -638,7 +641,7 @@ public final class R {
         public static final int clear_str=0x7f090094;
         public static final int clear_str_info=0x7f090095;
         public static final int clear_success=0x7f09002b;
-        public static final int copyright=0x7f090001;
+        public static final int copyright=0x7f090002;
         /**  2.0 
  2.0 
  2.0 
@@ -658,7 +661,7 @@ public final class R {
         public static final int disable_gprs_title=0x7f090088;
         public static final int export_data=0x7f0900e6;
         public static final int export_fail=0x7f090027;
-        public static final int export_items=0x7f09000c;
+        public static final int export_items=0x7f090009;
         public static final int export_success=0x7f090026;
         public static final int feedback=0x7f090016;
         public static final int feedback_content=0x7f090083;
@@ -671,6 +674,8 @@ public final class R {
         public static final int feedback_submit=0x7f09002c;
         public static final int finish=0x7f0900d9;
         /**  向右滑动触发标题栏上最左侧按钮，向左滑动触发标题栏最上右侧按钮 
+ 向右滑动触发标题栏上最左侧按钮，向左滑动触发标题栏最上右侧按钮 
+ 向右滑動觸發標題列上最左側按鈕，向左滑動觸發標題列最上右側按鈕 
          */
         public static final int gesture_info=0x7f0900ec;
         public static final int gesture_label=0x7f0900eb;
@@ -686,11 +691,11 @@ public final class R {
         public static final int help_title_important_info=0x7f090085;
         public static final int help_verb=0x7f090012;
         public static final int help_verb_info=0x7f090013;
-        public static final int how_additem=0x7f090008;
-        public static final int how_deleteitem=0x7f090009;
+        public static final int how_additem=0x7f09000e;
+        public static final int how_deleteitem=0x7f09000d;
         public static final int import_data=0x7f0900e7;
         public static final int import_fail=0x7f090029;
-        public static final int import_items=0x7f09000b;
+        public static final int import_items=0x7f090008;
         public static final int import_sueccess=0x7f090028;
         public static final int left_bottom=0x7f090025;
         public static final int left_top=0x7f090024;
@@ -703,7 +708,7 @@ public final class R {
         public static final int msg_tip=0x7f0900fa;
         public static final int msg_title=0x7f0900f6;
         public static final int msg_title_title=0x7f0900f7;
-        public static final int name=0x7f09000d;
+        public static final int name=0x7f09000a;
         public static final int name_null=0x7f090022;
         public static final int newversion_title_info=0x7f090059;
         public static final int no_sdcard=0x7f0900d2;
@@ -712,15 +717,19 @@ public final class R {
         public static final int none_addnull_important_text=0x7f09005b;
         /**  new 
  The important contact has not yet been added, please add. 
+ new 
+ The important contact has not yet been added, please add. 
+ new 
+ The important contact has not yet been added, please add. 
          */
         public static final int none_addnull_important_title=0x7f09005a;
         public static final int none_addnull_sms_text=0x7f09005f;
         public static final int none_addnull_sms_title=0x7f09005e;
-        public static final int none_contact=0x7f09000a;
+        public static final int none_contact=0x7f09000f;
         public static final int nonet_tip=0x7f090032;
         public static final int notify_new_version=0x7f090057;
         public static final int notify_new_version_tip=0x7f090058;
-        public static final int phonenumber=0x7f09000f;
+        public static final int phonenumber=0x7f09000c;
         public static final int push_message_null=0x7f0900fc;
         public static final int push_message_receive_one=0x7f0900fd;
         public static final int push_message_title=0x7f0900fb;
@@ -730,6 +739,8 @@ public final class R {
         public static final int receivedata_important=0x7f09007f;
         public static final int receivedata_sms=0x7f09007d;
         /**  2013-01-17 
+ 2013-01-17 
+ 2013-01-17 
          */
         public static final int receivedata_title=0x7f09007c;
         public static final int search_hint=0x7f09003b;
@@ -783,6 +794,8 @@ public final class R {
         public static final int str_change_bg_color=0x7f0900ed;
         public static final int str_close=0x7f0900a6;
         /**  暂时不用 
+ 暂时不用 
+ 暫時不用 
          */
         public static final int str_docall=0x7f0900c6;
         public static final int str_doclear=0x7f0900c7;
@@ -805,6 +818,8 @@ public final class R {
         public static final int tab_call=0x7f090061;
         public static final int tab_important=0x7f090062;
         /**  2013-07-17 
+ 2013-07-17 
+ 2013-07-17 
          */
         public static final int tab_more=0x7f0900c8;
         public static final int tab_sms=0x7f090060;
@@ -819,7 +834,7 @@ public final class R {
         public static final int tools_str=0x7f09003d;
         public static final int tools_test=0x7f0900f1;
         public static final int tools_test_tip=0x7f0900f2;
-        public static final int version_name=0x7f090000;
+        public static final int version_name=0x7f090001;
         public static final int water_mark_hide_app=0x7f0900f3;
         public static final int water_mark_hide_app_tip=0x7f0900f5;
         public static final int water_mark_hide_app_title=0x7f0900f4;
@@ -833,6 +848,10 @@ public final class R {
         public static final int watermark_del=0x7f09004c;
         public static final int watermark_del_success=0x7f09004d;
         public static final int watermark_info=0x7f090040;
+        /**   
+  
+  
+         */
         public static final int watermark_on=0x7f090051;
         public static final int watermark_ori_tip=0x7f090050;
         public static final int watermark_orientation_landscape=0x7f090048;

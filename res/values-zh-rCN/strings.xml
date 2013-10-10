@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">Waiter</string>
-     <string name="copyright">©2012&#8211;2015 ZGY. 版权所有\r\n\r\nv1.0.8</string>
+    <string name="copyright">©2012&#8211;2015 ZGY. 版权所有\tv1.0.8\r\n\r\nAndroid开发QQ群:88130145</string>
      
     <string name="back">返回</string>
     <string name="clear_all">清空</string>
@@ -88,4 +88,202 @@
     <string name="watermark_show_fail">水印显示失败</string>
     <string name="watermark_ori_tip">剪裁图片可获得最佳显示比例！</string>
  
+    
+    <!--  -->
+    
+    <string name="watermark_on">屏幕水印已开启</string>
+    <string name="watermark_set_tip">点击进入水印设置页</string>
+    <string name="smslight_on">收到短信点亮屏幕已开启</string>
+    <string name="smslight_set_tip">点击更改设置</string>
+    <string name="signalreconnect_on">掉线重连已开启</string>
+    <string name="signalreconnect_set_tip">点击更改设置</string>
+    <string name="notify_new_version">版本更新【Waiter】</string>
+    <string name="notify_new_version_tip">点击进入新版本下载页面</string>
+    <string name="newversion_title_info">更新说明</string>
+
+    <!-- new -->
+    <!-- The important contact has not yet been added, please add. -->
+    <string name="none_addnull_important_title">尚未添加重要联系人</string>
+    <string name="none_addnull_important_text">即便手机静音，在收到重要联系人的来电或短信时仍会响铃；\r\n\r\n\r\n点击右上角的按钮可进行相关操作。</string>
+    <string name="none_addnull_call_title">尚未添加要屏蔽的来电</string>
+    <string name="none_addnull_call_text">轻松地忽略不想接听的来电；\r\n\r\n\r\n点击右上角的按钮可进行相关操作。</string>
+    <string name="none_addnull_sms_title">尚未添加要屏蔽的短信</string>
+    <string name="none_addnull_sms_text">轻松地忽略不想接收的短信；\r\n\r\n\r\n点击右上角的按钮可进行相关操作。</string>
+    <string name="tab_sms">短信屏蔽</string>
+    <string name="tab_call">来电屏蔽</string>
+    <string name="tab_important">重要联系人</string>
+    <string name="set_backup">创建/还原备份</string>
+    <string name="set_backup_important_info">对重要联系人进行备份或还原备份。</string>
+    <string name="set_backup_call_info">对要屏蔽来电的联系人进行备份或还原备份。</string>
+    <string name="set_backup_sms_info">对要屏蔽短信的联系人进行备份或还原备份。</string>
+    <string name="set_backup_select">请选择</string>
+    <string name="set_backup_select_text">创建备份会覆盖上次备份的数据；\r\n还原备份会覆盖现有的数据。</string>
+    <string name="set_backup_nosdcard">备份操作需要存储卡</string>
+    <string name="set_backup_noimportant">尚未添加重要联系人</string>
+    <string name="set_backup_nocall">尚未添加要屏蔽来电的联系人</string>
+    <string name="set_backup_nosms">尚未添加要屏蔽短信的联系人</string>
+    <string name="set_backup_nobackups">没有找到备份文件</string>
+    <string name="set_hidestyle_sms">短信屏蔽方式</string>
+    <string name="set_hidestyle_call">来电屏蔽方式</string>
+    <string name="set_hidestyle_call_no_answer">直接挂断</string>
+    <string name="set_hidestyle_call_no_answer_info">自动挂断，返回音由运营商自动返回</string>
+    <string name="set_hidestyle_call_receive_shutdown">接听后挂断</string>
+    <string name="set_hidestyle_call_receive_shutdown_info">自动接听，然后自动挂断</string>
+    <string name="set_hidestyle_call_null">拒接，空号提示</string>
+    <string name="set_hidestyle_call_null_info">自动拒接，并返回空号提示音</string>
+    <string name="set_hidestyle_call_shutdown">拒接，关机提示</string>
+    <string name="set_hidestyle_call_shutdown_info">自动拒接，并返回已关机提示音</string>
+    <string name="set_hidestyle_sms_disreceive">拒收</string>
+    <string name="set_hidestyle_sms_disreceive_info">不收取短信</string>
+    <string name="set_hidestyle_sms_slient">静音接收</string>
+    <string name="set_hidestyle_sms_slient_info">收到要屏蔽的短信时静音</string>
+
+    <!-- 2013-01-17 -->
+    <string name="receivedata_title">请选择操作：</string>
+    <string name="receivedata_sms">屏蔽短信</string>
+    <string name="receivedata_call">屏蔽来电</string>
+    <string name="receivedata_important">重要联系人</string>
+    <string name="receivedata_content1">得到的号码为：</string>
+    <string name="sure_delete_call">你确定要清除所有要拦截的电话吗？</string>
+    <string name="sure_delete_sms">你确定要清除所有要拦截的短信吗？</string>
+    <string name="feedback_content">反馈内容</string>
+    <string name="help_title_important">重要联系人：</string>
+    <string name="help_title_important_info">即便手机处于静音状态，也绝不错过重要联系人的任何一个来电和短信。</string>
+    <string name="help_title_callsms">屏蔽来电、短信：</string>
+    <string name="help_title_callsms_info">轻而易举的忽略不想接听的来电以及不想看到的短信。</string>
+    <string name="disable_gprs_title">禁用移动网络</string>
+    <string name="disable_gprs_info">防止高额 gprs 数据流量费用</string>
+    <string name="receive_numbers_null">不支持的数据</string>
+    <string name="disable_gprs_notify_msg">点击更改设置</string>
+    <string name="disable_gprs_on">当前状态：已禁用</string>
+    <string name="disable_gprs_off">当前状态：未禁用</string>
+    <string name="disable_gprs_on_tip">移动网络连接已禁用</string>
+    <string name="disable_gprs_on_tip_toast">移动网络连接已禁用；请查看通知栏。</string>
+    <string name="disable_gprs_off_tip">移动网络连接已不再禁用</string>
+    <string name="sms_lightscreen_title">收到短信点亮屏幕</string>
+    <string name="sms_lightscreen_info">防止手机静音错过普通短信</string>
+    <string name="sms_lightscreen_toast_on">收到短信将点亮屏幕</string>
+    <string name="clear_str">清空缓存</string>
+    <string name="clear_str_info">删除备份文件</string>
+    <string name="clear_alert">您确定要删除所有备份数据吗？</string>
+    <string name="clear_data_over">备份文件已清空</string>
+    <string name="clear_data_null">没有备份文件</string>
+    <string name="signalreconnect_title">掉线重连</string>
+    <string name="signalreconnect_info">手机无信号时定时自动重连</string>
+    <string name="signalreconnect_success">开启成功</string>
+    <string name="signalreconnect_not_support">您的系统过于强大，暂不支持此功能</string>
+    <string name="busymode_title">忙碌模式</string>
+    <string name="busymode_info">自动拒接电话，并回复短信告知。</string>
+    <string name="busymode_info_notreply">自动拒接电话。</string>
+    <string name="busymode_tip_open_toast">忙碌模式已经开启</string>
+    <string name="busymode_tip_close_toast">忙碌模式已经关闭</string>
+    <string name="busymode_set_title">自动回复</string>
+    <string name="busymode_set_hint">(短信内容为空，表示拒接来电后不回复短信)</string>
+    <string name="busymode_rule_tip">忙碌模式下对重要联系人和来电屏蔽不起作用。</string>
+    <string name="str_open">开启</string>
+    <string name="str_close">关闭</string>
+    <string name="str_busymode_notification_msg">拒绝来电，自动回复：</string>
+    <string name="str_busymode_notification_nomsg">只拒绝来电，不发送短信告知。</string>
+    <string name="str_busymode_notification_refused_notify">自动拒接</string>
+    <string name="str_busymode_notification_refused_title">自动拒接，点击呼叫</string>
+    <string name="busymode_title_0">自定义</string>
+    <string name="busymode_title_1">忙碌</string>
+    <string name="busymode_title_2">驾车</string>
+    <string name="busymode_title_3">睡觉</string>
+    <string name="busymode_title_4">做饭</string>
+    <string name="busymode_title_5">电影院</string>
+    <string name="busymode_title_6">工作</string>
+    <string name="busymode_title_7">学习</string>
+    <string name="busymode_title_8">酒吧</string>
+    <string name="busymode_title_9">度假</string>
+    <string name="busymode_title_10">不回复短信</string>
+    <string name="busymode_title_11">开会</string>
+    <string name="busymode_title_12">通话中</string>
+       <string name="busymode_info_1">对不起，我现在正忙，现在不方便接听您的电话。[Waiter自动回复]</string>
+    <string name="busymode_info_2">对不起，我在开车，为确保安全驾驶，现在不方便接听您的电话。[Waiter自动回复]</string>
+    <string name="busymode_info_3">对不起，我在睡觉，真心不想被吵醒，因此不能接听您的电话。[Waiter自动回复]</string>
+    <string name="busymode_info_4">对不起，我在做饭，接听电话会糊锅哦。[Waiter自动回复]</string>
+    <string name="busymode_info_5">对不起，我在电影院，为防止打扰别人，不能接听您的电话，身不由己哦。[Waiter自动回复]</string>
+    <string name="busymode_info_6">对不起，我在忙碌的工作中，现在不想被打扰，稍后我会联系您的。[Waiter自动回复]</string>
+    <string name="busymode_info_7">对不起，我在学习中，不想被打扰，稍后我会联系您。[Waiter自动回复]</string>
+    <string name="busymode_info_8">对不起，我在酒吧，这里非常嘈杂，我会找个时机联系您的。[Waiter自动回复]</string>
+    <string name="busymode_info_9">对不起，我在度假，不想被打扰，有时间会联系您的。[Waiter自动回复]</string>
+    <string name="busymode_info_10"></string>
+    <string name="busymode_info_11">对不起，我在开会，会议结束后我会联系您的，请谅解！[Waiter自动回复]</string>
+    <string name="busymode_info_12">对不起，我正在通话中，稍后会联系您的。[Waiter自动回复]</string>
+    <string name="share_label_number">提取电话号码</string>
+    <string name="share_label_watermark">设置屏幕水印</string>
+
+    <!-- 暂时不用 -->
+    <string name="str_docall">拨打</string>
+    <string name="str_doclear">清除</string>
+
+    <!-- 2013-07-17 -->
+
+    <string name="tab_more">更多</string>
+    <string name="gprs_msg">禁用移动网络可防止产生高额的数据流量费用！</string>
+    <string name="gprs_disable">禁用</string>
+    <string name="gprs_undisable">不再禁用</string>
+    <string name="gprs_cancel">取消</string>
+    <string name="busymode_refused_tel">"  电话："</string>
+    <string name="busymode_refused_unknown">未知来电</string>
+    <string name="busymode_refused_title">来电已拒绝</string>
+    <string name="watermark_close">关闭</string>
+    <string name="watermark_close_finish">屏幕水印已关闭！</string>
+    <string name="no_sdcard">操作无法进行，请检查存储卡是否可用</string>
+    <string name="about_maker">产品设计：</string>
+    <string name="about_maker_name">ZGY</string>
+    <string name="about_programer">开发人员：</string>
+    <string name="about_programer_name">ZGY</string>
+    <string name="about_qa">测试人员：</string>
+    <string name="about_qa_name">XXY</string>
+    <string name="finish">完成</string>
+    <string name="smslight_msg">点亮屏幕可防止手机静音状态下错过普通短信，夜间效果更佳！</string>
+    <string name="signalreconnect_msg">自动重连可防止某些手机无信号后无法自动获取信号的问题</string>
+    <string name="title_state_on">当前状态：已开启</string>
+    <string name="title_state_off">当前状态：未开启</string>
+    <string name="btn_close_state">不再开启</string>
+    <string name="btn_open_state">开启</string>
+    <string name="toast_close_ok">已关闭</string>
+    <string name="toast_open_ok">已开启</string>
+    <string name="title_setting_important">重要联系人设置</string>
+    <string name="title_setting_sms">短信屏蔽设置</string>
+    <string name="title_setting_call">来电屏蔽设置</string>
+    <string name="clear_null">没有数据</string>
+    <string name="export_data">创建备份</string>
+    <string name="import_data">还原备份</string>
+    <string name="menu_title_important">重要联系人相关操作</string>
+    <string name="menu_title_sms">短信屏蔽相关操作</string>
+    <string name="menu_title_call">来电屏蔽相关操作</string>
+    <string name="gesture_label">手势识别</string>
+    <!-- 向右滑动触发标题栏上最左侧按钮，向左滑动触发标题栏最上右侧按钮 -->
+    <string name="gesture_info">在页面上向左、向右滑动分别触发标题栏上最右侧、最左侧按钮</string>
+    <string name="str_change_bg_color">"切换背景\r\n查看效果"</string>
+    <string name="str_opera">操作</string>
+    <string name="str_exit">退出</string>
+    <string name="str_share">分享</string>
+    <string name="tools_test">工程测试</string>
+    <string name="tools_test_tip">进入系统隐含的测试模块</string>
+    <string name="water_mark_hide_app">屏蔽列表</string>
+    <string name="water_mark_hide_app_title">选择屏蔽应用</string>
+    <string name="water_mark_hide_app_tip">当被勾选的应用启动时，不显示屏幕水印</string>
+    <string name="msg_title">信息推送【Waiter】</string>
+    <string name="msg_title_title">信息推送</string>
+    <string name="msg_get_failed">读取信息失败</string>
+    <string name="msg_share_msg">手机短信</string>
+    <string name="msg_tip">接收作者推送的有用信息</string>
+    <string name="push_message_title">历史信息列表</string>
+    <string name="push_message_null">没有接收到推送信息</string>
+    <string name="push_message_receive_one">收到一条新信息</string>
+    
+    
+    <string name="delete_str">删除</string>
+    <string name="str_cancel_selected">" 取消选择 "</string>
+    <string name="delete_pushmsg_alert">确定要删除选中的信息吗？</string>
+    <string name="delete_success">删除成功</string>
+    <string name="delete_failed">删除失败</string>
+    
+    <string name="str_load_more">更多</string>
+    <string name="str_load_more_no">没有更多信息了</string>
+    
 </resources>

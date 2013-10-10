@@ -1,6 +1,8 @@
 <resources>
 
     <string name="app_name">Waiter</string>
+    <string name="copyright">©2012&#8211;2015 ZGY. 版權所有\tv1.0.8\r\n\r\nAndroid開發QQ群:88130145</string>
+     
     <string name="back">返回</string>
     <string name="clear_all">清空</string>
     <string name="main_title">Waiter For Android</string>
@@ -14,8 +16,7 @@
     <string name="how_deleteitem">長按連絡人即可刪除</string>
     <string name="how_additem">長按連絡人進行添加</string>
     <string name="none_contact">沒有可添加的連絡人</string>
-    <string name="add_help">可以添加親人、愛人、朋友、上司、重要客戶等電話~，不會錯過哦~</string>
-    <string name="copyright">©2012&#8211;2015 ZGY. 版權所有\r\n\r\nv2.0</string>
+    <string name="add_help">可以添加親人、朋友、上司、重要客戶等電話~，不會錯過哦~</string>
     <string name="set_str">設置</string>
     <string name="help_verb">振動回饋</string>
     <string name="help_verb_info">操作時振動回饋</string>
@@ -33,34 +34,34 @@
     <string name="str_cancel">取消</string>
     <string name="add_null">請輸入電話號碼！</string>
     <string name="add_error">請輸入正確的電話號碼！</string>
-    <string name="add_success">添加成功！</string>
-    <string name="add_cannot_more">您不能再添加重要連絡人了！</string>
-    <string name="add_repeat">您已經添加此連絡人!</string>
+    <string name="add_success">添加成功</string>
+    <string name="add_cannot_more">您不能再添加重要連絡人了</string>
+    <string name="add_repeat">您已經添加此連絡人</string>
     <string name="name_null">未加姓名</string>
-    <string name="add_fail">添加失敗！</string>
+    <string name="add_fail">添加失敗</string>
     <string name="left_top">剩餘計數   【 </string>
     <string name="left_bottom">】</string>
-    <string name="export_success">備份成功！</string>
-    <string name="export_fail">備份失敗！\r\n請確保存儲卡存在</string>
-    <string name="import_sueccess">還原備份成功！</string>
-    <string name="import_fail">還原備份失敗！\r\n請確保存儲卡存在</string>
+    <string name="export_success">備份成功</string>
+    <string name="export_fail">備份失敗\r\n請確保存儲卡存在</string>
+    <string name="import_sueccess">還原備份成功</string>
+    <string name="import_fail">還原備份失敗\r\n請確保存儲卡存在</string>
     <string name="sure_delete">您確定要清空全部重要連絡人嗎？</string>
-    <string name="clear_success">已清空！</string>
+    <string name="clear_success">已清空</string>
     <string name="feedback_submit">提交</string>
     <string name="feedback_hint_1">您的電子郵箱</string>
-    <string name="feedback_contentnull">回饋內容不能為空！</string>
-    <string name="feedback_contentfail">回饋失敗！\r\n請保持網路暢通</string>
+    <string name="feedback_contentnull">回饋內容不能為空</string>
+    <string name="feedback_contentfail">回饋失敗\r\n請保持網路暢通</string>
     <string name="feedback_nonetwork">當前沒有網路連接，無法回饋！</string>
     <string name="feedback_subminting">感謝您的回饋！</string>
     <string name="nonet_tip">當前沒有網路連接，請進行網路設置。</string>
     <string name="str_set">設置</string>
     <string name="addslient_start">開始時刻：</string>
     <string name="addslient_end">結束時刻：</string>
-    <string name="addslient_fail_contained">添加失敗！已包含在另一個安靜時段中</string>
-    <string name="addslient_contain">此安靜時段包含另一個安靜時段，另一個安靜時段將被刪除！</string>
-    <string name="addslient_fail_repeat">添加失敗！\r\n與另一個安靜時段重複</string>
-    <string name="addslient_fail_conflict">添加失敗！\r\n與另一個安靜時段衝突</string>
-    <string name="addslient_fail_same">添加失敗！\r\n起始時刻不能相同</string>
+    <string name="addslient_fail_contained">添加失敗\r\n已包含在另一個安靜時段中</string>
+    <string name="addslient_contain">此安靜時段包含另一個安靜時段，另一個安靜時段將被刪除</string>
+    <string name="addslient_fail_repeat">添加失敗\r\n與另一個安靜時段重複</string>
+    <string name="addslient_fail_conflict">添加失敗\r\n與另一個安靜時段衝突</string>
+    <string name="addslient_fail_same">添加失敗\r\n起始時刻不能相同</string>
     <string name="search_hint">名字或號碼</string>
 
     <!-- 2.0 -->
@@ -75,17 +76,214 @@
     <string name="watermark_camera">拍照</string>
     <string name="watermark_album">相冊</string>
     <string name="watermark_set">設置</string>
-    <string name="watermark_set_success">浮水印設置成功！</string>
-    <string name="watermark_orientation_portrait">豎屏比例</string>
-    <string name="watermark_orientation_landscape">橫屏比例</string>
+    <string name="watermark_set_success">浮水印設置成功</string>
+    <string name="watermark_orientation_portrait">豎屏</string>
+    <string name="watermark_orientation_landscape">橫屏</string>
     <string name="watermark_cut">剪裁</string>
     <string name="watermark_change">更換</string>
     <string name="watermark_change_tip">點擊螢幕可以查看不同背景下浮水印的顯示效果。</string>
     <string name="watermark_del">去除</string>
-    <string name="watermark_del_success">浮水印去除成功！</string>
+    <string name="watermark_del_success">浮水印去除成功</string>
     <string name="watermark_text">透明度：</string>
-    <string name="watermark_show_fail">浮水印顯示失敗！</string>
-    <string name="watermark_ori_tip">您可能需要重新剪裁圖片才能顯示正常的比例！</string>
+    <string name="watermark_show_fail">浮水印顯示失敗</string>
+    <string name="watermark_ori_tip">剪裁圖片可獲得最佳顯示比例！</string>
+ 
+    
+    <!--  -->
+    
+    <string name="watermark_on">螢幕浮水印已開啟</string>
+    <string name="watermark_set_tip">點擊進入浮水印設置頁</string>
+    <string name="smslight_on">收到短信點亮螢幕已開啟</string>
+    <string name="smslight_set_tip">點擊更改設置</string>
+    <string name="signalreconnect_on">掉線重連已開啟</string>
+    <string name="signalreconnect_set_tip">點擊更改設置</string>
+    <string name="notify_new_version">版本更新【Waiter】</string>
+    <string name="notify_new_version_tip">點擊進入新版本下載頁面</string>
+    <string name="newversion_title_info">更新說明</string>
 
+    <!-- new -->
+    <!-- The important contact has not yet been added, please add. -->
+    <string name="none_addnull_important_title">尚未添加重要連絡人</string>
+    <string name="none_addnull_important_text">即便手機靜音，在收到重要連絡人的來電或短信時仍會響鈴；\r\n\r\n\r\n點擊右上角的按鈕可進行相關操作。</string>
+    <string name="none_addnull_call_title">尚未添加要遮罩的來電</string>
+    <string name="none_addnull_call_text">輕鬆地忽略不想接聽的來電；\r\n\r\n\r\n點擊右上角的按鈕可進行相關操作。</string>
+    <string name="none_addnull_sms_title">尚未添加要遮罩的短信</string>
+    <string name="none_addnull_sms_text">輕鬆地忽略不想接收的短信；\r\n\r\n\r\n點擊右上角的按鈕可進行相關操作。</string>
+    <string name="tab_sms">短信遮罩</string>
+    <string name="tab_call">來電遮罩</string>
+    <string name="tab_important">重要連絡人</string>
+    <string name="set_backup">創建/還原備份</string>
+    <string name="set_backup_important_info">對重要連絡人進行備份或還原備份。</string>
+    <string name="set_backup_call_info">對要遮罩來電的連絡人進行備份或還原備份。</string>
+    <string name="set_backup_sms_info">對要遮罩短信的連絡人進行備份或還原備份。</string>
+    <string name="set_backup_select">請選擇</string>
+    <string name="set_backup_select_text">創建備份會覆蓋上次備份的資料；\r\n還原備份會覆蓋現有的資料。</string>
+    <string name="set_backup_nosdcard">備份操作需要存儲卡</string>
+    <string name="set_backup_noimportant">尚未添加重要連絡人</string>
+    <string name="set_backup_nocall">尚未添加要遮罩來電的連絡人</string>
+    <string name="set_backup_nosms">尚未添加要遮罩短信的連絡人</string>
+    <string name="set_backup_nobackups">沒有找到備份檔案</string>
+    <string name="set_hidestyle_sms">短信遮罩方式</string>
+    <string name="set_hidestyle_call">來電遮罩方式</string>
+    <string name="set_hidestyle_call_no_answer">直接掛斷</string>
+    <string name="set_hidestyle_call_no_answer_info">自動掛斷，返回音由運營商自動返回</string>
+    <string name="set_hidestyle_call_receive_shutdown">接聽後掛斷</string>
+    <string name="set_hidestyle_call_receive_shutdown_info">自動接聽，然後自動掛斷</string>
+    <string name="set_hidestyle_call_null">拒接，空號提示</string>
+    <string name="set_hidestyle_call_null_info">自動拒接，並返回空號提示音</string>
+    <string name="set_hidestyle_call_shutdown">拒接，關機提示</string>
+    <string name="set_hidestyle_call_shutdown_info">自動拒接，並返回已關機提示音</string>
+    <string name="set_hidestyle_sms_disreceive">拒收</string>
+    <string name="set_hidestyle_sms_disreceive_info">不收取短信</string>
+    <string name="set_hidestyle_sms_slient">靜音接收</string>
+    <string name="set_hidestyle_sms_slient_info">收到要遮罩的短信時靜音</string>
 
+    <!-- 2013-01-17 -->
+    <string name="receivedata_title">請選擇操作：</string>
+    <string name="receivedata_sms">遮罩短信</string>
+    <string name="receivedata_call">遮罩來電</string>
+    <string name="receivedata_important">重要連絡人</string>
+    <string name="receivedata_content1">得到的號碼為：</string>
+    <string name="sure_delete_call">你確定要清除所有要攔截的電話嗎？</string>
+    <string name="sure_delete_sms">你確定要清除所有要攔截的短信嗎？</string>
+    <string name="feedback_content">回饋內容</string>
+    <string name="help_title_important">重要連絡人：</string>
+    <string name="help_title_important_info">即便手機處於靜音狀態，也絕不錯過重要連絡人的任何一個來電和短信。</string>
+    <string name="help_title_callsms">遮罩來電、短信：</string>
+    <string name="help_title_callsms_info">輕而易舉的忽略不想接聽的來電以及不想看到的短信。</string>
+    <string name="disable_gprs_title">禁用移動網路</string>
+    <string name="disable_gprs_info">防止高額 gprs 資料流程量費用</string>
+    <string name="receive_numbers_null">不支援的資料</string>
+    <string name="disable_gprs_notify_msg">點擊更改設置</string>
+    <string name="disable_gprs_on">當前狀態：已禁用</string>
+    <string name="disable_gprs_off">當前狀態：未禁用</string>
+    <string name="disable_gprs_on_tip">移動網路連接已禁用</string>
+    <string name="disable_gprs_on_tip_toast">移動網路連接已禁用；請查看通知欄。</string>
+    <string name="disable_gprs_off_tip">移動網路連接已不再禁用</string>
+    <string name="sms_lightscreen_title">收到短信點亮螢幕</string>
+    <string name="sms_lightscreen_info">防止手機靜音錯過普通短信</string>
+    <string name="sms_lightscreen_toast_on">收到短信將點亮螢幕</string>
+    <string name="clear_str">清空緩存</string>
+    <string name="clear_str_info">刪除備份檔案</string>
+    <string name="clear_alert">您確定要刪除所有備份資料嗎？</string>
+    <string name="clear_data_over">備份檔案已清空</string>
+    <string name="clear_data_null">沒有備份檔案</string>
+    <string name="signalreconnect_title">掉線重連</string>
+    <string name="signalreconnect_info">手機無信號時定時自動重連</string>
+    <string name="signalreconnect_success">開啟成功</string>
+    <string name="signalreconnect_not_support">您的系統過於強大，暫不支援此功能</string>
+    <string name="busymode_title">忙碌模式</string>
+    <string name="busymode_info">自動拒接電話，並回復短信告知。</string>
+    <string name="busymode_info_notreply">自動拒接電話。</string>
+    <string name="busymode_tip_open_toast">忙碌模式已經開啟</string>
+    <string name="busymode_tip_close_toast">忙碌模式已經關閉</string>
+    <string name="busymode_set_title">自動回復</string>
+    <string name="busymode_set_hint">(短信內容為空，表示拒接來電後不回復短信)</string>
+    <string name="busymode_rule_tip">忙碌模式下對重要連絡人和來電遮罩不起作用。</string>
+    <string name="str_open">開啟</string>
+    <string name="str_close">關閉</string>
+    <string name="str_busymode_notification_msg">拒絕來電，自動回復：</string>
+    <string name="str_busymode_notification_nomsg">只拒絕來電，不發送短信告知。</string>
+    <string name="str_busymode_notification_refused_notify">自動拒接</string>
+    <string name="str_busymode_notification_refused_title">自動拒接，點擊呼叫</string>
+    <string name="busymode_title_0">自訂</string>
+    <string name="busymode_title_1">忙碌</string>
+    <string name="busymode_title_2">駕車</string>
+    <string name="busymode_title_3">睡覺</string>
+    <string name="busymode_title_4">做飯</string>
+    <string name="busymode_title_5">電影院</string>
+    <string name="busymode_title_6">工作</string>
+    <string name="busymode_title_7">學習</string>
+    <string name="busymode_title_8">酒吧</string>
+    <string name="busymode_title_9">度假</string>
+    <string name="busymode_title_10">不回復短信</string>
+    <string name="busymode_title_11">開會</string>
+    <string name="busymode_title_12">通話中</string>
+       <string name="busymode_info_1">對不起，我現在正忙，現在不方便接聽您的電話。[Waiter自動回復]</string>
+    <string name="busymode_info_2">對不起，我在開車，為確保安全駕駛，現在不方便接聽您的電話。[Waiter自動回復]</string>
+    <string name="busymode_info_3">對不起，我在睡覺，真心不想被吵醒，因此不能接聽您的電話。[Waiter自動回復]</string>
+    <string name="busymode_info_4">對不起，我在做飯，接聽電話會糊鍋哦。[Waiter自動回復]</string>
+    <string name="busymode_info_5">對不起，我在電影院，為防止打擾別人，不能接聽您的電話，身不由己哦。[Waiter自動回復]</string>
+    <string name="busymode_info_6">對不起，我在忙碌的工作中，現在不想被打擾，稍後我會聯繫您的。[Waiter自動回復]</string>
+    <string name="busymode_info_7">對不起，我在學習中，不想被打擾，稍後我會聯繫您。[Waiter自動回復]</string>
+    <string name="busymode_info_8">對不起，我在酒吧，這裡非常嘈雜，我會找個時機聯繫您的。[Waiter自動回復]</string>
+    <string name="busymode_info_9">對不起，我在度假，不想被打擾，有時間會聯繫您的。[Waiter自動回復]</string>
+    <string name="busymode_info_10"></string>
+    <string name="busymode_info_11">對不起，我在開會，會議結束後我會聯繫您的，請諒解！[Waiter自動回復]</string>
+    <string name="busymode_info_12">對不起，我正在通話中，稍後會聯繫您的。[Waiter自動回復]</string>
+    <string name="share_label_number">提取電話號碼</string>
+    <string name="share_label_watermark">設置螢幕浮水印</string>
+
+    <!-- 暫時不用 -->
+    <string name="str_docall">撥打</string>
+    <string name="str_doclear">清除</string>
+
+    <!-- 2013-07-17 -->
+
+    <string name="tab_more">更多</string>
+    <string name="gprs_msg">禁用移動網路可防止產生高額的資料流程量費用！</string>
+    <string name="gprs_disable">禁用</string>
+    <string name="gprs_undisable">不再禁用</string>
+    <string name="gprs_cancel">取消</string>
+    <string name="busymode_refused_tel">"  電話："</string>
+    <string name="busymode_refused_unknown">未知來電</string>
+    <string name="busymode_refused_title">來電已拒絕</string>
+    <string name="watermark_close">關閉</string>
+    <string name="watermark_close_finish">螢幕浮水印已關閉！</string>
+    <string name="no_sdcard">操作無法進行，請檢查存儲卡是否可用</string>
+    <string name="about_maker">產品設計：</string>
+    <string name="about_maker_name">ZGY</string>
+    <string name="about_programer">開發人員：</string>
+    <string name="about_programer_name">ZGY</string>
+    <string name="about_qa">測試人員：</string>
+    <string name="about_qa_name">XXY</string>
+    <string name="finish">完成</string>
+    <string name="smslight_msg">點亮螢幕可防止手機靜音狀態下錯過普通短信，夜間效果更佳！</string>
+    <string name="signalreconnect_msg">自動重連可防止某些手機無信號後無法自動獲取信號的問題</string>
+    <string name="title_state_on">當前狀態：已開啟</string>
+    <string name="title_state_off">當前狀態：未開啟</string>
+    <string name="btn_close_state">不再開啟</string>
+    <string name="btn_open_state">開啟</string>
+    <string name="toast_close_ok">已關閉</string>
+    <string name="toast_open_ok">已開啟</string>
+    <string name="title_setting_important">重要連絡人設置</string>
+    <string name="title_setting_sms">短信遮罩設置</string>
+    <string name="title_setting_call">來電遮罩設置</string>
+    <string name="clear_null">沒有資料</string>
+    <string name="export_data">創建備份</string>
+    <string name="import_data">還原備份</string>
+    <string name="menu_title_important">重要連絡人相關操作</string>
+    <string name="menu_title_sms">短信遮罩相關操作</string>
+    <string name="menu_title_call">來電遮罩相關操作</string>
+    <string name="gesture_label">手勢識別</string>
+    <!-- 向右滑動觸發標題列上最左側按鈕，向左滑動觸發標題列最上右側按鈕 -->
+    <string name="gesture_info">在頁面上向左、向右滑動分別觸發標題列上最右側、最左側按鈕</string>
+    <string name="str_change_bg_color">"切換背景\r\n查看效果"</string>
+    <string name="str_opera">操作</string>
+    <string name="str_exit">退出</string>
+    <string name="str_share">分享</string>
+    <string name="tools_test">工程測試</string>
+    <string name="tools_test_tip">進入系統隱含的測試模組</string>
+    <string name="water_mark_hide_app">遮罩列表</string>
+    <string name="water_mark_hide_app_title">選擇遮罩應用</string>
+    <string name="water_mark_hide_app_tip">當被勾選的應用啟動時，不顯示幕幕浮水印</string>
+    <string name="msg_title">信息推送【Waiter】</string>
+    <string name="msg_title_title">信息推送</string>
+    <string name="msg_get_failed">讀取資訊失敗</string>
+    <string name="msg_share_msg">手機短信</string>
+    <string name="msg_tip">接收作者推送的有用資訊</string>
+    <string name="push_message_title">歷史資訊清單</string>
+    <string name="push_message_null">沒有接收到推送資訊</string>
+    <string name="push_message_receive_one">收到一條新資訊</string>
+    
+    
+    <string name="delete_str">刪除</string>
+    <string name="str_cancel_selected">" 取消選擇 "</string>
+    <string name="delete_pushmsg_alert">確定要刪除選中的資訊嗎？</string>
+    <string name="delete_success">刪除成功</string>
+    <string name="delete_failed">刪除失敗</string>
+    
+    <string name="str_load_more">更多</string>
+    <string name="str_load_more_no">沒有更多資訊了</string>
+    
 </resources>

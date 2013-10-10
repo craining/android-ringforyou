@@ -72,7 +72,9 @@ public class PushMessageReceiver extends BroadcastReceiver {
 						PushMessage msg = new PushMessage();
 						msg.setTitle(json.getString(PushMessageUtils.MESSAGE_TAG_TITLE));
 						msg.setContent(json.getString(PushMessageUtils.MESSAGE_TAG_CONTENT));
-						msg.setTag(json.getString(PushMessageUtils.MESSAGE_TAG_TAG));
+						if(json.has(PushMessageUtils.MESSAGE_TAG_TAG)) {
+							msg.setTag(json.getString(PushMessageUtils.MESSAGE_TAG_TAG));
+						}
 						msg.setReceiveTime(TimeUtil.getCurrentTimeMillis());
 
 						PushMessageController controller = PushMessageController.getInstence();

@@ -84,10 +84,10 @@ public class PushMessageUtils {
 			List<String> tags = new ArrayList<String>();
 			tags.add(PUSH_TAG_DEBUG);
 			PushManager.setTags(context, tags);
-			PushManager.listTags(context);
+			// PushManager.listTags(context);
 			// PushManager.enableLbs(context);
 
-			PushManager.bindGroup(context, PUSH_TAG_DEBUG);
+			// PushManager.bindGroup(context, PUSH_TAG_DEBUG);
 
 			LogRingForu.e("", "PushManager.isConnected()=" + PushManager.isConnected(context) + "\r\nPushManager.isPushEnabled()=" + PushManager.isPushEnabled(context));
 
@@ -96,6 +96,9 @@ public class PushMessageUtils {
 			tags.add(PUSH_TAG_USER);
 			PushManager.setTags(context, tags);
 		}
+
+		// PushManager.startWork(context, PushConstants.LOGIN_TYPE_API_KEY,
+		// PushMessageUtils.getMetaValue(context, "api_key"));
 
 		// LogRingForu.v(TAG, "start push work");
 		// } else {

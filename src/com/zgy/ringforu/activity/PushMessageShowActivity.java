@@ -118,6 +118,7 @@ public class PushMessageShowActivity extends BaseGestureActivity implements OnCl
 
 		int srcId = getImageSrcIdByTag(mTag);
 		if (srcId != -1) {
+			imgTag.setVisibility(View.VISIBLE);
 			imgTag.setImageResource(srcId);
 		}
 
