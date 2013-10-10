@@ -273,7 +273,7 @@
     <string name="msg_share_msg">手機短信</string>
     <string name="msg_tip">接收作者推送的有用資訊</string>
     <string name="push_message_title">歷史資訊清單</string>
-    <string name="push_message_null">沒有接收到推送資訊</string>
+    <string name="push_message_null">沒有推送資訊</string>
     <string name="push_message_receive_one">收到一條新資訊</string>
     
     

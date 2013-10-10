@@ -120,8 +120,8 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 
 	private void refreshListView() {
 		if (mAdapter != null) {
+			mListView.setVisibility(View.VISIBLE);
 			mAdapter.notifyDataChanged(mPushmessageList);
-			refreshButtonViews();
 
 			if (mProgressbarLoadMore.getVisibility() == View.VISIBLE) {
 				mProgressbarLoadMore.setVisibility(View.GONE);
@@ -133,10 +133,15 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 				mListView.setAdapter(mAdapter);
 				mListView.setOnItemClickListener(mLsnListItemClick);
 				mListView.setOnItemLongClickListener(mLsnListItemLongClick);
+				mListView.setVisibility(View.VISIBLE);
+			} else {
+				mListView.setVisibility(View.GONE);
 				refreshButtonViews();
 			}
 
 		}
+
+		refreshButtonViews();
 	}
 
 	private void refreshButtonViews() {
@@ -317,12 +322,14 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 							imgLoading.setVisibility(View.GONE);
 						}
 
+						refreshListView();
+
 						if (pushMessages == null || pushMessages.size() <= 0) {
 							MyToast.makeText(RingForU.getInstance(), R.string.push_message_null, Toast.LENGTH_LONG, true).show();
-						} else {
-							refreshListView();
-							refreshFooterView(allCount);
 						}
+						// else {
+						// refreshListView();
+						// }
 					}
 				});
 			}

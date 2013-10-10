@@ -6629,13 +6629,17 @@ com.zgy.ringforu.activity.PushMessageListActivity -> com.zgy.ringforu.activity.P
     android.widget.Button mBtnCancelSelect -> f
     android.widget.ImageView imgLoading -> g
     android.graphics.drawable.AnimationDrawable animationDrawable -> h
-    java.util.List mPushmessageList -> i
-    com.zgy.ringforu.logic.PushMessageController mController -> j
-    android.content.BroadcastReceiver mReciever -> k
-    android.app.ActivityManager mActivityManager -> l
-    android.widget.AdapterView$OnItemClickListener mLsnListItemClick -> m
-    android.widget.AdapterView$OnItemLongClickListener mLsnListItemLongClick -> n
-    com.zgy.ringforu.interfaces.PushMessageCallBack mCallBack -> o
+    android.view.View mViewLoadMore -> i
+    android.widget.RelativeLayout mLayoutLoadMore -> j
+    android.widget.ProgressBar mProgressbarLoadMore -> k
+    java.util.List mPushmessageList -> l
+    com.zgy.ringforu.logic.PushMessageController mController -> m
+    android.content.BroadcastReceiver mReciever -> n
+    android.app.ActivityManager mActivityManager -> o
+    com.zgy.ringforu.adapter.PushMessageListAdapter mAdapter -> p
+    android.widget.AdapterView$OnItemClickListener mLsnListItemClick -> q
+    android.widget.AdapterView$OnItemLongClickListener mLsnListItemLongClick -> r
+    com.zgy.ringforu.interfaces.PushMessageCallBack mCallBack -> s
     void onCreate(android.os.Bundle) -> onCreate
     void finalize() -> finalize
     void refreshListView() -> c
@@ -6654,14 +6658,10 @@ com.zgy.ringforu.activity.PushMessageListActivity -> com.zgy.ringforu.activity.P
     com.zgy.ringforu.interfaces.PushMessageCallBack access$3(com.zgy.ringforu.activity.PushMessageListActivity) -> d
     void access$4(com.zgy.ringforu.activity.PushMessageListActivity) -> e
     void access$5(com.zgy.ringforu.activity.PushMessageListActivity,java.util.List) -> a
-    android.graphics.drawable.AnimationDrawable access$6(com.zgy.ringforu.activity.PushMessageListActivity) -> f
-    android.widget.ImageView access$7(com.zgy.ringforu.activity.PushMessageListActivity) -> g
-    android.widget.ListView access$8(com.zgy.ringforu.activity.PushMessageListActivity) -> h
-    android.widget.AdapterView$OnItemClickListener access$9(com.zgy.ringforu.activity.PushMessageListActivity) -> i
-    android.widget.AdapterView$OnItemLongClickListener access$10(com.zgy.ringforu.activity.PushMessageListActivity) -> j
-    void access$11(com.zgy.ringforu.activity.PushMessageListActivity) -> k
-    android.app.ActivityManager access$12(com.zgy.ringforu.activity.PushMessageListActivity) -> l
-    void access$13(com.zgy.ringforu.activity.PushMessageListActivity) -> m
+    android.widget.ImageView access$6(com.zgy.ringforu.activity.PushMessageListActivity) -> f
+    android.graphics.drawable.AnimationDrawable access$7(com.zgy.ringforu.activity.PushMessageListActivity) -> g
+    android.app.ActivityManager access$8(com.zgy.ringforu.activity.PushMessageListActivity) -> h
+    void access$9(com.zgy.ringforu.activity.PushMessageListActivity) -> i
 com.zgy.ringforu.activity.PushMessageListActivity$1 -> com.zgy.ringforu.activity.m:
     com.zgy.ringforu.activity.PushMessageListActivity this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
@@ -6670,7 +6670,7 @@ com.zgy.ringforu.activity.PushMessageListActivity$2 -> com.zgy.ringforu.activity
     boolean onItemLongClick(android.widget.AdapterView,android.view.View,int,long) -> onItemLongClick
 com.zgy.ringforu.activity.PushMessageListActivity$3 -> com.zgy.ringforu.activity.o:
     com.zgy.ringforu.activity.PushMessageListActivity this$0 -> a
-    void getPushMessageListFinished(boolean,java.util.List) -> a
+    void getPushMessageListFinished(boolean,java.util.List,int) -> a
     void deletePushMessagesFinished(int[],boolean) -> a
 com.zgy.ringforu.activity.PushMessageListActivity$3$1 -> com.zgy.ringforu.activity.p:
     com.zgy.ringforu.activity.PushMessageListActivity$3 this$1 -> a
@@ -7111,6 +7111,7 @@ com.zgy.ringforu.adapter.PickerAdapter$ViewHolder -> com.zgy.ringforu.a.e:
 com.zgy.ringforu.adapter.PushMessageListAdapter -> com.zgy.ringforu.a.f:
     android.view.LayoutInflater mInflater -> a
     java.util.List mMessages -> b
+    void notifyDataChanged(java.util.List) -> a
     int getCount() -> getCount
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId
@@ -7242,7 +7243,8 @@ com.zgy.ringforu.db.DbOpera -> com.zgy.ringforu.d.b:
     java.lang.String mSyn -> a
     com.zgy.ringforu.db.DbOpera instances -> b
     com.zgy.ringforu.db.DbOpera getInstance() -> a
-    void insertPushMessage(com.zgy.ringforu.bean.PushMessage) -> a
+    boolean insertPushMessage(com.zgy.ringforu.bean.PushMessage) -> a
+    int getPushMessageTotalCount() -> b
     java.util.List getPushMessageList(java.lang.String) -> a
     void setPushMessageReadFalg(long,int) -> a
     void addPushMessageSharedTime(long) -> a
@@ -7254,7 +7256,7 @@ com.zgy.ringforu.interfaces.OnWheelChangedListener -> com.zgy.ringforu.e.b:
 com.zgy.ringforu.interfaces.OnWheelScrollListener -> com.zgy.ringforu.e.c:
 com.zgy.ringforu.interfaces.PushMessageCallBack -> com.zgy.ringforu.e.d:
     void insertPushMessageFinished(boolean,com.zgy.ringforu.bean.PushMessage) -> a
-    void getPushMessageListFinished(boolean,java.util.List) -> a
+    void getPushMessageListFinished(boolean,java.util.List,int) -> a
     void setPushMessageReadStatueFinished(boolean) -> a
     void deletePushMessagesFinished(int[],boolean) -> a
 com.zgy.ringforu.logic.PushMessageController -> com.zgy.ringforu.f.a:
@@ -7285,8 +7287,8 @@ com.zgy.ringforu.logic.PushMessageController$3 -> com.zgy.ringforu.f.d:
     void run() -> run
 com.zgy.ringforu.logic.PushMessageController$4 -> com.zgy.ringforu.f.e:
     com.zgy.ringforu.logic.PushMessageController this$0 -> a
-    int val$start -> b
-    int val$end -> c
+    int val$end -> b
+    int val$start -> c
     com.zgy.ringforu.interfaces.PushMessageCallBack val$callback -> d
     void run() -> run
 com.zgy.ringforu.logic.PushMessageController$5 -> com.zgy.ringforu.f.f:
@@ -7357,7 +7359,9 @@ com.zgy.ringforu.service.WaterMarkService -> com.zgy.ringforu.service.WaterMarkS
     void access$6(com.zgy.ringforu.service.WaterMarkService) -> f
     int access$7(com.zgy.ringforu.service.WaterMarkService) -> g
     void access$8(com.zgy.ringforu.service.WaterMarkService,int) -> a
-    int access$9(com.zgy.ringforu.service.WaterMarkService) -> h
+    android.view.WindowManager access$9(com.zgy.ringforu.service.WaterMarkService) -> h
+    android.view.View access$10(com.zgy.ringforu.service.WaterMarkService) -> i
+    int access$11(com.zgy.ringforu.service.WaterMarkService) -> j
 com.zgy.ringforu.service.WaterMarkService$ListenerHandler -> com.zgy.ringforu.service.b:
     com.zgy.ringforu.service.WaterMarkService this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
@@ -7497,10 +7501,10 @@ com.zgy.ringforu.util.ViewUtil$3 -> com.zgy.ringforu.g.ac:
     android.widget.Button val$btn -> a
     void run() -> run
 com.zgy.ringforu.util.WaterMarkUtil -> com.zgy.ringforu.g.ad:
-    boolean isWaterMarkShowing(android.content.Context) -> a
-    boolean isWaterMarkSeted() -> a
+    boolean isWaterMarkShowing$faab209() -> a
+    boolean isWaterMarkSeted() -> b
     void setSwitchOnOff(boolean) -> a
-    void checkState(android.content.Context) -> b
+    void checkState(android.content.Context) -> a
     void ctrlWaterMarkBackService(android.content.Context,boolean) -> a
 com.zgy.ringforu.view.FCMenu -> com.zgy.ringforu.view.a:
     android.content.Context mContext -> a

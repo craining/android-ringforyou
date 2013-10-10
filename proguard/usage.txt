@@ -86,6 +86,7 @@ com.zgy.ringforu.MainCanstants:
     public static final int DLG_BTN_ALPHA
     public static final int VIBRATE_STREGTH_NORMAL
     public static final int MAX_NUMS
+    public static final int LIMIT
     public static final java.lang.String FEEDBACK_EMAIL_TO
     public static final java.lang.String FEEDBACK_TITLE
     public static final java.lang.String FEEDBACK_VERSION
@@ -98,6 +99,8 @@ com.zgy.ringforu.MainCanstants:
     public static final java.lang.String PACKAGE_NAME
     public static final int WATER_MARK_ALPHA_DEF
     public static final java.lang.String SPLIT_TAG
+    public static final java.lang.String ACTIVITY_NAME_INSTALLAPP
+    public static final java.lang.String PACKAGE_NAME_INSTALLAPP
     7:7:public MainCanstants()
 com.zgy.ringforu.R
 com.zgy.ringforu.R$anim
@@ -125,12 +128,12 @@ com.zgy.ringforu.activity.MainActivityGroup:
     public int[] mWidthHeightTopMenu
 com.zgy.ringforu.activity.PickerApplicationActivity:
     private static final java.lang.String TAG
-    144:181:public void queryAppInfo()
+    147:184:public void queryAppInfo()
 com.zgy.ringforu.activity.PushMessageListActivity:
     private static final java.lang.String TAG
-    private static final int LIMIT
     public static final java.lang.String INTENT_INSERT_MESSAGE
     public static final java.lang.String INTENT_INSERT_MESSAGE_EXTRA
+    167:180:private void refreshFooterView(int)
 com.zgy.ringforu.activity.PushMessageShowActivity:
     private static final java.lang.String TAG
     private static final int ID_MENU_MSG
@@ -209,8 +212,6 @@ com.zgy.ringforu.db.Columns$Tb_PushMessage
 com.zgy.ringforu.db.DbHelper:
     private static final java.lang.String DB_NAME
     private static final int DB_VERSION
-com.zgy.ringforu.db.DbOpera:
-    68:82:public int getPushMessageTotalCount()
 com.zgy.ringforu.interfaces.PushMessageCallBack:
     15:15:public void getPushMessageTotalCountFinished(boolean,int)
 com.zgy.ringforu.receiver.CallReceiver:
@@ -248,6 +249,7 @@ com.zgy.ringforu.util.FileUtil:
     private static final java.lang.String TEXT_ENCODING
     19:19:public FileUtil()
     147:164:public static boolean copyFilesTo(java.io.File,java.io.File)
+com.zgy.ringforu.util.FontChangeUtil
 com.zgy.ringforu.util.ImportExportUtil:
     18:18:public ImportExportUtil()
 com.zgy.ringforu.util.MainUtil:
@@ -316,17 +318,16 @@ com.zgy.ringforu.util.RingForUActivityManager:
     92:95:public static android.app.Activity current()
     119:130:public static void retain(java.lang.Class)
 com.zgy.ringforu.util.SQLiteHelper:
-    64:64:public long insertOrReplace(java.lang.String,android.content.ContentValues)
-    80:91:public synchronized long insert(java.lang.String,android.content.ContentValues)
-    114:125:public synchronized int update(java.lang.String,android.content.ContentValues,java.lang.String,java.lang.String[])
-    141:152:public synchronized int deleteByRowID(java.lang.String,long)
-    164:175:public synchronized int delete(java.lang.String,java.lang.String,java.lang.String[])
-    190:197:public long count(java.lang.String)
-    214:222:public long count(java.lang.String,java.lang.String,java.lang.String[])
-    237:238:public android.database.Cursor query(java.lang.String)
-    254:255:public android.database.Cursor query(java.lang.String,java.lang.String[])
-    273:274:public android.database.Cursor query(java.lang.String,java.lang.String[],java.lang.String,java.lang.String[])
-    293:294:public android.database.Cursor query(java.lang.String,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)
+    34:34:public long insertOrReplace(java.lang.String,android.content.ContentValues)
+    38:49:public synchronized long insert(java.lang.String,android.content.ContentValues)
+    57:68:public synchronized int update(java.lang.String,android.content.ContentValues,java.lang.String,java.lang.String[])
+    72:83:public synchronized int deleteByRowID(java.lang.String,long)
+    87:98:public synchronized int delete(java.lang.String,java.lang.String,java.lang.String[])
+    102:109:public long count(java.lang.String)
+    113:121:public long count(java.lang.String,java.lang.String,java.lang.String[])
+    125:126:public android.database.Cursor query(java.lang.String)
+    130:131:public android.database.Cursor query(java.lang.String,java.lang.String[])
+    140:141:public android.database.Cursor query(java.lang.String,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)
 com.zgy.ringforu.util.SelectApplicationUtil:
     7:7:public SelectApplicationUtil()
 com.zgy.ringforu.util.SendEmailUtil:
