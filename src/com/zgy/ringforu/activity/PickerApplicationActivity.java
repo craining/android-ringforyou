@@ -98,19 +98,19 @@ public class PickerApplicationActivity extends BaseGestureActivity implements On
 				List<ApplicationInfo> listAppcations = pm.getInstalledApplications(PackageManager.GET_UNINSTALLED_PACKAGES);// GET_UNINSTALLED_PACKAGES代表已删除，但还有安装目录的
 
 				for (ApplicationInfo app : listAppcations) {
-					if (!MainCanstants.PACKAGE_NAME_INSTALLAPP.equals(app.packageName)) {
-						AppInfo appInfo = new AppInfo();
-						appInfo.setName((String) app.loadLabel(pm));
-						appInfo.setAppIcon(app.loadIcon(pm));
-						appInfo.setPackageName(app.packageName);
-						// 判断是否已选
-						if (selectedApps.contains(appInfo.getPackageName())) {
-							appInfo.setSelected(true);
-						} else {
-							appInfo.setSelected(false);
-						}
-						apps.add(appInfo);
+					// if (!MainCanstants.PACKAGE_NAME_INSTALLAPP.equals(app.packageName)) {
+					AppInfo appInfo = new AppInfo();
+					appInfo.setName((String) app.loadLabel(pm));
+					appInfo.setAppIcon(app.loadIcon(pm));
+					appInfo.setPackageName(app.packageName);
+					// 判断是否已选
+					if (selectedApps.contains(appInfo.getPackageName())) {
+						appInfo.setSelected(true);
+					} else {
+						appInfo.setSelected(false);
 					}
+					apps.add(appInfo);
+					// }
 
 				}
 

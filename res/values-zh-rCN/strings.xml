@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name">Waiter</string>
+    <string name="version_name">1.0.8</string>
     <string name="copyright">©2012&#8211;2015 ZGY. 版权所有\tv1.0.8\r\n\r\nAndroid开发QQ群:88130145</string>
      
     <string name="back">返回</string>
@@ -199,7 +200,7 @@
     <string name="busymode_title_10">不回复短信</string>
     <string name="busymode_title_11">开会</string>
     <string name="busymode_title_12">通话中</string>
-       <string name="busymode_info_1">对不起，我现在正忙，现在不方便接听您的电话。[Waiter自动回复]</string>
+    <string name="busymode_info_1">对不起，我现在正忙，现在不方便接听您的电话。[Waiter自动回复]</string>
     <string name="busymode_info_2">对不起，我在开车，为确保安全驾驶，现在不方便接听您的电话。[Waiter自动回复]</string>
     <string name="busymode_info_3">对不起，我在睡觉，真心不想被吵醒，因此不能接听您的电话。[Waiter自动回复]</string>
     <string name="busymode_info_4">对不起，我在做饭，接听电话会糊锅哦。[Waiter自动回复]</string>
@@ -278,12 +279,17 @@
     
     
     <string name="delete_str">删除</string>
-    <string name="str_cancel_selected">" 取消选择 "</string>
+    <string name="str_cancel_selected">" 取消选择(%1$d) "</string>
     <string name="delete_pushmsg_alert">确定要删除选中的信息吗？</string>
     <string name="delete_success">删除成功</string>
     <string name="delete_failed">删除失败</string>
     
     <string name="str_load_more">更多</string>
     <string name="str_load_more_no">没有更多信息了</string>
+    
+    
+    
+    
+    
     
 </resources>

@@ -100,7 +100,6 @@ com.zgy.ringforu.MainCanstants:
     public static final int WATER_MARK_ALPHA_DEF
     public static final java.lang.String SPLIT_TAG
     public static final java.lang.String ACTIVITY_NAME_INSTALLAPP
-    public static final java.lang.String PACKAGE_NAME_INSTALLAPP
     7:7:public MainCanstants()
 com.zgy.ringforu.R
 com.zgy.ringforu.R$anim
@@ -133,7 +132,6 @@ com.zgy.ringforu.activity.PushMessageListActivity:
     private static final java.lang.String TAG
     public static final java.lang.String INTENT_INSERT_MESSAGE
     public static final java.lang.String INTENT_INSERT_MESSAGE_EXTRA
-    167:180:private void refreshFooterView(int)
 com.zgy.ringforu.activity.PushMessageShowActivity:
     private static final java.lang.String TAG
     private static final int ID_MENU_MSG

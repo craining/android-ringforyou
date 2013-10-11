@@ -56,6 +56,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 	private ProgressBar mProgressbarLoadMore;
 
 	private List<PushMessage> mPushmessageList = new ArrayList<PushMessage>();
+	private List<PushMessage> mPushmessageListSelected = new ArrayList<PushMessage>();
 
 	private PushMessageController mController;
 
@@ -129,7 +130,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 			}
 		} else {
 			if (mPushmessageList != null && mPushmessageList.size() > 0) {
-				mAdapter = new PushMessageListAdapter(PushMessageListActivity.this, mPushmessageList);
+				mAdapter = new PushMessageListAdapter(PushMessageListActivity.this, mPushmessageList, mPushmessageListSelected);
 				mListView.setAdapter(mAdapter);
 				mListView.setOnItemClickListener(mLsnListItemClick);
 				mListView.setOnItemLongClickListener(mLsnListItemLongClick);
@@ -145,17 +146,13 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 	}
 
 	private void refreshButtonViews() {
-		boolean hasSelected = false;
-		for (PushMessage msg : mPushmessageList) {
-			if (msg.isSelected()) {
-				hasSelected = true;
-				break;
-			}
-		}
-		if (hasSelected) {
+		int selectedCount = mPushmessageListSelected.size();
+	 
+		if (selectedCount>0) {
 			mBtnDelete.setVisibility(View.VISIBLE);
 			mBtnBack.setVisibility(View.GONE);
 			mBtnCancelSelect.setVisibility(View.VISIBLE);
+			mBtnCancelSelect.setText(String.format(getString(R.string.str_cancel_selected), selectedCount));
 		} else {
 			mBtnDelete.setVisibility(View.GONE);
 			mBtnBack.setVisibility(View.VISIBLE);
@@ -180,9 +177,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 	}
 
 	private void cancelSelected() {
-		for (PushMessage msg : mPushmessageList) {
-			msg.setSelected(false);
-		}
+		mPushmessageListSelected = new ArrayList<PushMessage>();
 		refreshListView();
 	}
 
@@ -209,10 +204,8 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 	private void onDeleteSelected() {
 
 		List<Integer> messages = new ArrayList<Integer>();
-		for (PushMessage msg : mPushmessageList) {
-			if (msg.isSelected()) {
+		for (PushMessage msg : mPushmessageListSelected) {
 				messages.add(msg.getId());
-			}
 		}
 
 		int[] ids = new int[messages.size()];
@@ -256,7 +249,11 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 			PhoneUtil.doVibraterNormal(PushMessageListActivity.super.mVb);
 			LogRingForu.e(TAG, "onItemLongClick id=" + position);
 			PushMessage msg = mPushmessageList.get(position);
-			msg.setSelected(!msg.isSelected());
+			if(mPushmessageListSelected.contains(msg)) {
+				mPushmessageListSelected.remove(msg);
+			} else {
+				mPushmessageListSelected.add(msg);
+			}
 			refreshListView();
 
 			return true;
@@ -327,9 +324,8 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 						if (pushMessages == null || pushMessages.size() <= 0) {
 							MyToast.makeText(RingForU.getInstance(), R.string.push_message_null, Toast.LENGTH_LONG, true).show();
 						}
-						// else {
-						// refreshListView();
-						// }
+						
+						refreshFooterView(allCount);
 					}
 				});
 			}

@@ -2,8 +2,6 @@ package com.zgy.ringforu.bean;
 
 public class PushMessage {
 
-	
-	
 	public static final int READ = 1;
 	public static final int UNREAD = 0;
 
@@ -14,19 +12,16 @@ public class PushMessage {
 	private long receiveTime;
 	private int readStatue;
 	private int sharedTimes = -1;
-	
-	
-	private boolean selected;
 
-	
-	public boolean isSelected() {
-		return selected;
-	}
+//	private boolean selected;
+//
+//	public boolean isSelected() {
+//		return selected;
+//	}
 
-	
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
+//	public void setSelected(boolean selected) {
+//		this.selected = selected;
+//	}
 
 	public int getId() {
 		return id;
@@ -82,6 +77,17 @@ public class PushMessage {
 
 	public void setSharedTimes(int sharedTimes) {
 		this.sharedTimes = sharedTimes;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		PushMessage a = (PushMessage) o;
+		return (a.getId() == id) ? true : false;
+	}
+
+	@Override
+	public int hashCode() {
+		return content.hashCode();
 	}
 
 }

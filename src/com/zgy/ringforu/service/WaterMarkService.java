@@ -1,5 +1,7 @@
 package com.zgy.ringforu.service;
 
+import java.util.List;
+
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.app.Service;
@@ -24,6 +26,7 @@ import com.zgy.ringforu.RingForU;
 import com.zgy.ringforu.activity.ToolsListActivity;
 import com.zgy.ringforu.config.MainConfig;
 import com.zgy.ringforu.util.BitmapUtil;
+import com.zgy.ringforu.util.NotificationUtil;
 import com.zgy.ringforu.util.WaterMarkUtil;
 import com.zgy.ringforu.view.MyToast;
 
@@ -53,7 +56,6 @@ public class WaterMarkService extends Service {
 
 	@Override
 	public void onStart(Intent intent, int startId) {
-		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
 
 		LogRingForu.e(TAG, "WaterMarkService is start!");
@@ -180,24 +182,21 @@ public class WaterMarkService extends Service {
 				mHandler.removeMessages(MSG_NOOP);
 
 				if (mActivityManager != null && mImageView != null) {
-					RunningTaskInfo info = mActivityManager.getRunningTasks(1).get(0);
-					// String shortClassName =
-					// info.topActivity.getShortClassName(); //
-					// 类名
-					String className = info.topActivity.getClassName(); //
+					List<RunningTaskInfo> list = mActivityManager.getRunningTasks(1);
+					RunningTaskInfo info = list.get(0);
 					// 完整类名
-					String packageName = info.topActivity.getPackageName(); // 包名
-					// LogRingForu.v(TAG, "top app className=" + className);
+					String packageName = info.topActivity.getPackageName();  
 					if (!packageName.equals(mPackageNameTemp)) {
 						// 仅当切换时，才控制
 						mPackageNameTemp = packageName;
-						if (RingForU.getInstance().getPackageNameHideWaterMark().contains(packageName) || MainCanstants.ACTIVITY_NAME_INSTALLAPP.equals(className)) {
+						if (RingForU.getInstance().getPackageNameHideWaterMark().contains(packageName) || MainCanstants.ACTIVITY_NAME_INSTALLAPP.equals(info.topActivity.getClassName())) {
 							hide();
 						} else {
 							show();
 						}
 					}
-
+					list = null;
+					info = null;
 				}
 
 				mHandler.sendEmptyMessageDelayed(MSG_NOOP, TIME_DELAY);
@@ -281,5 +280,7 @@ public class WaterMarkService extends Service {
 		if (mHandler != null) {
 			mHandler.removeMessages(MSG_NOOP);
 		}
+		
+		NotificationUtil.showHideWaterMarkNotify(false, RingForU.getInstance());
 	}
 }

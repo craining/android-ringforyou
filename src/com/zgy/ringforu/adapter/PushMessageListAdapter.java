@@ -21,9 +21,11 @@ public class PushMessageListAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 
 	private List<PushMessage> mMessages;
+	private List<PushMessage> mMessagesSelected;
 
-	public PushMessageListAdapter(Context context, List<PushMessage> messages) {
+	public PushMessageListAdapter(Context context, List<PushMessage> messages, List<PushMessage> messagesSelected) {
 		this.mMessages = messages;
+		this.mMessagesSelected = messagesSelected;
 		mInflater = LayoutInflater.from(context);
 	}
 	
@@ -87,7 +89,7 @@ public class PushMessageListAdapter extends BaseAdapter {
 		}
 
 		// ±³¾°
-		if (msg.isSelected()) {
+		if (mMessagesSelected.contains(msg)) {
 			((RelativeLayout) convertView.findViewById(R.id.layout_push_message_item_middle)).setBackgroundResource(R.drawable.shape_rounded_layout_blue);
 		} else {
 			if (msg.getReadStatue() == PushMessage.READ) {

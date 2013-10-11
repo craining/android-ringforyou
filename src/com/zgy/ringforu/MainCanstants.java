@@ -56,7 +56,7 @@ public class MainCanstants {
 	public static final String SPLIT_TAG = ":::";// ·Ö¸ô·û
 	
 	public static final String ACTIVITY_NAME_INSTALLAPP = "com.android.packageinstaller.PackageInstallerActivity";
-	public static final String PACKAGE_NAME_INSTALLAPP = "com.android.packageinstaller";
+//	public static final String PACKAGE_NAME_INSTALLAPP = "com.android.packageinstaller";
 
 	// //////////////////////////////////////////
 	public static File getSdFile() {
