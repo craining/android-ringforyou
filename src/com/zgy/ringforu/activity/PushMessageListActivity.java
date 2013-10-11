@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zgy.ringforu.LogRingForu;
@@ -45,6 +46,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 
 	private static final String TAG = "DirectoryPicker";
 
+	private TextView mTextTitle;
 	private ListView mListView;
 	private Button mBtnBack;
 	private Button mBtnDelete;
@@ -96,6 +98,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 	}
 
 	private void initViews() {
+		mTextTitle = (TextView) findViewById(R.id.text_push_messagelist_title);
 		mListView = (ListView) findViewById(R.id.list_push_messagelist);
 		mBtnDelete = (Button) findViewById(R.id.btn_push_messagelist_delete);
 		mBtnBack = (Button) findViewById(R.id.btn_push_messagelist_back);
@@ -319,6 +322,8 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 							imgLoading.setVisibility(View.GONE);
 						}
 
+						mTextTitle.setText(String.format(getString(R.string.push_message_title), allCount));
+						
 						refreshListView();
 
 						if (pushMessages == null || pushMessages.size() <= 0) {

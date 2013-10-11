@@ -20,8 +20,7 @@
 
         <TextView
             android:id="@+id/text_push_messagelist_title"
-            style="@style/text_top_title"
-            android:text="@string/push_message_title" />
+            style="@style/text_top_title"/>
 
         <Button
             android:id="@+id/btn_push_messagelist_delete"

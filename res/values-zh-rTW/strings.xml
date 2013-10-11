@@ -273,13 +273,12 @@
     <string name="msg_get_failed">讀取資訊失敗</string>
     <string name="msg_share_msg">手機短信</string>
     <string name="msg_tip">接收作者推送的有用資訊</string>
-    <string name="push_message_title">歷史資訊清單</string>
+    <string name="push_message_title">"歷史資訊清單 (%1$d)"</string>
     <string name="push_message_null">沒有推送資訊</string>
     <string name="push_message_receive_one">收到一條新資訊</string>
     
-    
     <string name="delete_str">刪除</string>
-    <string name="str_cancel_selected">" 取消選擇(%1$d) "</string>
+    <string name="str_cancel_selected">" 取消(%1$d) "</string>
     <string name="delete_pushmsg_alert">確定要刪除選中的資訊嗎？</string>
     <string name="delete_success">刪除成功</string>
     <string name="delete_failed">刪除失敗</string>
