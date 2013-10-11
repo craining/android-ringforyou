@@ -265,7 +265,7 @@
     <string name="str_share">分享</string>
     <string name="tools_test">工程测试</string>
     <string name="tools_test_tip">进入系统隐含的测试模块</string>
-    <string name="water_mark_hide_app">屏蔽列表</string>
+    <string name="water_mark_hide_app">屏蔽</string>
     <string name="water_mark_hide_app_title">选择屏蔽应用</string>
     <string name="water_mark_hide_app_tip">当被勾选的应用启动时，不显示屏幕水印</string>
     <string name="msg_title">信息推送【Waiter】</string>

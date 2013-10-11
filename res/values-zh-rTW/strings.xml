@@ -265,7 +265,7 @@
     <string name="str_share">分享</string>
     <string name="tools_test">工程測試</string>
     <string name="tools_test_tip">進入系統隱含的測試模組</string>
-    <string name="water_mark_hide_app">遮罩列表</string>
+    <string name="water_mark_hide_app">遮罩</string>
     <string name="water_mark_hide_app_title">選擇遮罩應用</string>
     <string name="water_mark_hide_app_tip">當被勾選的應用啟動時，不顯示幕幕浮水印</string>
     <string name="msg_title">信息推送【Waiter】</string>
