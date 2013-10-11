@@ -6623,24 +6623,25 @@ com.zgy.ringforu.activity.PickerApplicationActivity$2$1 -> com.zgy.ringforu.acti
     com.zgy.ringforu.activity.PickerApplicationActivity$2 this$1 -> a
     void run() -> run
 com.zgy.ringforu.activity.PushMessageListActivity -> com.zgy.ringforu.activity.PushMessageListActivity:
-    android.widget.ListView mListView -> c
-    android.widget.Button mBtnBack -> d
-    android.widget.Button mBtnDelete -> e
-    android.widget.Button mBtnCancelSelect -> f
-    android.widget.ImageView imgLoading -> g
-    android.graphics.drawable.AnimationDrawable animationDrawable -> h
-    android.view.View mViewLoadMore -> i
-    android.widget.RelativeLayout mLayoutLoadMore -> j
-    android.widget.ProgressBar mProgressbarLoadMore -> k
-    java.util.List mPushmessageList -> l
-    java.util.List mPushmessageListSelected -> m
-    com.zgy.ringforu.logic.PushMessageController mController -> n
-    android.content.BroadcastReceiver mReciever -> o
-    android.app.ActivityManager mActivityManager -> p
-    com.zgy.ringforu.adapter.PushMessageListAdapter mAdapter -> q
-    android.widget.AdapterView$OnItemClickListener mLsnListItemClick -> r
-    android.widget.AdapterView$OnItemLongClickListener mLsnListItemLongClick -> s
-    com.zgy.ringforu.interfaces.PushMessageCallBack mCallBack -> t
+    android.widget.TextView mTextTitle -> c
+    android.widget.ListView mListView -> d
+    android.widget.Button mBtnBack -> e
+    android.widget.Button mBtnDelete -> f
+    android.widget.Button mBtnCancelSelect -> g
+    android.widget.ImageView imgLoading -> h
+    android.graphics.drawable.AnimationDrawable animationDrawable -> i
+    android.view.View mViewLoadMore -> j
+    android.widget.RelativeLayout mLayoutLoadMore -> k
+    android.widget.ProgressBar mProgressbarLoadMore -> l
+    java.util.List mPushmessageList -> m
+    java.util.List mPushmessageListSelected -> n
+    com.zgy.ringforu.logic.PushMessageController mController -> o
+    android.content.BroadcastReceiver mReciever -> p
+    android.app.ActivityManager mActivityManager -> q
+    com.zgy.ringforu.adapter.PushMessageListAdapter mAdapter -> r
+    android.widget.AdapterView$OnItemClickListener mLsnListItemClick -> s
+    android.widget.AdapterView$OnItemLongClickListener mLsnListItemLongClick -> t
+    com.zgy.ringforu.interfaces.PushMessageCallBack mCallBack -> u
     void onCreate(android.os.Bundle) -> onCreate
     void finalize() -> finalize
     void refreshListView() -> c
@@ -6662,10 +6663,11 @@ com.zgy.ringforu.activity.PushMessageListActivity -> com.zgy.ringforu.activity.P
     void access$6(com.zgy.ringforu.activity.PushMessageListActivity,java.util.List) -> a
     android.widget.ImageView access$7(com.zgy.ringforu.activity.PushMessageListActivity) -> g
     android.graphics.drawable.AnimationDrawable access$8(com.zgy.ringforu.activity.PushMessageListActivity) -> h
-    void access$9(com.zgy.ringforu.activity.PushMessageListActivity,int) -> a
-    void access$10(com.zgy.ringforu.activity.PushMessageListActivity,java.util.List) -> b
-    android.app.ActivityManager access$11(com.zgy.ringforu.activity.PushMessageListActivity) -> i
-    void access$12(com.zgy.ringforu.activity.PushMessageListActivity) -> j
+    android.widget.TextView access$9(com.zgy.ringforu.activity.PushMessageListActivity) -> i
+    void access$10(com.zgy.ringforu.activity.PushMessageListActivity,int) -> a
+    void access$11(com.zgy.ringforu.activity.PushMessageListActivity,java.util.List) -> b
+    android.app.ActivityManager access$12(com.zgy.ringforu.activity.PushMessageListActivity) -> j
+    void access$13(com.zgy.ringforu.activity.PushMessageListActivity) -> k
 com.zgy.ringforu.activity.PushMessageListActivity$1 -> com.zgy.ringforu.activity.m:
     com.zgy.ringforu.activity.PushMessageListActivity this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
@@ -6678,8 +6680,8 @@ com.zgy.ringforu.activity.PushMessageListActivity$3 -> com.zgy.ringforu.activity
     void deletePushMessagesFinished(int[],boolean) -> a
 com.zgy.ringforu.activity.PushMessageListActivity$3$1 -> com.zgy.ringforu.activity.p:
     com.zgy.ringforu.activity.PushMessageListActivity$3 this$1 -> a
-    java.util.List val$pushMessages -> b
-    int val$allCount -> c
+    int val$allCount -> b
+    java.util.List val$pushMessages -> c
     void run() -> run
 com.zgy.ringforu.activity.PushMessageListActivity$3$2 -> com.zgy.ringforu.activity.q:
     com.zgy.ringforu.activity.PushMessageListActivity$3 this$1 -> a
