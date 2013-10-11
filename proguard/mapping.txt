@@ -6663,8 +6663,9 @@ com.zgy.ringforu.activity.PushMessageListActivity -> com.zgy.ringforu.activity.P
     android.widget.ImageView access$7(com.zgy.ringforu.activity.PushMessageListActivity) -> g
     android.graphics.drawable.AnimationDrawable access$8(com.zgy.ringforu.activity.PushMessageListActivity) -> h
     void access$9(com.zgy.ringforu.activity.PushMessageListActivity,int) -> a
-    android.app.ActivityManager access$10(com.zgy.ringforu.activity.PushMessageListActivity) -> i
-    void access$11(com.zgy.ringforu.activity.PushMessageListActivity) -> j
+    void access$10(com.zgy.ringforu.activity.PushMessageListActivity,java.util.List) -> b
+    android.app.ActivityManager access$11(com.zgy.ringforu.activity.PushMessageListActivity) -> i
+    void access$12(com.zgy.ringforu.activity.PushMessageListActivity) -> j
 com.zgy.ringforu.activity.PushMessageListActivity$1 -> com.zgy.ringforu.activity.m:
     com.zgy.ringforu.activity.PushMessageListActivity this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
@@ -7116,7 +7117,7 @@ com.zgy.ringforu.adapter.PushMessageListAdapter -> com.zgy.ringforu.a.f:
     android.view.LayoutInflater mInflater -> a
     java.util.List mMessages -> b
     java.util.List mMessagesSelected -> c
-    void notifyDataChanged(java.util.List) -> a
+    void notifyDataChanged(java.util.List,java.util.List) -> a
     int getCount() -> getCount
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId

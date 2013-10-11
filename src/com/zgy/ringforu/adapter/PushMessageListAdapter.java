@@ -30,8 +30,9 @@ public class PushMessageListAdapter extends BaseAdapter {
 	}
 	
 	
-	public void notifyDataChanged(List<PushMessage> messages) {
+	public void notifyDataChanged(List<PushMessage> messages, List<PushMessage> messagesSelected) {
 		this.mMessages = messages;
+		this.mMessagesSelected = messagesSelected;
 		notifyDataSetChanged();
 	}
 

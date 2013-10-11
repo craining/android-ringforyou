@@ -122,7 +122,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 	private void refreshListView() {
 		if (mAdapter != null) {
 			mListView.setVisibility(View.VISIBLE);
-			mAdapter.notifyDataChanged(mPushmessageList);
+			mAdapter.notifyDataChanged(mPushmessageList, mPushmessageListSelected);
 
 			if (mProgressbarLoadMore.getVisibility() == View.VISIBLE) {
 				mProgressbarLoadMore.setVisibility(View.GONE);
@@ -147,8 +147,8 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 
 	private void refreshButtonViews() {
 		int selectedCount = mPushmessageListSelected.size();
-	 
-		if (selectedCount>0) {
+
+		if (selectedCount > 0) {
 			mBtnDelete.setVisibility(View.VISIBLE);
 			mBtnBack.setVisibility(View.GONE);
 			mBtnCancelSelect.setVisibility(View.VISIBLE);
@@ -205,7 +205,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 
 		List<Integer> messages = new ArrayList<Integer>();
 		for (PushMessage msg : mPushmessageListSelected) {
-				messages.add(msg.getId());
+			messages.add(msg.getId());
 		}
 
 		int[] ids = new int[messages.size()];
@@ -249,7 +249,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 			PhoneUtil.doVibraterNormal(PushMessageListActivity.super.mVb);
 			LogRingForu.e(TAG, "onItemLongClick id=" + position);
 			PushMessage msg = mPushmessageList.get(position);
-			if(mPushmessageListSelected.contains(msg)) {
+			if (mPushmessageListSelected.contains(msg)) {
 				mPushmessageListSelected.remove(msg);
 			} else {
 				mPushmessageListSelected.add(msg);
@@ -324,7 +324,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 						if (pushMessages == null || pushMessages.size() <= 0) {
 							MyToast.makeText(RingForU.getInstance(), R.string.push_message_null, Toast.LENGTH_LONG, true).show();
 						}
-						
+
 						refreshFooterView(allCount);
 					}
 				});
@@ -340,6 +340,7 @@ public class PushMessageListActivity extends BaseGestureActivity implements OnCl
 				@Override
 				public void run() {
 					if (result) {
+						mPushmessageListSelected = new ArrayList<PushMessage>();
 						MyToast.makeText(PushMessageListActivity.this, R.string.delete_success, Toast.LENGTH_SHORT, false).show();
 						mController.getPushMessageList(0, mPushmessageList.size() - ids.length, mCallBack);
 					} else {
